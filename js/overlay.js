@@ -27,6 +27,7 @@ const lastMatchPtsCheck = urlParams.get("lastMatchPts") === "yes" ? "yes" : "no"
 
 // Elements
 const imgRank = document.getElementById("imgRank");
+const imgPTS = document.getElementById("imgPTS");
 const playerRank = document.getElementById("playerRank");
 const progressRank = document.getElementById("progressrank");
 const rankBlock = document.getElementById("rankBlock");
@@ -112,6 +113,22 @@ function updatePlayerCard() {
     lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
   } else if (playerLastGamePts >= 1) {
     lastMatchPtsValue.innerHTML = `+${playerLastGamePts}pts`;
+  if (playerLastGamePts > 0) {
+    if (playerLastGamePts <= 10) {
+      imgPTS.src = `/img/icons/up.png`;
+    } else if (playerLastGamePts <= 20) {
+      imgPTS.src = `/img/icons/up_plus.png`;
+    } else {
+      imgPTS.src = `/img/icons/up_plusplus.png`;
+    }
+  } else if (playerLastGamePts < 0) {
+    if (playerLastGamePts > -10) {
+      imgPTS.src = `/img/icons/down.png`;
+    } else if (playerLastGamePts > -20) {
+      imgPTS.src = `/img/icons/down_plus.png`;
+    } else {
+      imgPTS.src = `/img/icons/down_plusplus.png`;
+    }
   }
 
   // Colors

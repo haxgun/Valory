@@ -7,7 +7,8 @@
 h1,
 h2,
 h3,
-h4 {
+h4,
+span {
   line-height: 1;
   padding: 0;
   margin: 0;
@@ -39,8 +40,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
-  padding-left: 18px;
+  width: 120px;
 }
 
 #playerInfo {
@@ -100,6 +100,12 @@ body {
 }
 
 #lastmatchpts {
+  display: flex;
+  gap: 6px;
+}
+
+#lastmatchpts span {
+  font-weight: bold;
   font-size: 15px;
   color: white;
   text-transform: uppercase;
