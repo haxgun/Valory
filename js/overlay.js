@@ -44,8 +44,6 @@ const wlProccent = document.getElementById("wlProccent");
 // Player Info
 let returnStatus, checkifnull, playerElo, playerMmr, playerTier, playerLastGamePts, playerName, leaderboardRank;
 let actualRank, win = 0, lose = 0, tied, matchId1, jsonDataWL, puuid;
-let totalGames = win + lose;
-let winPercentage = (win / totalGames) * 100;
 
 
 function reqGet(url) {
@@ -202,6 +200,8 @@ function won() {
 function WinLoseVisual() {
   winValue.innerHTML = `${win}`;
   loseValue.innerHTML = `${lose}`;
+  const totalGames = win + lose;
+  const winPercentage = (win / totalGames) * 100;
   if (win + lose !== 0) {
     wlProccent.innerHTML = `(${winPercentage}%)`;
   }
