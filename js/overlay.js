@@ -196,8 +196,7 @@ function won() {
 function WinLoseVisual() {
   if (win + lose === 0) {
     wlValue.innerHTML = `Win: ${win} Lose: ${lose}`;
-  } else {
-    winPercentage = winPercentage.toFixed(2);
+  } else {;
     wlValue.innerHTML = `Win: ${win} Lose: ${lose} (${winPercentage}%)`;
   }
 }
