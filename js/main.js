@@ -74,7 +74,7 @@ function getPreview() {
         wlStatCheck +
         "&progressrank=" +
         progressRankCheck +
-        "&lastMarchPts=" +
+        "&lastMatchPts=" +
         lastMatchPtsCheck;
 
       iframe.src = linkbox.value;
