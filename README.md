@@ -5,7 +5,9 @@
 [![Issues](https://img.shields.io/github/issues/haxgun/valory)](https://github.com/haxgun/valory/issues)
 [![Stars](https://img.shields.io/github/stars/haxgun/valory)](https://github.com/haxgun/valory/stargazers)
 
-![Preview](https://github.com/haxgun/valory/assets/26204174/279c0848-fc5b-4b7a-bce5-9344d71f5291)
+![Preview](https://github.com/haxgun/valory/assets/26204174/069a59e5-b23d-4c3d-9d2c-2b52d405cafa)
+
+
 
 Valory provides a beautiful rank overlay for your stream.
 Overlay under the hood runs on vanilla JS, so it has minimal load on your PC.
