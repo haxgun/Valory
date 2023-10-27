@@ -214,7 +214,7 @@ main p {
   margin: 0 6px;
   flex-direction: column;
   gap: 18px;
-  max-height: 650px;
+  max-height: 620px;
   overflow-y: scroll;
 }
 
@@ -517,4 +517,28 @@ input.nickname:focus:not(:read-only) {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+footer {
+  margin-top: 36px;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+footer .socials {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+}
+
+footer .socials a {
+  transition: all 0.2s;
+  --icons-color: hsla(0, 0%, 100%, 1);
+  stroke: var(--icons-color);
+  fill: var(--icons-color);
+}
+
+footer .socials a:hover {
+  --icons-color: hsla(0, 0%, 100%, 0.5);
 }
