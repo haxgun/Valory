@@ -370,7 +370,7 @@ input.nickname:focus:not(:read-only) {
 
 .preview {
   flex: 1;
-  background-image: url("img/bg.png");
+  background-image: url("/valory/img/bg.png");
   background-color: #cccccc;
   width: 100%;
   height: 100%;

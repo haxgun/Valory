@@ -74,7 +74,7 @@ function updatePlayerCard() {
   if (playerMmr > 100) {
     playerMmr = "0";
   }
-  imgRank.src = `${window.location.origin}/img/ranks/${playerTier}.png`;
+  imgRank.src = `/valory/img/ranks/${playerTier}.png`;
   let actualProcent = `${playerMmr}%`;
   playerRank.innerHTML =
     playerElo + " - " + playerMmrText + "RR";
@@ -130,7 +130,7 @@ progressRank.style.display = progressRankCheck === "yes" ? "none" : "";
 lastMarchPts.style.display = lastMarchPtsCheck === "yes" ? "none" : "";
 
 function thinking() {
-  if (imgRank.src === `${window.location.origin}/img/load.png`) {
+  if (imgRank.src === `/valory/img/load.png`) {
     location.reload();
   }
 }
