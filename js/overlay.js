@@ -118,19 +118,19 @@ function updatePlayerCard() {
 
   if (playerLastGamePts > 0) {
     if (playerLastGamePts <= 10) {
-      imgPTS.src = `/img/icons/up.png`;
+      imgPTS.src = `/valory/img/icons/up.png`;
     } else if (playerLastGamePts <= 20) {
-      imgPTS.src = `/img/icons/up_plus.png`;
+      imgPTS.src = `/valory/img/icons/up_plus.png`;
     } else {
-      imgPTS.src = `/img/icons/up_plusplus.png`;
+      imgPTS.src = `/valory/img/icons/up_plusplus.png`;
     }
   } else if (playerLastGamePts < 0) {
     if (playerLastGamePts > -10) {
-      imgPTS.src = `/img/icons/down.png`;
+      imgPTS.src = `/valory/img/icons/down.png`;
     } else if (playerLastGamePts > -20) {
-      imgPTS.src = `/img/icons/down_plus.png`;
+      imgPTS.src = `/valory/img/icons/down_plus.png`;
     } else {
-      imgPTS.src = `/img/icons/down_plusplus.png`;
+      imgPTS.src = `/valory/img/icons/down_plusplus.png`;
     }
   }
 
