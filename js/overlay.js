@@ -98,7 +98,7 @@ function updatePlayerCard() {
   } else if (playerTier >= 24 && playerLastGamePts === 0) {
     lastMarchPts.innerHTML = `Last Match: ${playerLastGamePts}pts`;
   } else if (playerTier >= 24 && playerLastGamePts >= 1) {
-    lastMarchPts.innerHTML = `Last Match: ${playerLastGamePts}pts`;
+    lastMarchPts.innerHTML = `Last Match: +${playerLastGamePts}pts`;
     actualProcent = "100%";
     cssStyle.setProperty("--progresspontinho", actualProcent);
   } else if (playerTier >= 24 && playerLastGamePts <= -1) {
@@ -108,7 +108,7 @@ function updatePlayerCard() {
   } else if (playerLastGamePts === 0) {
     lastMarchPts.innerHTML = `Last Match: ${playerLastGamePts}pts`;
   } else if (playerLastGamePts >= 1) {
-    lastMarchPts.innerHTML = `Last Match: + ${playerLastGamePts}pts`;
+    lastMarchPts.innerHTML = `Last Match: +${playerLastGamePts}pts`;
   } else if (playerLastGamePts <= -1) {
     lastMarchPts.innerHTML = `Last Match: ${playerLastGamePts}pts`;
   }
@@ -121,7 +121,6 @@ function updatePlayerCard() {
 
   const progressBarColor = document.querySelector('#progressrank').style;
   progressBarColor.setProperty('--progressrank-after-color', `#${progressRankColor}`);
-  const progressBarBgColor = document.querySelector('#progressrank').style;
   progressBarColor.setProperty('--progressrank-color', `#${progressRankBgColor}45`);
 
 }
