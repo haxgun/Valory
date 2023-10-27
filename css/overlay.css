@@ -26,6 +26,7 @@ body {
   text-rendering: optimizeSpeed;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 #elements {
