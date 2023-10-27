@@ -142,7 +142,7 @@ updatePlayerCard();
 actualRank = playerTier;
 
 function checkData() {
-  if (returnStatus === "200" && checkifnull !== null) {
+  if (returnStatus === 200 && checkifnull !== null) {
     updatePlayerCard();
   }
 }
