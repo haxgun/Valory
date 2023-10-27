@@ -38,7 +38,10 @@ const cssStyle = document.querySelector(":root").style;
 
 // Player Info
 let returnStatus, checkifnull, playerElo, playerMmr, playerTier, playerLastGamePts, playerName, leaderboardRank;
-let actualRank, win = 0, lose = 0, tied, matchId1, jsonDataWL, puuid, reqpuuid;
+let actualRank, win = 0, lose = 0, tied, matchId1, jsonDataWL, puuid;
+let totalGames = win + lose;
+let winPercentage = (win / totalGames) * 100;
+
 
 function reqGet(url) {
   const request = new XMLHttpRequest();
@@ -194,7 +197,8 @@ function WinLoseVisual() {
   if (win + lose === 0) {
     wlValue.innerHTML = `Win: ${win} Lose: ${lose}`;
   } else {
-    wlValue.innerHTML = `Win: ${win} Lose: ${lose} (${win / (win + lose)}%)`;
+    winPercentage = winPercentage.toFixed(2);
+    wlValue.innerHTML = `Win: ${win} Lose: ${lose} (${winPercentage}%)`;
   }
 }
 
