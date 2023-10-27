@@ -28,13 +28,18 @@ const lastMarchPtsCheck = urlParams.get("lastMarchPts") === "yes" ? "yes" : "no"
 // Elements
 const imgRank = document.getElementById("imgRank");
 const playerRank = document.getElementById("playerRank");
-const wlValue = document.getElementById("WLvalue");
 const progressRank = document.getElementById("progressrank");
 const rankBlock = document.getElementById("rankBlock");
 const gradbg = document.getElementById("elements");
 const wlStat = document.getElementById("wlstat");
 const lastMarchPts = document.getElementById("lastmatchpts");
+const lastMarchPtsValue = document.getElementById("lastmatchptsvalue");
 const cssStyle = document.querySelector(":root").style;
+
+const wlValue = document.getElementById("WLvalue");
+const winValue = document.getElementById("winValue");
+const loseValue = document.getElementById("loseValue");
+const wlProccent = document.getElementById("wlProccent");
 
 // Player Info
 let returnStatus, checkifnull, playerElo, playerMmr, playerTier, playerLastGamePts, playerName, leaderboardRank;
@@ -94,30 +99,32 @@ function updatePlayerCard() {
   }
   cssStyle.setProperty("--progresspontinho", actualProcent);
   if (playerLastGamePts === "nRanked") {
-    lastMarchPts.innerHTML = `Unranked ${isunrankedatoatual}/1`;
+    lastMarchPtsValue.innerHTML = `Unranked ${isunrankedatoatual}/1`;
   } else if (playerTier >= 24 && playerLastGamePts === 0) {
-    lastMarchPts.innerHTML = `Last Match: ${playerLastGamePts}pts`;
+    lastMarchPtsValue.innerHTML = `${playerLastGamePts}pts`;
   } else if (playerTier >= 24 && playerLastGamePts >= 1) {
-    lastMarchPts.innerHTML = `Last Match: +${playerLastGamePts}pts`;
+    lastMarchPtsValue.innerHTML = `+${playerLastGamePts}pts`;
     actualProcent = "100%";
     cssStyle.setProperty("--progresspontinho", actualProcent);
   } else if (playerTier >= 24 && playerLastGamePts <= -1) {
-    lastMarchPts.innerHTML = `Last Match: ${playerLastGamePts}pts`;
+    lastMarchPtsValue.innerHTML = `${playerLastGamePts}pts`;
     actualProcent = "0%";
     cssStyle.setProperty("--progresspontinho", actualProcent);
-  } else if (playerLastGamePts === 0) {
-    lastMarchPts.innerHTML = `Last Match: ${playerLastGamePts}pts`;
+  } else if (playerLastGamePts === 0 || playerLastGamePts <= -1) {
+    lastMarchPtsValue.innerHTML = `${playerLastGamePts}pts`;
   } else if (playerLastGamePts >= 1) {
-    lastMarchPts.innerHTML = `Last Match: +${playerLastGamePts}pts`;
-  } else if (playerLastGamePts <= -1) {
-    lastMarchPts.innerHTML = `Last Match: ${playerLastGamePts}pts`;
+    lastMarchPtsValue.innerHTML = `+${playerLastGamePts}pts`;
   }
 
   // Colors
   document.getElementById("mainText").style.color = `#${textColor}`;
+  wlValue.style.color = `#${textColor}`;
   playerRank.style.color = `#${primaryColor}`;
-  wlValue.style.color = `#${primaryColor}`;
-  lastMarchPts.style.color = `#${primaryColor}`;
+  winValue.style.color = `#${primaryColor}`;
+  loseValue.style.color = `#${primaryColor}`;
+  wlProccent.style.color = `#${primaryColor}`;
+  lastMarchPts.style.color = `#${textColor}`;
+  lastMarchPtsValue.style.color = `#${primaryColor}`;
 
   const progressBarColor = document.querySelector('#progressrank').style;
   progressBarColor.setProperty('--progressrank-after-color', `#${progressRankColor}`);
@@ -193,10 +200,10 @@ function won() {
 }
 
 function WinLoseVisual() {
-  if (win + lose === 0) {
-    wlValue.innerHTML = `Win: ${win} Lose: ${lose}`;
-  } else {;
-    wlValue.innerHTML = `Win: ${win} Lose: ${lose} (${winPercentage}%)`;
+  winValue.innerHTML = `${win}`;
+  loseValue.innerHTML = `${lose}`;
+  if (win + lose !== 0) {
+    wlProccent.innerHTML = `(${winPercentage}%)`;
   }
 }
 
