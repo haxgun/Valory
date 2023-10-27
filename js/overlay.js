@@ -123,7 +123,7 @@ function updatePlayerCard() {
 
 }
 
-rankBlock.style.backgroundColor = alphabg === "yes" ? "transparent" : `#${bgColor}`;
+rankBlock.style.backgroundColor = alphabg === "yes" ? "transparent" : `#${bgColor}40`;
 gradbg.style.backgroundImage = alphagradbg === "yes" ? "none" : "linear-gradient(rgb(255 0 0 / 0%), rgb(0 0 0 / 57%))";
 wlStat.style.display = wlStatCheck === "yes" ? "none" : "";
 progressRank.style.display = progressRankCheck === "yes" ? "none" : "";
