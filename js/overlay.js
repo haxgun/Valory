@@ -82,37 +82,40 @@ function updatePlayerCard() {
     playerMmr = "0";
   }
   imgRank.src = `/valory/img/ranks/${playerTier}.png`;
+
   let actualProcent = `${playerMmr}%`;
-  playerRank.innerHTML =
-    playerElo + " - " + playerMmrText + "RR";
+
   if (playerLastGamePts === "nRanked") {
     playerRank.innerHTML = playerElo;
-  }
-  if (playerTier === 27) {
+  } else if (playerTier === 27) {
     leaderboard();
-    if (leaderboardRank === " ") {
-      playerRank.innerHTML = `${playerElo} ${playerMmrText}RR`;
-    } else {
+    if (leaderboardRank !== " ") {
       playerRank.innerHTML = `${playerElo} #${leaderboardRank}`;
     }
+  } else {
+    playerRank.innerHTML = `${playerElo} - ${playerMmrText}RR`;
   }
+
   cssStyle.setProperty("--progresspontinho", actualProcent);
+
   if (playerLastGamePts === "nRanked") {
     lastMatchPtsValue.innerHTML = `Unranked ${isunrankedatoatual}/1`;
   } else if (playerTier >= 24 && playerLastGamePts === 0) {
     lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
-  } else if (playerTier >= 24 && playerLastGamePts >= 1) {
-    lastMatchPtsValue.innerHTML = `+${playerLastGamePts}pts`;
-    actualProcent = "100%";
-    cssStyle.setProperty("--progresspontinho", actualProcent);
-  } else if (playerTier >= 24 && playerLastGamePts <= -1) {
+  } else if (playerTier >= 24) {
+    if (playerLastGamePts >= 1) {
+      lastMatchPtsValue.innerHTML = `+${playerLastGamePts}pts`;
+      actualProcent = "100%";
+      cssStyle.setProperty("--progresspontinho", actualProcent);
+    } else if (playerLastGamePts <= -1) {
+      lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
+      actualProcent = "0%";
+      cssStyle.setProperty("--progresspontinho", actualProcent);
+    }
+  } else {
     lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
-    actualProcent = "0%";
-    cssStyle.setProperty("--progresspontinho", actualProcent);
-  } else if (playerLastGamePts === 0 || playerLastGamePts <= -1) {
-    lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
-  } else if (playerLastGamePts >= 1) {
-    lastMatchPtsValue.innerHTML = `+${playerLastGamePts}pts`;
+  }
+
   if (playerLastGamePts > 0) {
     if (playerLastGamePts <= 10) {
       imgPTS.src = `/img/icons/up.png`;
@@ -144,7 +147,6 @@ function updatePlayerCard() {
   const progressBarColor = document.querySelector('#progressrank').style;
   progressBarColor.setProperty('--progressrank-after-color', `#${progressRankColor}`);
   progressBarColor.setProperty('--progressrank-color', `#${progressRankBgColor}45`);
-
 }
 
 rankBlock.style.backgroundColor = alphabg === "yes" ? "transparent" : `#${bgColor}40`;
