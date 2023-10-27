@@ -26,21 +26,22 @@ function getPreview() {
   let lastMatchPtsCheck = document.getElementById("lastmatchptscheck").checked ? "yes" : "no";
 
   // Other
-  const regex = /^[\w-]+#[\w-]+$/;
+  // const regex = /[A-Za-z0-9 ]{1,10}#[A-Za-z0-9]{1,4}/;
 
   if (nicknameWithTag.length === 0) {
     alert("Please fill all fields");
     return;
   }
 
-  if (regex.test(nicknameWithTag)) {
-    nicknameWithTag = nicknameWithTag.split("#");
-    nickname = nicknameWithTag[0];
-    tag = nicknameWithTag[1];
-  } else {
-    alert("Enter the correct nickname#tag");
-    return;
-  }
+  nicknameWithTag = nicknameWithTag.split("#");
+  nickname = nicknameWithTag[0];
+  tag = nicknameWithTag[1];
+  // if (regex.test(nicknameWithTag)) {
+  //
+  // } else {
+  //   alert("Enter the correct nickname#tag");
+  //   return;
+  // }
 
   fetch(`https://api.henrikdev.xyz/valorant/v1/account/${nickname}/${tag}`)
     .then((response) => response.json())
