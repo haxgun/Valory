@@ -530,6 +530,9 @@ footer .socials {
   list-style: none;
   display: flex;
   gap: 16px;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
 }
 
 footer .socials a {
