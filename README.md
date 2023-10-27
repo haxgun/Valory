@@ -20,8 +20,6 @@ Initially, the project was a fork of [davizeragod](https://davizeragod.github.io
 
 
 ## 📋 TODO
-- [ ] Add "+" and "-" rating icons for the latest game
-- [ ] Add more customization for text
 - [ ] Add instructions on how to connect an overlay to a stream
 - [ ] Add a real-time preview update
 - [ ] Add more information
