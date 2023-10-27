@@ -100,12 +100,12 @@ body {
   transition: width 2s;
 }
 
-#lastmatchpts {
+.lastmatchpts {
   display: flex;
   gap: 6px;
 }
 
-#lastmatchpts span {
+.lastmatchpts span {
   font-weight: bold;
   font-size: 15px;
   color: white;
