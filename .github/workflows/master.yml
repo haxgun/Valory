@@ -1,22 +1,45 @@
+name: Deploy
+
 on:
   push:
     branches:
       - main
-name: Deploy
 jobs:
-  web-deploy:
-    name: Deploy
+  run-linters:
+    name: Run linters
     runs-on: ubuntu-latest
     steps:
-      - name: Get latest code
-        uses: actions/checkout@v4.1.1
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
+      - name: Setup Node
+        uses: actions/setup-node@v4.0.0
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1.8.36
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          prettier: true
+
+  deploy:
+    name: Build
+    needs: run-linters
+    runs-on: ubuntu-latest
+    steps:
       - name: Install ssh keys
         run: |
           install -m 600 -D /dev/null ~/.ssh/id_rsa
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+
       - name: Connect and Pull
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout main && git pull && exit"
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} |
+          "cd ${{ secrets.WORK_DIR }} && git checkout main && git pull && npm ci && npm install|
+          && npm run build && exit"
+
       - name: Cleanup
         run: rm -rf ~/.ssh
