@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - main
-name: Deploy website on push
+name: Deploy
 jobs:
   web-deploy:
     name: Deploy
@@ -10,17 +10,6 @@ jobs:
     steps:
       - name: Get latest code
         uses: actions/checkout@v4.1.1
-
-#      - name: Run command on server
-#        uses: D3rHase/ssh-command-action@v0.2.2
-#        with:
-#          host: ${{ secrets.SSH_HOST }}
-#          user: ${{ secrets.SSH_USER }}
-#          private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-#          command: |
-#            cd ${{ secrets.WORK_DIR }}
-#            git checkout main
-#            git pull
 
       - name: Install ssh keys
         run: |
