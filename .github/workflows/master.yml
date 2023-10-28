@@ -11,23 +11,23 @@ jobs:
       - name: Get latest code
         uses: actions/checkout@v4.1.1
 
-      - name: Run command on server
-        uses: D3rHase/ssh-command-action@v0.2.2
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          user: ${{ secrets.SSH_USER }}
-          private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          command: |
-            cd ${{ secrets.WORK_DIR }}
-            git checkout main
-            git pull
+#      - name: Run command on server
+#        uses: D3rHase/ssh-command-action@v0.2.2
+#        with:
+#          host: ${{ secrets.SSH_HOST }}
+#          user: ${{ secrets.SSH_USER }}
+#          private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+#          command: |
+#            cd ${{ secrets.WORK_DIR }}
+#            git checkout main
+#            git pull
 
-#      - name: Install ssh keys
-#        run: |
-#          install -m 600 -D /dev/null ~/.ssh/id_rsa
-#          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-#          ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
-#      - name: Connect and Pull
-#        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout main && git pull && exit"
-#      - name: Cleanup
-#        run: rm -rf ~/.ssh
+      - name: Install ssh keys
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+      - name: Connect and Pull
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout main && git pull && exit"
+      - name: Cleanup
+        run: rm -rf ~/.ssh
