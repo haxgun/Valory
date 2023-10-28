@@ -50,7 +50,7 @@ function getPreview() {
 
       linkbox.value =
         window.location.origin +
-        "/valory/overlay/?region=" +
+        "/overlay/?region=" +
         region +
         "&nickname=" +
         nickname +
