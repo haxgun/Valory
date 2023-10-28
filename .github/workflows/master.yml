@@ -39,11 +39,9 @@ jobs:
       - name: Connect and Pull
         run: |
           if [ $GITHUB_REF == 'refs/heads/main' ]; then
-            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} |
-            "cd ${{ secrets.WORK_DIR }} && git checkout main && git pull && npm ci && npm install && npm run build && exit"
+            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout main && git pull && npm ci && npm install && npm run build && exit"
           else
-            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} |
-            "cd ${{ vars.TEST_DIR }} && git checkout ${GITHUB_REF##*/} && git pull && npm ci && npm install && npm run build && exit"
+            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ vars.TEST_DIR }} && git checkout ${GITHUB_REF##*/} && git pull && npm ci && npm install && npm run build && exit"
           fi
 
       - name: Cleanup
