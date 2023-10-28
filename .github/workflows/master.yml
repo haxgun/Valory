@@ -2,7 +2,9 @@ name: Deploy
 
 on:
   push:
-    branches: ['main', 'rework-js']
+    branches:
+      - main
+      - rework-js
 jobs:
   run-linters:
     name: Run linters
@@ -36,7 +38,7 @@ jobs:
 
       - name: Connect and Pull
         run: |
-          if [ $GITHUB_REF != 'refs/heads/main' ]; then
+          if [ $GITHUB_REF == 'refs/heads/main' ]; then
             ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} |
             "cd ${{ secrets.WORK_DIR }} && git checkout main && git pull && npm ci && npm install|
             && npm run build && exit"
