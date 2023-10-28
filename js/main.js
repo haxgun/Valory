@@ -1,15 +1,43 @@
-const submitButton = document.getElementById("submitButton")
-const iframe = document.getElementById("iframe");
-const linkbox = document.getElementById("linkbox");
-const copyButton = document.getElementById("copyButton");
+const submitButton = document.getElementById('submitButton')
+const iframe = document.getElementById('iframe');
+const linkbox = document.getElementById('linkbox');
+const copyButton = document.getElementById('copyButton');
 
-function getPreview() {
-  // Nickname with a region
-  const inputNicknameWithTag = document.getElementById("nickname_with_tag")
+
+async function checkNickname(name) {
+    const regex = /^[a-zA-Zа-яА-Я0-9\s]{1,16}#[a-zA-Zа-яА-Я0-9]{1,5}$/
+
+    if (name.length === 0) {
+      alert('Please enter a nickname');
+      return false;
+    }
+
+    if (!regex.test(name)) {
+        alert('Incorrect nickname format.');
+        return false;
+    }
+
+    let nickname;
+    let tag;
+    [nickname, tag] = name.split("#");
+
+    const response = await fetch(`https://api.henrikdev.xyz/valorant/v1/account/${nickname}/${tag}`);
+    return response.ok;
+}
+
+async function getRegion(name, tag) {
+    let response = await fetch(`https://api.henrikdev.xyz/valorant/v1/account/${name}/${tag}`);
+    response = await response.json();
+    return response.data.region;
+}
+
+
+async function getPreview() {
+  // Get Nickname, Tag, Region
+  const inputNicknameWithTag = document.getElementById('nickname_with_tag')
   let nicknameWithTag = inputNicknameWithTag.value;
-  let region;
-  let nickname;
-  let tag;
+  const [nickname, tag] = nicknameWithTag.split('#');
+  const region = await getRegion(nickname, tag);
 
   // Color Settings
   let bgColor = document.getElementById("backgroundcolor").value.replace("#", "");
@@ -25,76 +53,42 @@ function getPreview() {
   let progressRankCheck = document.getElementById("progressrankcheck").checked ? "yes" : "no";
   let lastMatchPtsCheck = document.getElementById("lastmatchptscheck").checked ? "yes" : "no";
 
-  // Other
-  // const regex = /[A-Za-z0-9 ]{1,10}#[A-Za-z0-9]{1,4}/;
-
-  if (nicknameWithTag.length === 0) {
-    alert("Please fill all fields");
-    return;
-  }
-
-  nicknameWithTag = nicknameWithTag.split("#");
-  nickname = nicknameWithTag[0];
-  tag = nicknameWithTag[1];
-  // if (regex.test(nicknameWithTag)) {
-  //
-  // } else {
-  //   alert("Enter the correct nickname#tag");
-  //   return;
-  // }
-
-  fetch(`https://api.henrikdev.xyz/valorant/v1/account/${nickname}/${tag}`)
-    .then((response) => response.json())
-    .then((data) => {
-      region = data.data.region;
-
-      linkbox.value =
-        window.location.origin +
-        "/overlay/?region=" +
-        region +
-        "&nickname=" +
-        nickname +
-        "&tag=" +
-        tag +
-        "&textColor=" +
-        textColor +
-        "&primaryColor=" +
-        primaryColor +
-        "&bgColor=" +
-        bgColor +
-        "&progressRankColor=" +
-        progressRankColor +
-        "&progressRankBgColor=" +
-        progressRankBgColor +
-        "&alphaBg=" +
-        alphaBg +
-        "&alphaGradBg=" +
-        alphaGradBg +
-        "&wlstat=" +
-        wlStatCheck +
-        "&progressrank=" +
-        progressRankCheck +
-        "&lastMatchPts=" +
-        lastMatchPtsCheck;
-
-      iframe.src = linkbox.value;
-    })
-    .catch((error) => {
-      console.error("An error occurred while loading the data:", error);
-      alert("An error occurred while loading the data:.");
-    });
-}
-
-submitButton.onclick = function () {
-  getPreview();
-  if (linkbox.value.length === 0) {
-    alert("Please fill all fields");
-    return;
-  }
+  linkbox.value =
+    window.location.origin +
+    "/overlay/?region=" +
+    region +
+    "&nickname=" +
+    nickname +
+    "&tag=" +
+    tag +
+    "&textColor=" +
+    textColor +
+    "&primaryColor=" +
+    primaryColor +
+    "&bgColor=" +
+    bgColor +
+    "&progressRankColor=" +
+    progressRankColor +
+    "&progressRankBgColor=" +
+    progressRankBgColor +
+    "&alphaBg=" +
+    alphaBg +
+    "&alphaGradBg=" +
+    alphaGradBg +
+    "&wlstat=" +
+    wlStatCheck +
+    "&progressrank=" +
+    progressRankCheck +
+    "&lastMatchPts=" +
+    lastMatchPtsCheck;
 
   iframe.src = linkbox.value;
 }
 
-copyButton.addEventListener("click", () => {
+submitButton.onclick = async function () {
+  await getPreview();
+}
+
+copyButton.onclick = function() {
   navigator.clipboard.writeText(linkbox.value);
-});
+}

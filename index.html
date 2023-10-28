@@ -16,19 +16,22 @@
   <body>
     <main
         x-data="
-        { editorContinue: false, search: false,
-            configutarion: false,
-            backgroundColor: '#ffffff',
-            primaryColor: '#ffffff',
-            textColor: '#f0f0f0',
-            transparentCheck: false,
-            transparentGradientCheck: false,
-            progressRankColor: '#61baa4',
-            progressRankBackgroundColor: '#ffffff',
-            wlStat: false,
-            progressRank: false,
-            lastMarchPts: false
-          }"
+        {
+          nickname: '',
+          editorContinue: false,
+          search: false,
+          configutarion: false,
+          backgroundColor: '#ffffff',
+          primaryColor: '#ffffff',
+          textColor: '#f0f0f0',
+          transparentCheck: false,
+          transparentGradientCheck: false,
+          progressRankColor: '#61baa4',
+          progressRankBackgroundColor: '#ffffff',
+          wlStat: false,
+          progressRank: false,
+          lastMarchPts: false
+        }"
     >
       <div class="sidepanel">
         <div class="main">
@@ -60,13 +63,14 @@
                   </svg>
                 </span>
                 <input
-                  @keyup.enter="getPreview(); search = true;"
+                  @keyup.enter="if (await checkNickname(nickname)) { getPreview(); search = true }"
+                  x-model="nickname"
                   class="nickname"
                   id="nickname_with_tag"
                   placeholder="NICKNAME#TAG"
                   autocomplete="off"
                 />
-                <button @click="getPreview(); search = true;" style="padding: 5px">
+                <button @click="if (await checkNickname(nickname)) { getPreview(); search = true }" style="padding: 5px">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
