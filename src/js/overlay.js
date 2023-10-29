@@ -43,8 +43,8 @@ const loseValue = document.getElementById("loseValue");
 const wlProccent = document.getElementById("wlProccent");
 
 // Player Info
-let returnStatus, checkifnull, playerElo, playerMmr, playerTier, playerLastGamePts, playerName, leaderboardRank;
-let actualRank, win = 0, lose = 0, tied, matchId1, jsonDataWL, puuid;
+let returnStatus, checkifnull, playerElo, playerMmr, playerMmrText, playerTier, playerLastGamePts, playerName, leaderboardRank;
+let win = 0, lose = 0, tied, matchId1, jsonDataWL, puuid;
 
 
 function reqGet(url) {
@@ -99,7 +99,7 @@ function updatePlayerCard() {
   cssStyle.setProperty("--progresspontinho", actualProcent);
 
   if (playerLastGamePts === "nRanked") {
-    lastMatchPtsValue.innerHTML = `Unranked ${isunrankedatoatual}/1`;
+    lastMatchPtsValue.innerHTML = `Unranked`;
   } else if (playerTier >= 24 && playerLastGamePts === 0) {
     lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
   } else if (playerTier >= 24) {
@@ -175,7 +175,7 @@ setInterval(main, 15000);
 setInterval(checkData, 15000);
 
 function setPuuid() {
-  req = reqGet(
+  const req = reqGet(
     `https://api.henrikdev.xyz/valorant/v1/account/${nickname}/${tag}`
   );
   const data = JSON.parse(req);
@@ -183,7 +183,7 @@ function setPuuid() {
 }
 
 function get() {
-  wl_data = reqGet(`https://api.henrikdev.xyz/valorant/v3/matches/${region}/${nickname}/${tag}?filter=competitive&size=1`);
+  const wl_data = reqGet(`https://api.henrikdev.xyz/valorant/v3/matches/${region}/${nickname}/${tag}?filter=competitive&size=1`);
   jsonDataWL = JSON.parse(wl_data);
 }
 
@@ -197,7 +197,7 @@ function playerTeam() {
   const playerTeam = jsonDataWL.data[0].players.all_players.find(
     (player) => player.puuid === puuid
   );
-  time = playerTeam.team;
+  const time = playerTeam.team;
   return time.toLowerCase();
 }
 
@@ -210,8 +210,7 @@ function won() {
   } else {
     tied = "N";
   }
-  timeWon = jsonDataWL.data[0].teams[playerTeam()].has_won;
-  return timeWon;
+  return jsonDataWL.data[0].teams[playerTeam()].has_won;
 }
 
 function WinLoseVisual() {
@@ -227,7 +226,7 @@ function WinLoseVisual() {
 function winlose() {
   get();
   won();
-  matchId2 = jsonDataWL.data[0].metadata.matchid;
+  const matchId2 = jsonDataWL.data[0].metadata.matchid;
   if (matchId2 !== matchId1) {
     if (timeWon === true) {
       win += 1;
