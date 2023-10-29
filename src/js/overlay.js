@@ -260,7 +260,7 @@ async function WinLoseVisual(win, lose) {
   const totalGames = win + lose;
   const winPercentage = (win / totalGames) * 100;
   if (win + lose !== 0) {
-    wlProccent.innerHTML = `(${winPercentage}%)`;
+    wlProccent.innerHTML = `(${winPercentage.toFixed()}%)`;
   }
 }
 
