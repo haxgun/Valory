@@ -39,7 +39,7 @@ jobs:
       - name: Connect and Pull
         run: |
           if [ $GITHUB_REF == 'refs/heads/main' ]; then
-            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout main && git pull && npm install --package-lock-only && npm ci && npm run build && exit"
+            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout main && git pull --rebase && npm install --package-lock-only && npm ci && npm run build && exit"
           else
             ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.TEST_WORK_DIR }} && git checkout ${GITHUB_REF##*/} && git pull && npm install --package-lock-only && npm ci && npm run build && exit"
           fi
