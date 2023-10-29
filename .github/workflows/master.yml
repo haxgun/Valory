@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-node@v4.0.0
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1.8.36
+        run: npm install --package-lock-only && npm ci
 
       - name: Run linters
         uses: wearerequired/lint-action@v2
@@ -39,9 +39,9 @@ jobs:
       - name: Connect and Pull
         run: |
           if [ $GITHUB_REF == 'refs/heads/main' ]; then
-            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout main && git pull && npm ci && npm install && npm run build && exit"
+            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout main && git pull && npm install --package-lock-only && npm ci && npm run build && exit"
           else
-            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.TEST_WORK_DIR }} && git checkout ${GITHUB_REF##*/} && git pull && npm ci && npm install && npm run build && exit"
+            ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.TEST_WORK_DIR }} && git checkout ${GITHUB_REF##*/} && git pull && npm install --package-lock-only && npm ci && npm run build && exit"
           fi
 
       - name: Cleanup
