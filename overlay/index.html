@@ -5,31 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VALORY - Player card</title>
-    <link rel="icon" type="image/png" href="../img/favicon.png" />
-    <link rel="stylesheet" href="../css/overlay.css" />
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
+    <link rel="stylesheet" href="../src/css/overlay.css" />
   </head>
 
   <body>
-    <div id="elements">
-      <div id="rankBlock">
-        <img alt="rank" src="#" id="imgRank" height="80" width="80" />
-      </div>
-      <div id="playerInfo">
-        <h2 style="text-transform: uppercase" id="mainText">
-          Rating
-        </h2>
-        <h1 style="text-transform: uppercase" x-bind:style="{color: primaryColor}" id="playerRank"></h1>
-        <div id="wlstat">
-          <h2 id="WLvalue">Win: <span id="winValue"></span> Lose: <span id="loseValue"></span> <span id="wlProccent"></span></h2>
-        </div>
-        <div id="progressrank"></div>
-        <div class="lastmatchpts">
-          <span id="lastmatchpts">Last Match:</span>
-          <span id="lastmatchptsvalue"></span>
-          <img src="#" id="imgPTS" height="16" width="16"/>
-        </div>
-      </div>
-    </div>
-    <script src="../js/overlay.js"></script>
+    <div id="overlay"></div>
+    <script type="module" src="../src/js/overlay.js"></script>
   </body>
 </html>

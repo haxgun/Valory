@@ -165,14 +165,14 @@ button:active svg,
   border: 1px solid var(--red-color);
 }
 
-main {
+.start {
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
 }
 
-main h2.title__title {
+.start h2.title__title {
   font-size: 1.1rem;
   background: -webkit-linear-gradient(#eee, #dadada);
   background-clip: text;
@@ -180,12 +180,12 @@ main h2.title__title {
   -webkit-text-fill-color: transparent;
 }
 
-main .title .title__right {
+.start .title .title__right {
   display: flex;
   gap: 12px;
 }
 
-main p {
+.start p {
   font-size: 0.825rem;
   line-height: 1.25rem;
 }
