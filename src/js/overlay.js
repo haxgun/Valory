@@ -1,13 +1,9 @@
+import { setIntervalAsync } from 'set-interval-async';
+
 // Urls and Alpine Data
 let url = new URL(window.location.href);
 let urlParams = url.searchParams;
-
-// User Params
-const { nickname, tag, region } = {
-  nickname: urlParams.get("nickname"),
-  tag: urlParams.get("tag"),
-  region: urlParams.get("region")
-};
+const apiUrl = 'https://api.henrikdev.xyz/valorant'
 
 // Color Settings
 const { textColor, primaryColor, bgColor, progressRankColor, progressRankBgColor } = {
@@ -24,6 +20,12 @@ const alphagradbg = urlParams.get("alphaGradBg") === "yes" ? "yes" : "no";
 const wlStatCheck = urlParams.get("wlstat") === "yes" ? "yes" : "no";
 const progressRankCheck = urlParams.get("progressrank") === "yes" ? "yes" : "no";
 const lastMatchPtsCheck = urlParams.get("lastMatchPts") === "yes" ? "yes" : "no";
+
+
+const { NICKNAME, TAG} = {
+  NICKNAME: urlParams.get("nickname"),
+  TAG: urlParams.get("tag")
+};
 
 document.querySelector('#overlay').innerHTML = `
   <div id="elements">
@@ -65,42 +67,71 @@ const winValue = document.getElementById("winValue");
 const loseValue = document.getElementById("loseValue");
 const wlProccent = document.getElementById("wlProccent");
 
-// Player Info
-let returnStatus, checkifnull, playerElo, playerMmr, playerMmrText, playerTier, playerLastGamePts, playerName, leaderboardRank;
-let win = 0, lose = 0, tied, matchId1, jsonDataWL, puuid;
+async function main(nickname, tag) {
+  const [puuid, region] = await getPuuidWithRegion(nickname, tag);
+  let matchId1 = await getFirstMatchId(region, puuid)
 
-
-function reqGet(url) {
-  const request = new XMLHttpRequest();
-  request.open("GET", url, false);
-  request.send();
-  return request.responseText;
+  await decorateCard()
+  await checkData(region, puuid, matchId1)
+  setIntervalAsync(checkData, 30000, region, puuid, matchId1);
 }
 
-function leaderboard() {
-  const regionLow = region.toLowerCase();
-  const rawData = reqGet(
-    `https://api.henrikdev.xyz/valorant/v1/leaderboard/${regionLow}?name=${nickname}&tag=${tag}`
+async function getPuuidWithRegion(nickname, tag) {
+  const response = await fetch(
+    `${apiUrl}/v1/account/${nickname}/${tag}`
   );
-  const data = JSON.parse(rawData);
-  leaderboardRank =
-    data.status === 404 ? " " : data.data[0].leaderboardRank;
+  const data = await response.json();
+  return [data.data.puuid, data.data.region];
 }
 
-function main() {
-  const rawData = reqGet(`https://api.henrikdev.xyz/valorant/v1/mmr/${region}/${nickname}/${tag}`);
-  const data = JSON.parse(rawData);
-  returnStatus = data.status;
-  checkifnull = data.data.currenttier;
-  playerElo = data.data.currenttierpatched;
-  playerMmr = data.data.ranking_in_tier;
-  playerMmrText = data.data.ranking_in_tier;
-  playerTier = data.data.currenttier;
-  playerLastGamePts = data.data.mmr_change_to_last_game;
-  playerName = data.data.name;
+async function getPlayerInformation(region, puuid) {
+  const response = await fetch(`${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}`);
+  const data = await response.json();
+  const playerElo = data.data.currenttierpatched;
+  const playerMmr = data.data.ranking_in_tier;
+  const playerMmrText = data.data.ranking_in_tier;
+  const playerTier = data.data.currenttier;
+  const playerLastGamePts = data.data.mmr_change_to_last_game;
+
+  return [playerElo, playerMmr, playerMmrText, playerTier, playerLastGamePts];
 }
 
-function updatePlayerCard() {
+async function getLeaderboard(region, puuid) {
+  const response = await fetch(`${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}`);
+  const data = await response.json()
+  return data.status === 404 ? " " : data.data[0].leaderboardRank;
+}
+
+async function decorateCard() {
+  document.getElementById("mainText").style.color = `#${textColor}`;
+  wlValue.style.color = `#${textColor}`;
+  playerRank.style.color = `#${primaryColor}`;
+  winValue.style.color = `#${primaryColor}`;
+  loseValue.style.color = `#${primaryColor}`;
+  wlProccent.style.color = `#${primaryColor}`;
+  lastMatchPts.style.color = `#${textColor}`;
+  lastMatchPtsValue.style.color = `#${primaryColor}`;
+
+  const progressBarColor = document.querySelector('#progressrank').style;
+  progressBarColor.setProperty('--progressrank-after-color', `#${progressRankColor}`);
+  progressBarColor.setProperty('--progressrank-color', `#${progressRankBgColor}45`);
+
+  rankBlock.style.backgroundColor = alphabg === "yes" ? "transparent" : `#${bgColor}40`;
+  gradbg.style.backgroundImage = alphagradbg === "yes" ? "none" : "linear-gradient(rgb(255 0 0 / 0%), rgb(0 0 0 / 57%))";
+  wlStat.style.display = wlStatCheck === "yes" ? "none" : "";
+  progressRank.style.display = progressRankCheck === "yes" ? "none" : "";
+  lastMatchPts.style.display = lastMatchPtsCheck === "yes" ? "none" : "";
+}
+
+async function updatePlayerCard(region, puuid) {
+  let [
+    playerElo,
+    playerMmr,
+    playerMmrText,
+    playerTier,
+    playerLastGamePts
+  ] = await getPlayerInformation(region, puuid);
+
   if (playerMmr > 100) {
     playerMmr = "0";
   }
@@ -111,7 +142,7 @@ function updatePlayerCard() {
   if (playerLastGamePts === "nRanked") {
     playerRank.innerHTML = playerElo;
   } else if (playerTier === 27) {
-    leaderboard();
+    const leaderboardRank = await getLeaderboard(region, puuid);
     if (leaderboardRank !== " ") {
       playerRank.innerHTML = `${playerElo} #${leaderboardRank}`;
     }
@@ -156,87 +187,74 @@ function updatePlayerCard() {
       imgPTS.src = `/img/icons/down_plusplus.png`;
     }
   }
-
-  // Colors
-  document.getElementById("mainText").style.color = `#${textColor}`;
-  wlValue.style.color = `#${textColor}`;
-  playerRank.style.color = `#${primaryColor}`;
-  winValue.style.color = `#${primaryColor}`;
-  loseValue.style.color = `#${primaryColor}`;
-  wlProccent.style.color = `#${primaryColor}`;
-  lastMatchPts.style.color = `#${textColor}`;
-  lastMatchPtsValue.style.color = `#${primaryColor}`;
-
-  const progressBarColor = document.querySelector('#progressrank').style;
-  progressBarColor.setProperty('--progressrank-after-color', `#${progressRankColor}`);
-  progressBarColor.setProperty('--progressrank-color', `#${progressRankBgColor}45`);
 }
 
-rankBlock.style.backgroundColor = alphabg === "yes" ? "transparent" : `#${bgColor}40`;
-gradbg.style.backgroundImage = alphagradbg === "yes" ? "none" : "linear-gradient(rgb(255 0 0 / 0%), rgb(0 0 0 / 57%))";
-wlStat.style.display = wlStatCheck === "yes" ? "none" : "";
-progressRank.style.display = progressRankCheck === "yes" ? "none" : "";
-lastMatchPts.style.display = lastMatchPtsCheck === "yes" ? "none" : "";
+async function checkData(region, puuid, matchId1) {
+  const response = await fetch(`${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}`)
+  const data = await response.json();
+  const returnStatus = data.status;
+  const checkifnull = data.data.currenttier;
 
-function thinking() {
-  if (imgRank.src === `/img/load.png`) {
-    location.reload();
-  }
-}
-
-setTimeout(thinking, 10000);
-main();
-updatePlayerCard();
-
-function checkData() {
   if (returnStatus === 200 && checkifnull !== null) {
-    updatePlayerCard();
+    await updatePlayerCard(region, puuid);
   }
+  await winlose(region, puuid, matchId1)
 }
 
-setInterval(main, 15000);
-setInterval(checkData, 15000);
+async function winlose(region, puuid, matchId1) {
+  const dataMatches = await getMatches(region, puuid);
+  const [won, tied] = await getWonInfo(puuid, dataMatches);
+  const matchId2 = dataMatches.data[0].metadata.matchid;
+  let win = 0;
+  let lose = 0;
 
-function setPuuid() {
-  const req = reqGet(
-    `https://api.henrikdev.xyz/valorant/v1/account/${nickname}/${tag}`
-  );
-  const data = JSON.parse(req);
-  puuid = data.data.puuid;
+  if (matchId2 !== matchId1) {
+    if (won === true) {
+      win += 1;
+      matchId1 = dataMatches.data[0].metadata.matchid;
+    } else if (won === false && tied === "N") {
+      lose += 1;
+      matchId1 = dataMatches.data[0].metadata.matchid;
+    }
+  }
+  await WinLoseVisual(win, lose);
 }
 
-function get() {
-  const wl_data = reqGet(`https://api.henrikdev.xyz/valorant/v3/matches/${region}/${nickname}/${tag}?filter=competitive&size=1`);
-  jsonDataWL = JSON.parse(wl_data);
+async function getFirstMatchId(region, puuid) {
+  const data = await getMatches(region, puuid);
+  return data.data[0].metadata.matchid;
 }
 
-function getMatchId() {
-  get();
-  matchId1 = jsonDataWL.data[0].metadata.matchid;
-  return matchId1;
-}
+async function getWonInfo(puuid, dataMatches) {
+  const playerTeam_ = await playerTeam(puuid, dataMatches)
+  let tied;
 
-function playerTeam() {
-  const playerTeam = jsonDataWL.data[0].players.all_players.find(
-    (player) => player.puuid === puuid
-  );
-  const time = playerTeam.team;
-  return time.toLowerCase();
-}
+  const red_won = dataMatches.data[0].teams.red.has_won;
+  const blue_won = dataMatches.data[0].teams.blue.has_won;
+  const playerTeamWon = dataMatches.data[0].teams[playerTeam_].has_won
 
-function won() {
-  if (
-    jsonDataWL.data[0].teams.red.has_won === false &&
-    jsonDataWL.data[0].teams.blue.has_won === false
-  ) {
+  if (red_won === false && blue_won === false) {
     tied = "Y";
   } else {
     tied = "N";
   }
-  return jsonDataWL.data[0].teams[playerTeam()].has_won;
+  return [playerTeamWon, tied];
 }
 
-function WinLoseVisual() {
+async function getMatches(region, puuid) {
+  const response = await fetch(`${apiUrl}/v3/by-puuid/matches/${region}/${puuid}?filter=competitive&size=1`);
+  return await response.json()
+}
+
+async function playerTeam(puuid, dataMatches) {
+  const playerTeam = dataMatches.data[0].players.all_players.find(
+    (player) => player.puuid === puuid
+  );
+  const team = playerTeam.team;
+  return team.toLowerCase();
+}
+
+async function WinLoseVisual(win, lose) {
   winValue.innerHTML = `${win}`;
   loseValue.innerHTML = `${lose}`;
   const totalGames = win + lose;
@@ -246,24 +264,4 @@ function WinLoseVisual() {
   }
 }
 
-function winlose() {
-  get();
-  won();
-  const matchId2 = jsonDataWL.data[0].metadata.matchid;
-  if (matchId2 !== matchId1) {
-    if (timeWon === true) {
-      win += 1;
-      matchId1 = jsonDataWL.data[0].metadata.matchid;
-      WinLoseVisual();
-    } else if (timeWon === false && tied === "N") {
-      lose += 1;
-      matchId1 = jsonDataWL.data[0].metadata.matchid;
-    }
-  }
-  WinLoseVisual();
-}
-
-setPuuid();
-getMatchId();
-setInterval(winlose, 30000);
-WinLoseVisual();
+await main(NICKNAME, TAG)
