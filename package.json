@@ -18,6 +18,7 @@
     "alpinejs": "^3.13.2",
     "eslint": "^8.52.0",
     "normalize.css": "^8.0.1",
-    "prettier": "^3.0.3"
+    "prettier": "^3.0.3",
+    "set-interval-async": "^3.0.3"
   }
 }
