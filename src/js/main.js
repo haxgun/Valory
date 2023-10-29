@@ -15,9 +15,7 @@ async function checkNickname(name) {
         return false;
     }
 
-    let nickname;
-    let tag;
-    [nickname, tag] = name.split("#");
+    let [nickname, tag] = name.split('#');
 
     const response = await fetch(`https://api.henrikdev.xyz/valorant/v1/account/${nickname}/${tag}`);
     return response.ok;
@@ -414,61 +412,51 @@ document.querySelector('#app').innerHTML = `
     </div>
 `
 
-async function getRegion(name, tag) {
-    let response = await fetch(`https://api.henrikdev.xyz/valorant/v1/account/${name}/${tag}`);
-    response = await response.json();
-    return response.data.region;
-}
-
-
 async function getPreview() {
   // Get Nickname, Tag, Region
   const inputNicknameWithTag = document.getElementById('nickname_with_tag')
   let nicknameWithTag = inputNicknameWithTag.value;
   const [nickname, tag] = nicknameWithTag.split('#');
-  const region = await getRegion(nickname, tag);
 
   // Color Settings
-  let bgColor = document.getElementById("backgroundcolor").value.replace("#", "");
-  let primaryColor = document.getElementById("primarycolor").value.replace("#", "");
-  let textColor = document.getElementById("textcolor").value.replace("#", "");
-  let progressRankColor = document.getElementById("progressrankcolor").value.replace("#", "");
-  let progressRankBgColor = document.getElementById("progressrankbackgroundcolor").value.replace("#", "");
+  let bgColor = document.getElementById('backgroundcolor').value.replace('#', '');
+  let primaryColor = document.getElementById('primarycolor').value.replace('#', '');
+  let textColor = document.getElementById('textcolor').value.replace('#', '');
+  let progressRankColor = document.getElementById('progressrankcolor').value.replace('#', '');
+  let progressRankBgColor = document.getElementById('progressrankbackgroundcolor').value.replace('#', '');
 
   // Checks
-  let alphaBg = document.getElementById("transparentcheck").checked ? "yes" : "no";
-  let alphaGradBg = document.getElementById("transparentgradientcheck").checked ? "yes" : "no";
-  let wlStatCheck = document.getElementById("wlstatcheck").checked ? "yes" : "no";
-  let progressRankCheck = document.getElementById("progressrankcheck").checked ? "yes" : "no";
-  let lastMatchPtsCheck = document.getElementById("lastmatchptscheck").checked ? "yes" : "no";
+  let alphaBg = document.getElementById('transparentcheck').checked ? 'yes' : 'no';
+  let alphaGradBg = document.getElementById('transparentgradientcheck').checked ? 'yes' : 'no';
+  let wlStatCheck = document.getElementById('wlstatcheck').checked ? 'yes' : 'no';
+  let progressRankCheck = document.getElementById('progressrankcheck').checked ? 'yes' : 'no';
+  let lastMatchPtsCheck = document.getElementById('lastmatchptscheck').checked ? 'yes' : 'no';
 
   linkbox.value =
     window.location.origin +
-    "/overlay/?region=" +
-    region +
-    "&nickname=" +
+    '/overlay/?nickname=' +
     nickname +
-    "&tag=" +
+    '&tag=' +
     tag +
-    "&textColor=" +
+    '&textColor=' +
     textColor +
-    "&primaryColor=" +
+    '&primaryColor=' +
     primaryColor +
-    "&bgColor=" +
+    '&bgColor=' +
     bgColor +
-    "&progressRankColor=" +
+    '&progressRankColor=' +
     progressRankColor +
-    "&progressRankBgColor=" +
+    '&progressRankBgColor=' +
     progressRankBgColor +
-    "&alphaBg=" +
+    '&alphaBg=' +
     alphaBg +
-    "&alphaGradBg=" +
+    '&alphaGradBg=' +
     alphaGradBg +
-    "&wlstat=" +
+    '&wlstat=' +
     wlStatCheck +
-    "&progressrank=" +
+    '&progressrank=' +
     progressRankCheck +
-    "&lastMatchPts=" +
+    '&lastMatchPts=' +
     lastMatchPtsCheck;
 
   iframe.src = linkbox.value;
