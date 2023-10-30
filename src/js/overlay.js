@@ -2,8 +2,8 @@ import '../scss/overlay.scss'
 import { setIntervalAsync } from 'set-interval-async';
 
 // Urls and Alpine Data
-let url = new URL(window.location.href);
-let urlParams = url.searchParams;
+const url = new URL(window.location.href);
+const urlParams = url.searchParams;
 const apiUrl = 'https://api.henrikdev.xyz/valorant'
 
 // Color Settings
