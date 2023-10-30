@@ -29,6 +29,8 @@ const { NICKNAME, TAG} = {
 };
 
 let lastMatchId = '';
+let win = 0;
+let lose = 0;
 
 document.querySelector('#overlay').innerHTML = `
   <div id="elements">
@@ -208,8 +210,6 @@ async function winlose(region, puuid) {
   const dataMatches = await getMatches(region, puuid);
   const [won, tied] = await getWonInfo(puuid, dataMatches);
   const currentMatchId = dataMatches.data[0].metadata.matchid;
-  let win = 0;
-  let lose = 0;
 
   if (currentMatchId !== lastMatchId) {
     if (won === true) {
@@ -257,12 +257,12 @@ async function playerTeam(puuid, dataMatches) {
   return team.toLowerCase();
 }
 
-async function WinLoseVisual(win, lose) {
-  winValue.innerHTML = `${win}`;
-  loseValue.innerHTML = `${lose}`;
-  const totalGames = win + lose;
-  const winPercentage = (win / totalGames) * 100;
-  if (win + lose !== 0) {
+async function WinLoseVisual(winVal, loseVal) {
+  winValue.innerHTML = `${winVal}`;
+  loseValue.innerHTML = `${loseVal}`;
+  const totalGames = winVal + loseVal;
+  const winPercentage = (winVal / totalGames) * 100;
+  if (winVal + loseVal !== 0) {
     wlProccent.innerHTML = `(${winPercentage.toFixed()}%)`;
   }
 }
