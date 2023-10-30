@@ -1,3 +1,4 @@
+import '../scss/overlay.scss'
 import { setIntervalAsync } from 'set-interval-async';
 
 // Urls and Alpine Data

@@ -1,0 +1,115 @@
+@import 'variables.scss';
+
+:root {
+	--progresspontinho: ;
+}
+h1 {
+	line-height: 1;
+	padding: 0;
+	margin: 0;
+}
+h2 {
+	line-height: 1;
+	padding: 0;
+	margin: 0;
+}
+h3 {
+	line-height: 1;
+	padding: 0;
+	margin: 0;
+}
+h4 {
+	line-height: 1;
+	padding: 0;
+	margin: 0;
+}
+span {
+	line-height: 1;
+	padding: 0;
+	margin: 0;
+}
+body {
+	margin: 0;
+	max-height: 100px;
+	max-width: 450px;
+	font-family: $font-family_1;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeSpeed;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+#elements {
+	display: flex;
+	flex-direction: row;
+	min-height: 110px;
+	max-height: 150px;
+	border-radius: 0 0 90px 0;
+}
+#rankBlock {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 120px;
+}
+#playerInfo {
+	display: flex;
+	background-size: contain;
+	color: $overlay_color_1;
+	margin: auto 0;
+	margin-left: 20px;
+	flex-direction: column;
+	border-radius: 10px;
+	width: 400px;
+	align-content: space-between;
+	align-items: flex-start;
+	flex-wrap: nowrap;
+	gap: 5px;
+	padding: 20px 0;
+}
+#mainText {
+	font-size: 20px;
+}
+#playerRank {
+	font-size: 24px;
+}
+#WLvalue {
+	font-size: 17px;
+	color: $overlay_color_2;
+}
+#progressrank {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	position: relative;
+	color: $overlay_color_2;
+	height: 12px;
+	background-color: $overlay_background-color_1;
+	border-radius: 10px;
+	width: 250px;
+	margin: 1px 0;
+	&::after {
+		content: "";
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		color: $overlay_color_2;
+		position: absolute;
+		height: 12px;
+		width: var(--progresspontinho);
+		background: var(--progressrank-after-color);
+		border-radius: 10px;
+		transition: width 2s;
+	}
+}
+.lastmatchpts {
+	display: flex;
+	gap: 6px;
+	span {
+		font-weight: bold;
+		font-size: 15px;
+		color: $overlay_color_2;
+		text-transform: uppercase;
+	}
+}

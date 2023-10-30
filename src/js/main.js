@@ -1,5 +1,4 @@
-import 'normalize.css/normalize.css';
-import '../css/main.css'
+import '../scss/main.scss'
 import Alpine from 'alpinejs'
 
 async function checkNickname(name) {
