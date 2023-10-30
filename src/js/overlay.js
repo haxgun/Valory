@@ -28,6 +28,8 @@ const { NICKNAME, TAG} = {
   TAG: urlParams.get("tag")
 };
 
+let lastMatchId = '';
+
 document.querySelector('#overlay').innerHTML = `
   <div id="elements">
     <div id="rankBlock">
@@ -70,11 +72,11 @@ const wlProccent = document.getElementById("wlProccent");
 
 async function main(nickname, tag) {
   const [puuid, region] = await getPuuidWithRegion(nickname, tag);
-  let matchId1 = await getFirstMatchId(region, puuid)
+  lastMatchId = await getFirstMatchId(region, puuid);
 
   await decorateCard()
-  await checkData(region, puuid, matchId1)
-  setIntervalAsync(checkData, 30000, region, puuid, matchId1);
+  await checkData(region, puuid)
+  setIntervalAsync(checkData, 30000, region, puuid);
 }
 
 async function getPuuidWithRegion(nickname, tag) {
@@ -190,7 +192,7 @@ async function updatePlayerCard(region, puuid) {
   }
 }
 
-async function checkData(region, puuid, matchId1) {
+async function checkData(region, puuid) {
   const response = await fetch(`${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}`)
   const data = await response.json();
   const returnStatus = data.status;
@@ -199,23 +201,23 @@ async function checkData(region, puuid, matchId1) {
   if (returnStatus === 200 && checkifnull !== null) {
     await updatePlayerCard(region, puuid);
   }
-  await winlose(region, puuid, matchId1)
+  await winlose(region, puuid)
 }
 
-async function winlose(region, puuid, matchId1) {
+async function winlose(region, puuid) {
   const dataMatches = await getMatches(region, puuid);
   const [won, tied] = await getWonInfo(puuid, dataMatches);
-  const matchId2 = dataMatches.data[0].metadata.matchid;
+  const currentMatchId = dataMatches.data[0].metadata.matchid;
   let win = 0;
   let lose = 0;
 
-  if (matchId2 !== matchId1) {
+  if (currentMatchId !== lastMatchId) {
     if (won === true) {
       win += 1;
-      matchId1 = dataMatches.data[0].metadata.matchid;
+      lastMatchId = dataMatches.data[0].metadata.matchid;
     } else if (won === false && tied === "N") {
       lose += 1;
-      matchId1 = dataMatches.data[0].metadata.matchid;
+      lastMatchId = dataMatches.data[0].metadata.matchid;
     }
   }
   await WinLoseVisual(win, lose);
