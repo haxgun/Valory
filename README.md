@@ -1,13 +1,10 @@
-# 📝 VALORY
+![Preview](https://i.imgur.com/7vFEVHe.png)
 
+[![CI/CD](https://github.com/haxgun/valory/actions/workflows/master.yml/badge.svg)](https://github.com/haxgun/valory/actions/workflows/master.yml)
 [![GitHub License](https://img.shields.io/github/license/haxgun/valory)](https://github.com/haxgun/valory/blob/main/LICENSE)
 [![Forks](https://img.shields.io/github/forks/sndrjhlncgr/VALORANT-Stream-Overlay)](https://github.com/haxgun/valory/networks)
 [![Issues](https://img.shields.io/github/issues/haxgun/valory)](https://github.com/haxgun/valory/issues)
 [![Stars](https://img.shields.io/github/stars/haxgun/valory)](https://github.com/haxgun/valory/stargazers)
-
-![Preview](https://github.com/haxgun/valory/assets/26204174/069a59e5-b23d-4c3d-9d2c-2b52d405cafa)
-
-
 
 Valory provides a beautiful rank overlay for your stream.
 Overlay under the hood runs on vanilla JS, so it has minimal load on your PC.
