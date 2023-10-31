@@ -32,7 +32,10 @@ let lastMatchId = '';
 let win = 0;
 let lose = 0;
 
-document.querySelector('#overlay').innerHTML = `
+const loading = document.querySelector("#loading");
+const overlay = document.querySelector("#overlay");
+
+overlay.innerHTML = `
   <div id="elements">
     <div id="rankBlock">
       <img alt="rank" src="#" id="imgRank" height="80" width="80" />
@@ -54,6 +57,7 @@ document.querySelector('#overlay').innerHTML = `
     </div>
   </div>
 `
+overlay.style.display = "none";
 
 // Elements
 const imgRank = document.getElementById("imgRank");
@@ -78,6 +82,8 @@ async function main(nickname, tag) {
 
   await decorateCard()
   await checkData(region, puuid)
+  loading.remove()
+  overlay.style.display = "block";
   setIntervalAsync(checkData, 30000, region, puuid);
 }
 
