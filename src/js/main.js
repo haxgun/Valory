@@ -44,10 +44,10 @@ document.querySelector('#app').innerHTML = `
       <div class="sidepanel">
         <div class="main">
           <div class="logos">
-            <p class="pretitle">OBS OVERLAY <span>NEW</span></p>
+            <p class="pretitle">STREAM OVERLAY <span>NEW</span></p>
             <h1 class="title">VALORY</h1>
             <h2 class="description">
-              Create a nice overlay to display your valorant rank!
+              Catch your audience's attention with real-time Valorant stats!
             </h2>
           </div>
           <div class="content" x-show="!editorContinue">
