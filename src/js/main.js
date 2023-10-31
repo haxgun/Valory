@@ -5,19 +5,31 @@ async function checkNickname(name) {
     const regex = /^[a-zA-Zа-яА-Я0-9\s]{1,16}#[a-zA-Zа-яА-Я0-9]{1,5}$/
 
     if (name.length === 0) {
-      alert('Please enter a nickname');
+      alertText.innerHTML = 'Please enter a nickname';
       return false;
     }
 
     if (!regex.test(name)) {
-        alert('Incorrect nickname format.');
+        alertText.innerHTML = 'Incorrect nickname format.';
         return false;
     }
 
-    let [nickname, tag] = name.split('#');
+    const [nickname, tag] = name.split('#');
 
-    const response = await fetch(`https://api.henrikdev.xyz/valorant/v1/account/${nickname}/${tag}`);
-    return response.ok;
+    try {
+      const response = await fetch(`https://api.henrikdev.xyz/valorant/v1/account/${nickname}/${tag}`);
+      if (response.status === 404) {
+        alertText.innerHTML = `${name} not found.`;
+        return false;
+      } else if (response.status === 429) {
+        alertText.innerHTML = 'Too many request! Try again later';
+        return false;
+      }
+      return response.ok;
+    } catch (error) {
+      alertText.innerHTML = 'An error occurred. Please try again later.';
+      return false;
+    }
 }
 
 document.querySelector('#app').innerHTML = `
@@ -25,6 +37,7 @@ document.querySelector('#app').innerHTML = `
         class="start"
         x-data="
         {
+          alert: false,
           nickname: 'MAGICX#1337',
           editorContinue: false,
           search: false,
@@ -78,7 +91,7 @@ document.querySelector('#app').innerHTML = `
                   placeholder="NICKNAME#TAG"
                   autocomplete="off"
                 />
-                <button @click="if (await checkNickname(nickname)) { getPreview(); search = true }" style="padding: 5px">
+                <button @click="if (await checkNickname(nickname)) { getPreview(); search = true;} else { alert = true; setTimeout(() => alert = false, 5000)}" style="padding: 5px">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
@@ -408,6 +421,22 @@ document.querySelector('#app').innerHTML = `
           <iframe x-transition x-show="search" title="" id="iframe"></iframe>
         </div>
       </div>
+      <div x-cloak x-show="alert" class="alert" x-transition>
+        <span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.9998 8.99999V13M11.9998 17H12.0098M10.6151 3.89171L2.39019 18.0983C1.93398 18.8863 1.70588 19.2803 1.73959 19.6037C1.769 19.8857 1.91677 20.142 2.14613 20.3088C2.40908 20.5 2.86435 20.5 3.77487 20.5H20.2246C21.1352 20.5 21.5904 20.5 21.8534 20.3088C22.0827 20.142 22.2305 19.8857 22.2599 19.6037C22.2936 19.2803 22.0655 18.8863 21.6093 18.0983L13.3844 3.89171C12.9299 3.10654 12.7026 2.71396 12.4061 2.58211C12.1474 2.4671 11.8521 2.4671 11.5935 2.58211C11.2969 2.71396 11.0696 3.10655 10.6151 3.89171Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div class="alert__rightside">
+          <h1 class="alert__title">Something went wrong!</h1>
+          <p id="alert__description" class="alert__description"></p>
+        </div>
+        <span @click="alert=false" class="alert__close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 7L7 17M7 7L17 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </div>
     </div>
 `
 
@@ -461,6 +490,7 @@ async function getPreview() {
   iframe.src = linkbox.value;
 }
 
+const alertText = document.getElementById('alert__description')
 const submitButton = document.getElementById('submitButton')
 const iframe = document.getElementById('iframe');
 const linkbox = document.getElementById('linkbox');
