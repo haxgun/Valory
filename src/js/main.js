@@ -443,22 +443,22 @@ document.querySelector('#app').innerHTML = `
 async function getPreview() {
   // Get Nickname, Tag, Region
   const inputNicknameWithTag = document.getElementById('nickname_with_tag')
-  let nicknameWithTag = inputNicknameWithTag.value;
+  const nicknameWithTag = inputNicknameWithTag.value;
   const [nickname, tag] = nicknameWithTag.split('#');
 
   // Color Settings
-  let bgColor = document.getElementById('backgroundcolor').value.replace('#', '');
-  let primaryColor = document.getElementById('primarycolor').value.replace('#', '');
-  let textColor = document.getElementById('textcolor').value.replace('#', '');
-  let progressRankColor = document.getElementById('progressrankcolor').value.replace('#', '');
-  let progressRankBgColor = document.getElementById('progressrankbackgroundcolor').value.replace('#', '');
+  const bgColor = document.getElementById('backgroundcolor').value.replace('#', '');
+  const primaryColor = document.getElementById('primarycolor').value.replace('#', '');
+  const textColor = document.getElementById('textcolor').value.replace('#', '');
+  const progressRankColor = document.getElementById('progressrankcolor').value.replace('#', '');
+  const progressRankBgColor = document.getElementById('progressrankbackgroundcolor').value.replace('#', '');
 
   // Checks
-  let alphaBg = document.getElementById('transparentcheck').checked ? 'yes' : 'no';
-  let alphaGradBg = document.getElementById('transparentgradientcheck').checked ? 'yes' : 'no';
-  let wlStatCheck = document.getElementById('wlstatcheck').checked ? 'yes' : 'no';
-  let progressRankCheck = document.getElementById('progressrankcheck').checked ? 'yes' : 'no';
-  let lastMatchPtsCheck = document.getElementById('lastmatchptscheck').checked ? 'yes' : 'no';
+  const alphaBg = document.getElementById('transparentcheck').checked ? 'yes' : 'no';
+  const alphaGradBg = document.getElementById('transparentgradientcheck').checked ? 'yes' : 'no';
+  const wlStatCheck = document.getElementById('wlstatcheck').checked ? 'yes' : 'no';
+  const progressRankCheck = document.getElementById('progressrankcheck').checked ? 'yes' : 'no';
+  const lastMatchPtsCheck = document.getElementById('lastmatchptscheck').checked ? 'yes' : 'no';
 
   linkbox.value =
     window.location.origin +
