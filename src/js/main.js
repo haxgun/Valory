@@ -84,7 +84,7 @@ document.querySelector('#app').innerHTML = `
                   </svg>
                 </span>
                 <input
-                  @keyup.enter="if (await checkNickname(nickname)) { getPreview(); search = true }"
+                  @keyup.enter="if (await checkNickname(nickname)) { getPreview(); search = true;} else { alert = true; setTimeout(() => alert = false, 5000)}"
                   x-model="nickname"
                   class="nickname"
                   id="nickname_with_tag"
