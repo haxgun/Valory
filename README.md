@@ -1,5 +1,6 @@
 ![Preview](https://i.imgur.com/7vFEVHe.png)
 
+# Valory
 [![CI/CD](https://github.com/haxgun/valory/actions/workflows/master.yml/badge.svg)](https://github.com/haxgun/valory/actions/workflows/master.yml)
 [![GitHub License](https://img.shields.io/github/license/haxgun/valory)](https://github.com/haxgun/valory/blob/main/LICENSE)
 [![Forks](https://img.shields.io/github/forks/sndrjhlncgr/VALORANT-Stream-Overlay)](https://github.com/haxgun/valory/networks)
