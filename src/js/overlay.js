@@ -201,13 +201,17 @@ async function updatePlayerCard(region, puuid) {
 }
 
 async function checkData(region, puuid) {
-  const response = await fetch(`${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}`)
-  const data = await response.json();
-  const returnStatus = data.status;
-  const checkifnull = data.data.currenttier;
+  try {
+    const response = await fetch(`${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}`)
+    const data = await response.json();
+    const returnStatus = data.status;
+    const checkifnull = data.data.currenttier;
 
-  if (returnStatus === 200 && checkifnull !== null) {
-    await updatePlayerCard(region, puuid);
+    if (returnStatus === 200 && checkifnull !== null) {
+      await updatePlayerCard(region, puuid);
+    }
+  } catch (error) {
+    // pass
   }
   await winlose(region, puuid)
 }
