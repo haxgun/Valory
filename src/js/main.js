@@ -37,9 +37,12 @@ document.querySelector('#app').innerHTML = `
         class="start"
         x-data="
         {
+          modal: false,
           alert: false,
           nickname: 'MAGICX#1337',
-          editorContinue: false,
+          infoContainer: true,
+          contentContainer: false,
+          generateContainer: false,
           search: false,
           configutarion: false,
           backgroundColor: '#ffffff',
@@ -63,7 +66,39 @@ document.querySelector('#app').innerHTML = `
               Catch your audience's attention with real-time Valorant stats!
             </h2>
           </div>
-          <div class="content" x-show="!editorContinue">
+          <div class="info" x-show="infoContainer" x-transition:enter.duration.250ms.opacity.0>
+            <div class="info__content">
+              <div class="info__subcontent">
+                <span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 10V3.6C20 3.03995 20 2.75992 19.891 2.54601C19.7951 2.35785 19.6422 2.20487 19.454 2.10899C19.2401 2 18.9601 2 18.4 2H5.6C5.03995 2 4.75992 2 4.54601 2.10899C4.35785 2.20487 4.20487 2.35785 4.10899 2.54601C4 2.75992 4 3.03995 4 3.6V10M20 10H4M20 10V10.2C20 11.8802 20 12.7202 19.673 13.362C19.3854 13.9265 18.9265 14.3854 18.362 14.673C17.7202 15 16.8802 15 15.2 15H8.8C7.11984 15 6.27976 15 5.63803 14.673C5.07354 14.3854 4.6146 13.9265 4.32698 13.362C4 12.7202 4 11.8802 4 10.2V10M14.5 15V19.5C14.5 20.8807 13.3807 22 12 22C10.6193 22 9.5 20.8807 9.5 19.5V15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Customize your overlay according to your stream.</span>
+              </div>
+              <div class="info__subcontent">
+                <span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.5455 9.92543C15.9195 9.26103 16.2313 8.66151 16.4236 8.20521C17.3573 5.98947 16.434 3.44077 14.1769 2.40112C11.9199 1.36148 9.65341 2.4395 8.65871 4.52093C6.75657 3.2157 4.21918 3.40739 2.81989 5.44424C1.42059 7.48108 1.85975 10.142 3.77629 11.594C4.6461 12.253 6.36636 13.2242 7.98596 14.0884M16.2972 11.7499C15.8751 9.482 13.9454 7.82334 11.5156 8.27415C9.08592 8.72497 7.51488 10.9171 7.84335 13.299C8.10725 15.2127 9.56392 19.7027 10.1264 21.394C10.2032 21.6248 10.2415 21.7402 10.3175 21.8206C10.3837 21.8907 10.4717 21.9416 10.5655 21.9638C10.6732 21.9894 10.7923 21.9649 11.0306 21.916C12.7765 21.5575 17.3933 20.574 19.1826 19.8457C21.4096 18.9392 22.5589 16.4841 21.6981 14.153C20.8372 11.8219 18.4723 10.9815 16.2972 11.7499Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>It's absolutely free! There is support for many popular streaming programs like OBS and others.</span>
+              </div>
+              <div class="info__subcontent">
+                <span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 8V5L19 2L20 4L22 5L19 8H16ZM16 8L12 11.9999M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2M17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12C7 9.23858 9.23858 7 12 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span>Setup once and everything will always work!</span>
+              </div>
+            </div>
+            <div class="info__buttons">
+              <button @click="modal = true">How it work</button>
+              <button @click="infoContainer = false; contentContainer = true" class="fill">Create your Overlay</button>
+            </div>
+          </div>
+          <div class="content" x-show="contentContainer" x-cloak x-transition:enter.duration.250ms.opacity.0>
             <div class="profile">
               <h2 class="title__title">Profile</h2>
               <p>
@@ -91,7 +126,7 @@ document.querySelector('#app').innerHTML = `
                   placeholder="NICKNAME#TAG"
                   autocomplete="off"
                 />
-                <button @click="if (await checkNickname(nickname)) { getPreview(); search = true;} else { alert = true; setTimeout(() => alert = false, 5000)}" style="padding: 5px">
+                <button class="icons" @click="if (await checkNickname(nickname)) { getPreview(); search = true;} else { alert = true; setTimeout(() => alert = false, 5000)}">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
@@ -302,7 +337,6 @@ document.querySelector('#app').innerHTML = `
                 <button
                   style="width: 100%; margin-top: 5px;"
                   @click="getPreview()"
-                  class="button"
                 >
                   Update
                 </button>
@@ -312,15 +346,14 @@ document.querySelector('#app').innerHTML = `
               style="width: 100%"
               x-transition
               x-show="search"
-              @click="editorContinue=true"
+              @click="contentContainer = false; generateContainer = true"
               id="submitButton"
-              class="button"
               type="submit"
             >
               Submit
             </button>
           </div>
-          <div class="generate" x-show="editorContinue" x-cloak x-transition>
+          <div class="generate" x-show="generateContainer" x-cloak x-transition:enter.duration.250ms.opacity.0>
             <div class="generate__link">
               <h2 class="title__title">Overlay URL: Streaming Software</h2>
               <p>
@@ -337,7 +370,7 @@ document.querySelector('#app').innerHTML = `
                   placeholder="Your link goes here"
                   readonly
                 />
-                <button class="button" id="copyButton">
+                <button style="padding: 14px" id="copyButton">
                   <svg
                     width="16"
                     height="16"
@@ -358,8 +391,7 @@ document.querySelector('#app').innerHTML = `
 
             <button
               style="width: 100%"
-              @click="editorContinue=false"
-              class="button"
+              @click="contentContainer = true; generateContainer = false"
             >
               <svg
                 width="16"
@@ -378,7 +410,7 @@ document.querySelector('#app').innerHTML = `
               Back
             </button>
           </div>
-                    <footer>
+          <footer>
             <span>Made with ❤️ © 2023 Valory</span>
             <ul class="socials">
               <li>
@@ -436,6 +468,31 @@ document.querySelector('#app').innerHTML = `
             <path d="M17 7L7 17M7 7L17 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </span>
+      </div>
+      <div x-cloak x-transition:enter.duration.250ms.opacity.0 x-transition:leave.duration.250ms.opacity.0  x-show="modal" class="modal">
+        <div x-transition x-show="modal" @click.outside="modal = false" class="modal__content">
+          <div class="modal__leftside">
+            <img src="/img/steps/1.png" alt="">
+          </div>
+          <div class="modal__rightside">
+            <div class="modal__title">Follow a few simple steps!</div>
+            <div class="modal__steps">
+              <div class="modal__step">
+                <span class="number">1.</span>
+                <span>Open our overlay editor, insert your nickname and you can do some customization if you want.</span>
+              </div>
+              <div class="modal__step">
+                <span class="number">2.</span>
+                <span>Save the changes and copy the link. Paste the link into any streaming program in the "Browser Source" plugin.</span>
+              </div>
+              <div class="modal__step">
+                <span class="number">3.</span>
+                <span>Place the widget on your stream anywhere you want.</span>
+              </div>
+            </div>
+            <button @click="modal = false" class="fill">Continue</button>
+          </div>
+        </div>
       </div>
     </div>
 `

@@ -18,6 +18,7 @@ body {
 	height: auto;
 	display: block;
 	margin: 0;
+	overflow: hidden;
 }
 span {
 	margin: 0;
@@ -66,7 +67,7 @@ input {
 	}
 	&:read-only {
 		background: none;
-		box-shadow: inset 0 0 0 2px #2b2c2e;
+		box-shadow: inset 0 0 0 1px hsla(0,0%,100%,.15);
 	}
 }
 select {
@@ -90,7 +91,7 @@ button {
 	line-height: 1;
 	font-size: 14px;
 	width: fit-content;
-	padding: 14px;
+	padding: 14px 18px;
 	border-radius: 0.75rem;
 	font-weight: 600;
 	background: none;
@@ -108,6 +109,24 @@ button {
 		stroke: #ffffff;
 		transition: all 0.2s;
 	}
+
+	&.fill {
+		background-color: $background-color_11;
+		color: $color_8;
+		&:hover {
+			color: $color_8;
+			background-color: $background-color_15;
+		}
+		&:active {
+			color: $color_8;
+			background-color: $background-color_16;
+		}
+	}
+
+	&.icons {
+		padding: 6px;
+	}
+
 	&:hover {
 		background-color: $background-color_3;
 		border-color: $border-color_1;
@@ -120,52 +139,10 @@ button {
 			stroke: hsla(0, 0%, 100%, 0.5);
 		}
 	}
-	&:focus {
-		background-color: $background-color_4;
-		color: $color_4;
-		border-color: $border-color_2;
-	}
 }
-.button {
-	line-height: 1;
-	font-size: 14px;
-	width: fit-content;
-	padding: 14px;
-	border-radius: 0.75rem;
-	font-weight: 600;
-	background: none;
-	transition: all 0.2s;
-	text-decoration: none;
-	cursor: pointer;
-	color: $color_3;
-	border: 1px solid hsla(0, 0%, 100%, 0.3);
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 6px;
-	svg {
-		stroke: #ffffff;
-		transition: all 0.2s;
-	}
-	&:hover {
-		background-color: $background-color_3;
-		border-color: $border-color_1;
-	}
-	&:focus {
-		background-color: $background-color_4;
-		color: $color_4;
-		border-color: $border-color_2;
-	}
-	&:active {
-		background-color: $background-color_4;
-		color: $color_4;
-		border-color: $border-color_2;
-		svg {
-			stroke: hsla(0, 0%, 100%, 0.5);
-		}
-	}
-}
+
+
+
 .button_2 {
 	border: 1px solid transparent;
 	color: $color_1;
@@ -174,9 +151,6 @@ button {
 		border: 1px solid hsla(0, 0%, 100%, 0.5);
 	}
 	&:active {
-		border: 1px solid hsla(0, 0%, 100%, 0.2);
-	}
-	&:focus {
 		border: 1px solid hsla(0, 0%, 100%, 0.2);
 	}
 }
@@ -189,11 +163,6 @@ button {
 		border: 1px solid rgb(255, 56, 72);
 	}
 	&:active {
-		--red-color: rgb(93, 0, 10);
-		color: $color_6;
-		border: 1px solid var(--red-color);
-	}
-	&:focus {
 		--red-color: rgb(93, 0, 10);
 		color: $color_6;
 		border: 1px solid var(--red-color);
@@ -238,12 +207,39 @@ button {
 	flex-direction: column;
 	align-items: center;
 	padding: 35px;
+
+	.info {
+		display: flex;
+		margin: 0 6px;
+		flex-direction: column;
+		gap: 32px;
+		padding: 0 8px;
+
+		.info__content {
+			display: grid;
+    		gap: 12px;
+
+			.info__subcontent {
+				display: flex;
+				gap: 12px;
+    			align-items: center;
+				line-height: 1.3;
+			}
+		}
+
+		.info__buttons {
+			display: flex;
+			gap: 12px;
+			justify-content: center;
+		}
+	}
+
 	.content {
 		display: flex;
 		margin: 0 6px;
 		flex-direction: column;
 		gap: 18px;
-		max-height: 620px;
+		max-height: 550px;
 		overflow-y: scroll;
 		&::-webkit-scrollbar-track {
 			border-radius: 10px;
@@ -551,10 +547,7 @@ input.nickname {
 	max-width: 320px;
 	text-align: center;
 	font-size: 18px;
-	background: -webkit-linear-gradient(#fff, #ccc);
-	background-clip: text;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	color: rgba(255, 255, 255, 0.8);
 }
 footer {
 	margin-top: 36px;
@@ -618,5 +611,64 @@ footer {
 
 	.alert__close {
 		cursor: pointer;
+	}
+}
+
+
+.modal {
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	backdrop-filter: blur(10px);
+
+	.modal__content {
+		display: flex;
+		background-color: $background-color_6;
+		padding: 60px;
+		border-radius: 33px;
+		width: 730px;
+		overflow: hidden;
+		gap: 50px;
+		box-shadow: rgba(245, 244, 244, 0.05) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.04) 0px 2px 8px, rgba(0, 0, 0, 0.05) 0px 30px 70px;
+		.modal__leftside {
+			display: contents;
+			img {
+				width: 45%;
+				border-radius: 33px;
+				box-shadow: -500px -700px 200px 500px rgba(93, 183, 210, 0.4);
+			}
+		}
+		.modal__rightside {
+			display: flex;
+			gap: 20px;
+			flex-direction: column;
+			.modal__title {
+				font-size: 24px;
+				font-weight: 700;
+			}
+			.modal__steps {
+				display: flex;
+				gap: 12px;
+				flex: 1;
+				flex-direction: column;
+
+				.modal__step {
+					line-height: 1.25;
+					font-size: 16px;
+					display: flex;
+					gap: 8px;
+
+					.number {
+						font-size: 20px;
+						font-weight: 700;
+					}
+				}
+			}
+		}
 	}
 }

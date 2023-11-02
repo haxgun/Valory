@@ -8,32 +8,32 @@ const apiUrl = 'https://api.henrikdev.xyz/valorant'
 
 // Color Settings
 const { textColor, primaryColor, bgColor, progressRankColor, progressRankBgColor } = {
-  textColor: urlParams.get("textColor").replace("#", ""),
-  primaryColor: urlParams.get("primaryColor").replace("#", ""),
-  bgColor: urlParams.get("bgColor").replace("#", ""),
-  progressRankColor: urlParams.get("progressRankColor").replace("#", ""),
-  progressRankBgColor: urlParams.get("progressRankBgColor").replace("#", "")
+  textColor: urlParams.get('textColor').replace('#', ''),
+  primaryColor: urlParams.get('primaryColor').replace('#', ''),
+  bgColor: urlParams.get('bgColor').replace('#', ''),
+  progressRankColor: urlParams.get('progressRankColor').replace('#', ''),
+  progressRankBgColor: urlParams.get('progressRankBgColor').replace('#', '')
 };
 
 // Checks
-const alphabg = urlParams.get("alphaBg") === "yes" ? "yes" : "no";
-const alphagradbg = urlParams.get("alphaGradBg") === "yes" ? "yes" : "no";
-const wlStatCheck = urlParams.get("wlstat") === "yes" ? "yes" : "no";
-const progressRankCheck = urlParams.get("progressrank") === "yes" ? "yes" : "no";
-const lastMatchPtsCheck = urlParams.get("lastMatchPts") === "yes" ? "yes" : "no";
+const alphabg = urlParams.get('alphaBg') === 'yes' ? 'yes' : 'no';
+const alphagradbg = urlParams.get('alphaGradBg') === 'yes' ? 'yes' : 'no';
+const wlStatCheck = urlParams.get('wlstat') === 'yes' ? 'yes' : 'no';
+const progressRankCheck = urlParams.get('progressrank') === 'yes' ? 'yes' : 'no';
+const lastMatchPtsCheck = urlParams.get('lastMatchPts') === 'yes' ? 'yes' : 'no';
 
 
 const { NICKNAME, TAG} = {
-  NICKNAME: urlParams.get("nickname"),
-  TAG: urlParams.get("tag")
+  NICKNAME: urlParams.get('nickname'),
+  TAG: urlParams.get('tag')
 };
 
 let lastMatchId = '';
 let win = 0;
 let lose = 0;
 
-const loading = document.querySelector("#loading");
-const overlay = document.querySelector("#overlay");
+const loading = document.querySelector('#loading');
+const overlay = document.querySelector('#overlay');
 
 overlay.innerHTML = `
   <div id="elements">
@@ -60,21 +60,21 @@ overlay.innerHTML = `
 overlay.style.display = "none";
 
 // Elements
-const imgRank = document.getElementById("imgRank");
-const imgPTS = document.getElementById("imgPTS");
-const playerRank = document.getElementById("playerRank");
-const progressRank = document.getElementById("progressrank");
-const rankBlock = document.getElementById("rankBlock");
-const gradbg = document.getElementById("elements");
-const wlStat = document.getElementById("wlstat");
-const lastMatchPts = document.getElementById("lastmatchpts");
-const lastMatchPtsValue = document.getElementById("lastmatchptsvalue");
-const cssStyle = document.querySelector(":root").style;
+const imgRank = document.getElementById('imgRank');
+const imgPTS = document.getElementById('imgPTS');
+const playerRank = document.getElementById('playerRank');
+const progressRank = document.getElementById('progressrank');
+const rankBlock = document.getElementById('rankBlock');
+const gradbg = document.getElementById('elements');
+const wlStat = document.getElementById('wlstat');
+const lastMatchPts = document.getElementById('lastmatchpts');
+const lastMatchPtsValue = document.getElementById('lastmatchptsvalue');
+const cssStyle = document.querySelector(':root').style;
 
-const wlValue = document.getElementById("WLvalue");
-const winValue = document.getElementById("winValue");
-const loseValue = document.getElementById("loseValue");
-const wlProccent = document.getElementById("wlProccent");
+const wlValue = document.getElementById('WLvalue');
+const winValue = document.getElementById('winValue');
+const loseValue = document.getElementById('loseValue');
+const wlProccent = document.getElementById('wlProccent');
 
 async function main(nickname, tag) {
   const [puuid, region] = await getPuuidWithRegion(nickname, tag);
@@ -83,7 +83,7 @@ async function main(nickname, tag) {
   await decorateCard()
   await checkData(region, puuid)
   loading.remove()
-  overlay.style.display = "block";
+  overlay.style.display = 'block';
   setIntervalAsync(checkData, 30000, region, puuid);
 }
 
@@ -110,11 +110,11 @@ async function getPlayerInformation(region, puuid) {
 async function getLeaderboard(region, puuid) {
   const response = await fetch(`${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}`);
   const data = await response.json()
-  return data.status === 404 ? " " : data.data[0].leaderboardRank;
+  return data.status === 404 ? ' ' : data.data[0].leaderboardRank;
 }
 
 async function decorateCard() {
-  document.getElementById("mainText").style.color = `#${textColor}`;
+  document.getElementById('mainText').style.color = `#${textColor}`;
   wlValue.style.color = `#${textColor}`;
   playerRank.style.color = `#${primaryColor}`;
   winValue.style.color = `#${primaryColor}`;
@@ -127,11 +127,11 @@ async function decorateCard() {
   progressBarColor.setProperty('--progressrank-after-color', `#${progressRankColor}`);
   progressBarColor.setProperty('--progressrank-color', `#${progressRankBgColor}45`);
 
-  rankBlock.style.backgroundColor = alphabg === "yes" ? "transparent" : `#${bgColor}40`;
-  gradbg.style.backgroundImage = alphagradbg === "yes" ? "none" : "linear-gradient(rgb(255 0 0 / 0%), rgb(0 0 0 / 57%))";
-  wlStat.style.display = wlStatCheck === "yes" ? "none" : "";
-  progressRank.style.display = progressRankCheck === "yes" ? "none" : "";
-  lastMatchPts.style.display = lastMatchPtsCheck === "yes" ? "none" : "";
+  rankBlock.style.backgroundColor = alphabg === 'yes' ? 'transparent' : `#${bgColor}40`;
+  gradbg.style.backgroundImage = alphagradbg === 'yes' ? 'none' : 'linear-gradient(rgb(255 0 0 / 0%), rgb(0 0 0 / 57%))';
+  wlStat.style.display = wlStatCheck === 'yes' ? 'none' : '';
+  progressRank.style.display = progressRankCheck === 'yes' ? 'none' : '';
+  lastMatchPts.style.display = lastMatchPtsCheck === 'yes' ? 'none' : '';
 }
 
 async function updatePlayerCard(region, puuid) {
@@ -144,38 +144,38 @@ async function updatePlayerCard(region, puuid) {
   ] = await getPlayerInformation(region, puuid);
 
   if (playerMmr > 100) {
-    playerMmr = "0";
+    playerMmr = '0';
   }
 
   imgRank.src = `/img/ranks/${playerTier}.png`;
   let actualProcent = `${playerMmr}%`;
 
-  if (playerLastGamePts === "nRanked") {
+  if (playerLastGamePts === 'nRanked') {
     playerRank.innerHTML = playerElo;
   } else if (playerTier === 27) {
     const leaderboardRank = await getLeaderboard(region, puuid);
-    if (leaderboardRank !== " ") {
+    if (leaderboardRank !== ' ') {
       playerRank.innerHTML = `${playerElo} #${leaderboardRank}`;
     }
   } else {
     playerRank.innerHTML = `${playerElo} - ${playerMmrText}RR`;
   }
 
-  cssStyle.setProperty("--progresspontinho", actualProcent);
+  cssStyle.setProperty('--progresspontinho', actualProcent);
 
-  if (playerLastGamePts === "nRanked") {
+  if (playerLastGamePts === 'nRanked') {
     lastMatchPtsValue.innerHTML = `Unranked`;
   } else if (playerTier >= 24 && playerLastGamePts === 0) {
     lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
   } else if (playerTier >= 24) {
     if (playerLastGamePts >= 1) {
       lastMatchPtsValue.innerHTML = `+${playerLastGamePts}pts`;
-      actualProcent = "100%";
-      cssStyle.setProperty("--progresspontinho", actualProcent);
+      actualProcent = '100%';
+      cssStyle.setProperty('--progresspontinho', actualProcent);
     } else if (playerLastGamePts <= -1) {
       lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
-      actualProcent = "0%";
-      cssStyle.setProperty("--progresspontinho", actualProcent);
+      actualProcent = '0%';
+      cssStyle.setProperty('--progresspontinho', actualProcent);
     }
   } else {
     lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
@@ -225,7 +225,7 @@ async function winlose(region, puuid) {
     if (won === true) {
       win += 1;
       lastMatchId = dataMatches.data[0].metadata.matchid;
-    } else if (won === false && tied === "N") {
+    } else if (won === false && tied === 'N') {
       lose += 1;
       lastMatchId = dataMatches.data[0].metadata.matchid;
     }
@@ -247,9 +247,9 @@ async function getWonInfo(puuid, dataMatches) {
   const playerTeamWon = dataMatches.data[0].teams[playerTeam_].has_won
 
   if (red_won === false && blue_won === false) {
-    tied = "Y";
+    tied = 'Y';
   } else {
-    tied = "N";
+    tied = 'N';
   }
   return [playerTeamWon, tied];
 }
