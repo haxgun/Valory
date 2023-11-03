@@ -1,4 +1,5 @@
 import '../scss/overlay.scss'
+import { overlayHTML } from "./components/overlay.js"
 import { setIntervalAsync } from 'set-interval-async';
 
 // Urls and Alpine Data
@@ -31,33 +32,9 @@ const { NICKNAME, TAG} = {
 let lastMatchId = '';
 let win = 0;
 let lose = 0;
-
-const loading = document.querySelector('#loading');
 const overlay = document.querySelector('#overlay');
 
-overlay.innerHTML = `
-  <div id="elements">
-    <div id="rankBlock">
-      <img alt="rank" src="#" id="imgRank" height="80" width="80" />
-    </div>
-    <div id="playerInfo">
-      <h2 style="text-transform: uppercase" id="mainText">
-        Rating
-      </h2>
-      <h1 style="text-transform: uppercase" id="playerRank"></h1>
-      <div id="wlstat">
-        <h2 id="WLvalue">Win: <span id="winValue"></span> Lose: <span id="loseValue"></span> <span id="wlProccent"></span></h2>
-      </div>
-      <div id="progressrank"></div>
-      <div class="lastmatchpts">
-        <span id="lastmatchpts">Last Match:</span>
-        <span id="lastmatchptsvalue"></span>
-        <img src="#" id="imgPTS" height="16" width="16"/>
-      </div>
-    </div>
-  </div>
-`
-overlay.style.display = "none";
+overlay.innerHTML = overlayHTML
 
 // Elements
 const imgRank = document.getElementById('imgRank');
@@ -82,8 +59,6 @@ async function main(nickname, tag) {
 
   await decorateCard()
   await checkData(region, puuid)
-  loading.remove()
-  overlay.style.display = 'block';
   setIntervalAsync(checkData, 30000, region, puuid);
 }
 
@@ -211,7 +186,7 @@ async function checkData(region, puuid) {
       await updatePlayerCard(region, puuid);
     }
   } catch (error) {
-    // pass
+    console.log(error);
   }
   await winlose(region, puuid)
 }
