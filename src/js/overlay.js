@@ -193,18 +193,17 @@ async function checkData(region, puuid) {
 
 async function winlose(region, puuid) {
   const dataMatches = await getMatches(region, puuid);
-  const [won, tied] = await getWonInfo(puuid, dataMatches);
+  const [won, drew] = await getWonInfo(puuid, dataMatches);
   const currentMatchId = dataMatches.data[0].metadata.matchid;
 
   if (currentMatchId !== lastMatchId) {
     if (won === true) {
       win += 1;
-      lastMatchId = dataMatches.data[0].metadata.matchid;
-    } else if (won === false && tied === 'N') {
+    } else if (won === false && drew === 'N') {
       lose += 1;
-      lastMatchId = dataMatches.data[0].metadata.matchid;
     }
   }
+  lastMatchId = currentMatchId;
   await WinLoseVisual(win, lose);
 }
 
@@ -215,18 +214,18 @@ async function getFirstMatchId(region, puuid) {
 
 async function getWonInfo(puuid, dataMatches) {
   const playerTeam_ = await playerTeam(puuid, dataMatches)
-  let tied;
+  let drew;
 
   const red_won = dataMatches.data[0].teams.red.has_won;
   const blue_won = dataMatches.data[0].teams.blue.has_won;
   const playerTeamWon = dataMatches.data[0].teams[playerTeam_].has_won
 
   if (red_won === false && blue_won === false) {
-    tied = 'Y';
+    drew = 'Y';
   } else {
-    tied = 'N';
+    drew = 'N';
   }
-  return [playerTeamWon, tied];
+  return [playerTeamWon, drew];
 }
 
 async function getMatches(region, puuid) {
