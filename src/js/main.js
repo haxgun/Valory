@@ -1,5 +1,11 @@
-import '../scss/main.scss'
-import Alpine from 'alpinejs'
+import "../scss/overlay.scss";
+import "../scss/main.scss";
+import Alpine from "alpinejs";
+
+import { overlayHTML } from "./components/overlay.js";
+
+const apiUrl = 'https://api.henrikdev.xyz/valorant'
+let playerData;
 
 async function checkNickname(name) {
     const regex = /^[a-zA-Zа-яА-Я0-9\s]{1,16}#[a-zA-Zа-яА-Я0-9]{1,5}$/
@@ -119,14 +125,14 @@ document.querySelector('#app').innerHTML = `
                   </svg>
                 </span>
                 <input
-                  @keyup.enter="if (await checkNickname(nickname)) { getPreview(); search = true;} else { alert = true; setTimeout(() => alert = false, 5000)}"
+                  @keyup.enter="if (await checkNickname(nickname)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}"
                   x-model="nickname"
                   class="nickname"
                   id="nickname_with_tag"
                   placeholder="NICKNAME#TAG"
                   autocomplete="off"
                 />
-                <button class="icons" @click="if (await checkNickname(nickname)) { getPreview(); search = true;} else { alert = true; setTimeout(() => alert = false, 5000)}">
+                <button class="icons" @click="if (await checkNickname(nickname)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
@@ -334,12 +340,6 @@ document.querySelector('#app').innerHTML = `
                   </div>
                   <label for="transparentcheck"> Disable Last match pts</label>
                 </div>
-                <button
-                  style="width: 100%; margin-top: 5px;"
-                  @click="getPreview()"
-                >
-                  Update
-                </button>
               </div>
             </div>
             <button
@@ -450,7 +450,7 @@ document.querySelector('#app').innerHTML = `
       <div class="preview">
         <div id="divframe">
           <h1 x-show="!search" class="no_iframe">Your preview will be located here. Please enter your profile to see it.</h1>
-          <iframe x-transition x-show="search" title="" id="iframe"></iframe>
+          <div x-transition x-show="search" title="" id="iframe"></div>
         </div>
       </div>
       <div x-cloak x-show="alert" class="alert" x-transition>
@@ -517,6 +517,10 @@ async function getPreview() {
   const progressRankCheck = document.getElementById('progressrankcheck').checked ? 'yes' : 'no';
   const lastMatchPtsCheck = document.getElementById('lastmatchptscheck').checked ? 'yes' : 'no';
 
+  await generateLink(nickname, tag, textColor, primaryColor, bgColor, progressRankColor, progressRankBgColor, alphaBg, alphaGradBg, wlStatCheck, progressRankCheck, lastMatchPtsCheck)
+}
+
+async function generateLink(nickname, tag, textColor, primaryColor, bgColor, progressRankColor, progressRankBgColor, alphaBg, alphaGradBg, wlStatCheck, progressRankCheck, lastMatchPtsCheck) {
   linkbox.value =
     window.location.origin +
     '/overlay/?nickname=' +
@@ -543,8 +547,6 @@ async function getPreview() {
     progressRankCheck +
     '&lastMatchPts=' +
     lastMatchPtsCheck;
-
-  iframe.src = linkbox.value;
 }
 
 const alertText = document.getElementById('alert__description')
@@ -552,6 +554,20 @@ const submitButton = document.getElementById('submitButton')
 const iframe = document.getElementById('iframe');
 const linkbox = document.getElementById('linkbox');
 const copyButton = document.getElementById('copyButton');
+
+iframe.innerHTML = overlayHTML
+
+// Elements
+const imgRank = document.getElementById('imgRank');
+const imgPTS = document.getElementById('imgPTS');
+const playerRank = document.getElementById('playerRank');
+const lastMatchPtsValue = document.getElementById('lastmatchptsvalue');
+const cssStyle = document.querySelector(':root').style;
+const winValue = document.getElementById('winValue');
+const loseValue = document.getElementById('loseValue');
+
+winValue.innerHTML = '0';
+loseValue.innerHTML = '0';
 
 submitButton.onclick = async function () {
   await getPreview();
@@ -561,8 +577,148 @@ copyButton.onclick = function() {
   navigator.clipboard.writeText(linkbox.value);
 }
 
+async function main() {
+  const inputNicknameWithTag = document.getElementById('nickname_with_tag')
+  const nicknameWithTag = inputNicknameWithTag.value;
+  const [nickname, tag] = nicknameWithTag.split('#');
+
+  const check = await checkData(nickname, tag)
+
+  if (check) {
+    await insertinData();
+  }
+}
+
+
+async function checkData(nickname, tag) {
+  try {
+    const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}`)
+    const data = await response.json();
+    const returnStatus = data.status;
+
+    const newPlayerData = await formationUserData(nickname, tag);
+
+    if (returnStatus === 200) {
+      if (playerData === undefined) {
+        playerData = newPlayerData;
+      } else if (playerData.nickname !== newPlayerData.nickname && playerData.tag !== newPlayerData.tag) {
+        playerData = newPlayerData;
+      }
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+    return false
+  }
+}
+
+async function insertinData() {
+  const playerCurrentTier = playerData.currenttierpatched;
+  let playerMmr = playerData.ranking_in_tier;
+  const playerMmrText = playerData.ranking_in_tier;
+  const playerTier = playerData.currenttier;
+  const playerLastGamePts = playerData.mmr_change_to_last_game;
+  const playerLeaderboard = playerData.leaderboard;
+
+  if (playerMmr > 100) {
+    playerMmr = '0';
+  }
+
+  imgRank.src = `/img/ranks/${playerTier}.png`;
+  let actualProcent = `${playerMmr}%`;
+
+  if (playerLastGamePts === 'nRanked') {
+    playerRank.innerHTML = playerCurrentTier;
+  } else if (playerTier === 27) {
+    if (playerLeaderboard !== ' ') {
+      playerRank.innerHTML = `${playerCurrentTier} #${playerLeaderboard}`;
+    }
+  } else {
+    playerRank.innerHTML = `${playerCurrentTier} - ${playerMmrText}RR`;
+  }
+
+  cssStyle.setProperty('--progresspontinho', actualProcent);
+
+  if (playerLastGamePts === 'nRanked') {
+    lastMatchPtsValue.innerHTML = `Unranked`;
+  } else if (playerTier >= 24 && playerLastGamePts === 0) {
+    lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
+  } else if (playerTier >= 24) {
+    if (playerLastGamePts >= 1) {
+      lastMatchPtsValue.innerHTML = `+${playerLastGamePts}pts`;
+      actualProcent = '100%';
+      cssStyle.setProperty('--progresspontinho', actualProcent);
+    } else if (playerLastGamePts <= -1) {
+      lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
+      actualProcent = '0%';
+      cssStyle.setProperty('--progresspontinho', actualProcent);
+    }
+  } else {
+    lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
+  }
+
+  if (playerLastGamePts > 0) {
+    if (playerLastGamePts <= 10) {
+      imgPTS.src = `/img/icons/up.png`;
+    } else if (playerLastGamePts <= 20) {
+      imgPTS.src = `/img/icons/up_plus.png`;
+    } else {
+      imgPTS.src = `/img/icons/up_plusplus.png`;
+    }
+  } else if (playerLastGamePts < 0) {
+    if (playerLastGamePts > -10) {
+      imgPTS.src = `/img/icons/down.png`;
+    } else if (playerLastGamePts > -20) {
+      imgPTS.src = `/img/icons/down_plus.png`;
+    } else {
+      imgPTS.src = `/img/icons/down_plusplus.png`;
+    }
+  }
+}
+
+async function formationUserData(nickname, tag) {
+  const [puuid, region] = await getPuuidWithRegion(nickname, tag);
+  const [currenttier, currenttierpatched, ranking_in_tier, mmr_change_to_last_game, elo] = await getPlayerInformation(region, puuid);
+  const leaderboard = await getLeaderboard(region, puuid);
+
+  return {
+    nickname: nickname,
+    tag: tag,
+    puuid: puuid,
+    region: region,
+    currenttier: currenttier,
+    currenttierpatched: currenttierpatched,
+    ranking_in_tier: ranking_in_tier,
+    mmr_change_to_last_game: mmr_change_to_last_game,
+    elo: elo,
+    leaderboard: leaderboard
+  };
+}
+
+
+async function getPuuidWithRegion(nickname, tag) {
+  const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}`)
+  const data = await response.json()
+  return [data.data.puuid, data.data.region]
+}
+
+async function getLeaderboard(region, puuid) {
+  const response = await fetch(`${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}`);
+  const data = await response.json()
+  return data.status === 404 ? ' ' : data.data[0].leaderboardRank;
+}
+
+async function getPlayerInformation(region, puuid) {
+  const response = await fetch(`${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}`)
+  const data = await response.json()
+  return [data.data.currenttier, data.data.currenttierpatched, data.data.ranking_in_tier, data.data.mmr_change_to_last_game, data.data.elo]
+}
+
 window.checkNickname = checkNickname
 window.getPreview = getPreview
+window.main = main
 window.Alpine = Alpine
 
 Alpine.start()
