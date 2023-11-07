@@ -20,9 +20,7 @@ Initially, the project was a fork of [davizeragod](https://davizeragod.github.io
 
 
 ## 📋 TODO
-- [ ] Add instructions on how to connect an overlay to a stream
 - [ ] Add more information
-- [ ] Add the ability to change the background for the preview
 
 ## ❤️ Credits
 * [davizeragod/davizeragod.github.io](https://github.com/davizeragod/davizeragod.github.io)
