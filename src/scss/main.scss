@@ -414,13 +414,9 @@ input.nickname {
 }
 .preview {
 	flex: 1;
-	background-image: url("/img/previews/sunset.png");
 	background-color: $background-color_6;
 	width: 100%;
 	height: 100%;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
 	position: relative;
 	overflow: hidden;
 	&::after {
@@ -432,6 +428,50 @@ input.nickname {
 		bottom: 0;
 		background: linear-gradient(270deg, rgba(0,0,0,0.5) 0%, $background-color_6 100%);
 		backdrop-filter: blur(10px);
+	}
+
+	.preview__background {
+		.preview__background__image {
+			transition: all 0.2s;
+			img {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				object-fit: cover;
+			}
+		}
+	}
+
+	.preview__thumbnails {
+		$preview_thumbnails_padding: 25px;
+		position: absolute;
+		right: $preview_thumbnails_padding;
+		bottom: $preview_thumbnails_padding;
+		z-index: 1;
+		display: flex;
+		gap: 16px;
+
+		.thumbnail {
+			cursor: pointer;
+			border-radius: 50%;
+			line-height: 0;
+			transition: all 0.2s;
+
+			img {
+				$thumnail_size: 40px;
+				width: $thumnail_size;
+				height: $thumnail_size;
+				border-radius: 50%;
+				object-fit: cover;
+				backdrop-filter: blur(30px);
+			}
+
+			&.active {
+				box-shadow: 0 0 0 3px $background-color_8;
+			}
+		}
 	}
 }
 .generate {

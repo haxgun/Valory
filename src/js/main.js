@@ -447,10 +447,42 @@ document.querySelector('#app').innerHTML = `
           </footer>
         </div>
       </div>
-      <div class="preview">
+      <div x-data="
+      {
+        currentSlide: 0,
+        slides: [
+          '/img/previews/ascent.png',
+          '/img/previews/bind.png',
+          '/img/previews/haven.png',
+          '/img/previews/split.png',
+          '/img/previews/sunset.png'
+        ],
+        thumbnails: [
+          '/img/previews/thumbnails/ascent.png',
+          '/img/previews/thumbnails/bind.png',
+          '/img/previews/thumbnails/haven.png',
+          '/img/previews/thumbnails/split.png',
+          '/img/previews/thumbnails/sunset.png'
+        ]
+      }"
+       class="preview">
         <div id="divframe">
           <h1 x-show="!search" class="no_iframe">Your preview will be located here. Please enter your profile to see it.</h1>
           <div x-transition x-show="search" title="" id="iframe"></div>
+        </div>
+        <div class="preview__background">
+          <template x-for="(slide, index) in slides" :key="index">
+            <div class="preview__background__image" :style="index === currentSlide ? 'opacity: 1': 'opacity: 0'">
+              <img :src="slide" alt="Слайд"/>
+            </div>
+          </template>
+        </div>
+        <div class="preview__thumbnails">
+          <template x-for="(slide, index) in thumbnails" :key="index">
+            <div @click="currentSlide = index" class="thumbnail" :class="{ 'active': index === currentSlide }">
+              <img :src="slide" alt="Миниатюра" />
+            </div>
+          </template>
         </div>
       </div>
       <div x-cloak x-show="alert" class="alert" x-transition>
