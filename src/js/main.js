@@ -449,18 +449,28 @@ document.querySelector('#app').innerHTML = `
       </div>
       <div x-data="
       {
-        currentSlide: 0,
+        currentSlide: 2,
         slides: [
           '/img/previews/ascent.png',
           '/img/previews/bind.png',
+          '/img/previews/breeze.png',
+          '/img/previews/fracture.png',
           '/img/previews/haven.png',
+          '/img/previews/icebox.png',
+          '/img/previews/lotus.png',
+          '/img/previews/pearl.png',
           '/img/previews/split.png',
           '/img/previews/sunset.png'
         ],
         thumbnails: [
           '/img/previews/thumbnails/ascent.png',
           '/img/previews/thumbnails/bind.png',
+          '/img/previews/thumbnails/breeze.png',
+          '/img/previews/thumbnails/fracture.png',
           '/img/previews/thumbnails/haven.png',
+          '/img/previews/thumbnails/icebox.png',
+          '/img/previews/thumbnails/lotus.png',
+          '/img/previews/thumbnails/pearl.png',
           '/img/previews/thumbnails/split.png',
           '/img/previews/thumbnails/sunset.png'
         ]
