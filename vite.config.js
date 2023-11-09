@@ -7,6 +7,7 @@ const __dirname = dirname(__filename);
 
 export default {
   plugins: [],
+  clearScreen: false,
   build: {
     target: "esnext",
     rollupOptions: {
