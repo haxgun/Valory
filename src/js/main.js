@@ -4,41 +4,43 @@ import Alpine from "alpinejs";
 
 import { overlayHTML } from "./components/overlay.js";
 
-const apiUrl = 'https://api.henrikdev.xyz/valorant'
+const apiUrl = "https://api.henrikdev.xyz/valorant";
 let playerData;
 
 async function checkNickname(name) {
-    const regex = /^[a-zA-Zа-яА-Я0-9\s]{1,16}#[a-zA-Zа-яА-Я0-9]{1,5}$/
+  const regex = /^[a-zA-Zа-яА-Я0-9\s]{1,16}#[a-zA-Zа-яА-Я0-9]{1,5}$/;
 
-    if (name.length === 0) {
-      alertText.innerHTML = 'Please enter a nickname';
+  if (name.length === 0) {
+    alertText.innerHTML = "Please enter a nickname";
+    return false;
+  }
+
+  if (!regex.test(name)) {
+    alertText.innerHTML = "Incorrect nickname format.";
+    return false;
+  }
+
+  const [nickname, tag] = name.split("#");
+
+  try {
+    const response = await fetch(
+      `https://api.henrikdev.xyz/valorant/v1/account/${nickname}/${tag}`,
+    );
+    if (response.status === 404) {
+      alertText.innerHTML = `${name} not found.`;
+      return false;
+    } else if (response.status === 429) {
+      alertText.innerHTML = "Too many request! Try again later";
       return false;
     }
-
-    if (!regex.test(name)) {
-        alertText.innerHTML = 'Incorrect nickname format.';
-        return false;
-    }
-
-    const [nickname, tag] = name.split('#');
-
-    try {
-      const response = await fetch(`https://api.henrikdev.xyz/valorant/v1/account/${nickname}/${tag}`);
-      if (response.status === 404) {
-        alertText.innerHTML = `${name} not found.`;
-        return false;
-      } else if (response.status === 429) {
-        alertText.innerHTML = 'Too many request! Try again later';
-        return false;
-      }
-      return response.ok;
-    } catch (error) {
-      alertText.innerHTML = 'An error occurred. Please try again later.';
-      return false;
-    }
+    return response.ok;
+  } catch (error) {
+    alertText.innerHTML = "An error occurred. Please try again later.";
+    return false;
+  }
 }
 
-document.querySelector('#app').innerHTML = `
+document.querySelector("#app").innerHTML = `
    <div
         class="start"
         x-data="
@@ -537,104 +539,148 @@ document.querySelector('#app').innerHTML = `
         </div>
       </div>
     </div>
-`
+`;
 
 async function getPreview() {
   // Get Nickname, Tag, Region
-  const inputNicknameWithTag = document.getElementById('nickname_with_tag')
+  const inputNicknameWithTag = document.getElementById("nickname_with_tag");
   const nicknameWithTag = inputNicknameWithTag.value;
-  const [nickname, tag] = nicknameWithTag.split('#');
+  const [nickname, tag] = nicknameWithTag.split("#");
 
   // Color Settings
-  const bgColor = document.getElementById('backgroundcolor').value.replace('#', '');
-  const primaryColor = document.getElementById('primarycolor').value.replace('#', '');
-  const textColor = document.getElementById('textcolor').value.replace('#', '');
-  const progressRankColor = document.getElementById('progressrankcolor').value.replace('#', '');
-  const progressRankBgColor = document.getElementById('progressrankbackgroundcolor').value.replace('#', '');
+  const bgColor = document
+    .getElementById("backgroundcolor")
+    .value.replace("#", "");
+  const primaryColor = document
+    .getElementById("primarycolor")
+    .value.replace("#", "");
+  const textColor = document.getElementById("textcolor").value.replace("#", "");
+  const progressRankColor = document
+    .getElementById("progressrankcolor")
+    .value.replace("#", "");
+  const progressRankBgColor = document
+    .getElementById("progressrankbackgroundcolor")
+    .value.replace("#", "");
 
   // Checks
-  const alphaBg = document.getElementById('transparentcheck').checked ? 'yes' : 'no';
-  const alphaGradBg = document.getElementById('transparentgradientcheck').checked ? 'yes' : 'no';
-  const wlStatCheck = document.getElementById('wlstatcheck').checked ? 'yes' : 'no';
-  const progressRankCheck = document.getElementById('progressrankcheck').checked ? 'yes' : 'no';
-  const lastMatchPtsCheck = document.getElementById('lastmatchptscheck').checked ? 'yes' : 'no';
+  const alphaBg = document.getElementById("transparentcheck").checked
+    ? "yes"
+    : "no";
+  const alphaGradBg = document.getElementById("transparentgradientcheck")
+    .checked
+    ? "yes"
+    : "no";
+  const wlStatCheck = document.getElementById("wlstatcheck").checked
+    ? "yes"
+    : "no";
+  const progressRankCheck = document.getElementById("progressrankcheck").checked
+    ? "yes"
+    : "no";
+  const lastMatchPtsCheck = document.getElementById("lastmatchptscheck").checked
+    ? "yes"
+    : "no";
 
-  await generateLink(nickname, tag, textColor, primaryColor, bgColor, progressRankColor, progressRankBgColor, alphaBg, alphaGradBg, wlStatCheck, progressRankCheck, lastMatchPtsCheck)
+  await generateLink(
+    nickname,
+    tag,
+    textColor,
+    primaryColor,
+    bgColor,
+    progressRankColor,
+    progressRankBgColor,
+    alphaBg,
+    alphaGradBg,
+    wlStatCheck,
+    progressRankCheck,
+    lastMatchPtsCheck,
+  );
 }
 
-async function generateLink(nickname, tag, textColor, primaryColor, bgColor, progressRankColor, progressRankBgColor, alphaBg, alphaGradBg, wlStatCheck, progressRankCheck, lastMatchPtsCheck) {
+async function generateLink(
+  nickname,
+  tag,
+  textColor,
+  primaryColor,
+  bgColor,
+  progressRankColor,
+  progressRankBgColor,
+  alphaBg,
+  alphaGradBg,
+  wlStatCheck,
+  progressRankCheck,
+  lastMatchPtsCheck,
+) {
   linkbox.value =
     window.location.origin +
-    '/overlay/?nickname=' +
+    "/overlay/?nickname=" +
     nickname +
-    '&tag=' +
+    "&tag=" +
     tag +
-    '&textColor=' +
+    "&textColor=" +
     textColor +
-    '&primaryColor=' +
+    "&primaryColor=" +
     primaryColor +
-    '&bgColor=' +
+    "&bgColor=" +
     bgColor +
-    '&progressRankColor=' +
+    "&progressRankColor=" +
     progressRankColor +
-    '&progressRankBgColor=' +
+    "&progressRankBgColor=" +
     progressRankBgColor +
-    '&alphaBg=' +
+    "&alphaBg=" +
     alphaBg +
-    '&alphaGradBg=' +
+    "&alphaGradBg=" +
     alphaGradBg +
-    '&wlstat=' +
+    "&wlstat=" +
     wlStatCheck +
-    '&progressrank=' +
+    "&progressrank=" +
     progressRankCheck +
-    '&lastMatchPts=' +
+    "&lastMatchPts=" +
     lastMatchPtsCheck;
 }
 
-const alertText = document.getElementById('alert__description')
-const submitButton = document.getElementById('submitButton')
-const iframe = document.getElementById('iframe');
-const linkbox = document.getElementById('linkbox');
-const copyButton = document.getElementById('copyButton');
+const alertText = document.getElementById("alert__description");
+const submitButton = document.getElementById("submitButton");
+const iframe = document.getElementById("iframe");
+const linkbox = document.getElementById("linkbox");
+const copyButton = document.getElementById("copyButton");
 
-iframe.innerHTML = overlayHTML
+iframe.innerHTML = overlayHTML;
 
 // Elements
-const imgRank = document.getElementById('imgRank');
-const imgPTS = document.getElementById('imgPTS');
-const playerRank = document.getElementById('playerRank');
-const lastMatchPtsValue = document.getElementById('lastmatchptsvalue');
-const cssStyle = document.querySelector(':root').style;
-const winValue = document.getElementById('winValue');
-const loseValue = document.getElementById('loseValue');
+const imgRank = document.getElementById("imgRank");
+const imgPTS = document.getElementById("imgPTS");
+const playerRank = document.getElementById("playerRank");
+const lastMatchPtsValue = document.getElementById("lastmatchptsvalue");
+const cssStyle = document.querySelector(":root").style;
+const winValue = document.getElementById("winValue");
+const loseValue = document.getElementById("loseValue");
 
-winValue.innerHTML = '0';
-loseValue.innerHTML = '0';
+winValue.innerHTML = "0";
+loseValue.innerHTML = "0";
 
 submitButton.onclick = async function () {
   await getPreview();
-}
+};
 
-copyButton.onclick = function() {
+copyButton.onclick = function () {
   navigator.clipboard.writeText(linkbox.value);
-}
+};
 
 async function main() {
-  const inputNicknameWithTag = document.getElementById('nickname_with_tag')
+  const inputNicknameWithTag = document.getElementById("nickname_with_tag");
   const nicknameWithTag = inputNicknameWithTag.value;
-  const [nickname, tag] = nicknameWithTag.split('#');
+  const [nickname, tag] = nicknameWithTag.split("#");
 
-  const check = await checkData(nickname, tag)
+  const check = await checkData(nickname, tag);
 
   if (check) {
     await insertinData();
   }
 }
 
-
 async function checkData(nickname, tag) {
   try {
-    const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}`)
+    const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}`);
     const data = await response.json();
     const returnStatus = data.status;
 
@@ -643,7 +689,10 @@ async function checkData(nickname, tag) {
     if (returnStatus === 200) {
       if (playerData === undefined) {
         playerData = newPlayerData;
-      } else if (playerData.nickname !== newPlayerData.nickname && playerData.tag !== newPlayerData.tag) {
+      } else if (
+        playerData.nickname !== newPlayerData.nickname &&
+        playerData.tag !== newPlayerData.tag
+      ) {
         playerData = newPlayerData;
       }
       return true;
@@ -652,7 +701,7 @@ async function checkData(nickname, tag) {
     }
   } catch (error) {
     console.log(error);
-    return false
+    return false;
   }
 }
 
@@ -665,37 +714,37 @@ async function insertinData() {
   const playerLeaderboard = playerData.leaderboard;
 
   if (playerMmr > 100) {
-    playerMmr = '0';
+    playerMmr = "0";
   }
 
   imgRank.src = `/img/ranks/${playerTier}.png`;
   let actualProcent = `${playerMmr}%`;
 
-  if (playerLastGamePts === 'nRanked') {
+  if (playerLastGamePts === "nRanked") {
     playerRank.innerHTML = playerCurrentTier;
   } else if (playerTier === 27) {
-    if (playerLeaderboard !== ' ') {
+    if (playerLeaderboard !== " ") {
       playerRank.innerHTML = `${playerCurrentTier} #${playerLeaderboard}`;
     }
   } else {
     playerRank.innerHTML = `${playerCurrentTier} - ${playerMmrText}RR`;
   }
 
-  cssStyle.setProperty('--progresspontinho', actualProcent);
+  cssStyle.setProperty("--progresspontinho", actualProcent);
 
-  if (playerLastGamePts === 'nRanked') {
+  if (playerLastGamePts === "nRanked") {
     lastMatchPtsValue.innerHTML = `Unranked`;
   } else if (playerTier >= 24 && playerLastGamePts === 0) {
     lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
   } else if (playerTier >= 24) {
     if (playerLastGamePts >= 1) {
       lastMatchPtsValue.innerHTML = `+${playerLastGamePts}pts`;
-      actualProcent = '100%';
-      cssStyle.setProperty('--progresspontinho', actualProcent);
+      actualProcent = "100%";
+      cssStyle.setProperty("--progresspontinho", actualProcent);
     } else if (playerLastGamePts <= -1) {
       lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
-      actualProcent = '0%';
-      cssStyle.setProperty('--progresspontinho', actualProcent);
+      actualProcent = "0%";
+      cssStyle.setProperty("--progresspontinho", actualProcent);
     }
   } else {
     lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
@@ -722,7 +771,13 @@ async function insertinData() {
 
 async function formationUserData(nickname, tag) {
   const [puuid, region] = await getPuuidWithRegion(nickname, tag);
-  const [currenttier, currenttierpatched, ranking_in_tier, mmr_change_to_last_game, elo] = await getPlayerInformation(region, puuid);
+  const [
+    currenttier,
+    currenttierpatched,
+    ranking_in_tier,
+    mmr_change_to_last_game,
+    elo,
+  ] = await getPlayerInformation(region, puuid);
   const leaderboard = await getLeaderboard(region, puuid);
 
   return {
@@ -735,32 +790,39 @@ async function formationUserData(nickname, tag) {
     ranking_in_tier: ranking_in_tier,
     mmr_change_to_last_game: mmr_change_to_last_game,
     elo: elo,
-    leaderboard: leaderboard
+    leaderboard: leaderboard,
   };
 }
 
-
 async function getPuuidWithRegion(nickname, tag) {
-  const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}`)
-  const data = await response.json()
-  return [data.data.puuid, data.data.region]
+  const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}`);
+  const data = await response.json();
+  return [data.data.puuid, data.data.region];
 }
 
 async function getLeaderboard(region, puuid) {
-  const response = await fetch(`${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}`);
-  const data = await response.json()
-  return data.status === 404 ? ' ' : data.data[0].leaderboardRank;
+  const response = await fetch(
+    `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}`,
+  );
+  const data = await response.json();
+  return data.status === 404 ? " " : data.data[0].leaderboardRank;
 }
 
 async function getPlayerInformation(region, puuid) {
-  const response = await fetch(`${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}`)
-  const data = await response.json()
-  return [data.data.currenttier, data.data.currenttierpatched, data.data.ranking_in_tier, data.data.mmr_change_to_last_game, data.data.elo]
+  const response = await fetch(`${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}`);
+  const data = await response.json();
+  return [
+    data.data.currenttier,
+    data.data.currenttierpatched,
+    data.data.ranking_in_tier,
+    data.data.mmr_change_to_last_game,
+    data.data.elo,
+  ];
 }
 
-window.checkNickname = checkNickname
-window.getPreview = getPreview
-window.main = main
-window.Alpine = Alpine
+window.checkNickname = checkNickname;
+window.getPreview = getPreview;
+window.main = main;
+window.Alpine = Alpine;
 
-Alpine.start()
+Alpine.start();

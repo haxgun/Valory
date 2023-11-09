@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import { resolve } from "path";
 
 export default {
   plugins: [],
@@ -6,9 +6,9 @@ export default {
     target: "esnext",
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        overlay: resolve(__dirname, 'overlay/index.html')
-      }
-    }
-  }
-}
+        main: resolve(__dirname, "index.html"),
+        overlay: resolve(__dirname, "overlay/index.html"),
+      },
+    },
+  },
+};

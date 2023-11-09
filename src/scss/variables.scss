@@ -1,5 +1,5 @@
 @import "https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap";
-@import 'normalize.css';
+@import "normalize.css";
 
 $color_1: #ffffff;
 $color_2: #b3b7bc;
@@ -9,9 +9,20 @@ $color_5: #ff3848;
 $color_6: var(--red-color);
 $color_7: rgb(93 183 210);
 $color_8: rgb(17 17 17);
-$color_9: hsla(0,0%,100%,.8);
+$color_9: hsla(0, 0%, 100%, 0.8);
 $color_10: #ffffff80;
-$font-family_1: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family_1:
+  "Inter",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  Helvetica,
+  Arial,
+  sans-serif,
+  "Apple Color Emoji",
+  "Segoe UI Emoji",
+  "Segoe UI Symbol";
 $background-color_1: #161616;
 $background-color_2: #2b2c2e;
 $background-color_3: hsla(0, 0%, 100%, 0.05);

@@ -21,5 +21,4 @@ export const overlayHTML = `
       </div>
     </div>
   </div>
-`
-
+`;

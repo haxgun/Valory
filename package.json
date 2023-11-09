@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
     "sass": "^1.69.5",
     "vite": "^4.4.5"
   },
