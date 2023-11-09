@@ -4,10 +4,15 @@ on:
   push:
     branches:
       - main
-      - rework-js
+
+permissions:
+  checks: write
+  contents: write
+
 jobs:
   run-linters:
     name: Run linters
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
