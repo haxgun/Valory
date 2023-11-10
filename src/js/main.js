@@ -453,28 +453,28 @@ document.querySelector("#app").innerHTML = `
       {
         currentSlide: 2,
         slides: [
-          '/img/previews/ascent.png',
-          '/img/previews/bind.png',
-          '/img/previews/breeze.png',
-          '/img/previews/fracture.png',
-          '/img/previews/haven.png',
-          '/img/previews/icebox.png',
-          '/img/previews/lotus.png',
-          '/img/previews/pearl.png',
-          '/img/previews/split.png',
-          '/img/previews/sunset.png'
+          '/img/previews/ascent.webp',
+          '/img/previews/bind.webp',
+          '/img/previews/breeze.webp',
+          '/img/previews/fracture.webp',
+          '/img/previews/haven.webp',
+          '/img/previews/icebox.webp',
+          '/img/previews/lotus.webp',
+          '/img/previews/pearl.webp',
+          '/img/previews/split.webp',
+          '/img/previews/sunset.webp'
         ],
         thumbnails: [
-          '/img/previews/thumbnails/ascent.png',
-          '/img/previews/thumbnails/bind.png',
-          '/img/previews/thumbnails/breeze.png',
-          '/img/previews/thumbnails/fracture.png',
-          '/img/previews/thumbnails/haven.png',
-          '/img/previews/thumbnails/icebox.png',
-          '/img/previews/thumbnails/lotus.png',
-          '/img/previews/thumbnails/pearl.png',
-          '/img/previews/thumbnails/split.png',
-          '/img/previews/thumbnails/sunset.png'
+          '/img/previews/thumbnails/ascent.webp',
+          '/img/previews/thumbnails/bind.webp',
+          '/img/previews/thumbnails/breeze.webp',
+          '/img/previews/thumbnails/fracture.webp',
+          '/img/previews/thumbnails/haven.webp',
+          '/img/previews/thumbnails/icebox.webp',
+          '/img/previews/thumbnails/lotus.webp',
+          '/img/previews/thumbnails/pearl.webp',
+          '/img/previews/thumbnails/split.webp',
+          '/img/previews/thumbnails/sunset.webp'
         ]
       }"
        class="preview">
@@ -516,7 +516,7 @@ document.querySelector("#app").innerHTML = `
       <div x-cloak x-transition:enter.duration.250ms.opacity.0 x-transition:leave.duration.250ms.opacity.0  x-show="modal" class="modal">
         <div x-transition x-show="modal" @click.outside="modal = false" class="modal__content">
           <div class="modal__leftside">
-            <img src="/img/steps/1.png" alt="">
+            <img src="/img/steps/1.webp" alt="">
           </div>
           <div class="modal__rightside">
             <div class="modal__title">Follow a few simple steps!</div>
@@ -717,7 +717,7 @@ async function insertinData() {
     playerMmr = "0";
   }
 
-  imgRank.src = `/img/ranks/${playerTier}.png`;
+  imgRank.src = `/img/ranks/${playerTier}.webp`;
   let actualProcent = `${playerMmr}%`;
 
   if (playerLastGamePts === "nRanked") {
@@ -752,19 +752,19 @@ async function insertinData() {
 
   if (playerLastGamePts > 0) {
     if (playerLastGamePts <= 10) {
-      imgPTS.src = `/img/icons/up.png`;
+      imgPTS.src = `/img/icons/up.webp`;
     } else if (playerLastGamePts <= 20) {
-      imgPTS.src = `/img/icons/up_plus.png`;
+      imgPTS.src = `/img/icons/up_plus.webp`;
     } else {
-      imgPTS.src = `/img/icons/up_plusplus.png`;
+      imgPTS.src = `/img/icons/up_plusplus.webp`;
     }
   } else if (playerLastGamePts < 0) {
     if (playerLastGamePts > -10) {
-      imgPTS.src = `/img/icons/down.png`;
+      imgPTS.src = `/img/icons/down.webp`;
     } else if (playerLastGamePts > -20) {
-      imgPTS.src = `/img/icons/down_plus.png`;
+      imgPTS.src = `/img/icons/down_plus.webp`;
     } else {
-      imgPTS.src = `/img/icons/down_plusplus.png`;
+      imgPTS.src = `/img/icons/down_plusplus.webp`;
     }
   }
 }

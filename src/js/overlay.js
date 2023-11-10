@@ -134,7 +134,7 @@ async function updatePlayerCard(region, puuid) {
     playerMmr = "0";
   }
 
-  imgRank.src = `/img/ranks/${playerTier}.png`;
+  imgRank.src = `/img/ranks/${playerTier}.webp`;
   let actualProcent = `${playerMmr}%`;
 
   if (playerLastGamePts === "nRanked") {
@@ -170,19 +170,19 @@ async function updatePlayerCard(region, puuid) {
 
   if (playerLastGamePts > 0) {
     if (playerLastGamePts <= 10) {
-      imgPTS.src = `/img/icons/up.png`;
+      imgPTS.src = `/img/icons/up.webp`;
     } else if (playerLastGamePts <= 20) {
-      imgPTS.src = `/img/icons/up_plus.png`;
+      imgPTS.src = `/img/icons/up_plus.webp`;
     } else {
-      imgPTS.src = `/img/icons/up_plusplus.png`;
+      imgPTS.src = `/img/icons/up_plusplus.webp`;
     }
   } else if (playerLastGamePts < 0) {
     if (playerLastGamePts > -10) {
-      imgPTS.src = `/img/icons/down.png`;
+      imgPTS.src = `/img/icons/down.webp`;
     } else if (playerLastGamePts > -20) {
-      imgPTS.src = `/img/icons/down_plus.png`;
+      imgPTS.src = `/img/icons/down_plus.webp`;
     } else {
-      imgPTS.src = `/img/icons/down_plusplus.png`;
+      imgPTS.src = `/img/icons/down_plusplus.webp`;
     }
   }
 }
