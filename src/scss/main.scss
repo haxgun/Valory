@@ -473,6 +473,9 @@ input.nickname {
       &.active {
         box-shadow: 0 0 0 3px $background-color_8;
       }
+      &:hover:not(.active) {
+        box-shadow: 0 0 0 2px $background-color_9;
+      }
     }
   }
 }
