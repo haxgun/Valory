@@ -18,9 +18,12 @@
   },
   "dependencies": {
     "alpinejs": "^3.13.2",
+    "autoprefixer": "^10.4.16",
     "eslint": "^8.52.0",
     "normalize.css": "^8.0.1",
+    "postcss-uncss": "^0.17.0",
     "prettier": "^3.0.3",
-    "set-interval-async": "^3.0.3"
+    "set-interval-async": "^3.0.3",
+    "uncss": "^0.17.3"
   }
 }
