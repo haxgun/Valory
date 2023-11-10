@@ -47,7 +47,7 @@ document.querySelector("#app").innerHTML = `
         {
           modal: false,
           alert: false,
-          nickname: 'MAGICX#1337',
+          nickname: '',
           infoContainer: true,
           contentContainer: false,
           generateContainer: false,
