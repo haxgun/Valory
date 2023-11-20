@@ -43,7 +43,6 @@ const switchLang = () => {
         </a>
       </li>
       <li class="social">
-        {{ locale.value }}
         <a v-if="localValue === 'en'" target="__blank" @click="switchLang">
           <Icon icon="flag:ru-4x3" width="18" height="18" />
         </a>
@@ -100,13 +99,10 @@ footer {
 
       &.heart {
         --icons-color: red;
-        &:hover {
-          --icons-color: #ff5f5f;
-        }
       }
 
       &:hover {
-        --icons-color: hsla(0, 0%, 100%, 0.5);
+        background: rgb(255 255 255 / 10%);
       }
     }
   }
