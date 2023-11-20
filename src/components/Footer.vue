@@ -3,12 +3,23 @@ import IconGithub from '@/components/icons/IconGithub.vue'
 import IconHeart from '@/components/icons/IconHeart.vue'
 import IconTelegram from '@/components/icons/IconTelegram.vue'
 import IconTwitch from '@/components/icons/IconTwitch.vue'
+import { useLocalStorage } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
+
+let localValue
+const switchLang = () => {
+  locale.value === 'en' ? (locale.value = 'ru') : (locale.value = 'en')
+  useLocalStorage('valoryLocale', locale.value)
+  localValue = locale.value
+}
 </script>
 
 <template>
   <footer>
     <span class="copyright"
-      >Made with <IconHeart style="fill: red" :size="24" /> © 2023 VALORY</span
+      >{{ $t('landing.footer') }} <IconHeart style="fill: red" :size="24" /> © 2023 VALORY</span
     >
     <ul class="socials">
       <li class="social">
@@ -29,6 +40,15 @@ import IconTwitch from '@/components/icons/IconTwitch.vue'
       <li class="social">
         <a target="__blank" class="heart" href="https://www.donationalerts.com/r/haxgun">
           <IconHeart :size="18" />
+        </a>
+      </li>
+      <li class="social">
+        {{ locale.value }}
+        <a v-if="localValue === 'en'" target="__blank" @click="switchLang">
+          <Icon icon="flag:ru-4x3" width="18" height="18" />
+        </a>
+        <a v-else target="__blank" @click="switchLang">
+          <Icon icon="flag:us-4x3" width="18" height="18" />
         </a>
       </li>
     </ul>

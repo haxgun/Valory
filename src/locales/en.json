@@ -1,0 +1,16 @@
+{
+  "landing": {
+    "pretitle": "STREAM OVERLAY 2.0",
+    "description": "Grab your audience's attention with real-time VALORANT stats!",
+    "features": {
+      "first": "Customize your overlay according to your stream.",
+      "second": "It's absolutely FREE! There is support for many popular streaming programs like OBS and others.",
+      "third": "Setup once and everything will always work!"
+    },
+    "buttons": {
+      "first": "How does it work?",
+      "second": "Create your overlay"
+    },
+    "footer": "Made with"
+  }
+}

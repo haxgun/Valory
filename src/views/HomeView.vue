@@ -11,32 +11,31 @@ import Button from '@/components/ui/Button.vue'
   <main>
     <div class="main__body">
       <div class="main__container">
-        <p class="pretitle">STREAM OVERLAY 2.0</p>
+        <p class="pretitle">{{ $t('landing.pretitle') }}</p>
         <div class="logo">
           <IconValory :size="60" />
           <h1 class="title">VALORY</h1>
         </div>
-        <p class="description">Catch your audience's attention with real-time VALORANT stats!</p>
+        <p class="description">{{ $t('landing.description') }}</p>
         <div class="features">
           <div class="feature">
             <IconPalette />
-            <p>Customize your overlay according to your stream.</p>
+            <p>{{ $t('landing.features.first') }}</p>
           </div>
           <div class="feature">
             <IconBillCheck />
             <p>
-              It's absolutely FREE! There is support for many popular streaming programs like OBS
-              and others.
+              {{ $t('landing.features.second') }}
             </p>
           </div>
           <div class="feature">
             <IconMagicStick />
-            <p>Setup once and everything will always work!</p>
+            <p>{{ $t('landing.features.third') }}</p>
           </div>
         </div>
         <div class="buttons">
-          <Button variant="outline">How it does work?</Button>
-          <Button @click="$router.push('/editor')">Create your overlay</Button>
+          <Button variant="outline">{{ $t('landing.buttons.first') }}</Button>
+          <Button @click="$router.push('/editor')">{{ $t('landing.buttons.second') }}</Button>
         </div>
       </div>
       <Footer />
