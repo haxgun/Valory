@@ -7,19 +7,24 @@ localStorage.theme = 'dark'
 <template>
   <Highlights />
   <router-view v-slot="{ Component }">
-    <transition name="fade" mode="out-in">
+    <transition name="slide-fade" mode="out-in">
       <component :is="Component" :key="$route.path"></component>
     </transition>
   </router-view>
 </template>
 
 <style lang="css" scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
+.slide-fade-enter-active {
+  transition: all 0.2s ease-out;
 }
-.fade-enter,
-.fade-leave-to {
+
+.slide-fade-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
   opacity: 0;
 }
 </style>
