@@ -19,7 +19,7 @@ router.isReady().finally(() => (isRouterReady.value = true))
       aria-label="Custom ProgressSpinner"
     />
   </div>
-  <router-view v-slot="{ Component }">
+  <router-view v-else v-slot="{ Component }">
     <transition name="slide-fade" mode="out-in">
       <component :is="Component" :key="$route.path"></component>
     </transition>

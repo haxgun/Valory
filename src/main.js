@@ -6,6 +6,7 @@ import { Icon } from '@iconify/vue'
 import { createPinia } from 'pinia'
 import PrimeVue from 'primevue/config'
 import ProgressSpinner from 'primevue/progressspinner'
+import 'primevue/resources/themes/lara-light-teal/theme.css'
 import { createApp } from 'vue'
 
 createApp(App)
