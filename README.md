@@ -7,7 +7,7 @@
 
 [![CI/CD](https://github.com/haxgun/valory/actions/workflows/master.yml/badge.svg)](https://github.com/haxgun/valory/actions/workflows/master.yml)
 [![GitHub License](https://img.shields.io/github/license/haxgun/valory)](https://github.com/haxgun/valory/blob/main/LICENSE)
-[![Website](https://img.shields.io/website?url=https://overlay.haxgun.ru/)](https://overlay.haxgun.ru/)
+[![Website](https://img.shields.io/website?url=https://overlay.haxgun.ru)](https://overlay.haxgun.ru/)
 [![Stars](https://img.shields.io/github/stars/haxgun/valory)](https://github.com/haxgun/valory/stargazers)
 
 Valory provides a beautiful rank overlay for your stream.
