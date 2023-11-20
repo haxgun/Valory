@@ -1,20 +1,22 @@
-import { resolve } from "path";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+import vue from '@vitejs/plugin-vue'
+import path from 'path'
+import { defineConfig } from 'vite'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-export default {
-  plugins: [],
-  clearScreen: false,
-  build: {
-    target: "esnext",
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, "index.html"),
-        overlay: resolve(__dirname, "overlay/index.html"),
-      },
-    },
+export default defineConfig({
+  devServer: {
+    port: 5000
   },
-};
+  plugins: [
+    vue()
+  ],
+  clearScreen: false,
+  resolve: {
+    alias: {
+      // eslint-disable-next-line no-undef
+      '@': path.resolve(__dirname, './src')
+    }
+  },
+  build: {
+    target: 'esnext'
+  }
+})
