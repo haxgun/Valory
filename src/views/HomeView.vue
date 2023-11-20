@@ -13,7 +13,7 @@ import Button from '@/components/ui/Button.vue'
       <div class="main__container">
         <p class="pretitle">STREAM OVERLAY 2.0</p>
         <div class="logo">
-          <IconValory :size="70" />
+          <IconValory :size="60" />
           <h1 class="title">VALORY</h1>
         </div>
         <p class="description">Catch your audience's attention with real-time VALORANT stats!</p>
