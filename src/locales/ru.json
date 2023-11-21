@@ -22,6 +22,7 @@
     "riotId": {
       "title": "Riot ID",
       "description": "Riot ID – ваш универсальный идентификатор, который используется во всех играх Riot Games.",
+      "submit": "Отправить",
       "random": "Нажмите, чтобы подставить пример Riot ID."
     },
     "customization": {

@@ -22,6 +22,7 @@
     "riotId": {
       "title": "Riot ID",
       "description": "Riot ID is your universal identifier that is used in all Riot Games.",
+      "submit": "Submit",
       "random": "Click to substitute an example of Riot ID."
     },
     "customization": {

@@ -1,4 +1,5 @@
 <script setup>
+import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
 import { ref } from 'vue'
 
@@ -26,7 +27,12 @@ const riotId = ref('')
                       {{ $t('editor.riotId.description') }}
                     </p>
                   </div>
-                  <Input v-model="riotId" placeholder="Riot ID" />
+                  <div class="editor__input">
+                    <Input style="flex: 2" v-model="riotId" placeholder="Riot ID" />
+                    <Button class="editor__button">{{
+                      $t('editor.riotId.submit')
+                    }}</Button>
+                  </div>
                   <span @click="riotId = 'MAGICX#1337'" class="random">{{
                     $t('editor.riotId.random')
                   }}</span>
@@ -61,7 +67,7 @@ const riotId = ref('')
 .editor {
   width: 60vw;
   height: fit-content;
-  background: hsl(0, 0%, 8%);
+  background: hsl(0, 0%, 9%);
   border-radius: 8px;
   border: 1px solid hsla(222deg 6% 30% / 0.25);
   overflow: hidden;
@@ -85,6 +91,17 @@ const riotId = ref('')
         display: flex;
         flex-direction: column;
         gap: 12px;
+
+        .editor__input {
+          display: flex;
+          gap: 8px;
+
+          .editor__button {
+            border-radius: 5px;
+            padding: 0.7rem 1.1rem;
+            font-size: 0.75rem
+          }
+        }
 
         .editor__settings__header {
           display: flex;
