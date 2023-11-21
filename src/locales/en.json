@@ -1,4 +1,5 @@
 {
+  "languageName": "English",
   "landing": {
     "pretitle": "STREAM OVERLAY 2.0",
     "description": "Grab your audience's attention with real-time VALORANT stats!",
@@ -12,5 +13,23 @@
       "second": "Create your overlay"
     },
     "footer": "Made with"
+  },
+  "editor": {
+    "header": {
+      "title": "Overlay with statistics",
+      "description": "Show your players' statistics in your stream!"
+    },
+    "riotId": {
+      "title": "Riot ID",
+      "description": "Riot ID is your universal identifier that is used in all Riot Games.",
+      "random": "Click to substitute an example of Riot ID."
+    },
+    "customization": {
+      "title": "Select options",
+      "description": "Customize your overlay according to your preferences."
+    },
+    "preview": {
+      "title": "No data found"
+    }
   }
 }

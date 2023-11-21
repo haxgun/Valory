@@ -58,6 +58,61 @@ import Button from '@/components/ui/Button.vue'
   gap: 18px;
 }
 
+.title {
+  margin: 0;
+  font-family: 'Russo One', sans-serif;
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  background-color: #fffbf5;
+  background-image: linear-gradient(to bottom, #fff, #ccc);
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  font-weight: 700;
+  background-color: #fffbf5;
+  background-image: linear-gradient(to bottom, #fff, #ccc);
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.pretitle {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 600;
+  color: #00c4ff;
+  padding: 6px 12px;
+  background: rgba(0, 196, 255, 0.3);
+  border: 1px solid #00c4ff;
+  box-shadow: rgb(0 191 255 / 10%) 0 0 40px;
+  border-radius: 999px;
+  line-height: 1;
+  animation: blink 2s linear infinite;
+}
+
+@keyframes blink {
+  0% {
+    box-shadow: rgb(0 191 255 / 3%) 0 0 40px;
+  }
+  50% {
+    box-shadow: rgb(0 191 255 / 10%) 0 0 40px;
+  }
+  100% {
+    box-shadow: rgb(0 191 255 / 3%) 0 0 40px;
+  }
+}
+
 .features {
   display: grid;
   gap: 12px;
