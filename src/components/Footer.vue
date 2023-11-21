@@ -3,15 +3,7 @@ import IconGithub from '@/components/icons/IconGithub.vue'
 import IconHeart from '@/components/icons/IconHeart.vue'
 import IconTelegram from '@/components/icons/IconTelegram.vue'
 import IconTwitch from '@/components/icons/IconTwitch.vue'
-import { useI18n } from 'vue-i18n'
-
-const { locale } = useI18n()
-let localStorageLang = localStorage.getItem('valoryLocale')
-const switchLang = () => {
-  locale.value === 'en' ? (locale.value = 'ru') : (locale.value = 'en')
-  localStorage.setItem('valoryLocale', locale.value)
-  localStorageLang = localStorage.getItem('valoryLocale')
-}
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher.vue'
 </script>
 
 <template>
@@ -41,11 +33,8 @@ const switchLang = () => {
         </a>
       </li>
       <li class="social">
-        <a v-if="localStorageLang === 'en'" target="__blank" @click="switchLang">
-          <Icon icon="flag:ru-4x3" width="18" height="18" />
-        </a>
-        <a v-else target="__blank" @click="switchLang">
-          <Icon icon="flag:us-4x3" width="18" height="18" />
+        <a target="__blank">
+          <LanguageSwitcher />
         </a>
       </li>
     </ul>

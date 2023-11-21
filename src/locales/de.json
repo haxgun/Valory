@@ -1,0 +1,37 @@
+{
+  "languageName": "Deutsch",
+  "flag": "de",
+  "landing": {
+    "pretitle": "OVERLAY FÜR STREAM 2.0",
+    "description": "Ziehen Sie die Aufmerksamkeit des Publikums mit VALORANT-Statistiken auf sich!",
+    "features": {
+      "first": "Passen Sie Ihr Overlay entsprechend Ihrem Stream an.",
+      "second": "Das ist absolut kostenlos! Es wird von vielen beliebten Streaming-Programmen unterstützt, wie zum Beispiel OBS und andere.",
+      "third": "Installieren Sie es einmal, und alles wird wie am Schnürchen laufen!"
+    },
+    "buttons": {
+      "first": "Wie funktioniert das?",
+      "second": "Erstellen Sie Ihr Overlay"
+    },
+    "footer": "Hergestellt mit"
+  },
+  "editor": {
+    "header": {
+      "title": "Overlay mit Statistiken",
+      "description": "Zeigen Sie Ihre Statistiken in Streaming-Programmen wie OBS Studio an."
+    },
+    "riotId": {
+      "title": "Riot ID",
+      "description": "Riot ID ist Ihre universelle Kennung, die in allen Spielen von Riot Games verwendet wird.",
+      "submit": "Senden",
+      "random": "Klicken Sie, um ein Beispiel für Riot ID einzufügen."
+    },
+    "customization": {
+      "title": "Wählen Sie Optionen aus",
+      "description": "Passen Sie das Overlay nach Ihren Vorlieben an."
+    },
+    "preview": {
+      "title": "Daten nicht gefunden"
+    }
+  }
+}

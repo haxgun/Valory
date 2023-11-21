@@ -4,11 +4,10 @@ import { createI18n } from 'vue-i18n'
 
 const locale = useLocalStorage('valoryLocale', 'en')
 
-const localStorageLang = localStorage.getItem('valoryLocale')
-
 export const i18n = createI18n({
   legacy: false,
-  locale: localStorageLang || locale.value,
+  locale: locale.value,
   fallbackLocale: 'en',
-  messages
+  messages,
+  globalInjection: true
 })

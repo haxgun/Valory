@@ -41,6 +41,7 @@
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-vue": "^9.17.0",
+    "naive-ui": "^2.35.0",
     "pinia": "^2.1.7",
     "postcss": "^8.4.31",
     "prettier": "^3.0.3",

@@ -29,9 +29,7 @@ const riotId = ref('')
                   </div>
                   <div class="editor__input">
                     <Input style="flex: 2" v-model="riotId" placeholder="Riot ID" />
-                    <Button class="editor__button">{{
-                      $t('editor.riotId.submit')
-                    }}</Button>
+                    <Button class="editor__button">{{ $t('editor.riotId.submit') }}</Button>
                   </div>
                   <span @click="riotId = 'MAGICX#1337'" class="random">{{
                     $t('editor.riotId.random')
@@ -99,7 +97,7 @@ const riotId = ref('')
           .editor__button {
             border-radius: 5px;
             padding: 0.7rem 1.1rem;
-            font-size: 0.75rem
+            font-size: 0.75rem;
           }
         }
 
