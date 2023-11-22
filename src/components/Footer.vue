@@ -32,10 +32,8 @@ import LanguageSwitcher from '@/components/ui/LanguageSwitcher.vue'
           <IconHeart :size="18" />
         </a>
       </li>
-      <li class="social">
-        <a target="__blank">
-          <LanguageSwitcher />
-        </a>
+      <li class="social language">
+        <LanguageSwitcher />
       </li>
     </ul>
   </footer>
@@ -67,7 +65,7 @@ footer {
     align-items: center;
     margin: 16px 0 0 0;
 
-    .social a {
+    .social.language {
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -79,6 +77,20 @@ footer {
       box-shadow:
         rgba(0, 0, 0, 0.02) 0px 2px 4px,
         rgba(0, 0, 0, 0.03) 0px -1px 2px inset;
+      transition: all 0.2s;
+    }
+
+    .social a {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: rgb(255 255 255 / 3%);
+      box-shadow: rgba(0, 0, 0, 0.02) 0px 2px 4px,
+      rgba(0, 0, 0, 0.03) 0px -1px 2px inset;
       transition: all 0.2s;
       --icons-color: hsla(0, 0%, 100%, 1);
       stroke: var(--icons-color);
