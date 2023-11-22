@@ -14,6 +14,11 @@ const router = createRouter({
       component: () => import('@/views/EditorView.vue')
     },
     {
+      path: '/overlay',
+      name: 'overlay',
+      component: () => import('@/views/OverlayView.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       component: () => import('@/views/PageNotFoundView.vue')
     }

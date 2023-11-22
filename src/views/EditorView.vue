@@ -1,9 +1,12 @@
 <script setup>
+import Overlay from '@/components/Overlay.vue'
 import Button from '@/components/ui/Button.vue'
 import Input from '@/components/ui/Input.vue'
 import { ref } from 'vue'
 
 const riotId = ref('')
+
+const overlayBol = ref(true)
 </script>
 
 <template>
@@ -50,7 +53,8 @@ const riotId = ref('')
             <div class="preview">
               <div class="preview__container">
                 <div class="preview__component">
-                  <div>{{ $t('editor.preview.title') }}</div>
+                  <Overlay v-if="overlayBol" />
+                  <div v-else>{{ $t('editor.preview.title') }}</div>
                 </div>
               </div>
             </div>
@@ -140,6 +144,16 @@ const riotId = ref('')
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
+
+        &::before {
+          content: '';
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          background: rgb(0 0 0 / 0.2);
+          backdrop-filter: blur(3px);
+        }
 
         .preview__component {
           width: auto;

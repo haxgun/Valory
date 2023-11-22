@@ -19,5 +19,5 @@ createApp(App)
   .mount('#app')
 
 document.body.addEventListener('plugin_web_update_notice', () => {
-  window.location.reload();
-});
+  window.location.reload()
+})
