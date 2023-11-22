@@ -243,9 +243,3 @@ import IconValory from '@/components/icons/IconValory.vue'
   }
 }
 </style>
-
-<style>
-:root {
-  background: none !important;
-}
-</style>

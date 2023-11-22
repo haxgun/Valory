@@ -7,9 +7,9 @@ import Overlay from '@/components/Overlay.vue'
 </template>
 
 <style lang="scss">
-//:root {
-//  background: none !important;
-//}
+:root {
+  background: none !important;
+}
 
 .blicks {
   display: none;
