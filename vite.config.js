@@ -2,6 +2,7 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import { defineConfig } from 'vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 
 export default defineConfig({
   devServer: {
@@ -17,6 +18,9 @@ export default defineConfig({
       strictMessage: false,
       escapeHtml: false,
     }),
+    webUpdateNotice({
+      hiddenDefaultNotification: true,
+    }),
   ],
   clearScreen: false,
   resolve: {
@@ -29,3 +33,7 @@ export default defineConfig({
     target: 'esnext'
   }
 })
+
+document.body.addEventListener('plugin_web_update_notice', () => {
+  window.location.reload();
+});
