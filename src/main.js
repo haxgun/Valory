@@ -17,3 +17,7 @@ createApp(App)
   .component('Icon', Icon)
   .component('ProgressSpinner', ProgressSpinner)
   .mount('#app')
+
+document.body.addEventListener('plugin_web_update_notice', () => {
+  window.location.reload();
+});

@@ -34,6 +34,3 @@ export default defineConfig({
   }
 })
 
-document.body.addEventListener('plugin_web_update_notice', () => {
-  window.location.reload();
-});
