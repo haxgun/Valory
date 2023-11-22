@@ -12,46 +12,68 @@ import IconValory from '@/components/icons/IconValory.vue'
       <div class="overlay__content">
         <div class="overlay__left">
           <div class="rank__img">
-            <img width="55px" src="/src/assets/ranks/26.webp"/>
+            <img width="55px" src="/src/assets/ranks/26.webp" />
           </div>
         </div>
         <div class="overlay__right">
           <section class="overlay__rank">
-          <div class="rank">IMMORTAL3 #46</div>
-          <div class="elo_with_rr">
-            1838 elo - 123RR
-            <span class="plus">
-              +5
-              <span>
-                <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 6L3 3.91667L1 6M5 3.08333L3 1L1 3.08333" stroke="#00FFE3" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+            <div class="rank">IMMORTAL3 #46</div>
+            <div class="elo_with_rr">
+              1838 elo - 123RR
+              <span class="plus">
+                +5
+                <span>
+                  <svg
+                    width="6"
+                    height="7"
+                    viewBox="0 0 6 7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5 6L3 3.91667L1 6M5 3.08333L3 1L1 3.08333"
+                      stroke="#00FFE3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
               </span>
-            </span>
-          </div>
-          <div class="last_matches">
-            <span class="win_match">W</span>
-            <span class="lose_match">L</span>
-            <span class="win_match">W</span>
-            <span class="lose_match">L</span>
-            <span class="win_match">W</span>
-            <span class="wl">40%</span>
-            <span class="plus">
-              +5
-              <span>
-                <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 6L3 3.91667L1 6M5 3.08333L3 1L1 3.08333" stroke="#00FFE3" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+            </div>
+            <div class="last_matches">
+              <span class="win_match">W</span>
+              <span class="lose_match">L</span>
+              <span class="win_match">W</span>
+              <span class="lose_match">L</span>
+              <span class="win_match">W</span>
+              <span class="wl">40%</span>
+              <span class="plus">
+                +5
+                <span>
+                  <svg
+                    width="6"
+                    height="7"
+                    viewBox="0 0 6 7"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5 6L3 3.91667L1 6M5 3.08333L3 1L1 3.08333"
+                      stroke="#00FFE3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
               </span>
-            </span>
-          </div>
-        </section>
+            </div>
+          </section>
           <section class="overlay__stats">
-          <p>1.25 KD</p>
-          <p>175 ADR</p>
-          <p>369 ACS</p>
-          <p>60% HS</p>
-        </section>
+            <p>1.25 KD</p>
+            <p>175 ADR</p>
+            <p>369 ACS</p>
+            <p>60% HS</p>
+          </section>
         </div>
       </div>
     </div>
@@ -60,7 +82,6 @@ import IconValory from '@/components/icons/IconValory.vue'
 </template>
 
 <style lang="scss" scoped>
-
 .overlay {
   display: flex;
   flex-direction: column;
@@ -86,7 +107,7 @@ import IconValory from '@/components/icons/IconValory.vue'
     height: 113px;
     overflow: hidden;
     border-radius: 8px;
-    background: rgba(7, 9, 14, 0.60);
+    background: rgba(7, 9, 14, 0.6);
     border: 2px rgba(255 255 255 / 0.1) solid;
 
     .overlay__content {
@@ -131,7 +152,7 @@ import IconValory from '@/components/icons/IconValory.vue'
           }
 
           .elo_with_rr {
-            color: rgb(190,190,191);
+            color: rgb(190 190 191);
             font-size: 16px;
             font-weight: 400;
             display: flex;
@@ -160,7 +181,7 @@ import IconValory from '@/components/icons/IconValory.vue'
             align-items: center;
 
             .wl {
-              color: rgb(190,190,191);
+              color: rgb(190 190 191);
               font-weight: 500;
               font-size: 14px;
               margin-left: 5px;
@@ -171,8 +192,8 @@ import IconValory from '@/components/icons/IconValory.vue'
               width: 20px;
               height: 20px;
               border-radius: 4px;
-              color: #00FFE3;
-              background: #61C4B9;
+              color: #00ffe3;
+              background: #61c4b9;
               align-items: center;
               justify-content: center;
             }
@@ -182,8 +203,8 @@ import IconValory from '@/components/icons/IconValory.vue'
               width: 20px;
               height: 20px;
               border-radius: 4px;
-              color: #FF7986;
-              background: #B95861;
+              color: #ff7986;
+              background: #b95861;
               align-items: center;
               justify-content: center;
             }
@@ -202,7 +223,7 @@ import IconValory from '@/components/icons/IconValory.vue'
             color: #ececec;
             &:nth-child(1) {
               font-weight: 700;
-              color: rgb(255, 215.14, 112.62);
+              color: rgb(255 215.14 112.62);
             }
           }
         }
@@ -215,7 +236,7 @@ import IconValory from '@/components/icons/IconValory.vue'
     left: 0;
     top: 129px;
     position: absolute;
-    background: rgba(0, 255, 226.67, 0.9);
+    background: rgba(0 255 226.67 / 0.9);
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
     z-index: 2;
