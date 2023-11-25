@@ -17,7 +17,7 @@ import IconValory from '@/components/icons/IconValory.vue'
         </div>
         <div class="overlay__right">
           <section class="overlay__rank">
-            <div class="rank">IMMORTAL3 #46</div>
+            <div class="rank">IMMORTAL 3 #46</div>
             <div class="elo_with_rr">
               1838 elo - 123RR
               <span class="plus">
