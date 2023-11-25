@@ -34,7 +34,7 @@ import Button from '@/components/ui/Button.vue'
           </div>
         </div>
         <div class="buttons">
-          <Button variant="outline">{{ $t('landing.buttons.first') }}</Button>
+          <Button :disabled="true" variant="outline">{{ $t('landing.buttons.first') }}</Button>
           <Button @click="$router.push('/editor')">{{ $t('landing.buttons.second') }}</Button>
         </div>
       </div>

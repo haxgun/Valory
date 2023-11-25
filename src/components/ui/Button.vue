@@ -2,12 +2,18 @@
 defineProps({
   variant: {
     type: String
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
 
 <template>
-  <button :class="[variant === 'outline' ? 'outline' : '']">
+  <button
+    :disabled="disabled"
+    :class="[variant, {'disabled': disabled}]">
     <slot></slot>
   </button>
 </template>
@@ -33,12 +39,17 @@ button {
   justify-content: center;
   gap: 0.4rem;
 
-  &:hover {
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:not(.disabled):hover {
     color: #111;
     background-color: #f3f4f6;
   }
 
-  &:active {
+  &:not(.disabled):active {
     color: #111;
     background-color: #e5e7eb;
   }
@@ -48,12 +59,12 @@ button {
     color: #fff;
   }
 
-  &.outline:hover {
+  &.outline:not(.disabled):hover {
     background-color: #ffffff0d;
     border-color: #ffffff80;
   }
 
-  &.outline:active {
+  &.outline:not(.disabled):active {
     background-color: #fff0;
     color: #ffffff80;
     border-color: #fff3;
