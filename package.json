@@ -28,6 +28,7 @@
     "query-string": "^8.1.0",
     "set-interval-async": "^3.0.3",
     "uncss": "^0.17.3",
+    "v-click-outside": "^3.2.0",
     "vue-i18n": "9",
     "vue-template-compiler": "^2.7.15"
   },
