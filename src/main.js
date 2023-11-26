@@ -4,19 +4,9 @@ import { i18n } from '@/i18n'
 import router from '@/router'
 import { Icon } from '@iconify/vue'
 import { createPinia } from 'pinia'
-import PrimeVue from 'primevue/config'
-import ProgressSpinner from 'primevue/progressspinner'
-import 'primevue/resources/themes/lara-light-teal/theme.css'
 import { createApp } from 'vue'
 
-createApp(App)
-  .use(createPinia())
-  .use(i18n)
-  .use(router)
-  .use(PrimeVue)
-  .component('Icon', Icon)
-  .component('ProgressSpinner', ProgressSpinner)
-  .mount('#app')
+createApp(App).use(createPinia()).use(i18n).use(router).component('Icon', Icon).mount('#app')
 
 document.body.addEventListener('plugin_web_update_notice', () => {
   window.location.reload()
