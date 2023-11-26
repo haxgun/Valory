@@ -6,7 +6,9 @@
   font-size: 16px;
   font-family: $font-family_1;
   font-synthesis: none;
-  text-rendering: optimizeSpeed;
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  text-rendering: optimizeLegibility;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
