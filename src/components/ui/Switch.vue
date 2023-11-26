@@ -1,35 +1,35 @@
 <script setup>
-  const emits = defineEmits(['update:checked', 'updateCheckboxGroup'])
-  const props = defineProps({
-    name: {
-      type: String,
-      default: ''
-    },
-    value: {
-      type: String,
-      default: ''
-    },
-    checked: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    group: {
-      type: Boolean,
-      default: false
-    }
-  })
-
-  const handleClick = (event) => {
-    if (props.group) {
-      emits('updateCheckboxGroup', {optionId: props.id, checked: event.target.checked})
-    } else {
-      emits('update:checked', event.target.checked)
-    }
+const emits = defineEmits(['update:checked', 'updateCheckboxGroup'])
+const props = defineProps({
+  name: {
+    type: String,
+    default: ''
+  },
+  value: {
+    type: String,
+    default: ''
+  },
+  checked: {
+    type: Boolean,
+    default: false
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  group: {
+    type: Boolean,
+    default: false
   }
+})
+
+const handleClick = (event) => {
+  if (props.group) {
+    emits('updateCheckboxGroup', { optionId: props.id, checked: event.target.checked })
+  } else {
+    emits('update:checked', event.target.checked)
+  }
+}
 </script>
 
 <template>
@@ -41,12 +41,12 @@
       :value="value"
       :checked="checked"
       :disabled="disabled"
-      @input="handleClick($event)">
+      @input="handleClick($event)"
+    />
   </div>
 </template>
 
 <style lang="scss" scoped>
-
 .switch__container {
   display: flex;
 
@@ -63,19 +63,19 @@
     position: relative;
     width: 30px;
     box-shadow: none;
-    transition: all .1s ease-out;
+    transition: all 0.1s ease-out;
 
     &:before {
-      content: "";
+      content: '';
       inset: -6px;
       position: absolute;
     }
 
     &:after {
-      transition: all .1s ease-out;
+      transition: all 0.1s ease-out;
       background-color: #fff;
       border-radius: 50%;
-      content: "";
+      content: '';
       height: 14px;
       left: 3px;
       position: absolute;
@@ -93,21 +93,21 @@
 
       &:after {
         background-color: #fff;
-        left: 13px
+        left: 13px;
       }
 
       &:hover {
-        background-color: #535db3
+        background-color: #535db3;
       }
     }
   }
 
-  input[type=checkbox] {
-    cursor: default
+  input[type='checkbox'] {
+    cursor: default;
   }
 
   &:focus:not(.focus-visible) {
-    outline: 0
+    outline: 0;
   }
 }
 </style>
