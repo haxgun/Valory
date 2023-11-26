@@ -1,5 +1,4 @@
 import App from '@/App.vue'
-import '@/assets/style.scss'
 import { i18n } from '@/i18n'
 import router from '@/router'
 import { Icon } from '@iconify/vue'

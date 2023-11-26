@@ -1,23 +1,27 @@
 <script setup>
 import Highlights from '@/components/Highlights.vue'
+import { LoadingOutlined } from '@ant-design/icons-vue'
 import { ref } from 'vue'
+import { h } from 'vue'
 import { useRouter } from 'vue-router'
 
 const isRouterReady = ref(false)
 const router = useRouter()
 
 router.isReady().finally(() => (isRouterReady.value = true))
+
+const indicator = h(LoadingOutlined, {
+  style: {
+    fontSize: '36px'
+  },
+  spin: true
+})
 </script>
 
 <template>
   <Highlights />
   <div v-if="!isRouterReady" class="app-loader">
-    <ProgressSpinner
-      style="width: 50px; height: 50px"
-      strokeWidth="8"
-      animationDuration=".5s"
-      aria-label="Custom ProgressSpinner"
-    />
+    <a-spin :indicator="indicator" />
   </div>
   <router-view v-else v-slot="{ Component }">
     <transition name="slide-fade" mode="out-in">
@@ -25,6 +29,11 @@ router.isReady().finally(() => (isRouterReady.value = true))
     </transition>
   </router-view>
 </template>
+
+<style>
+@import '@/assets/style.scss';
+@import 'ant-design-vue/dist/reset.css';
+</style>
 
 <style lang="scss" scoped>
 .slide-fade-enter-active {
@@ -45,6 +54,6 @@ router.isReady().finally(() => (isRouterReady.value = true))
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100vh;
 }
 </style>
