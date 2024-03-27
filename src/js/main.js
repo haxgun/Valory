@@ -8,7 +8,7 @@ const apiUrl = "https://api.henrikdev.xyz/valorant";
 let playerData;
 
 async function checkNickname(name) {
-  const regex = /^[a-zA-Zа-яА-Я0-9\s]{1,16}#[a-zA-Zа-яА-Я0-9]{1,5}$/;
+  const regex = /^[\p{L}\p{N}\s]{1,16}#[\p{L}\p{N}]{1,5}$/u;
 
   if (name.length === 0) {
     alertText.innerHTML = "Please enter a nickname";
