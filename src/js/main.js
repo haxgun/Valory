@@ -22,9 +22,11 @@ async function checkNickname(name) {
 
   const [nickname, tag] = name.split("#");
 
+  const HDEV_key = hdevApiKey;
+
   try {
     const response = await fetch(
-      `https://api.henrikdev.xyz/valorant/v1/account/${nickname}/${tag}`,
+      `https://api.henrikdev.xyz/valorant/v1/account/${nickname}/${tag}?api_key=${HDEV_key}`,
     );
     if (response.status === 404) {
       alertText.innerHTML = `${name} not found.`;
@@ -48,6 +50,7 @@ document.querySelector("#app").innerHTML = `
           modal: false,
           alert: false,
           nickname: '',
+          hdevApiKey: '',
           infoContainer: true,
           contentContainer: false,
           generateContainer: false,
@@ -132,6 +135,34 @@ document.querySelector("#app").innerHTML = `
                   class="nickname"
                   id="nickname_with_tag"
                   placeholder="NICKNAME#TAG"
+                  autocomplete="off"
+                />
+                <button class="icons" @click="if (await checkNickname(nickname)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="nickname_input">
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                  >
+                    <path
+                      stroke="white"
+                      d="m2.2 4 .1.1c.2.3 11.8 14.8 12.8 16v.1a.1.1 0 0 1-.1.1H8.8a.52.52 0 0 1-.4-.2c-.2-.2-4.4-5.4-6.3-7.9A.31.31 0 0 0 2 12V4.1a.349.349 0 0 1 .2-.1Zm19.8.2c0-.1-.1-.1-.1-.2h-.1l-.2.2c-.9 1.1-8.1 10.1-8.3 10.3l-.1.1c0 .1 0 .1.1.1h6.2c.1 0 .2-.1.3-.2l.2-.2c.5-.7 1.7-2.2 1.8-2.3 0-.1 0-.1.1-.2v-.1c.1-2.4.1-4.9.1-7.5Z"
+                    ></path>
+                  </svg>
+                </span>
+                <input
+                  @keyup.enter="if (await checkNickname(nickname)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}"
+                  x-model="hdevApiKey"
+                  class="nickname"
+                  id="nickname_with_tag"
+                  placeholder="HDEV API KEY"
                   autocomplete="off"
                 />
                 <button class="icons" @click="if (await checkNickname(nickname)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}">
@@ -583,6 +614,7 @@ async function getPreview() {
   await generateLink(
     nickname,
     tag,
+    hdevApiKey,
     textColor,
     primaryColor,
     bgColor,
@@ -599,6 +631,7 @@ async function getPreview() {
 async function generateLink(
   nickname,
   tag,
+  hdevApiKey,
   textColor,
   primaryColor,
   bgColor,
@@ -616,6 +649,8 @@ async function generateLink(
     nickname +
     "&tag=" +
     tag +
+    "&hdevApiKey="+
+    hdevApiKey +
     "&textColor=" +
     textColor +
     "&primaryColor=" +
@@ -680,7 +715,7 @@ async function main() {
 
 async function checkData(nickname, tag) {
   try {
-    const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}`);
+    const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}?api_key=${hdevApiKey}`);
     const data = await response.json();
     const returnStatus = data.status;
 
@@ -795,7 +830,7 @@ async function formationUserData(nickname, tag) {
 }
 
 async function getPuuidWithRegion(nickname, tag) {
-  const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}`);
+  const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}?api_key=${hdevApiKey}`);
   const data = await response.json();
   return [data.data.puuid, data.data.region];
 }
