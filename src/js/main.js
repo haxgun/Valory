@@ -573,7 +573,7 @@ document.querySelector("#app").innerHTML = `
 `;
 
 async function getPreview() {
-  const hdevApiKey = document.getElementById("hdevApi");
+  const hdevApiKey = document.getElementById("hdevApi").value;
   // Get Nickname, Tag, Region
   const inputNicknameWithTag = document.getElementById("nickname_with_tag");
   const nicknameWithTag = inputNicknameWithTag.value;
