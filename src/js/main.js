@@ -161,7 +161,7 @@ document.querySelector("#app").innerHTML = `
                   @keyup.enter="if (await checkNickname(nickname)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}"
                   x-model="hdevApiKey"
                   class="nickname"
-                  id="nickname_with_tag"
+                  id="hdevApi"
                   placeholder="HDEV API KEY"
                   autocomplete="off"
                 />
@@ -573,6 +573,7 @@ document.querySelector("#app").innerHTML = `
 `;
 
 async function getPreview() {
+  const hdevApiKey = document.getElementById("hdevApi");
   // Get Nickname, Tag, Region
   const inputNicknameWithTag = document.getElementById("nickname_with_tag");
   const nicknameWithTag = inputNicknameWithTag.value;
