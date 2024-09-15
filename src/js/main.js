@@ -721,7 +721,7 @@ async function checkData(nickname, tag, hdevApiKey) {
     const data = await response.json();
     const returnStatus = data.status;
 
-    const newPlayerData = await formationUserData(nickname, tag);
+    const newPlayerData = await formationUserData(nickname, tag, hdevApiKey);
 
     if (returnStatus === 200) {
       if (playerData === undefined) {
@@ -806,8 +806,8 @@ async function insertinData() {
   }
 }
 
-async function formationUserData(nickname, tag) {
-  const [puuid, region] = await getPuuidWithRegion(nickname, tag);
+async function formationUserData(nickname, tag, hdevApiKey) {
+  const [puuid, region] = await getPuuidWithRegion(nickname, tag, hdevApiKey);
   const [
     currenttier,
     currenttierpatched,
