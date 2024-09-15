@@ -7,7 +7,7 @@ import { overlayHTML } from "./components/overlay.js";
 const apiUrl = "https://api.henrikdev.xyz/valorant";
 let playerData;
 
-async function checkNickname(name) {
+async function checkNickname(name, hdevApiKey) {
   const regex = /^[\p{L}\p{N}\s]{1,16}#[\p{L}\p{N}]{1,5}$/u;
 
   if (name.length === 0) {
@@ -130,14 +130,14 @@ document.querySelector("#app").innerHTML = `
                   </svg>
                 </span>
                 <input
-                  @keyup.enter="if (await checkNickname(nickname)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}"
+                  @keyup.enter="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}"
                   x-model="nickname"
                   class="nickname"
                   id="nickname_with_tag"
                   placeholder="NICKNAME#TAG"
                   autocomplete="off"
                 />
-                <button class="icons" @click="if (await checkNickname(nickname)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}">
+                <button class="icons" @click="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
@@ -165,7 +165,7 @@ document.querySelector("#app").innerHTML = `
                   placeholder="HDEV API KEY"
                   autocomplete="off"
                 />
-                <button class="icons" @click="if (await checkNickname(nickname)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}">
+                <button class="icons" @click="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
