@@ -9,12 +9,15 @@ const apiUrl = "https://api.henrikdev.xyz/valorant";
 
 // Color Settings
 const {
+  hdevApiKey,
   textColor,
   primaryColor,
   bgColor,
   progressRankColor,
   progressRankBgColor,
 } = {
+  hdevApiKey:
+urlParams.get("hdevApiKey"),
   textColor: urlParams.get("textColor").replace("#", ""),
   primaryColor: urlParams.get("primaryColor").replace("#", ""),
   bgColor: urlParams.get("bgColor").replace("#", ""),
@@ -70,7 +73,7 @@ async function main(nickname, tag) {
 }
 
 async function getPuuidWithRegion(nickname, tag) {
-  const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}`);
+  const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}?api_key=${hdevApiKey}`);
   const data = await response.json();
   return [data.data.puuid, data.data.region];
 }
