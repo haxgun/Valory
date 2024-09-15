@@ -69,7 +69,7 @@ async function main(nickname, tag, hdevApiKey) {
 
   await decorateCard();
   await checkData(region, puuid, hdevApiKey);
-  setIntervalAsync(checkData, 30000, region, puuid);
+  setIntervalAsync(checkData, 30000, region, puuid, hdevApiKey);
 }
 
 async function getPuuidWithRegion(nickname, tag, hdevApiKey) {
@@ -129,9 +129,9 @@ async function decorateCard() {
   lastMatchPts.style.display = lastMatchPtsCheck === "yes" ? "none" : "";
 }
 
-async function updatePlayerCard(region, puuid) {
+async function updatePlayerCard(region, puuid, hdevApiKey) {
   let [playerElo, playerMmr, playerMmrText, playerTier, playerLastGamePts] =
-    await getPlayerInformation(region, puuid);
+    await getPlayerInformation(region, puuid, hdevApiKey);
 
   if (playerMmr > 100) {
     playerMmr = "0";
@@ -200,15 +200,15 @@ async function checkData(region, puuid, hdevApiKey) {
     const checkifnull = data.data.currenttier;
 
     if (returnStatus === 200 && checkifnull !== null) {
-      await updatePlayerCard(region, puuid);
+      await updatePlayerCard(region, puuid, hdevApiKey);
     }
   } catch (error) {
     console.log(error);
   }
-  await winlose(region, puuid);
+  await winlose(region, puuid, hdevApiKey);
 }
 
-async function winlose(region, puuid) {
+async function winlose(region, puuid, hdevApiKey) {
   const dataMatches = await getMatches(region, puuid, hdevApiKey);
   const [won, drew] = await getWonInfo(puuid, dataMatches, hdevApiKey);
   const currentMatchId = dataMatches.data[0].metadata.matchid;
