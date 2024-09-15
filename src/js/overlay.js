@@ -63,23 +63,23 @@ const winValue = document.getElementById("winValue");
 const loseValue = document.getElementById("loseValue");
 const wlProccent = document.getElementById("wlProccent");
 
-async function main(nickname, tag) {
-  const [puuid, region] = await getPuuidWithRegion(nickname, tag);
-  lastMatchId = await getFirstMatchId(region, puuid);
+async function main(nickname, tag, hdevApiKey) {
+  const [puuid, region] = await getPuuidWithRegion(nickname, tag, hdevApiKey);
+  lastMatchId = await getFirstMatchId(region, puuid, hdevApiKey);
 
   await decorateCard();
-  await checkData(region, puuid);
+  await checkData(region, puuid, hdevApiKey);
   setIntervalAsync(checkData, 30000, region, puuid);
 }
 
-async function getPuuidWithRegion(nickname, tag) {
+async function getPuuidWithRegion(nickname, tag, hdevApiKey) {
   const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}?api_key=${hdevApiKey}`);
   const data = await response.json();
   return [data.data.puuid, data.data.region];
 }
 
-async function getPlayerInformation(region, puuid) {
-  const response = await fetch(`${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}`);
+async function getPlayerInformation(region, puuid, hdevApiKey) {
+  const response = await fetch(`${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}?api_key=${hdevApiKey}`);
   const data = await response.json();
   const playerElo = data.data.currenttierpatched;
   const playerMmr = data.data.ranking_in_tier;
@@ -90,9 +90,9 @@ async function getPlayerInformation(region, puuid) {
   return [playerElo, playerMmr, playerMmrText, playerTier, playerLastGamePts];
 }
 
-async function getLeaderboard(region, puuid) {
+async function getLeaderboard(region, puuid, hdevApiKey) {
   const response = await fetch(
-    `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}`,
+    `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}?api_key=${hdevApiKey}`,
   );
   const data = await response.json();
   return data.status === 404 ? " " : data.data[0].leaderboardRank;
@@ -190,10 +190,10 @@ async function updatePlayerCard(region, puuid) {
   }
 }
 
-async function checkData(region, puuid) {
+async function checkData(region, puuid, hdevApiKey) {
   try {
     const response = await fetch(
-      `${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}`,
+      `${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}?api_key=${hdevApiKey}`,
     );
     const data = await response.json();
     const returnStatus = data.status;
@@ -209,8 +209,8 @@ async function checkData(region, puuid) {
 }
 
 async function winlose(region, puuid) {
-  const dataMatches = await getMatches(region, puuid);
-  const [won, drew] = await getWonInfo(puuid, dataMatches);
+  const dataMatches = await getMatches(region, puuid, hdevApiKey);
+  const [won, drew] = await getWonInfo(puuid, dataMatches, hdevApiKey);
   const currentMatchId = dataMatches.data[0].metadata.matchid;
 
   if (currentMatchId !== lastMatchId) {
@@ -224,13 +224,13 @@ async function winlose(region, puuid) {
   await WinLoseVisual(win, lose);
 }
 
-async function getFirstMatchId(region, puuid) {
-  const data = await getMatches(region, puuid);
+async function getFirstMatchId(region, puuid, hdevApiKey) {
+  const data = await getMatches(region, puuid, hdevApiKey);
   return data.data[0].metadata.matchid;
 }
 
-async function getWonInfo(puuid, dataMatches) {
-  const playerTeam_ = await playerTeam(puuid, dataMatches);
+async function getWonInfo(puuid, dataMatches, hdevApiKey) {
+  const playerTeam_ = await playerTeam(puuid, dataMatches, hdevApiKey);
   let drew;
 
   const red_won = dataMatches.data[0].teams.red.has_won;
@@ -245,9 +245,9 @@ async function getWonInfo(puuid, dataMatches) {
   return [playerTeamWon, drew];
 }
 
-async function getMatches(region, puuid) {
+async function getMatches(region, puuid, hdevApiKey) {
   const response = await fetch(
-    `${apiUrl}/v3/by-puuid/matches/${region}/${puuid}?filter=competitive&size=1`,
+    `${apiUrl}/v3/by-puuid/matches/${region}/${puuid}?filter=competitive&size=1?api_key=${hdevApiKey}`,
   );
   return await response.json();
 }
@@ -270,4 +270,4 @@ async function WinLoseVisual(winVal, loseVal) {
   }
 }
 
-await main(NICKNAME, TAG);
+await main(NICKNAME, TAG, hdevApiKey);
