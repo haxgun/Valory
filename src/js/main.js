@@ -703,18 +703,19 @@ copyButton.onclick = function () {
 };
 
 async function main() {
+  const hdevApiKey= document.getElementById("hdevApi").value;
   const inputNicknameWithTag = document.getElementById("nickname_with_tag");
   const nicknameWithTag = inputNicknameWithTag.value;
   const [nickname, tag] = nicknameWithTag.split("#");
 
-  const check = await checkData(nickname, tag);
+  const check = await checkData(nickname, tag, hdevApiKey);
 
   if (check) {
     await insertinData();
   }
 }
 
-async function checkData(nickname, tag) {
+async function checkData(nickname, tag, hdevApiKey) {
   try {
     const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}?api_key=${hdevApiKey}`);
     const data = await response.json();
@@ -813,8 +814,8 @@ async function formationUserData(nickname, tag) {
     ranking_in_tier,
     mmr_change_to_last_game,
     elo,
-  ] = await getPlayerInformation(region, puuid);
-  const leaderboard = await getLeaderboard(region, puuid);
+  ] = await getPlayerInformation(region, puuid, hdevApiKey);
+  const leaderboard = await getLeaderboard(region, puuid, hdevApiKey);
 
   return {
     nickname: nickname,
@@ -830,22 +831,22 @@ async function formationUserData(nickname, tag) {
   };
 }
 
-async function getPuuidWithRegion(nickname, tag) {
+async function getPuuidWithRegion(nickname, tag, hdevApiKey) {
   const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}?api_key=${hdevApiKey}`);
   const data = await response.json();
   return [data.data.puuid, data.data.region];
 }
 
-async function getLeaderboard(region, puuid) {
+async function getLeaderboard(region, puuid, hdevApiKey) {
   const response = await fetch(
-    `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}`,
+    `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}?api_key=${hdevApiKey}`,
   );
   const data = await response.json();
   return data.status === 404 ? " " : data.data[0].leaderboardRank;
 }
 
-async function getPlayerInformation(region, puuid) {
-  const response = await fetch(`${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}`);
+async function getPlayerInformation(region, puuid, hdevApiKey) {
+  const response = await fetch(`${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}?api_key=${hdevApiKey}`);
   const data = await response.json();
   return [
     data.data.currenttier,
