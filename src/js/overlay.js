@@ -17,7 +17,7 @@ const {
   progressRankBgColor,
 } = {
   hdevApiKey:
-urlParams.get("hdevApiKey"),
+    urlParams.get("hdevApiKey"),
   textColor: urlParams.get("textColor").replace("#", ""),
   primaryColor: urlParams.get("primaryColor").replace("#", ""),
   bgColor: urlParams.get("bgColor").replace("#", ""),
@@ -92,7 +92,7 @@ async function getPlayerInformation(region, puuid, hdevApiKey) {
 
 async function getLeaderboard(region, puuid, hdevApiKey) {
   const response = await fetch(
-    `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}?api_key=${hdevApiKey}`,
+    `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}&api_key=${hdevApiKey}`,
   );
   const data = await response.json();
   return data.status === 404 ? " " : data.data[0].leaderboardRank;
@@ -143,7 +143,7 @@ async function updatePlayerCard(region, puuid, hdevApiKey) {
   if (playerLastGamePts === "nRanked") {
     playerRank.innerHTML = playerElo;
   } else if (playerTier === 27) {
-    const leaderboardRank = await getLeaderboard(region, puuid);
+    const leaderboardRank = await getLeaderboard(region, puuid, hdevApiKey);
     if (leaderboardRank !== " ") {
       playerRank.innerHTML = `${playerElo} #${leaderboardRank}`;
     }
@@ -247,7 +247,7 @@ async function getWonInfo(puuid, dataMatches, hdevApiKey) {
 
 async function getMatches(region, puuid, hdevApiKey) {
   const response = await fetch(
-    `${apiUrl}/v3/by-puuid/matches/${region}/${puuid}?filter=competitive&size=1?api_key=${hdevApiKey}`,
+    `${apiUrl}/v3/by-puuid/matches/${region}/${puuid}?filter=competitive&size=1&api_key=${hdevApiKey}`,
   );
   return await response.json();
 }

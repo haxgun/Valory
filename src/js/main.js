@@ -158,7 +158,7 @@ document.querySelector("#app").innerHTML = `
                   </svg>
                 </span>
                 <input
-                  @keyup.enter="if (await checkNickname(nickname)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}"
+                  @keyup.enter="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}"
                   x-model="hdevApiKey"
                   class="nickname"
                   id="hdevApi"
@@ -574,9 +574,11 @@ document.querySelector("#app").innerHTML = `
 
 async function getPreview() {
   const hdevApiKey = document.getElementById("hdevApi").value;
+  console.log(hdevApiKey);
   // Get Nickname, Tag, Region
   const inputNicknameWithTag = document.getElementById("nickname_with_tag");
   const nicknameWithTag = inputNicknameWithTag.value;
+  console.log(nicknameWithTag);
   const [nickname, tag] = nicknameWithTag.split("#");
 
   // Color Settings
@@ -650,7 +652,7 @@ async function generateLink(
     nickname +
     "&tag=" +
     tag +
-    "&hdevApiKey="+
+    "&hdevApiKey=" +
     hdevApiKey +
     "&textColor=" +
     textColor +
@@ -703,7 +705,7 @@ copyButton.onclick = function () {
 };
 
 async function main() {
-  const hdevApiKey= document.getElementById("hdevApi").value;
+  const hdevApiKey = document.getElementById("hdevApi").value;
   const inputNicknameWithTag = document.getElementById("nickname_with_tag");
   const nicknameWithTag = inputNicknameWithTag.value;
   const [nickname, tag] = nicknameWithTag.split("#");
@@ -839,7 +841,7 @@ async function getPuuidWithRegion(nickname, tag, hdevApiKey) {
 
 async function getLeaderboard(region, puuid, hdevApiKey) {
   const response = await fetch(
-    `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}?api_key=${hdevApiKey}`,
+    `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}&api_key=${hdevApiKey}`,
   );
   const data = await response.json();
   return data.status === 404 ? " " : data.data[0].leaderboardRank;
