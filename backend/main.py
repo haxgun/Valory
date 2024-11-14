@@ -13,7 +13,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173"],  # Убедитесь, что "/" в конце удалено
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -31,7 +31,7 @@ async def root():
 async def get_overlays(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(Overlay))
     overlays = result.scalars().all()
-    return [Overlay(nickname=overlay.nickname, tag=overlay.tag, uuid=overlay.uuid) for overlay in overlays]
+    return [Overlay(riotId=overlay.riotId, hdevApiKey=overlay.hdevApiKey, uuid=overlay.uuid) for overlay in overlays]
 
 @app.get("/overlay/{overlay_id}", response_model=OverlaySchema)
 async def get_overlay(overlay_id: str, session: AsyncSession = Depends(get_session)):
@@ -43,7 +43,7 @@ async def get_overlay(overlay_id: str, session: AsyncSession = Depends(get_sessi
 
 @app.post("/overlay")
 async def add_overlay(overlay: OverlayCreate, session: AsyncSession = Depends(get_session)):
-    overlay = Overlay(nickname=overlay.nickname, tag=overlay.tag)
+    overlay = Overlay(riotId=overlay.riotId, hdevApiKey=overlay.hdevApiKey)
     session.add(overlay)
     await session.commit()
     await session.refresh(overlay)

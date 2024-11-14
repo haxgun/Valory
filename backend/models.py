@@ -3,8 +3,8 @@ import uuid as uuid_pkg
 
 
 class OverlayBase(SQLModel):
-    nickname: str
-    tag: str
+    riotId: str
+    hdevApiKey: str
     # hdevKey: str
     # textColor: str
     # primaryColor: str
