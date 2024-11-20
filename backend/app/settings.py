@@ -11,3 +11,6 @@ if dotenv_file.is_file():
     load_dotenv(dotenv_file)
 
 DEBUG = ast.literal_eval(environ.get('DEBUG'))
+
+PROJECT_NAME = environ.get('PROJECT_NAME')
+VERSION = environ.get('VERSION')
