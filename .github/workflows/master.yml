@@ -29,7 +29,6 @@ jobs:
         run: cd frontend && npx eslint --init
 
       - name: Run linters
-        run: cd frontend
         uses: wearerequired/lint-action@v2
         with:
           eslint: true
