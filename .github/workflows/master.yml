@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-node@v4.0.0
 
       - name: Install dependencies
-        run: npm install --package-lock-only && npm ci
+        run: cd frontend && npm install --package-lock-only && npm ci
 
       - name: Run linters
         uses: wearerequired/lint-action@v2
