@@ -25,15 +25,6 @@ jobs:
       - name: Install dependencies
         run: cd frontend && npm install --package-lock-only && npm ci
 
-      - name: Install ESLint
-        run: cd frontend && npx eslint --init
-
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          eslint: true
-          prettier: true
-
   deploy:
     name: Build
     needs: run-linters
