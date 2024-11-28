@@ -11,9 +11,8 @@ class OverlaySchema(BaseModel):
     tag: str
 
     class Config:
-        orm_mode = True
+        orm_mode: bool = True
 
-# Схема для создания записи
 class OverlayCreate(OverlayBase):
     pass 
 
@@ -21,4 +20,4 @@ class OverlayRead(OverlayBase):
     uuid: uuid_pkg.UUID
 
     class Config:
-        orm_mode = True
+        orm_mode: bool = True

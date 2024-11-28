@@ -8,7 +8,7 @@ from app.db.session import get_db
 
 router = APIRouter()
 
-async def get_overlays(session: AsyncSession = Depends(get_db)):
+async def get_overlays(session: AsyncSession = Depends(get_db)) -> list:
     result = await session.execute(select(Overlay))
     overlays = result.scalars().all()
     return [OverlayCreate(riotId=overlay.riotId, hdevApiKey=overlay.hdevApiKey, uuid=overlay.uuid) for overlay in overlays]
