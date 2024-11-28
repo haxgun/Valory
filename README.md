@@ -1,5 +1,5 @@
 <a href="https://overlay.haxgun.ru/">
-  <img align="right" width="100" height="120" src="public/logo.svg">
+  <img align="right" width="100" height="120" src="frontend/public/logo.svg">
 </a>
 
 
