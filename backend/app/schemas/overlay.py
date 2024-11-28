@@ -11,15 +11,14 @@ class OverlaySchema(BaseModel):
     tag: str
 
     class Config:
-        orm_mode = True  # Включает поддержку ORM для SQLAlchemy моделей
+        orm_mode = True
 
 # Схема для создания записи
 class OverlayCreate(OverlayBase):
-    pass  # Наследует все поля от OverlayBase, используется для валидации входных данных
+    pass 
 
-# Схема для ответа
 class OverlayRead(OverlayBase):
-    uuid: uuid_pkg.UUID  # Добавляем поле UUID в схему для ответа
+    uuid: uuid_pkg.UUID
 
     class Config:
-        orm_mode = True  # Поддержка работы с SQLAlchemy/SQLModel объектами
+        orm_mode = True

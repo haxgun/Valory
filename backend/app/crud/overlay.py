@@ -3,9 +3,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
 from app.models.overlay import Overlay
-# Импорты для моделей, схем и сессий
-from app.schemas.overlay import OverlaySchema, OverlayCreate  # Pydantic-схема OverlayCreate
-from app.db.session import get_db  # Асинхронная сессия базы данных
+from app.schemas.overlay import OverlaySchema, OverlayCreate
+from app.db.session import get_db
 
 router = APIRouter()
 
