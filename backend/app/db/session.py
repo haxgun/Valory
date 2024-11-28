@@ -3,7 +3,10 @@ from sqlalchemy.orm import sessionmaker
 from sqlmodel import SQLModel
 from app import settings
 
-engine = create_async_engine(settings.DATABASE_URL, echo=True, future=True)
+if settings.DEBUG:
+    engine = create_async_engine(settings.DEGUB_DATABASE_URL, echo=True, future=True)
+else:
+    engine = create_async_engine(settings.DATABASE_URL, echo=True, future=True)
 
 AsyncSessionLocal = sessionmaker(
     bind=engine,

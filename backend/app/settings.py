@@ -21,3 +21,4 @@ PROJECT_NAME = environ.get('PROJECT_NAME')
 VERSION = environ.get('VERSION')
 
 DATABASE_URL = environ.get('DATABASE_URL')
+DEGUB_DATABASE_URL = environ.get('DEGUB_DATABASE_URL')

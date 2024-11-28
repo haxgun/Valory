@@ -30,8 +30,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(api_router, prefix="/api/v1")
+app.include_router(api_router, prefix="/api/")
 
-@app.get("/")
-async def read_root():
-    return {"message": "Welcome to the API!"}
+if __name__ == "__main__":
+    uvicorn.run(app="main:app", reload=True)
