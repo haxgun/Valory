@@ -54,6 +54,8 @@ We believe in open-source collaboration! Here’s how you can contribute:
 2. 🚀 **Submit new features**: Got a new idea? Open a [pull request](https://github.com/haxgun/valory/pulls).
 3. ⭐ **Spread the Word**: Leave a star on the repo and share it with your community!
 
+---
+
 ## 🌟 Credits
 
 **Valory** is the result of community inspiration and collaboration. A special thank you to:
