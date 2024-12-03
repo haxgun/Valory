@@ -6,10 +6,12 @@
     <img src=".media/header.png">
 </a>
 
-[![CI/CD](https://github.com/haxgun/valory/actions/workflows/master.yml/badge.svg)](https://github.com/haxgun/valory/actions/workflows/master.yml)
+[![CI/CD](https://github.com/haxgun/valory/actions/workflows/master.yml/badge.svg?labelColor=black&logo=x&logoColor=white&style=flat-square)](https://github.com/haxgun/valory/actions/workflows/master.yml)
 [![GitHub License](https://img.shields.io/github/license/haxgun/valory)](https://github.com/haxgun/valory/blob/main/LICENSE)
 [![Website](https://img.shields.io/website?url=https://overlay.haxgun.ru)](https://overlay.haxgun.ru/)
-[![Stars](https://img.shields.io/github/stars/haxgun/valory)](https://github.com/haxgun/valory/stargazers)
+[![Stars](https://img.shields.io/github/stars/haxgun/Valory?style=flat)](https://github.com/haxgun/valory/stargazers)
+[![Forks](https://img.shields.io/github/forks/haxgun/Valory?style=flat)](https://github.com/haxgun/Valory/forks)
+[![Issues](https://img.shields.io/github/issues/haxgun/Valory?style=flat)](https://github.com/haxgun/Valory/issues)
 
 Valory provides a beautiful rank overlay for your stream.
 
