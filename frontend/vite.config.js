@@ -7,6 +7,13 @@ import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 
 export default defineConfig({
+  css :{
+    preprocessorOptions : {
+      scss: {
+        api: "modern",
+      }
+    }
+  },
   devServer: {
     port: 5000
   },
