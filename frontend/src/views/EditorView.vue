@@ -18,9 +18,9 @@ const handleSubmit = async () => {
     const response = await fetch('http://localhost:8000/overlay', {
       method: 'POST',
       headers: {
-        'Content-type': 'application/json',
+        'Content-type': 'application/json'
       },
-      body: JSON.stringify(form.value),
+      body: JSON.stringify(form.value)
     })
     if (!response.ok) {
       console.error('Ошибка при отправке!')
@@ -75,16 +75,16 @@ const handleSubmit = async () => {
                     </div>
                   </div>
                 </div>
-  <!--              <div class="editor__container__body">-->
-  <!--                <div class="editor__settings">-->
-  <!--                  <div class="editor__settings__header">-->
-  <!--                    <h1 class="title">{{ $t('editor.customization.title') }}</h1>-->
-  <!--                    <p class="description">-->
-  <!--                      {{ $t('editor.customization.description') }}-->
-  <!--                    </p>-->
-  <!--                  </div>-->
-  <!--                </div>-->
-  <!--              </div>-->
+                <!--              <div class="editor__container__body">-->
+                <!--                <div class="editor__settings">-->
+                <!--                  <div class="editor__settings__header">-->
+                <!--                    <h1 class="title">{{ $t('editor.customization.title') }}</h1>-->
+                <!--                    <p class="description">-->
+                <!--                      {{ $t('editor.customization.description') }}-->
+                <!--                    </p>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+                <!--              </div>-->
                 <Button class="editor__button" type="submit">Submit</Button>
               </form>
             </div>

@@ -26,7 +26,7 @@
       "submit": "Submit",
       "random": "Click to substitute an example of Riot ID."
     },
-    "hdevKey" : {
+    "hdevKey": {
       "title": "HDEV API Key",
       "description": "Something text here..."
     },

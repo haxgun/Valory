@@ -2,7 +2,6 @@
 import IconValory from '@/components/icons/IconValory.vue'
 </script>
 
-
 <template>
   <div class="overlay">
     <div class="logo">

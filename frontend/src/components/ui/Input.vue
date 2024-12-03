@@ -5,7 +5,13 @@ defineProps(['modelValue', 'placeholder'])
 <template>
   <div class="input">
     <label class="label_input" for="text-input">
-      <input :value="modelValue" :placeholder="placeholder" id="text-input" type="text"  @input="$emit('update:modelValue', $event.target.value)" />
+      <input
+        :value="modelValue"
+        :placeholder="placeholder"
+        id="text-input"
+        type="text"
+        @input="$emit('update:modelValue', $event.target.value)"
+      />
     </label>
   </div>
 </template>

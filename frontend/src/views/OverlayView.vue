@@ -1,6 +1,6 @@
 <script setup>
-import { ref, onMounted } from 'vue'
 import Overlay from '@/components/Overlay.vue'
+import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
@@ -28,7 +28,7 @@ async function fetchOverlayData() {
     console.log(nickname)
     console.log(tag)
   } catch (error) {
-    console.error("Ошибка при загрузке данных:", error)
+    console.error('Ошибка при загрузке данных:', error)
   }
 }
 
@@ -45,7 +45,6 @@ onMounted(() => {
   </div>
   <Overlay />
 </template>
-
 
 <style lang="scss">
 :root {
