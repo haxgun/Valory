@@ -1,9 +1,7 @@
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.future import select
+from fastapi import APIRouter, Depends
+from sqlmodel.ext.asyncio.session import AsyncSession
 
 from app.schemas.overlay import OverlaySchema, OverlayCreate
-from app.crud.overlay import Overlay
 from app.db.session import get_db
 
 router = APIRouter()
