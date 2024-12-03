@@ -2,9 +2,8 @@
 > <strong>This branch is unstable!</strong>  New functions are introduced here that may not work correctly.
 
 <div align="center">
-<a href="https://overlay.haxgun.ru/">
-    <img src=".media/header.png">
-</a>
+
+[![Valory](https://github.com/haxgun/Valory/raw/v2/.media/header.png)](https://overlay.haxgun.ru/)
 
 [![CI/CD](https://github.com/haxgun/valory/actions/workflows/master.yml/badge.svg?labelColor=black&logo=x&logoColor=white&style=flat-square)](https://github.com/haxgun/valory/actions/workflows/master.yml)
 [![GitHub License](https://img.shields.io/github/license/haxgun/valory)](https://github.com/haxgun/valory/blob/main/LICENSE)
