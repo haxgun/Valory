@@ -10,7 +10,8 @@ export default defineConfig({
   css :{
     preprocessorOptions : {
       scss: {
-        api: "modern",
+        api: "modern-compiler",
+        silenceDeprecations: ["legacy-js-api"]
       }
     }
   },
