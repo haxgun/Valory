@@ -21,6 +21,8 @@ uv install
 
 This will automatically install all required dependencies listed in `uv.lock`.
 
+---
+
 ## 📦 Key Dependencies  
 
 The backend uses the following libraries to ensure seamless functionality and robust performance:  
@@ -40,6 +42,8 @@ The backend uses the following libraries to ensure seamless functionality and ro
 | **uvicorn**                | `>=0.32.1`   | ASGI server for running FastAPI applications.                          |  
 
 These dependencies are automatically installed with the `uv install` command as specified in the `uv.lock` file.  
+
+---
 
 ## 🛠 General Workflow  
 
@@ -70,6 +74,8 @@ These dependencies are automatically installed with the `uv install` command as 
    uv sync
    uv run uvicorn main:app --reload
    ```
+
+---
 
 ## 🛡 API Documentation  
 
