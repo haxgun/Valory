@@ -10,12 +10,7 @@ from app import settings
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await init_db()
-    print("⚠ Application startup complete.")
-
     yield
-
-    print("⚠ Application shutdown complete.")
-
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
