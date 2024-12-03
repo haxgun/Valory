@@ -7,8 +7,8 @@ from app.models.overlay import OverlayBase
 
 class OverlaySchema(BaseModel):
     uuid: uuid_pkg.UUID
-    nickname: str
-    tag: str
+    riot_id: str
+    hdev_api_key: str
 
     model_config = {
         "from_attributes": True
