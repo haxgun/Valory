@@ -1,3 +1,4 @@
+sqlite.db
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -69,3 +70,4 @@ coverage
 package-lock.json
 pnpm-lock.yaml
 .env
+/backend/Pipfile.lock
