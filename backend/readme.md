@@ -72,7 +72,7 @@ These dependencies are automatically installed with the `uv install` command as 
 4. Run the Application
     ```bash
    uv sync
-   uv run uvicorn main:app --reload
+   uv run main.py
    ```
 
 ---
