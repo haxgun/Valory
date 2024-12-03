@@ -1,11 +1,10 @@
+<div align="center">
 <a href="https://overlay.haxgun.ru/">
     <img src=".media/header.png">
 </a>
 
-<center>
 > [!WARNING]
 > <strong>This branch is unstable!</strong>  New functions are introduced here that may not work correctly.
-
 
 [![CI/CD](https://github.com/haxgun/valory/actions/workflows/master.yml/badge.svg)](https://github.com/haxgun/valory/actions/workflows/master.yml)
 [![GitHub License](https://img.shields.io/github/license/haxgun/valory)](https://github.com/haxgun/valory/blob/main/LICENSE)
@@ -16,7 +15,7 @@ Valory provides a beautiful rank overlay for your stream.
 
 Project was inspired by the work of [davizeragod](https://davizeragod.github.io/) and [tracker.gg/overlays](https://tracker.gg/overlays).
 Initially, the project was a fork of [davizeragod](https://davizeragod.github.io/), but then it began to exist as a separate project.
-</center>
+</div>
 
 ## ✨ Features
 
