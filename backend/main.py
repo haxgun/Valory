@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
@@ -30,7 +31,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(api_router, prefix="/api/")
+app.include_router(api_router, prefix="/api")
 
 if __name__ == "__main__":
     uvicorn.run(app="main:app", reload=True)
