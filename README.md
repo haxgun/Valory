@@ -12,11 +12,11 @@
 [![Forks](https://img.shields.io/github/forks/haxgun/Valory?style=flat)](https://github.com/haxgun/Valory/forks)
 [![Issues](https://img.shields.io/github/issues/haxgun/Valory?style=flat)](https://github.com/haxgun/Valory/issues)
 
-**Valory** is a feature-rich tool that provides a sleek and customizable rank overlay for **Valorant** streamers.  
-It’s perfect for enhancing your stream’s visuals while keeping your viewers engaged with up-to-date stats.  
+**Valory** is a feature-rich tool that provides a sleek and customizable rank overlay for **Valorant** streamers.
+It’s perfect for enhancing your stream’s visuals while keeping your viewers engaged with up-to-date stats.
 
-This project started as a fork of [davizeragod](https://davizeragod.github.io/) but has since grown into a fully independent and unique tool.  
-Inspired by [tracker.gg/overlays](https://tracker.gg/overlays), Valory combines aesthetics with functionality to elevate your streaming experience.  
+This project started as a fork of [davizeragod](https://davizeragod.github.io/) but has since grown into a fully independent and unique tool.
+Inspired by [tracker.gg/overlays](https://tracker.gg/overlays), Valory combines aesthetics with functionality to elevate your streaming experience.
 
 </div>
 
@@ -24,14 +24,41 @@ Inspired by [tracker.gg/overlays](https://tracker.gg/overlays), Valory combines 
 
 ## ✨ Features
 
-Valory is packed with powerful features to ensure you get the best experience:  
+Valory is packed with powerful features to ensure you get the best experience:
 
-- 📊 **Real-Time Updates:** Instantly fetch and display the latest game stats during your stream.  
-- 💅🏻 **Modern, Stylish Design:** Beautiful visuals designed to blend seamlessly into any stream setup.  
-- 🎨 **Fully Customizable:** Adjust colors, layouts, and more to match your personal branding.  
-- 💸 **100% Free:** No hidden costs—accessible to everyone.  
-- 🛠️ **Simple Setup:** Configure once and enjoy a hassle-free experience with minimal maintenance.  
-- 🔧 **Integration-Friendly:** Easily add to OBS, Streamlabs, or any streaming software.  
+- 📊 **Real-Time Updates:** Instantly fetch and display the latest game stats during your stream.
+- 💅🏻 **Modern, Stylish Design:** Beautiful visuals designed to blend seamlessly into any stream setup.
+- 🎨 **Fully Customizable:** Adjust colors, layouts, and more to match your personal branding.
+- 💸 **100% Free:** No hidden costs—accessible to everyone.
+- 🛠️ **Simple Setup:** Configure once and enjoy a hassle-free experience with minimal maintenance.
+- 🔧 **Integration-Friendly:** Easily add to OBS, Streamlabs, or any streaming software.
+
+---
+
+## 🛠 Tools and Technologies
+
+This project leverages a modern and powerful tech stack to deliver high performance, scalability, and developer convenience. Below is a breakdown of the key tools and technologies used:
+
+### Frontend
+
+- **🌟 Vue 3:** The core frontend framework for building reactive and user-friendly interfaces.
+- **⚡ Vite:** A lightning-fast build tool and development server for modern web projects.
+- **💬 i18n:** Internationalization support for delivering content in multiple languages.
+- **✨ Prettier:** Code formatter to ensure consistent styling across the project.
+- **🚨 ESLint:** Linting tool for enforcing code quality and best practices.
+- **🔵 TypeScript:** Adds static typing to JavaScript, enhancing maintainability and scalability.
+
+### Backend
+
+- **🐍 FastAPI:** High-performance Python web framework with easy-to-use async support.
+- **⚙️ SQLAlchemy:** SQL toolkit and ORM for interacting with the database in a Pythonic way.
+- **📜 Alembic:** Database migrations for version control and schema evolution.
+- **⚡ asyncpg:** High-performance asynchronous PostgreSQL driver for Python.
+
+### Database
+
+- **🐘 PostgreSQL:** A powerful and open-source relational database system, used as the primary database for production.
+- **📂 SQLite:** A lightweight, file-based database, used in debug mode for local development and testing.
 
 ---
 
@@ -39,10 +66,10 @@ Valory is packed with powerful features to ensure you get the best experience:
 
 ### 🖥️ Hosting Your Overlay
 
-1. Visit the **[official website](https://overlay.haxgun.ru)**.  
-2. Configure your overlay with the available options.  
-3. Copy the provided URL.  
-4. Add it to your streaming software as a browser source, and you're ready to go!  
+1. Visit the **[official website](https://overlay.haxgun.ru)**.
+2. Configure your overlay with the available options.
+3. Copy the provided URL.
+4. Add it to your streaming software as a browser source, and you're ready to go!
 
 ---
 
@@ -60,18 +87,18 @@ We believe in open-source collaboration! Here’s how you can contribute:
 
 **Valory** is the result of community inspiration and collaboration. A special thank you to:
 
-- 🖌️ **[davizeragod/davizeragod.github.io](https://github.com/davizeragod/davizeragod.github.io):** The project that laid the foundation for Valory.  
-- 🔍 **[Henrik-3/unofficial-valorant-api](https://github.com/Henrik-3/unofficial-valorant-api):** The robust API powering accurate and up-to-date stats.  
-- 🎨 **Inspiration from [tracker.gg](https://tracker.gg):** For showcasing the potential of creative overlays.  
+- 🖌️ **[davizeragod/davizeragod.github.io](https://github.com/davizeragod/davizeragod.github.io):** The project that laid the foundation for Valory.
+- 🔍 **[Henrik-3/unofficial-valorant-api](https://github.com/Henrik-3/unofficial-valorant-api):** The robust API powering accurate and up-to-date stats.
+- 🎨 **Inspiration from [tracker.gg](https://tracker.gg):** For showcasing the potential of creative overlays.
 
-Your work inspires us to keep building and improving! 💖  
+Your work inspires us to keep building and improving! 💖
 
 ---
 
 ## 📜 License
 
-**Valory** is licensed under the **[MIT License](https://github.com/haxgun/valory/blob/main/LICENSE)**, ensuring that:  
+**Valory** is licensed under the **[MIT License](https://github.com/haxgun/valory/blob/main/LICENSE)**, ensuring that:
 
-- ✅ **Freedom:** Use, copy, modify, and distribute the project for personal or commercial purposes.  
+- ✅ **Freedom:** Use, copy, modify, and distribute the project for personal or commercial purposes.
 - 🛠️ **Flexibility:** Tailor the code to meet your needs.
-- 🌍 **Community:** Share improvements and contribute back to the project while respecting its creators.  
+- 🌍 **Community:** Share improvements and contribute back to the project while respecting its creators.
