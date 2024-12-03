@@ -10,8 +10,9 @@ class OverlaySchema(BaseModel):
     nickname: str
     tag: str
 
-    class Config:
-        orm_mode: bool = True
+    model_config = {
+        "from_attributes": True
+    }
 
 class OverlayCreate(OverlayBase):
     pass 
@@ -19,5 +20,6 @@ class OverlayCreate(OverlayBase):
 class OverlayRead(OverlayBase):
     uuid: uuid_pkg.UUID
 
-    class Config:
-        orm_mode: bool = True
+    model_config = {
+        "from_attributes": True
+    }
