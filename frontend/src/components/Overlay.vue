@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import IconValory from '@/components/icons/IconValory.vue'
 </script>
 

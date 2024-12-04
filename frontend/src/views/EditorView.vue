@@ -1,34 +1,40 @@
-<script setup>
-import Overlay from '@/components/Overlay.vue'
-import Button from '@/components/ui/Button.vue'
-import Input from '@/components/ui/Input.vue'
-import { ref } from 'vue'
+<script setup lang="ts">
+import Overlay from '@/components/Overlay.vue';
+import Button from '@/components/ui/Button.vue';
+import Input from '@/components/ui/Input.vue';
+import { ref } from 'vue';
 
-const riotId = ref('')
+interface Form {
+  riotId: string;
+  hdevApiKey: string;
+}
 
-const overlayBol = ref(true)
-
-const form = ref({
+const form = ref<Form>({
   riotId: '',
-  hdevApiKey: ''
-})
+  hdevApiKey: '',
+});
 
-const handleSubmit = async () => {
+const riotId = ref<string>('');
+
+const overlayBol = ref<boolean>(true);
+
+const handleSubmit = async (): Promise<void> => {
   try {
     const response = await fetch('http://localhost:8000/overlay', {
       method: 'POST',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
       },
-      body: JSON.stringify(form.value)
-    })
+      body: JSON.stringify(form.value),
+    });
+
     if (!response.ok) {
-      console.error('Ошибка при отправке!')
+      console.error('Ошибка при отправке!');
     }
   } catch (error) {
-    console.error('Произошла ошибка:', error)
+    console.error('Произошла ошибка:', error);
   }
-}
+};
 </script>
 
 <template>
@@ -54,8 +60,14 @@ const handleSubmit = async () => {
                       </p>
                     </div>
                     <div class="editor__input">
-                      <Input style="flex: 2" v-model="form.riotId" placeholder="Riot ID" />
-                      <Button class="editor__button">{{ $t('editor.riotId.submit') }}</Button>
+                      <Input
+                        style="flex: 2"
+                        v-model="form.riotId"
+                        placeholder="Riot ID"
+                      />
+                      <Button class="editor__button">{{
+                        $t('editor.riotId.submit')
+                      }}</Button>
                     </div>
                     <span @click="riotId = 'MAGICX#1337'" class="random">{{
                       $t('editor.riotId.random')
@@ -71,20 +83,14 @@ const handleSubmit = async () => {
                       </p>
                     </div>
                     <div class="editor__input">
-                      <Input style="flex: 2" v-model="form.hdevApiKey" placeholder="HDEV Api Key" />
+                      <Input
+                        style="flex: 2"
+                        v-model="form.hdevApiKey"
+                        placeholder="HDEV Api Key"
+                      />
                     </div>
                   </div>
                 </div>
-                <!--              <div class="editor__container__body">-->
-                <!--                <div class="editor__settings">-->
-                <!--                  <div class="editor__settings__header">-->
-                <!--                    <h1 class="title">{{ $t('editor.customization.title') }}</h1>-->
-                <!--                    <p class="description">-->
-                <!--                      {{ $t('editor.customization.description') }}-->
-                <!--                    </p>-->
-                <!--                  </div>-->
-                <!--                </div>-->
-                <!--              </div>-->
                 <Button class="editor__button" type="submit">Submit</Button>
               </form>
             </div>

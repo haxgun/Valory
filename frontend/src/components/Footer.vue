@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import IconGithub from '@/components/icons/IconGithub.vue'
 import IconHeart from '@/components/icons/IconHeart.vue'
 import IconTelegram from '@/components/icons/IconTelegram.vue'

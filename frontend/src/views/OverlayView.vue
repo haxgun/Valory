@@ -1,41 +1,48 @@
-<script setup>
-import Overlay from '@/components/Overlay.vue'
-import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+<script setup lang="ts">
+import Overlay from '@/components/Overlay.vue';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 
-const route = useRoute()
-const overlayId = route.params.overlayID
-const apiUrl = 'http://localhost:8000'
+const route = useRoute();
 
-// Объявляем реактивные переменные для отображения в интерфейсе
-const nickname = ref('')
-const tag = ref('')
+const overlayId = route.params.overlayID as string | undefined;
+if (!overlayId) {
+  console.error('ID оверлея отсутствует');
+}
 
-// Функция для загрузки данных
-async function fetchOverlayData() {
+const apiUrl = 'http://localhost:8000';
+
+interface OverlayData {
+  nickname: string;
+  tag: string;
+}
+
+const nickname = ref<string>('');
+const tag = ref<string>('');
+
+async function fetchOverlayData(): Promise<void> {
+  if (!overlayId) return;
+
   try {
-    const response = await fetch(`${apiUrl}/overlay/${overlayId}`) // обратите внимание на путь (должно быть `overlays`)
+    const response = await fetch(`${apiUrl}/overlays/${overlayId}`);
     if (!response.ok) {
-      throw new Error(`Ошибка HTTP: ${response.status}`)
+      throw new Error(`Ошибка HTTP: ${response.status}`);
     }
-    const data = await response.json()
-    console.log(data)
 
-    // Присваиваем значения реактивным переменным
-    nickname.value = data.nickname
-    tag.value = data.tag
+    const data: OverlayData = await response.json();
+    nickname.value = data.nickname;
+    tag.value = data.tag;
 
-    console.log(nickname)
-    console.log(tag)
+    console.log('Nickname:', nickname.value);
+    console.log('Tag:', tag.value);
   } catch (error) {
-    console.error('Ошибка при загрузке данных:', error)
+    console.error('Ошибка при загрузке данных:', error);
   }
 }
 
-// Вызываем загрузку данных при монтировании компонента
 onMounted(() => {
-  fetchOverlayData()
-})
+  fetchOverlayData();
+});
 </script>
 
 <template>

@@ -1,10 +1,15 @@
-<script setup>
-import { useLocalStorage } from '@vueuse/core'
-import { NConfigProvider, NDropdown, darkTheme } from 'naive-ui'
-import { useI18n } from 'vue-i18n'
+<script setup lang="ts">
+import { useLocalStorage } from '@vueuse/core';
+import { NConfigProvider, NDropdown, NButton, darkTheme } from 'naive-ui';
+import { useI18n } from 'vue-i18n';
 
-const { locale, availableLocales } = useI18n()
-const localStorageLocale = useLocalStorage('valoryLocale', 'en')
+const { locale, availableLocales } = useI18n<{ locale: string; availableLocales: string[] }>();
+const localStorageLocale = useLocalStorage<string>('valoryLocale', 'en');
+
+const handleSelectLocale = (selectedLocale: string) => {
+  locale.value = selectedLocale;
+  localStorageLocale.value = selectedLocale;
+};
 </script>
 
 <template>
@@ -19,12 +24,7 @@ const localStorageLocale = useLocalStorage('valoryLocale', 'en')
           }))
         "
         size="medium"
-        @select="
-          (l) => {
-            locale = l
-            localStorageLocale = l
-          }
-        "
+        @select="handleSelectLocale"
       >
         <n-button circle quaternary style="padding: 5px; font-size: 25px">
           <Icon :icon="`flag:${$t('flag')}-4x3`" width="18" height="18" />

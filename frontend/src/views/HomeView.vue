@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import Footer from '@/components/Footer.vue'
 import IconBillCheck from '@/components/icons/IconBillCheck.vue'
 import IconMagicStick from '@/components/icons/IconMagicStick.vue'

@@ -1,21 +1,23 @@
-<script setup>
-import Highlights from '@/components/Highlights.vue'
-import { LoadingOutlined } from '@ant-design/icons-vue'
-import { ref } from 'vue'
-import { h } from 'vue'
-import { useRouter } from 'vue-router'
+<script setup lang="ts">
+import Highlights from '@/components/Highlights.vue';
+import { LoadingOutlined } from '@ant-design/icons-vue';
+import { ref, h } from 'vue';
+import { useRouter } from 'vue-router';
 
-const isRouterReady = ref(false)
-const router = useRouter()
+const isRouterReady = ref<boolean>(false);
 
-router.isReady().finally(() => (isRouterReady.value = true))
+const router = useRouter();
+
+router.isReady().finally(() => {
+  isRouterReady.value = true;
+});
 
 const indicator = h(LoadingOutlined, {
   style: {
-    fontSize: '36px'
+    fontSize: '36px',
   },
-  spin: true
-})
+  spin: true,
+});
 </script>
 
 <template>

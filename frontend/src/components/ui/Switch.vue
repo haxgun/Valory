@@ -1,35 +1,49 @@
-<script setup>
-const emits = defineEmits(['update:checked', 'updateCheckboxGroup'])
-const props = defineProps({
+<script setup lang="ts">
+import { defineEmits, defineProps } from 'vue';
+
+const emits = defineEmits<{
+  (event: 'update:checked', checked: boolean): void;
+  (event: 'updateCheckboxGroup', payload: { optionId: string; checked: boolean }): void;
+}>();
+
+const props = defineProps<{
+  name?: string;
+  value?: string;
+  checked?: boolean;
+  disabled?: boolean;
+  group?: boolean;
+  id?: string;
+}>({
   name: {
     type: String,
-    default: ''
+    default: '',
   },
   value: {
     type: String,
-    default: ''
+    default: '',
   },
   checked: {
     type: Boolean,
-    default: false
+    default: false,
   },
   disabled: {
     type: Boolean,
-    default: false
+    default: false,
   },
   group: {
     type: Boolean,
-    default: false
-  }
-})
+    default: false,
+  },
+});
 
-const handleClick = (event) => {
+const handleClick = (event: Event) => {
+  const target = event.target as HTMLInputElement;
   if (props.group) {
-    emits('updateCheckboxGroup', { optionId: props.id, checked: event.target.checked })
+    emits('updateCheckboxGroup', { optionId: props.id ?? '', checked: target.checked });
   } else {
-    emits('update:checked', event.target.checked)
+    emits('update:checked', target.checked);
   }
-}
+};
 </script>
 
 <template>
@@ -41,7 +55,7 @@ const handleClick = (event) => {
       :value="value"
       :checked="checked"
       :disabled="disabled"
-      @input="handleClick($event)"
+      @input="handleClick"
     />
   </div>
 </template>
