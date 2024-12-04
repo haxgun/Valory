@@ -20,11 +20,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@ant-design/icons-vue": "^7.0.1",
     "@iconify/vue": "^4.1.1",
     "@vueuse/core": "^10.6.1",
-    "ant-design-vue": "~4.0.7",
-    "axios": "^1.6.1",
     "build-url": "^6.0.1",
     "copy-to-clipboard": "^3.3.3",
     "normalize.css": "^8.0.1",

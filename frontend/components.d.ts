@@ -14,6 +14,7 @@ declare module 'vue' {
     IconBillCheck: typeof import('./src/components/icons/IconBillCheck.vue')['default']
     IconGithub: typeof import('./src/components/icons/IconGithub.vue')['default']
     IconHeart: typeof import('./src/components/icons/IconHeart.vue')['default']
+    IconLoading: typeof import('./src/components/icons/IconLoading.vue')['default']
     IconMagicStick: typeof import('./src/components/icons/IconMagicStick.vue')['default']
     IconPalette: typeof import('./src/components/icons/IconPalette.vue')['default']
     IconTelegram: typeof import('./src/components/icons/IconTelegram.vue')['default']

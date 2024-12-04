@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import Highlights from '@/components/Highlights.vue';
-import { LoadingOutlined } from '@ant-design/icons-vue';
-import { ref, h } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import IconLoading from "@/components/icons/IconLoading.vue";
 
 const isRouterReady = ref<boolean>(false);
 
@@ -11,19 +11,12 @@ const router = useRouter();
 router.isReady().finally(() => {
   isRouterReady.value = true;
 });
-
-const indicator = h(LoadingOutlined, {
-  style: {
-    fontSize: '36px',
-  },
-  spin: true,
-});
 </script>
 
 <template>
   <Highlights />
   <div v-if="!isRouterReady" class="app-loader">
-    <a-spin :indicator="indicator" />
+    <IconLoading />
   </div>
   <router-view v-else v-slot="{ Component }">
     <transition name="slide-fade" mode="out-in">
@@ -34,7 +27,6 @@ const indicator = h(LoadingOutlined, {
 
 <style>
 @import '@/assets/style.scss';
-@import 'ant-design-vue/dist/reset.css';
 </style>
 
 <style lang="scss" scoped>
@@ -52,10 +44,18 @@ const indicator = h(LoadingOutlined, {
   opacity: 0;
 }
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
 .app-loader {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden;
 }
 </style>
