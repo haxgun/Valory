@@ -15,9 +15,11 @@ AsyncSessionLocal = async_sessionmaker(
     expire_on_commit=False,
 )
 
+
 async def get_db() -> AsyncSession:
     async with AsyncSessionLocal() as session:
         yield session
+
 
 async def init_db():
     async with engine.begin() as conn:

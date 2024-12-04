@@ -10,16 +10,14 @@ class OverlaySchema(BaseModel):
     riot_id: str
     hdev_api_key: str
 
-    model_config = {
-        "from_attributes": True
-    }
+    model_config = {"from_attributes": True}
+
 
 class OverlayCreate(OverlayBase):
-    pass 
+    pass
+
 
 class OverlayRead(OverlayBase):
     uuid: uuid_pkg.UUID
 
-    model_config = {
-        "from_attributes": True
-    }
+    model_config = {"from_attributes": True}
