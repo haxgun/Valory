@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from app.api import api_router
 from app.db.session import init_db
-from app import settings
+from app.settings import settings
 
 
 @asynccontextmanager
