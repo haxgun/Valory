@@ -1,5 +1,4 @@
 import uuid as uuid_pkg
-
 from pydantic import BaseModel
 
 from app.models.overlay import OverlayBase
