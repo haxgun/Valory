@@ -23,3 +23,5 @@ python_version = ">=3.12"
 
 [scripts]
 dev = "fastapi dev main.py"
+makemigrations = "alembic revision --autogenerate"
+migrate = "alembic upgrade head"
