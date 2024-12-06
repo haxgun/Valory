@@ -11,15 +11,7 @@
 To run the backend, you will need the following dependencies installed:  
 
 - **Python 3.12+**: Core language for the backend.  
-- **Package Manager**: [**uv**](https://github.com/yaqwsx/uv), a lightweight dependency manager for Python projects.  
-
-### Install dependencies  
-Run the following command to set up your environment:  
-```bash
-uv install
-```
-
-This will automatically install all required dependencies listed in `uv.lock`.
+- **Package Manager**: [**Pipenv**](https://pipenv.pypa.io/en/latest/), a lightweight dependency manager for Python projects.
 
 ---
 
@@ -55,24 +47,25 @@ These dependencies are automatically installed with the `uv install` command as 
    ```
 2. Install dependencies:
     ```bash
-    uv install
+    pipenv install
     ```
    
 3. Create a .env file to configure environment variables. Example:
     ```env
     DEBUG=True
 
-    PROJECT_NAME="My app"
-    VERSION="1.0.0"
-    
-    DATABASE_URL="postgresql+asyncpg://postgres:postgres@localhost:5432/"
-    DEGUB_DATABASE_URL="sqlite+aiosqlite:///sqlite.db" 
+   PROJECT_NAME="VALORY.API"
+   VERSION="1.0.0"
+   
+   DATABASE_LOGIN=""
+   DATABASE_PASSWORD=""
+   DATABASE_PORT=5432
+   DATABASE_NAME=""
     ```
 
 4. Run the Application
     ```bash
-   uv sync
-   uv run main.py
+   pipenv run dev
    ```
 
 ---
