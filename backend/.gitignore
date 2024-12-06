@@ -2,3 +2,4 @@ uv.lock
 sqlite.db
 .venv
 Pipfile.lock
+/app/migrations/versions/
