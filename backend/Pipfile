@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+aiosqlite = "*"
+alembic = "*"
+asyncpg = "*"
+fastapi = {extras = ["standard"], version = "*"}
+greenlet = "*"
+psycopg2-binary = "*"
+python-dotenv = "*"
+sqlalchemy = "*"
+sqlmodel = "*"
+uuid = "*"
+uvicorn = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.13"
+
+[scripts]
+dev = "fastapi dev main.py"

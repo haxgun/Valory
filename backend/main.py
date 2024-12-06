@@ -1,21 +1,13 @@
 import uvicorn
 from fastapi import FastAPI
-from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import api_router
-from app.db.session import init_db
-from app.settings import settings
+from app import settings
+from app.routers import api_router
 
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    await init_db()
-    yield
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
-    lifespan=lifespan
 )
 
 app.add_middleware(
@@ -28,5 +20,9 @@ app.add_middleware(
 
 app.include_router(api_router, prefix="/api")
 
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
 if __name__ == "__main__":
-    uvicorn.run(app="main:app", reload=True)
+    uvicorn.run(app="main:app", reload=True, port=8080)

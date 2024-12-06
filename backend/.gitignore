@@ -1,4 +1,4 @@
 uv.lock
 sqlite.db
 .venv
-.ruff_cache
+Pipfile.lock

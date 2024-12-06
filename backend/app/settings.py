@@ -1,35 +1,27 @@
-import secrets
 from os import environ
-from typing import Literal
-
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pathlib import Path
+from dotenv import load_dotenv
 
 
 def str_to_bool(value: str) -> bool:
     return value.lower() in ("true", "1", "yes")
 
+BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
 
-class Settings(BaseSettings):
-    model_config = SettingsConfigDict(
-        env_file="../.env",
-        env_ignore_empty=True,
-        extra="ignore",
-    )
-    API_V1_STR: str = "/api/v1"
-    SECRET_KEY: str = secrets.token_urlsafe(32)
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
-    FRONTEND_HOST: str = "http://localhost:5173"
-    ENVIRONMENT: Literal["local", "staging", "production"] = "local"
+dotenv_file: Path = BASE_DIR / ".env"
+if dotenv_file.is_file():
+    load_dotenv(dotenv_file)
 
-    PROJECT_NAME: str = environ.get("PROJECT_NAME")
+PROJECT_NAME: str = environ.get("PROJECT_NAME")
 
-    DEBUG: bool = str_to_bool(environ.get("DEBUG", "False"))
+DEBUG: bool = str_to_bool(environ.get("DEBUG", "False"))
 
-    PROJECT_NAME: str = environ.get("PROJECT_NAME")
-    VERSION: str = environ.get("VERSION")
+PROJECT_NAME: str = environ.get("PROJECT_NAME")
+VERSION: str = environ.get("VERSION")
 
-    DATABASE_URL: str = environ.get("DATABASE_URL")
-    DEBUG_DATABASE_URL: str = environ.get("DEBUG_DATABASE_URL")
+DATABASE_LOGIN: str = environ.get("DATABASE_LOGIN")
+DATABASE_PASSWORD: str = environ.get("DATABASE_PASSWORD")
+DATABASE_NAME: str = environ.get("DATABASE_NAME")
+DATABASE_PORT: int = int(environ.get("DATABASE_PORT", 5432))
 
-
-settings = Settings()
+DATABASE_URL: str = f"postgresql+asyncpg://{DATABASE_LOGIN}:{DATABASE_PASSWORD}@localhost:{DATABASE_PORT}/{DATABASE_NAME}"
