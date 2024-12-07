@@ -2,8 +2,8 @@
 
 [![Valory](https://github.com/haxgun/Valory/raw/v2/.media/header.png)](https://overlay.haxgun.ru/)
 
-**Valory** is a feature-rich tool that provides a sleek and customizable rank overlay for **Valorant** streamers.
-It’s perfect for enhancing your stream’s visuals while keeping your viewers engaged with up-to-date stats.
+**Valory** is a powerful and customizable rank overlay tool for Valorant streamers.
+<br>Enhance your stream with sleek visuals and keep your viewers engaged with real-time stats.
 
 [![CI/CD](https://github.com/haxgun/valory/actions/workflows/master.yml/badge.svg?labelColor=green&logo=x&logoColor=white&style=flat-square)](https://github.com/haxgun/valory/actions/workflows/master.yml)
 [![GitHub License](https://img.shields.io/github/license/haxgun/valory?color=green)](https://github.com/haxgun/valory/blob/main/LICENSE)
@@ -16,26 +16,26 @@ It’s perfect for enhancing your stream’s visuals while keeping your viewers 
 
 ## ✨ Features
 
-Valory is packed with powerful features to ensure you get the best experience:
+**Valory** offers a range of features to enhance your streaming experience:
 
-- **Real-Time Updates:** Instantly fetch and display the latest game stats during your stream.
-- **Modern, Stylish Design:** Beautiful visuals designed to blend seamlessly into any stream setup.
-- **Fully Customizable:** Adjust colors, layouts, and more to match your personal branding.
-- **Simple Setup:** Configure once and enjoy a hassle-free experience with minimal maintenance.
-- **Integration-Friendly:** Easily add to OBS, Streamlabs, or any streaming software.
+* **Real-Time Stats:** Get up-to-date game stats instantly.
+* **Sleek Design:** Modern visuals that fit any stream.
+* **Fully Customizable:** Tailor colors, layouts, and more.
+* **Easy Setup:** Minimal effort required, works out of the box.
+* **Stream Software Integration:** Compatible with OBS, Streamlabs, and more.
 
 ## 🛠 Contributing
 
-We believe in open-source collaboration! Here’s how you can contribute:
+We welcome contributions! Here’s how to get involved:
 
-1. **Report Bugs**: Found an issue? Create a ticket on the [issues page](https://github.com/haxgun/valory/issues).
-2. **Submit new features**: Got a new idea? Open a [pull request](https://github.com/haxgun/valory/pulls).
-3. **Spread the Word**: Leave a star on the repo and share it with your community!
+1. **Report Bugs**: Open an issue [here](https://github.com/haxgun/valory/issues).
+2. **Submit Features:** Create a [pull request](https://github.com/haxgun/valory/pulls).
+3. **Share the Love:** Star the repo and spread the word!
 
 ## 📜 License
 
-**Valory** is licensed under the **[MIT License](https://github.com/haxgun/valory/blob/main/LICENSE)**, ensuring that:
+**Valory** is licensed under the **[MIT License](https://github.com/haxgun/valory/blob/main/LICENSE)**:
 
-- **Freedom:** Use, copy, modify, and distribute the project for personal or commercial purposes.
-- **Flexibility:** Tailor the code to meet your needs.
-- **Community:** Share improvements and contribute back to the project while respecting its creators.
+* **Freedom:** Use, modify, and distribute freely.
+* **Flexibility:** Adjust the code to suit your needs.
+* **Community:** Share and contribute back to the project.
