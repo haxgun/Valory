@@ -1,9 +1,9 @@
-> [!WARNING]
-> <strong>This branch is unstable!</strong>  New functions are introduced here that may not work correctly.
-
 <div align="center">
 
 [![Valory](https://github.com/haxgun/Valory/raw/v2/.media/header.png)](https://overlay.haxgun.ru/)
+
+**Valory** is a feature-rich tool that provides a sleek and customizable rank overlay for **Valorant** streamers.
+It’s perfect for enhancing your stream’s visuals while keeping your viewers engaged with up-to-date stats.
 
 [![CI/CD](https://github.com/haxgun/valory/actions/workflows/master.yml/badge.svg?labelColor=green&logo=x&logoColor=white&style=flat-square)](https://github.com/haxgun/valory/actions/workflows/master.yml)
 [![GitHub License](https://img.shields.io/github/license/haxgun/valory?color=green)](https://github.com/haxgun/valory/blob/main/LICENSE)
@@ -11,9 +11,6 @@
 [![Stars](https://img.shields.io/github/stars/haxgun/Valory?style=flat&color=green)](https://github.com/haxgun/valory/stargazers)
 [![Forks](https://img.shields.io/github/forks/haxgun/Valory?style=flat&color=green)](https://github.com/haxgun/Valory/forks)
 [![Issues](https://img.shields.io/github/issues/haxgun/Valory?style=flat)](https://github.com/haxgun/Valory/issues)
-
-**Valory** is a feature-rich tool that provides a sleek and customizable rank overlay for **Valorant** streamers.
-It’s perfect for enhancing your stream’s visuals while keeping your viewers engaged with up-to-date stats.
 
 </div>
 
