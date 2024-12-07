@@ -17,8 +17,6 @@ It’s perfect for enhancing your stream’s visuals while keeping your viewers 
 
 </div>
 
----
-
 ## ✨ Features
 
 Valory is packed with powerful features to ensure you get the best experience:
@@ -29,8 +27,6 @@ Valory is packed with powerful features to ensure you get the best experience:
 - **Simple Setup:** Configure once and enjoy a hassle-free experience with minimal maintenance.
 - **Integration-Friendly:** Easily add to OBS, Streamlabs, or any streaming software.
 
----
-
 ## 🛠 Contributing
 
 We believe in open-source collaboration! Here’s how you can contribute:
@@ -38,8 +34,6 @@ We believe in open-source collaboration! Here’s how you can contribute:
 1. **Report Bugs**: Found an issue? Create a ticket on the [issues page](https://github.com/haxgun/valory/issues).
 2. **Submit new features**: Got a new idea? Open a [pull request](https://github.com/haxgun/valory/pulls).
 3. **Spread the Word**: Leave a star on the repo and share it with your community!
-
----
 
 ## 📜 License
 
