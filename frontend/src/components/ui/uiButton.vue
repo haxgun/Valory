@@ -1,11 +1,11 @@
 <script setup lang="ts">
 interface ButtonProps {
-  variant?: string;
-  disabled?: boolean;
-  type?: string;
+  variant?: string
+  disabled?: boolean
+  type?: string
 }
 
-defineProps<ButtonProps>();
+defineProps<ButtonProps>()
 </script>
 
 <template>

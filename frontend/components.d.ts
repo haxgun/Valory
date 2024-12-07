@@ -10,7 +10,9 @@ declare module 'vue' {
     ASpin: typeof import('ant-design-vue/es')['Spin']
     Button: typeof import('./src/components/ui/Button.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
+    FooterItem: typeof import('./src/components/FooterItem.vue')['default']
     Highlights: typeof import('./src/components/Highlights.vue')['default']
+    HighlightsItem: typeof import('./src/components/HighlightsItem.vue')['default']
     IconBillCheck: typeof import('./src/components/icons/IconBillCheck.vue')['default']
     IconGithub: typeof import('./src/components/icons/IconGithub.vue')['default']
     IconHeart: typeof import('./src/components/icons/IconHeart.vue')['default']
@@ -24,8 +26,13 @@ declare module 'vue' {
     Input: typeof import('./src/components/ui/Input.vue')['default']
     LanguageSwitcher: typeof import('./src/components/ui/LanguageSwitcher.vue')['default']
     Overlay: typeof import('./src/components/Overlay.vue')['default']
+    OverlayItem: typeof import('./src/components/OverlayItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Switch: typeof import('./src/components/ui/Switch.vue')['default']
+    UiButton: typeof import('./src/components/ui/uiButton.vue')['default']
+    UiInput: typeof import('./src/components/ui/uiInput.vue')['default']
+    UiLanguageSwitcher: typeof import('./src/components/ui/uiLanguageSwitcher.vue')['default']
+    UiSwitch: typeof import('./src/components/ui/uiSwitch.vue')['default']
   }
 }

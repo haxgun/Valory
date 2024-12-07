@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { useLocalStorage } from '@vueuse/core';
-import { NConfigProvider, NDropdown, NButton, darkTheme } from 'naive-ui';
-import { useI18n } from 'vue-i18n';
+import { useLocalStorage } from '@vueuse/core'
+import { NConfigProvider, NDropdown, NButton, darkTheme } from 'naive-ui'
+import { useI18n } from 'vue-i18n'
 
-const { locale, availableLocales } = useI18n<{ locale: string; availableLocales: string[] }>();
-const localStorageLocale = useLocalStorage<string>('valoryLocale', 'en');
+const { locale, availableLocales } = useI18n<{ locale: string; availableLocales: string[] }>()
+const localStorageLocale = useLocalStorage<string>('valoryLocale', 'en')
 
 const handleSelectLocale = (selectedLocale: string) => {
-  locale.value = selectedLocale;
-  localStorageLocale.value = selectedLocale;
-};
+  locale.value = selectedLocale
+  localStorageLocale.value = selectedLocale
+}
 </script>
 
 <template>
@@ -20,7 +20,7 @@ const handleSelectLocale = (selectedLocale: string) => {
         :options="
           availableLocales.map((l) => ({
             title: $t('languageName', {}, { locale: l }),
-            key: l
+            key: l,
           }))
         "
         size="medium"

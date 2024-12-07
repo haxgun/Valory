@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import Highlights from '@/components/Highlights.vue';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import IconLoading from "@/components/icons/IconLoading.vue";
+import Highlights from '@/components/HighlightsItem.vue'
+import IconLoading from '@/components/icons/IconLoading.vue'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-const isRouterReady = ref<boolean>(false);
+const isRouterReady = ref<boolean>(false)
 
-const router = useRouter();
+const router = useRouter()
 
 router.isReady().finally(() => {
-  isRouterReady.value = true;
-});
+  isRouterReady.value = true
+})
 </script>
 
 <template>
@@ -44,10 +44,12 @@ router.isReady().finally(() => {
   opacity: 0;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 

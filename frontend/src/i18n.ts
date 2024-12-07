@@ -1,11 +1,11 @@
-import messages from '@intlify/unplugin-vue-i18n/messages';
-import { useLocalStorage } from '@vueuse/core';
-import { createI18n, I18nOptions } from 'vue-i18n';
+import messages from '@intlify/unplugin-vue-i18n/messages'
+import { useLocalStorage } from '@vueuse/core'
+import { createI18n, I18nOptions } from 'vue-i18n'
 
-type MessageSchema = typeof messages;
-type Locale = keyof MessageSchema;
+type MessageSchema = typeof messages
+type Locale = keyof MessageSchema
 
-const locale = useLocalStorage<Locale>('valoryLocale', 'en');
+const locale = useLocalStorage<Locale>('valoryLocale', 'en')
 
 export const i18n = createI18n<I18nOptions & { messages: MessageSchema }, Locale>({
   legacy: false,
@@ -13,4 +13,4 @@ export const i18n = createI18n<I18nOptions & { messages: MessageSchema }, Locale
   fallbackLocale: 'en',
   messages,
   globalInjection: true,
-});
+})

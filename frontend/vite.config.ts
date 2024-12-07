@@ -1,6 +1,9 @@
+import { fileURLToPath, URL } from 'node:url'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import vueDevTools from 'vite-plugin-vue-devtools'
 import path from 'path'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
@@ -15,14 +18,13 @@ export default defineConfig({
       }
     }
   },
-  devServer: {
-    port: 5000
-  },
   plugins: [
     vue(),
+    vueJsx(),
+    vueDevTools(),
     VueI18nPlugin({
       include: [
-        // eslint-disable-next-line no-undef
+         
         path.resolve(__dirname, './src/locales/**')
       ],
       strictMessage: false,
@@ -49,8 +51,8 @@ export default defineConfig({
   clearScreen: false,
   resolve: {
     alias: {
-      // eslint-disable-next-line no-undef
-      '@': path.resolve(__dirname, './src')
+       
+      '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
   build: {

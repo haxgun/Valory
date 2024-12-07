@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import Overlay from '@/components/Overlay.vue';
-import Button from '@/components/ui/Button.vue';
-import Input from '@/components/ui/Input.vue';
-import { ref } from 'vue';
+import Overlay from '@/components/OverlayItem.vue'
+import Button from '@/components/ui/uiButton.vue'
+import Input from '@/components/ui/uiInput.vue'
+import { ref } from 'vue'
 
 interface Form {
-  riotId: string;
-  hdevApiKey: string;
+  riotId: string
+  hdevApiKey: string
 }
 
 const form = ref<Form>({
   riotId: '',
   hdevApiKey: '',
-});
+})
 
-const riotId = ref<string>('');
+const riotId = ref<string>('')
 
-const overlayBol = ref<boolean>(true);
+const overlayBol = ref<boolean>(true)
 
 const handleSubmit = async (): Promise<void> => {
   try {
@@ -26,15 +26,15 @@ const handleSubmit = async (): Promise<void> => {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(form.value),
-    });
+    })
 
     if (!response.ok) {
-      console.error('Ошибка при отправке!');
+      console.error('Ошибка при отправке!')
     }
   } catch (error) {
-    console.error('Произошла ошибка:', error);
+    console.error('Произошла ошибка:', error)
   }
-};
+}
 </script>
 
 <template>
@@ -60,14 +60,8 @@ const handleSubmit = async (): Promise<void> => {
                       </p>
                     </div>
                     <div class="editor__input">
-                      <Input
-                        style="flex: 2"
-                        v-model="form.riotId"
-                        placeholder="Riot ID"
-                      />
-                      <Button class="editor__button">{{
-                        $t('editor.riotId.submit')
-                      }}</Button>
+                      <Input style="flex: 2" v-model="form.riotId" placeholder="Riot ID" />
+                      <Button class="editor__button">{{ $t('editor.riotId.submit') }}</Button>
                     </div>
                     <span @click="riotId = 'MAGICX#1337'" class="random">{{
                       $t('editor.riotId.random')
@@ -83,11 +77,7 @@ const handleSubmit = async (): Promise<void> => {
                       </p>
                     </div>
                     <div class="editor__input">
-                      <Input
-                        style="flex: 2"
-                        v-model="form.hdevApiKey"
-                        placeholder="HDEV Api Key"
-                      />
+                      <Input style="flex: 2" v-model="form.hdevApiKey" placeholder="HDEV Api Key" />
                     </div>
                   </div>
                 </div>

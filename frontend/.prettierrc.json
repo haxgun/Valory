@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/prettierrc",
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports"
+  ],
+  "semi": false,
+  "singleQuote": true,
+  "printWidth": 100
+}

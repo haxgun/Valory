@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import Footer from '@/components/Footer.vue'
+import Footer from '@/components/FooterItem.vue'
 import IconBillCheck from '@/components/icons/IconBillCheck.vue'
 import IconMagicStick from '@/components/icons/IconMagicStick.vue'
 import IconPalette from '@/components/icons/IconPalette.vue'
 import IconValory from '@/components/icons/IconValory.vue'
-import Button from '@/components/ui/Button.vue'
+import Button from '@/components/ui/uiButton.vue'
 </script>
 
 <template>

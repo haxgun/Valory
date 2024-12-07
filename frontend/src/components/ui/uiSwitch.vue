@@ -1,31 +1,30 @@
 <script setup lang="ts">
-import { defineEmits, defineProps } from 'vue';
+import { defineEmits, defineProps } from 'vue'
 
 interface Props {
-  name?: string;
-  value?: string;
-  checked?: boolean;
-  disabled?: boolean;
-  group?: boolean;
-  id?: string;
+  name?: string
+  value?: string
+  checked?: boolean
+  disabled?: boolean
+  group?: boolean
+  id?: string
 }
 
 const emits = defineEmits<{
-  (event: 'update:checked', checked: boolean): void;
-  (event: 'updateCheckboxGroup', payload: { optionId?: string; checked: boolean }): void;
-}>();
+  (event: 'update:checked', checked: boolean): void
+  (event: 'updateCheckboxGroup', payload: { optionId?: string; checked: boolean }): void
+}>()
 
-const props = defineProps<Props>();
-
+const props = defineProps<Props>()
 
 const handleClick = (event: Event) => {
-  const target = event.target as HTMLInputElement;
+  const target = event.target as HTMLInputElement
   if (props.group) {
-    emits('updateCheckboxGroup', { optionId: props.id, checked: target.checked });
+    emits('updateCheckboxGroup', { optionId: props.id, checked: target.checked })
   } else {
-    emits('update:checked', target.checked);
+    emits('update:checked', target.checked)
   }
-};
+}
 </script>
 
 <template>
