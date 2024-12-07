@@ -15,9 +15,6 @@
 **Valory** is a feature-rich tool that provides a sleek and customizable rank overlay for **Valorant** streamers.
 It’s perfect for enhancing your stream’s visuals while keeping your viewers engaged with up-to-date stats.
 
-This project started as a fork of [davizeragod](https://davizeragod.github.io/) but has since grown into a fully independent and unique tool.
-Inspired by [tracker.gg/overlays](https://tracker.gg/overlays), Valory combines aesthetics with functionality to elevate your streaming experience.
-
 </div>
 
 ---
