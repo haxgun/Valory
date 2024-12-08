@@ -15,14 +15,18 @@ router.isReady().finally(() => {
 
 <template>
   <Highlights v-if="!$route.meta.hideHighlight" />
-  <div v-if="!isRouterReady" class="app-loader">
-    <IconLoading />
-  </div>
-  <router-view v-else v-slot="{ Component }">
-    <transition name="slide-fade" mode="out-in">
-      <component :is="Component" :key="$route.path"></component>
-    </transition>
-  </router-view>
+  <Transition name="fade" mode="out-in">
+    <div key=1 v-if="!isRouterReady" class="app-loader">
+      <IconLoading />
+    </div>
+    <div key=2 v-else>
+      <router-view v-slot="{ Component }">
+        <transition name="slide-fade" mode="out-in">
+          <component :is="Component" :key="$route.path"></component>
+        </transition>
+      </router-view>
+    </div>
+  </Transition>
 </template>
 
 <style>
@@ -46,11 +50,12 @@ router.isReady().finally(() => {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s;
+    transition: opacity .5s
 }
+
 .fade-enter,
 .fade-leave-to {
-  opacity: 0;
+    opacity: 0
 }
 
 .app-loader {
@@ -59,5 +64,9 @@ router.isReady().finally(() => {
   align-items: center;
   height: 100vh;
   overflow: hidden;
+}
+
+.router-view-wrapper {
+  position: relative;
 }
 </style>
