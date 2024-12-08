@@ -27,6 +27,7 @@ const router = createRouter({
     {
       path: '/:pathMatch(.*)*',
       component: () => import('@/views/PageNotFoundView.vue'),
+      meta: { hideHighlight: true },
     },
   ],
 })

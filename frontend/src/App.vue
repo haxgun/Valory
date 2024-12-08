@@ -14,7 +14,7 @@ router.isReady().finally(() => {
 </script>
 
 <template>
-  <Highlights />
+  <Highlights v-if="!$route.meta.hideHighlight" />
   <div v-if="!isRouterReady" class="app-loader">
     <IconLoading />
   </div>
