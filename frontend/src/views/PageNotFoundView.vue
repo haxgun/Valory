@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import UiButton from "@/components/ui/uiButton.vue";
+import UiButton from '@/components/ui/uiButton.vue'
 import { ArrowLeftIcon } from '@untitledui-icons/vue/solid'
 </script>
 
@@ -7,18 +7,20 @@ import { ArrowLeftIcon } from '@untitledui-icons/vue/solid'
   <main>
     <div class="main__body">
       <div class="main__container">
-        <img class="s404" src="/404.png" alt="">
+        <img class="s404" src="/404.png" alt="" />
         <h1 class="title">Whooops, this page is gone</h1>
         <p class="subtitle">This page is missing or you wrote the link incorrectly.</p>
       </div>
-      <ui-button @click="$router.push('/')"><ArrowLeftIcon class="arrow-icon"/>Back to home</ui-button>
+      <ui-button @click="$router.push('/')"
+        ><ArrowLeftIcon class="arrow-icon" />Back to home</ui-button
+      >
     </div>
   </main>
 </template>
 
 <style lang="scss" scoped>
 .s404 {
-  filter: drop-shadow(0 0 100px #FF0016);
+  filter: drop-shadow(0 0 100px #ff0016);
   width: 100%;
   margin-bottom: 20px;
 }
@@ -33,7 +35,7 @@ import { ArrowLeftIcon } from '@untitledui-icons/vue/solid'
   margin: 0;
   font-weight: 300;
   font-size: 15px;
-  color: #9F9F9F;
+  color: #9f9f9f;
   position: relative;
   top: -20px;
 }
