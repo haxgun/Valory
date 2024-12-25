@@ -1,0 +1,75 @@
+{
+  "languageName": "日本語",
+  "flag": "jp",
+  "landing": {
+    "pretitle": "ストリームオーバーレイ 2.0",
+    "description": "VALORANTの統計データで視聴者の注目を集めよう！",
+    "features": {
+      "first": "あなたのストリームに合わせてオーバーレイをカスタマイズできます。",
+      "second": "完全に無料です！ OBSなどの多くの人気ストリーミングプログラムをサポートしています。",
+      "third": "一度設定すれば、すべてがうまく機能します！"
+    },
+    "buttons": {
+      "first": "仕組みはどうなっているのか？",
+      "second": "オーバーレイを作成する"
+    },
+    "languageSwitcher": "言語を選択",
+    "footer": "作成者"
+  },
+  "editor": {
+    "header": {
+      "title": "統計データ付きオーバーレイ",
+      "description": "OBS Studioなどのストリーミングプログラムで統計データを表示しよう！"
+    },
+    "profile": {
+      "title": "プロフィール",
+      "description": "プロフィールを探し、HDEVキーを貼り付けてください",
+      "button": "開く",
+      "riotId": {
+        "title": "Riot ID",
+        "description": "Riot IDは、すべてのRiot Gamesで使用されるユニバーサル識別子です。",
+        "button": "送信",
+        "random": "例としてRiot IDを挿入するにはクリックしてください。"
+      },
+      "hdevKey": {
+        "title": "HenrikDEV API",
+        "description": "Valorantと連携してデータを取得するためにカスタムAPIを使用しています。",
+        "instruction": "APIキーを取得するには、指示に従ってください。",
+        "button": "送信",
+        "instruction-dis": "APIキーを取得する方法の指示"
+      }
+    },
+    "configuration": {
+      "title": "設定",
+      "description": "選択したオプションをあなたのブランドに合わせて変更します",
+      "display": {
+        "title": "表示オプション",
+        "description": "削除したい場合は切り替えてください",
+        "items": {
+          "background": "背景",
+          "progress": "進捗",
+          "statistics": "統計"
+        }
+      },
+      "color": {
+        "title": "カラーオプション",
+        "description": "スタイルやブランドに合わせて要素の色をカスタマイズ",
+        "items": {
+          "background": "背景",
+          "main": "テキスト",
+          "primary": "プライマリ",
+          "progress": "進捗",
+          "win": "勝利",
+          "lose": "敗北"
+        }
+      },
+      "statistics": {
+        "title": "統計",
+        "description": "統計を削除したい場合は切り替えてください"
+      }
+    },
+    "preview": {
+      "title": "プロフィールを設定すると、ここにオーバーレイが表示されます"
+    }
+  }
+}

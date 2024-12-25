@@ -34,6 +34,7 @@ button {
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
+  height: fit-content;
 
   &.disabled {
     opacity: 0.5;

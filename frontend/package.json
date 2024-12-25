@@ -26,6 +26,7 @@
     "@untitledui-icons/vue": "^1.0.3",
     "@vueuse/core": "^10.11.1",
     "copy-to-clipboard": "^3.3.3",
+    "modern-normalize": "^3.0.1",
     "normalize.css": "^8.0.1",
     "pinia": "^2.2.6",
     "postcss-uncss": "^0.17.0",
@@ -35,6 +36,7 @@
     "unplugin-vue-router": "^0.10.9",
     "v-click-outside": "^3.2.0",
     "vue": "^3.5.13",
+    "vue-accessible-color-picker": "^5.1.1",
     "vue-i18n": "^9.14.2",
     "vue-router": "^4.5.0",
     "vue-template-compiler": "^2.7.16"

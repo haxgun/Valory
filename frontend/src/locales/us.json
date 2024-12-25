@@ -1,0 +1,75 @@
+{
+  "languageName": "English",
+  "flag": "us",
+  "landing": {
+    "pretitle": "STREAM OVERLAY 2.0",
+    "description": "Grab your audience's attention with real-time VALORANT stats!",
+    "features": {
+      "first": "Customize your overlay according to your stream.",
+      "second": "It's absolutely FREE! There is support for many popular streaming programs like OBS and others.",
+      "third": "Setup once and everything will always work!"
+    },
+    "buttons": {
+      "first": "How does it work?",
+      "second": "Create your overlay"
+    },
+    "languageSwitcher": "Select a language",
+    "footer": "Made with"
+  },
+  "editor": {
+    "header": {
+      "title": "Overlay with statistics",
+      "description": "Show your players' statistics in your stream!"
+    },
+    "profile": {
+      "title": "Profile",
+      "description": "Find your profile and paste HDEV key",
+      "button": "Open",
+      "riotId": {
+        "title": "Riot ID",
+        "description": "Riot ID is your universal identifier that is used in all Riot Games.",
+        "button": "Submit",
+        "random": "Click to substitute an example of Riot ID."
+      },
+      "hdevKey": {
+        "title": "HenrikDEV API",
+        "description": "We use a custom API to interact with Valorant to get the data.",
+        "instruction": "To get it, follow the instructions.",
+        "button": "Submit",
+        "instruction-dis": "Instructions on how to get an API key",
+      },
+    },
+    "configuration": {
+      "title": "Configuration",
+      "description": "Modify selected options to match your brand",
+      "display": {
+        "title": "Display option",
+        "description": "Switch it if you want to remove",
+        "items": {
+          "background": "Background",
+          "progress": "Progress",
+          "statistics": "Statistics"
+        }
+      },
+      "color": {
+        "title": "Color option",
+        "description": "Customize the color of your elements to match your style and branding",
+        "items": {
+          "background": "Background",
+          "main": "Text",
+          "primary": "Primary",
+          "progress": "Progress",
+          "win": "Win",
+          "lose": "Lose",
+        }
+      },
+      "statistics": {
+        "title": "Statistics",
+        "description": "Switch it if you want to remove the statistics"
+      }
+    },
+    "preview": {
+      "title": "Your overlay will display here after you set up your profile"
+    }
+  }
+}

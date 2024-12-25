@@ -1,8 +1,8 @@
-@use 'normalize.css';
+@import 'modern-normalize/modern-normalize.css';
 @import 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Russo+One&display=swap';
 
 $font-family_1:
-  Inter,
+  'Inter',
   -apple-system,
   BlinkMacSystemFont,
   Segoe UI,

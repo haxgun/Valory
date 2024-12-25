@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import Overlay from '@/components/OverlayItem.vue'
-import Button from '@/components/ui/uiButton.vue'
-import Input from '@/components/ui/uiInput.vue'
-import { ref } from 'vue'
+import Overlay from "@/components/OverlayItem.vue";
+import Button from "@/components/ui/uiButton.vue";
+import Input from "@/components/ui/uiInput.vue";
+import UiModal from "@/components/ui/uiModal.vue";
+import UiSwitch from "@/components/ui/uiSwitch.vue";
+import riotIdsData from "@/data/riotIds.json";
+import { onMounted, ref, watch } from "vue";
 
 interface Form {
   riotId: string
@@ -14,27 +17,38 @@ const form = ref<Form>({
   hdevApiKey: '',
 })
 
-const riotId = ref<string>('')
+const isProfileModalVisible = ref(false)
 
-const overlayBol = ref<boolean>(true)
-
-const handleSubmit = async (): Promise<void> => {
-  try {
-    const response = await fetch('http://localhost:8000/overlay', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(form.value),
-    })
-
-    if (!response.ok) {
-      console.error('Ошибка при отправке!')
-    }
-  } catch (error) {
-    console.error('Произошла ошибка:', error)
-  }
+const openProfileModal = () => {
+  isProfileModalVisible.value = true
 }
+
+;const isConfigurationModalVisible = ref(false);
+
+const openConfigurationModal = () => {
+  isConfigurationModalVisible.value = true;
+};
+
+const riotIds = riotIdsData.ids;
+
+const generateRandomId = () => {
+  const randomIndex = Math.floor(Math.random() * riotIds.length);
+  form.value.riotId = riotIds[randomIndex];
+};
+
+const saveFormData = () => {
+  localStorage.setItem("hdevApiKey", form.value.hdevApiKey);
+  localStorage.setItem("riotId", form.value.riotId);
+};
+
+watch(form, saveFormData, { deep: true });
+
+onMounted(() => {
+  const savedHdevApiKey = localStorage.getItem("hdevApiKey");
+  const savedRiotId = localStorage.getItem("riotId");
+  if (savedHdevApiKey) form.value.hdevApiKey = savedHdevApiKey;
+  if (savedRiotId) form.value.riotId = savedRiotId;
+});
 </script>
 
 <template>
@@ -44,51 +58,155 @@ const handleSubmit = async (): Promise<void> => {
         <div class="editor">
           <div class="editor__body">
             <div class="editor__container" key="form">
-              <form @submit.prevent="handleSubmit">
-                <div class="editor__container__header">
-                  <h1 class="title">{{ $t('editor.header.title') }}</h1>
-                  <p class="description">
-                    {{ $t('editor.header.description') }}
-                  </p>
-                </div>
-                <div class="editor__container__body">
-                  <div class="editor__settings">
-                    <div class="editor__settings__header">
-                      <h1 class="title">{{ $t('editor.riotId.title') }}</h1>
-                      <p class="description">
-                        {{ $t('editor.riotId.description') }}
-                      </p>
-                    </div>
-                    <div class="editor__input">
-                      <Input style="flex: 2" v-model="form.riotId" placeholder="Riot ID" />
-                      <Button class="editor__button">{{ $t('editor.riotId.submit') }}</Button>
-                    </div>
-                    <span @click="riotId = 'MAGICX#1337'" class="random">{{
-                      $t('editor.riotId.random')
-                    }}</span>
+              <div class="editor__container__header">
+                <h1 class="title">{{ $t('editor.header.title') }}</h1>
+                <p class="description">{{ $t('editor.header.description') }}</p>
+              </div>
+              <div class="editor__container__body">
+                <div class="editor__settings modal">
+                  <div class="editor__settings__header">
+                    <h1 class="title">{{ $t('editor.profile.title') }}</h1>
+                    <p class="description">{{ $t('editor.profile.description') }}</p>
                   </div>
-                </div>
-                <div class="editor__container__body">
-                  <div class="editor__settings">
-                    <div class="editor__settings__header">
-                      <h1 class="title">{{ $t('editor.hdevKey.title') }}</h1>
-                      <p class="description">
-                        {{ $t('editor.hdevKey.description') }}
-                      </p>
-                    </div>
-                    <div class="editor__input">
-                      <Input style="flex: 2" v-model="form.hdevApiKey" placeholder="HDEV Api Key" />
-                    </div>
+                  <div class="editor__input">
+                    <Button class="editor__button" @click="openProfileModal">{{
+                      $t('editor.profile.button')
+                    }}</Button>
                   </div>
+                  <ui-modal v-model="isProfileModalVisible">
+                    <template #title>
+                      {{ $t('editor.profile.title') }}
+                    </template>
+                    <div class="editor__container__body">
+                      <div class="editor__settings">
+                        <div class="editor__settings__header">
+                          <h1 class="title">{{ $t('editor.profile.riotId.title') }}</h1>
+                          <p class="description">{{ $t('editor.profile.riotId.description') }}</p>
+                        </div>
+                        <div class="editor__input">
+                          <Input v-model="form.riotId" placeholder="Riot ID" style="flex: 2" />
+                        </div>
+                        <span class="under_description" @click="generateRandomId">{{
+                          $t('editor.profile.riotId.random')
+                        }}</span>
+                      </div>
+                    </div>
+                    <div class="editor__container__body">
+                      <div class="editor__settings">
+                        <div class="editor__settings__header">
+                          <h1 class="title">{{ $t('editor.profile.hdevKey.title') }}</h1>
+                          <span class="description"
+                            >{{ $t('editor.profile.hdevKey.description') }}
+                            <span>{{ $t('editor.profile.hdevKey.instruction') }}</span>
+                          </span>
+                        </div>
+                        <div class="editor__input">
+                          <Input
+                            v-model="form.hdevApiKey"
+                            placeholder="HDEV-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+                            style="flex: 2"
+                          />
+                        </div>
+                        <span class="under_description">{{
+                          $t('editor.profile.hdevKey.instruction-dis')
+                        }}</span>
+                      </div>
+                    </div>
+                  </ui-modal>
                 </div>
-                <Button class="editor__button" type="submit">Submit</Button>
-              </form>
+                <div class="editor__settings modal">
+                  <div class="editor__settings__header">
+                    <h1 class="title">{{ $t('editor.configuration.title') }}</h1>
+                    <p class="description">{{ $t('editor.configuration.description') }}</p>
+                  </div>
+                  <div class="editor__input">
+                    <Button class="editor__button" @click="openConfigurationModal"
+                      >{{ $t('editor.profile.button') }}
+                    </Button>
+                  </div>
+                  <ui-modal v-model="isConfigurationModalVisible">
+                    <template #title>
+                      <span>{{ $t("editor.configuration.title") }}</span>
+                    </template>
+                    <div class="editor__container__body">
+                      <div class="editor__settings">
+                        <div class="editor__settings__header">
+                          <h1 class="title">{{ $t("editor.configuration.display.title") }}</h1>
+                          <p class="description">
+                            {{ $t("editor.configuration.display.description") }}
+                          </p>
+                        </div>
+                        <div class="editor__settings__options">
+                          <div class="item">
+                            <span>
+                              {{ $t("editor.configuration.display.items.background") }}
+                            </span>
+                            <ui-switch />
+                          </div>
+                          <div class="item">
+                            <span>
+                              {{ $t("editor.configuration.display.items.progress") }}
+                            </span>
+                            <ui-switch />
+                          </div>
+                          <div class="item">
+                            <span>
+                              {{ $t("editor.configuration.display.items.statistics") }}
+                            </span>
+                            <ui-switch />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="editor__settings">
+                        <div class="editor__settings__header">
+                          <h1 class="title">{{ $t("editor.configuration.color.title") }}</h1>
+                          <p class="description">
+                            {{ $t("editor.configuration.color.description") }}
+                          </p>
+                        </div>
+                        <div class="editor__settings__options">
+                          <div class="item">
+                            <span>
+                              {{ $t("editor.configuration.color.items.background") }}
+                            </span>
+                          </div>
+                          <div class="item">
+                            <span>
+                              {{ $t("editor.configuration.color.items.main") }}
+                            </span>
+                          </div>
+                          <div class="item">
+                            <span>
+                              {{ $t("editor.configuration.color.items.primary") }}
+                            </span>
+                          </div>
+                          <div class="item">
+                            <span>
+                              {{ $t("editor.configuration.color.items.progress") }}
+                            </span>
+                          </div>
+                          <div class="item">
+                            <span>
+                              {{ $t("editor.configuration.color.items.win") }}
+                            </span>
+                          </div>
+                          <div class="item">
+                            <span>
+                              {{ $t("editor.configuration.color.items.lose") }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ui-modal>
+                </div>
+              </div>
             </div>
             <div class="preview">
               <div class="preview__container">
                 <div class="preview__component">
-                  <Overlay v-if="overlayBol" />
-                  <div v-else>{{ $t('editor.preview.title') }}</div>
+                  <Overlay v-if="form.hdevApiKey" />
+                  <div v-if="!form.hdevApiKey">{{ $t("editor.preview.title") }}</div>
                 </div>
               </div>
             </div>
@@ -128,9 +246,38 @@ const handleSubmit = async (): Promise<void> => {
         flex-direction: column;
         gap: 12px;
 
+        &.modal,
+        &.switch {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+
+          .reset {
+            color: red;
+            font-size: 12px;
+            font-weight: 400;
+          }
+        }
+
+        .editor__settings__options {
+          border-top: 1px dashed hsla(222deg 6% 30% / 0.25);
+
+          .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+
+            &:first-child {
+              margin-top: 15px;
+            }
+          }
+        }
+
         .editor__input {
           display: flex;
           gap: 8px;
+          align-items: center;
 
           .editor__button {
             border-radius: 5px;
@@ -153,13 +300,23 @@ const handleSubmit = async (): Promise<void> => {
           color: hsla(222deg 5% 62% / 1);
           font-size: 0.875rem;
           line-height: 1.5;
+
+          display: flex;
+          flex-direction: column;
         }
 
-        .random {
+        .under_description {
           color: rgb(0, 143, 253);
           font-size: 0.875rem;
           line-height: 1.5;
           cursor: pointer;
+          transition: box-shadow 0.2s linear;
+          box-shadow: none;
+          width: fit-content;
+
+          &:hover {
+            box-shadow: 0 1px 0 rgb(0, 143, 253);
+          }
         }
       }
     }
@@ -168,7 +325,7 @@ const handleSubmit = async (): Promise<void> => {
       flex: 1;
 
       .preview__container {
-        width: 100%;
+        width: auto;
         height: 100%;
         padding: calc(0.25 * 6rem);
         background-image: url('@/assets/previews/breeze.webp');
@@ -187,10 +344,12 @@ const handleSubmit = async (): Promise<void> => {
           position: absolute;
           background: rgb(0 0 0 / 0.2);
           backdrop-filter: blur(3px);
+          z-index: 0;
         }
 
         .preview__component {
           width: auto;
+          z-index: 1;
         }
       }
     }

@@ -1,0 +1,172 @@
+<script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount, computed } from "vue";
+
+interface DropdownOption {
+  title: string;
+  key: string | number;
+}
+
+// Props
+const props = defineProps<{
+  options: DropdownOption[];
+  size?: "small" | "medium" | "large";
+  icons?: True | False
+}>();
+
+// Emits
+const emit = defineEmits<{
+  (e: "select", key: string | number): void;
+}>();
+
+const isOpen = ref(false);
+const dropdownRef = ref<HTMLElement | null>(null);
+const selectedKey = ref<string | number | null>(null);
+const isDropdownUp = ref(false);
+
+const toggleDropdown = () => {
+  isOpen.value = !isOpen.value;
+  if (dropdownRef.value) {
+    const rect = dropdownRef.value.getBoundingClientRect();
+    const screenHeight = window.innerHeight;
+    isDropdownUp.value = rect.top > screenHeight / 2;
+  }
+};
+
+const closeDropdown = (event: Event) => {
+  if (dropdownRef.value && !dropdownRef.value.contains(event.target as Node)) {
+    isOpen.value = false;
+  }
+};
+
+const handleSelect = (key: string | number) => {
+  selectedKey.value = key;  // Сохраняем выбранный ключ
+  emit("select", key);
+  isOpen.value = false;
+};
+
+// Обращаемся к props.size
+const dropdownClass = computed(() => `dropdown-menu dropdown-menu--${props.size ?? "medium"}`);
+
+onMounted(() => {
+  document.addEventListener("click", closeDropdown);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("click", closeDropdown);
+});
+</script>
+
+<template>
+  <div class="dropdown" ref="dropdownRef">
+    <button @click="toggleDropdown" class="dropdown-button">
+      <slot name="button"></slot>
+    </button>
+    <!-- Используем v-if для анимации -->
+    <Transition name="slide-fade">
+      <ul
+        v-if="isOpen"
+        :class="[dropdownClass, { 'dropdown-menu-up': isDropdownUp }]"
+      >
+        <li class="title">
+          <slot name="title"></slot>
+        </li>
+        <li
+          v-for="option in options"
+          :key="option.key"
+          class="dropdown-item"
+          :class="{ active: selectedKey === option.key }"
+          @click="handleSelect(option.key)"
+        >
+          <Icon v-if="icons" :icon="option.icon" width="18" height="18" />
+          {{ option.title }}
+        </li>
+      </ul>
+    </Transition>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  &-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  &-menu {
+    position: absolute;
+    width: 224px;
+    top: 100%;
+    left: 0;
+    background-color: hsl(0, 0%, 9%);
+    border: 1px solid hsla(222, 6%, 30%, 0.25);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    list-style: none;
+    margin: 15px 0 0 0;
+    padding: 4px;
+    z-index: 1000;
+
+    &--small {
+      .title, .dropdown-item {
+        padding: 4px 8px;
+      }
+    }
+
+    &--medium {
+      .title, .dropdown-item {
+        padding: 8px 12px;
+      }
+    }
+
+    &--large {
+      .title, .dropdown-item {
+        padding: 12px 16px;
+      }
+    }
+    &.dropdown-menu-up {
+      top: auto;
+      bottom: 100%;
+      margin: 0 0 15px 0;
+    }
+  }
+
+  .title {
+    padding: 10px 12px;
+    border-bottom: 1px solid hsla(222, 6%, 30%, 0.25);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  &-item {
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 300;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &.active, &:not(.title):hover {
+      background-color: hsl(0, 0%, 12%);
+    }
+  }
+}
+
+.slide-fade-enter-active {
+  transition: all 0.1s ease-in;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.1s ease-out;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  opacity: 0;
+}
+</style>

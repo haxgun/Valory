@@ -1,0 +1,181 @@
+<script lang="ts">
+import { defineComponent, ref, watch, onBeforeUnmount } from "vue";
+import IconClose from "@/components/icons/IconClose.vue";
+
+export default defineComponent({
+  components: { IconClose },
+  props: {
+    modelValue: {
+      type: Boolean,
+      required: true,
+    },
+    title: {
+      type: String,
+      default: "Modal Title",
+    },
+    closeOnOverlay: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  emits: ["update:modelValue"],
+  setup(props, { emit }) {
+    const isVisible = ref(props.modelValue);
+
+    watch(
+      () => props.modelValue,
+      (newValue) => {
+        isVisible.value = newValue;
+      }
+    );
+
+  const close = () => {
+    document.querySelector('.modal-overlay')?.classList.add('fade-out');
+    document.querySelector('.modal-content')?.classList.add('fade-out');
+
+    setTimeout(() => {
+      isVisible.value = false;
+      emit("update:modelValue", false);
+    }, 300);
+  };
+
+    const closeOnOverlayClick = () => {
+      if (props.closeOnOverlay) {
+        close();
+      }
+    };
+
+    onBeforeUnmount(() => {
+      isVisible.value = false;
+    });
+
+    return {
+      isVisible,
+      close,
+      closeOnOverlayClick,
+    };
+  },
+});
+</script>
+
+<template>
+  <div v-if="isVisible" class="modal-overlay" @click="closeOnOverlayClick">
+    <div class="modal-content" @click.stop>
+      <div class="modal-header">
+        <h1 class="title">
+          <slot name="title" />
+        </h1>
+        <button class="close-button" @click="close">
+          <IconClose :width="12" />
+        </button>
+      </div>
+      <div class="modal-body">
+        <slot />
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  color: #fffbf5;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+.modal-content {
+  background: hsl(0, 0%, 9%);
+  border-radius: 8px;
+  border: 1px solid hsla(222deg 6% 30% / 0.25);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  width: 100%;
+  max-width: 575px;
+  height: fit-content;
+  max-height: 90%;
+  overflow: auto;
+  transform: scale(0.9);
+  animation: scaleUp 0.3s forwards;
+}
+
+.modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid hsla(222, 6%, 30%, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .title {
+    font-weight: 600;
+    margin: 0;
+    font-size: calc(0.25 * 4.5rem);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #fffbf5;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.modal-overlay.fade-out {
+  animation: fadeOut 0.3s forwards;
+}
+
+.modal-content.fade-out {
+  animation: scaleDown 0.3s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes scaleDown {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
+</style>

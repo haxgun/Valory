@@ -13,6 +13,7 @@
       "first": "Wie funktioniert das?",
       "second": "Erstellen Sie Ihr Overlay"
     },
+    "languageSwitcher": "Sprache wählen",
     "footer": "Hergestellt mit"
   },
   "editor": {
@@ -20,18 +21,55 @@
       "title": "Overlay mit Statistiken",
       "description": "Zeigen Sie Ihre Statistiken in Streaming-Programmen wie OBS Studio an."
     },
-    "riotId": {
-      "title": "Riot ID",
-      "description": "Riot ID ist Ihre universelle Kennung, die in allen Spielen von Riot Games verwendet wird.",
-      "submit": "Senden",
-      "random": "Klicken Sie, um ein Beispiel für Riot ID einzufügen."
+    "profile": {
+      "title": "Profil",
+      "description": "Finden Sie Ihr Profil und fügen Sie den HDEV-Schlüssel ein",
+      "button": "Öffnen",
+      "riotId": {
+        "title": "Riot ID",
+        "description": "Riot ID ist Ihre universelle Kennung, die in allen Spielen von Riot Games verwendet wird.",
+        "button": "Senden",
+        "random": "Klicken Sie, um ein Beispiel für Riot ID einzufügen."
+      },
+      "hdevKey": {
+        "title": "HenrikDEV API",
+        "description": "Wir verwenden eine benutzerdefinierte API, um mit Valorant zu interagieren und die Daten zu erhalten.",
+        "instruction": "Um den Schlüssel zu erhalten, folgen Sie den Anweisungen.",
+        "button": "Senden",
+        "instruction-dis": "Anweisungen zum Abrufen des API-Schlüssels"
+      }
     },
-    "customization": {
-      "title": "Wählen Sie Optionen aus",
-      "description": "Passen Sie das Overlay nach Ihren Vorlieben an."
+    "configuration": {
+      "title": "Konfiguration",
+      "description": "Passen Sie die ausgewählten Optionen an Ihre Marke an",
+      "display": {
+        "title": "Anzeigeoptionen",
+        "description": "Schalten Sie es aus, wenn Sie die Elemente entfernen möchten",
+        "items": {
+          "background": "Hintergrund",
+          "progress": "Fortschritt",
+          "statistics": "Statistiken"
+        }
+      },
+      "color": {
+        "title": "Farbenoptionen",
+        "description": "Passen Sie die Farben der Elemente an, um Ihrem Stil und Ihrer Marke zu entsprechen",
+        "items": {
+          "background": "Hintergrund",
+          "main": "Text",
+          "primary": "Primär",
+          "progress": "Fortschritt",
+          "win": "Gewinn",
+          "lose": "Verlust"
+        }
+      },
+      "statistics": {
+        "title": "Statistiken",
+        "description": "Schalten Sie es aus, wenn Sie die Statistiken entfernen möchten"
+      }
     },
     "preview": {
-      "title": "Daten nicht gefunden"
+      "title": "Ihr Overlay wird hier angezeigt, nachdem Sie Ihr Profil eingerichtet haben"
     }
   }
 }

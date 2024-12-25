@@ -5,7 +5,7 @@ import IconValory from '@/components/icons/IconValory.vue'
 <template>
   <div class="overlay">
     <div class="logo">
-      <IconValory size="16" />
+      <IconValory :size="16" />
       <span class="text">VALORY.SU</span>
     </div>
     <div class="overlay__body">
