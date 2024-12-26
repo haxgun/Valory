@@ -4,7 +4,7 @@ import IconBillCheck from '@/components/icons/IconBillCheck.vue'
 import IconMagicStick from '@/components/icons/IconMagicStick.vue'
 import IconPalette from '@/components/icons/IconPalette.vue'
 import IconValory from '@/components/icons/IconValory.vue'
-import Button from '@/components/ui/uiButton.vue'
+import Button from '@/components/ui/Button.vue'
 </script>
 
 <template>

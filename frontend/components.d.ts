@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     ASpin: typeof import('ant-design-vue/es')['Spin']
     Button: typeof import('./src/components/ui/Button.vue')['default']
+    ColorPicker: typeof import('./src/components/ui/ColorPicker.vue')['default']
     DropdownMenu: typeof import('./src/components/ui/DropdownMenu.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     FooterItem: typeof import('./src/components/FooterItem.vue')['default']
@@ -30,6 +31,7 @@ declare module 'vue' {
     IconValoryBG: typeof import('./src/components/icons/IconValoryBG.vue')['default']
     Input: typeof import('./src/components/ui/Input.vue')['default']
     LanguageSwitcher: typeof import('./src/components/ui/LanguageSwitcher.vue')['default']
+    Modal: typeof import('./src/components/ui/Modal.vue')['default']
     Overlay: typeof import('./src/components/Overlay.vue')['default']
     OverlayItem: typeof import('./src/components/OverlayItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

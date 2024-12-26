@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import Button from '@/components/ui/uiButton.vue'
-import Switch from '@/components/ui/uiSwitch.vue'
+import Button from '@/components/ui/Button.vue'
+import Switch from '@/components/ui/Switch.vue'
 import { ref } from 'vue'
-import UiColorPicker from "@/components/ui/uiColorPicker.vue";
+import UiColorPicker from "@/components/ui/ColorPicker.vue";
 
 const switchProfessional = ref<boolean>(false)
 </script>

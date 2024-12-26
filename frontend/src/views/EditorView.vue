@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import Overlay from "@/components/OverlayItem.vue";
-import Button from "@/components/ui/uiButton.vue";
-import Input from "@/components/ui/uiInput.vue";
-import UiModal from "@/components/ui/uiModal.vue";
-import UiSwitch from "@/components/ui/uiSwitch.vue";
+import Button from "@/components/ui/Button.vue";
+import Input from "@/components/ui/Input.vue";
+import UiModal from "@/components/ui/Modal.vue";
+import UiSwitch from "@/components/ui/Switch.vue";
 import riotIdsData from "@/data/riotIds.json";
 import { onMounted, ref, watch } from "vue";
 
