@@ -98,6 +98,7 @@ onBeforeUnmount(() => {
   }
 
   &-menu {
+    cursor: default;
     position: absolute;
     width: 224px;
     top: 100%;
