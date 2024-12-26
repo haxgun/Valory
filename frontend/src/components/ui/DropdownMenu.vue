@@ -67,9 +67,10 @@ onBeforeUnmount(() => {
         v-if="isOpen"
         :class="[dropdownClass, { 'dropdown-menu-up': isDropdownUp }]"
       >
-        <li class="title">
+        <li v-if="$slots.title" class="title">
           <slot name="title"></slot>
         </li>
+        <li v-if="$slots.title" class="separator"></li>
         <li
           v-for="option in options"
           :key="option.key"
@@ -136,9 +137,13 @@ onBeforeUnmount(() => {
 
   .title {
     padding: 10px 12px;
-    border-bottom: 1px solid hsla(222, 6%, 30%, 0.25);
     font-weight: 500;
-    margin-bottom: 6px;
+  }
+
+  .separator {
+    height: 1px;
+    background: hsla(222, 6%, 30%, 0.25);
+    margin: 0.25rem -0.25rem;
   }
 
   &-item {
@@ -157,6 +162,7 @@ onBeforeUnmount(() => {
   }
 }
 
+
 .slide-fade-enter-active {
   transition: all 0.1s ease-in;
 }
@@ -169,4 +175,5 @@ onBeforeUnmount(() => {
 .slide-fade-leave-to {
   opacity: 0;
 }
+
 </style>
