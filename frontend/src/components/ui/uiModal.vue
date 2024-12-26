@@ -105,7 +105,7 @@ export default defineComponent({
   max-height: 90%;
   overflow: auto;
   transform: scale(0.9);
-  animation: scaleUp 0.3s forwards;
+  animation: scaleUp 0.1s forwards;
 }
 
 .modal-header {
@@ -154,11 +154,11 @@ export default defineComponent({
 }
 
 .modal-overlay.fade-out {
-  animation: fadeOut 0.3s forwards;
+  animation: fadeOut 0.1s forwards;
 }
 
 .modal-content.fade-out {
-  animation: scaleDown 0.3s forwards;
+  animation: scaleDown 0.1s forwards;
 }
 
 @keyframes fadeOut {
