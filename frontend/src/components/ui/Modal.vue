@@ -1,69 +1,58 @@
-<script lang="ts">
-import { defineComponent, ref, watch, onBeforeUnmount } from "vue";
+<script setup lang="ts">
+import { ref, watch, onBeforeUnmount } from "vue";
 import IconClose from "@/components/icons/IconClose.vue";
 
-export default defineComponent({
-  components: { IconClose },
-  props: {
-    modelValue: {
-      type: Boolean,
-      required: true,
-    },
-    title: {
-      type: String,
-      default: "Modal Title",
-    },
-    closeOnOverlay: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  emits: ["update:modelValue"],
-  setup(props, { emit }) {
-    const isVisible = ref(props.modelValue);
+interface ModalProps {
+  modelValue: boolean;
+  title?: string;
+  closeOnOverlay?: boolean;
+}
 
-    watch(
-      () => props.modelValue,
-      (newValue) => {
-        isVisible.value = newValue;
-      }
-    );
+type EmitFn = (event: "update:modelValue", value: boolean) => void;
 
-  const close = () => {
-    document.querySelector('.modal-overlay')?.classList.add('fade-out');
-    document.querySelector('.modal-content')?.classList.add('fade-out');
+const props = defineProps<ModalProps>();
 
-    setTimeout(() => {
-      isVisible.value = false;
-      emit("update:modelValue", false);
-    }, 300);
-  };
+const emit = defineEmits<EmitFn>();
 
-    const closeOnOverlayClick = () => {
-      if (props.closeOnOverlay) {
-        close();
-      }
-    };
+const isVisible = ref(props.modelValue);
 
-    onBeforeUnmount(() => {
-      isVisible.value = false;
-    });
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    isVisible.value = newValue;
+  }
+);
 
-    return {
-      isVisible,
-      close,
-      closeOnOverlayClick,
-    };
-  },
+const close = () => {
+  const overlay = document.querySelector(".modal-overlay");
+  const content = document.querySelector(".modal-content");
+
+  overlay?.classList.add("fade-out");
+  content?.classList.add("fade-out");
+
+  setTimeout(() => {
+    isVisible.value = false;
+    emit("update:modelValue", false);
+  }, 300);
+};
+
+const closeOnOverlayClick = () => {
+  if (props.closeOnOverlay) {
+    close();
+  }
+};
+
+onBeforeUnmount(() => {
+  isVisible.value = false;
 });
 </script>
 
 <template>
-  <div v-if="isVisible" class="modal-overlay" @click="closeOnOverlayClick">
+  <div v-if="isVisible" class="modal-overlay" @click="close">
     <div class="modal-content" @click.stop>
       <div class="modal-header">
         <h1 class="title">
-          <slot name="title" />
+          <slot name="title">{{ props.title }}</slot>
         </h1>
         <button class="close-button" @click="close">
           <IconClose :width="12" />
