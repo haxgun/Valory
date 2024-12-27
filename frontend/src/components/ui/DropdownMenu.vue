@@ -6,14 +6,12 @@ interface DropdownOption {
   key: string | number;
 }
 
-// Props
 const props = defineProps<{
   options: DropdownOption[];
   size?: "small" | "medium" | "large";
   icons?: True | False
 }>();
 
-// Emits
 const emit = defineEmits<{
   (e: "select", key: string | number): void;
 }>();
@@ -39,12 +37,11 @@ const closeDropdown = (event: Event) => {
 };
 
 const handleSelect = (key: string | number) => {
-  selectedKey.value = key;  // Сохраняем выбранный ключ
+  selectedKey.value = key;
   emit("select", key);
   isOpen.value = false;
 };
 
-// Обращаемся к props.size
 const dropdownClass = computed(() => `dropdown-menu dropdown-menu--${props.size ?? "medium"}`);
 
 onMounted(() => {
