@@ -78,6 +78,10 @@ footer {
         rgba(0, 0, 0, 0.02) 0px 2px 4px,
         rgba(0, 0, 0, 0.03) 0px -1px 2px inset;
       transition: all 0.2s;
+
+      &:hover {
+        background: rgb(255 255 255 / 10%);
+      }
     }
 
     .social a {
