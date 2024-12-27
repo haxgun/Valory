@@ -1,50 +1,44 @@
 <script setup lang="ts">
-import { ref, watch, onBeforeUnmount } from "vue";
-import IconClose from "@/components/icons/IconClose.vue";
+import IconClose from '@/components/icons/IconClose.vue'
+import { ref, watch, onBeforeUnmount } from 'vue'
 
 interface ModalProps {
-  modelValue: boolean;
-  title?: string;
-  closeOnOverlay?: boolean;
+  modelValue: boolean
+  title?: string
+  closeOnOverlay?: boolean
 }
 
-type EmitFn = (event: "update:modelValue", value: boolean) => void;
+type EmitFn = (event: 'update:modelValue', value: boolean) => void
 
-const props = defineProps<ModalProps>();
+const props = defineProps<ModalProps>()
 
-const emit = defineEmits<EmitFn>();
+const emit = defineEmits<EmitFn>()
 
-const isVisible = ref(props.modelValue);
+const isVisible = ref(props.modelValue)
 
 watch(
   () => props.modelValue,
   (newValue) => {
-    isVisible.value = newValue;
-  }
-);
+    isVisible.value = newValue
+  },
+)
 
 const close = () => {
-  const overlay = document.querySelector(".modal-overlay");
-  const content = document.querySelector(".modal-content");
+  const overlay = document.querySelector('.modal-overlay')
+  const content = document.querySelector('.modal-content')
 
-  overlay?.classList.add("fade-out");
-  content?.classList.add("fade-out");
+  overlay?.classList.add('fade-out')
+  content?.classList.add('fade-out')
 
   setTimeout(() => {
-    isVisible.value = false;
-    emit("update:modelValue", false);
-  }, 300);
-};
-
-const closeOnOverlayClick = () => {
-  if (props.closeOnOverlay) {
-    close();
-  }
-};
+    isVisible.value = false
+    emit('update:modelValue', false)
+  }, 300)
+}
 
 onBeforeUnmount(() => {
-  isVisible.value = false;
-});
+  isVisible.value = false
+})
 </script>
 
 <template>

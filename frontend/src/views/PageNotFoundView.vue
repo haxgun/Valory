@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import UiButton from '@/components/ui/Button.vue'
+import UiButton from '@/components/ui/ButtonUI.vue'
 import { ArrowLeftIcon } from '@untitledui-icons/vue/solid'
 </script>
 

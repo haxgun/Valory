@@ -1,56 +1,56 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, computed } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 
 interface DropdownOption {
-  title: string;
-  key: string | number;
+  title: string
+  key: string | number
 }
 
 const props = defineProps<{
-  options: DropdownOption[];
-  size?: "small" | "medium" | "large";
+  options: DropdownOption[]
+  size?: 'small' | 'medium' | 'large'
   icons?: True | False
-}>();
+}>()
 
 const emit = defineEmits<{
-  (e: "select", key: string | number): void;
-}>();
+  (e: 'select', key: string | number): void
+}>()
 
-const isOpen = ref(false);
-const dropdownRef = ref<HTMLElement | null>(null);
-const selectedKey = ref<string | number | null>(null);
-const isDropdownUp = ref(false);
+const isOpen = ref(false)
+const dropdownRef = ref<HTMLElement | null>(null)
+const selectedKey = ref<string | number | null>(null)
+const isDropdownUp = ref(false)
 
 const toggleDropdown = () => {
-  isOpen.value = !isOpen.value;
+  isOpen.value = !isOpen.value
   if (dropdownRef.value) {
-    const rect = dropdownRef.value.getBoundingClientRect();
-    const screenHeight = window.innerHeight;
-    isDropdownUp.value = rect.top > screenHeight / 2;
+    const rect = dropdownRef.value.getBoundingClientRect()
+    const screenHeight = window.innerHeight
+    isDropdownUp.value = rect.top > screenHeight / 2
   }
-};
+}
 
 const closeDropdown = (event: Event) => {
   if (dropdownRef.value && !dropdownRef.value.contains(event.target as Node)) {
-    isOpen.value = false;
+    isOpen.value = false
   }
-};
+}
 
 const handleSelect = (key: string | number) => {
-  selectedKey.value = key;
-  emit("select", key);
-  isOpen.value = false;
-};
+  selectedKey.value = key
+  emit('select', key)
+  isOpen.value = false
+}
 
-const dropdownClass = computed(() => `dropdown-menu dropdown-menu--${props.size ?? "medium"}`);
+const dropdownClass = computed(() => `dropdown-menu dropdown-menu--${props.size ?? 'medium'}`)
 
 onMounted(() => {
-  document.addEventListener("click", closeDropdown);
-});
+  document.addEventListener('click', closeDropdown)
+})
 
 onBeforeUnmount(() => {
-  document.removeEventListener("click", closeDropdown);
-});
+  document.removeEventListener('click', closeDropdown)
+})
 </script>
 
 <template>
@@ -60,10 +60,7 @@ onBeforeUnmount(() => {
     </button>
     <!-- Используем v-if для анимации -->
     <Transition name="slide-fade">
-      <ul
-        v-if="isOpen"
-        :class="[dropdownClass, { 'dropdown-menu-up': isDropdownUp }]"
-      >
+      <ul v-if="isOpen" :class="[dropdownClass, { 'dropdown-menu-up': isDropdownUp }]">
         <li v-if="$slots.title" class="title">
           <slot name="title"></slot>
         </li>
@@ -110,19 +107,22 @@ onBeforeUnmount(() => {
     z-index: 1000;
 
     &--small {
-      .title, .dropdown-item {
+      .title,
+      .dropdown-item {
         padding: 4px 8px;
       }
     }
 
     &--medium {
-      .title, .dropdown-item {
+      .title,
+      .dropdown-item {
         padding: 8px 12px;
       }
     }
 
     &--large {
-      .title, .dropdown-item {
+      .title,
+      .dropdown-item {
         padding: 12px 16px;
       }
     }
@@ -154,12 +154,12 @@ onBeforeUnmount(() => {
     align-items: center;
     gap: 12px;
 
-    &.active, &:not(.title):hover {
+    &.active,
+    &:not(.title):hover {
       background-color: hsl(0, 0%, 12%);
     }
   }
 }
-
 
 .slide-fade-enter-active {
   transition: all 0.1s ease-in;
@@ -173,5 +173,4 @@ onBeforeUnmount(() => {
 .slide-fade-leave-to {
   opacity: 0;
 }
-
 </style>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import Overlay from "@/components/OverlayItem.vue";
-import Button from "@/components/ui/Button.vue";
-import Input from "@/components/ui/Input.vue";
-import UiModal from "@/components/ui/Modal.vue";
-import UiSwitch from "@/components/ui/Switch.vue";
-import riotIdsData from "@/data/riotIds.json";
-import { onMounted, ref, watch } from "vue";
+import Overlay from '@/components/OverlayItem.vue'
+import Button from '@/components/ui/ButtonUI.vue'
+import Input from '@/components/ui/InputUI.vue'
+import UiModal from '@/components/ui/ModalWindow.vue'
+import UiSwitch from '@/components/ui/SwitchUI.vue'
+import riotIdsData from '@/data/riotIds.json'
+import { onMounted, ref, watch } from 'vue'
 
 interface Form {
   riotId: string
@@ -23,32 +23,32 @@ const openProfileModal = () => {
   isProfileModalVisible.value = true
 }
 
-;const isConfigurationModalVisible = ref(false);
+const isConfigurationModalVisible = ref(false)
 
 const openConfigurationModal = () => {
-  isConfigurationModalVisible.value = true;
-};
+  isConfigurationModalVisible.value = true
+}
 
-const riotIds = riotIdsData.ids;
+const riotIds = riotIdsData.ids
 
 const generateRandomId = () => {
-  const randomIndex = Math.floor(Math.random() * riotIds.length);
-  form.value.riotId = riotIds[randomIndex];
-};
+  const randomIndex = Math.floor(Math.random() * riotIds.length)
+  form.value.riotId = riotIds[randomIndex]
+}
 
 const saveFormData = () => {
-  localStorage.setItem("hdevApiKey", form.value.hdevApiKey);
-  localStorage.setItem("riotId", form.value.riotId);
-};
+  localStorage.setItem('hdevApiKey', form.value.hdevApiKey)
+  localStorage.setItem('riotId', form.value.riotId)
+}
 
-watch(form, saveFormData, { deep: true });
+watch(form, saveFormData, { deep: true })
 
 onMounted(() => {
-  const savedHdevApiKey = localStorage.getItem("hdevApiKey");
-  const savedRiotId = localStorage.getItem("riotId");
-  if (savedHdevApiKey) form.value.hdevApiKey = savedHdevApiKey;
-  if (savedRiotId) form.value.riotId = savedRiotId;
-});
+  const savedHdevApiKey = localStorage.getItem('hdevApiKey')
+  const savedRiotId = localStorage.getItem('riotId')
+  if (savedHdevApiKey) form.value.hdevApiKey = savedHdevApiKey
+  if (savedRiotId) form.value.riotId = savedRiotId
+})
 </script>
 
 <template>
@@ -126,32 +126,32 @@ onMounted(() => {
                   </div>
                   <ui-modal v-model="isConfigurationModalVisible">
                     <template #title>
-                      <span>{{ $t("editor.configuration.title") }}</span>
+                      <span>{{ $t('editor.configuration.title') }}</span>
                     </template>
                     <div class="editor__container__body">
                       <div class="editor__settings">
                         <div class="editor__settings__header">
-                          <h1 class="title">{{ $t("editor.configuration.display.title") }}</h1>
+                          <h1 class="title">{{ $t('editor.configuration.display.title') }}</h1>
                           <p class="description">
-                            {{ $t("editor.configuration.display.description") }}
+                            {{ $t('editor.configuration.display.description') }}
                           </p>
                         </div>
                         <div class="editor__settings__options">
                           <div class="item">
                             <span>
-                              {{ $t("editor.configuration.display.items.background") }}
+                              {{ $t('editor.configuration.display.items.background') }}
                             </span>
                             <ui-switch />
                           </div>
                           <div class="item">
                             <span>
-                              {{ $t("editor.configuration.display.items.progress") }}
+                              {{ $t('editor.configuration.display.items.progress') }}
                             </span>
                             <ui-switch />
                           </div>
                           <div class="item">
                             <span>
-                              {{ $t("editor.configuration.display.items.statistics") }}
+                              {{ $t('editor.configuration.display.items.statistics') }}
                             </span>
                             <ui-switch />
                           </div>
@@ -159,40 +159,40 @@ onMounted(() => {
                       </div>
                       <div class="editor__settings">
                         <div class="editor__settings__header">
-                          <h1 class="title">{{ $t("editor.configuration.color.title") }}</h1>
+                          <h1 class="title">{{ $t('editor.configuration.color.title') }}</h1>
                           <p class="description">
-                            {{ $t("editor.configuration.color.description") }}
+                            {{ $t('editor.configuration.color.description') }}
                           </p>
                         </div>
                         <div class="editor__settings__options">
                           <div class="item">
                             <span>
-                              {{ $t("editor.configuration.color.items.background") }}
+                              {{ $t('editor.configuration.color.items.background') }}
                             </span>
                           </div>
                           <div class="item">
                             <span>
-                              {{ $t("editor.configuration.color.items.main") }}
+                              {{ $t('editor.configuration.color.items.main') }}
                             </span>
                           </div>
                           <div class="item">
                             <span>
-                              {{ $t("editor.configuration.color.items.primary") }}
+                              {{ $t('editor.configuration.color.items.primary') }}
                             </span>
                           </div>
                           <div class="item">
                             <span>
-                              {{ $t("editor.configuration.color.items.progress") }}
+                              {{ $t('editor.configuration.color.items.progress') }}
                             </span>
                           </div>
                           <div class="item">
                             <span>
-                              {{ $t("editor.configuration.color.items.win") }}
+                              {{ $t('editor.configuration.color.items.win') }}
                             </span>
                           </div>
                           <div class="item">
                             <span>
-                              {{ $t("editor.configuration.color.items.lose") }}
+                              {{ $t('editor.configuration.color.items.lose') }}
                             </span>
                           </div>
                         </div>
@@ -206,7 +206,7 @@ onMounted(() => {
               <div class="preview__container">
                 <div class="preview__component">
                   <Overlay v-if="form.hdevApiKey" />
-                  <div v-if="!form.hdevApiKey">{{ $t("editor.preview.title") }}</div>
+                  <div v-if="!form.hdevApiKey">{{ $t('editor.preview.title') }}</div>
                 </div>
               </div>
             </div>

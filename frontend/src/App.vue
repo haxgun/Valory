@@ -16,10 +16,10 @@ router.isReady().finally(() => {
 <template>
   <Highlights v-if="!$route.meta.hideHighlight" />
   <Transition name="fade" mode="out-in">
-    <div key=1 v-if="!isRouterReady" class="app-loader">
+    <div key="1" v-if="!isRouterReady" class="app-loader">
       <IconLoading />
     </div>
-    <div key=2 v-else>
+    <div key="2" v-else>
       <router-view v-slot="{ Component }">
         <transition name="slide-fade" mode="out-in">
           <component :is="Component" :key="$route.path"></component>
@@ -50,12 +50,12 @@ router.isReady().finally(() => {
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity .5s
+  transition: opacity 0.5s;
 }
 
 .fade-enter,
 .fade-leave-to {
-    opacity: 0
+  opacity: 0;
 }
 
 .app-loader {

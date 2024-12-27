@@ -36,8 +36,8 @@
         "description": "We use a custom API to interact with Valorant to get the data.",
         "instruction": "To get it, follow the instructions.",
         "button": "Submit",
-        "instruction-dis": "Instructions on how to get an API key",
-      },
+        "instruction-dis": "Instructions on how to get an API key"
+      }
     },
     "configuration": {
       "title": "Configuration",
@@ -60,7 +60,7 @@
           "primary": "Primary",
           "progress": "Progress",
           "win": "Win",
-          "lose": "Lose",
+          "lose": "Lose"
         }
       },
       "statistics": {

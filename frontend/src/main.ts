@@ -6,11 +6,7 @@ import { createApp } from 'vue'
 
 const app = createApp(App)
 
-app
-  .use(i18n)
-  .use(router)
-  .component('Icon', Icon)
-  .mount('#app')
+app.use(i18n).use(router).component('Icon', Icon).mount('#app')
 
 document.body.addEventListener('plugin_web_update_notice', () => {
   window.location.reload()

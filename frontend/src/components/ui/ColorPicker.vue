@@ -3,11 +3,7 @@ import { ColorPicker } from 'vue-accessible-color-picker'
 </script>
 
 <template>
-  <ColorPicker
-    alphaChannel="hide"
-    default-format="hex"
-    :visible-f ormats="['hex']"
-  />
+  <ColorPicker alphaChannel="hide" default-format="hex" :visible-f ormats="['hex']" />
 </template>
 
 <style lang="scss" scoped>
@@ -66,7 +62,9 @@ $v-slider-thumb-size: calc($v-spacing * 4 - 1px * 2);
 
     :focus {
       outline-color: transparent;
-      box-shadow: 0 0 0 1px #000, 0 0 0 calc(1px + 2px) $v-color-focus;
+      box-shadow:
+        0 0 0 1px #000,
+        0 0 0 calc(1px + 2px) $v-color-focus;
     }
   }
 
@@ -104,10 +102,19 @@ $v-slider-thumb-size: calc($v-spacing * 4 - 1px * 2);
 
     &--alpha {
       background-color: #fff;
-      background-image: linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee),
+      background-image: linear-gradient(
+          45deg,
+          #eee 25%,
+          transparent 25%,
+          transparent 75%,
+          #eee 75%,
+          #eee
+        ),
         linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee);
       background-size: calc($v-spacing * 2) calc($v-spacing * 2);
-      background-position: 0 0, $v-spacing $v-spacing;
+      background-position:
+        0 0,
+        $v-spacing $v-spacing;
 
       &::-moz-range-track,
       &::-webkit-slider-runnable-track,

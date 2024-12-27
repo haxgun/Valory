@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import DropdownMenu from '@/components/ui/DropdownMenu.vue'
 import { useLocalStorage } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
-import DropdownMenu from "@/components/ui/DropdownMenu.vue";
 
 const { locale, availableLocales } = useI18n<{ locale: string; availableLocales: string[] }>()
 const localStorageLocale = useLocalStorage<string>('valoryLocale', 'us')
@@ -15,11 +15,13 @@ const handleSelectLocale = (selectedLocale: string) => {
 <template>
   <div>
     <DropdownMenu
-      :options="availableLocales.map((l) => ({
-        title: $t('languageName', {}, { locale: l }),
-        key: l,
-        icon: `flag:${l}-4x3`
-      }))"
+      :options="
+        availableLocales.map((l) => ({
+          title: $t('languageName', {}, { locale: l }),
+          key: l,
+          icon: `flag:${l}-4x3`,
+        }))
+      "
       icons="True"
       size="medium"
       @select="handleSelectLocale"
