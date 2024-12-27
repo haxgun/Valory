@@ -5,8 +5,6 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import path from 'path'
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
-import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -24,18 +22,10 @@ export default defineConfig({
     vueDevTools(),
     VueI18nPlugin({
       include: [
-         
         path.resolve(__dirname, './src/locales/**')
       ],
       strictMessage: false,
       escapeHtml: false
-    }),
-    Components({
-      resolvers: [
-        AntDesignVueResolver({
-          importStyle: false
-        })
-      ]
     }),
     webUpdateNotice({
       notificationProps: {
@@ -45,13 +35,13 @@ export default defineConfig({
         buttonText: 'refresh',
         dismissButtonText: 'cancel'
       },
-      checkInterval: 1 * 60 * 1000
+      checkInterval: 60 * 1000
     })
   ],
   clearScreen: false,
   resolve: {
     alias: {
-       
+
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
