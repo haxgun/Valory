@@ -30,12 +30,29 @@ const router = createRouter({
       component: () => import('@/views/PageNotFoundView.vue'),
       meta: { hideHighlight: true },
     },
+    {
+      path: '/unsupported',
+      name: 'Unsupported',
+      component: () => import('@/views/Unsupported.vue'), // Страница с предупреждением
+    },
   ],
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = to.name
+  if (typeof to.name === 'string') {
+    document.title = to.name
+  }
   next()
+
+  const isMobile = window.matchMedia('(max-width: 768px)').matches
+
+  if (isMobile && to.name !== 'Unsupported') {
+    next({ name: 'Unsupported' })
+  } else if (!isMobile && to.name === 'Unsupported') {
+    next({ name: 'Home' })
+  } else {
+    next()
+  }
 })
 
 export default router
