@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { onClickOutside } from '@vueuse/core'
 import tinycolor from 'tinycolor2'
-import { computed, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 
 interface ColorModel {
   hue: number
@@ -15,15 +16,18 @@ const emit = defineEmits<{
 }>()
 
 const openColorPickerRef = ref<boolean>(false)
-const colorPickerRef = ref<HTMLElement | null>(null) // Реф для отслеживания компонента color picker
+const isColorPickerUp = ref<boolean>(false)
 const saturationRef = ref<HTMLDivElement | null>(null)
+const colorPickerRef = ref<HTMLDivElement | null>(null)
 
 const openColorPickerToggle = () => {
   openColorPickerRef.value = !openColorPickerRef.value
-}
 
-const closeColorPicker = () => {
-  openColorPickerRef.value = false
+  if (colorPickerRef.value) {
+    const rect = colorPickerRef.value.getBoundingClientRect()
+    const screenHeight = window.innerHeight
+    isColorPickerUp.value = rect.top > screenHeight / 2
+  }
 }
 
 const localColor = reactive({
@@ -151,10 +155,12 @@ const onHueSliderMouseDown = (event: MouseEvent): void => {
     { once: true },
   )
 }
+
+onClickOutside(colorPickerRef, () => (openColorPickerRef.value = false))
 </script>
 
 <template>
-  <div>
+  <div style="position: relative" ref="colorPickerRef">
     <div class="color-selector">
       <button
         :style="{
@@ -166,7 +172,7 @@ const onHueSliderMouseDown = (event: MouseEvent): void => {
       <input type="text" v-model="localColor.hex" @input="onHexInput" />
     </div>
     <Transition name="slide-fade">
-      <div v-if="openColorPickerRef" class="color-picker">
+      <div v-if="openColorPickerRef" class="color-picker" :class="{ up: isColorPickerUp }">
         <div class="saturation-wrap">
           <div
             :style="{
@@ -251,23 +257,30 @@ const onHueSliderMouseDown = (event: MouseEvent): void => {
   height: 28px;
   width: 28px;
   border-radius: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: none;
+  box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.25);
 }
 
 .color-picker {
   position: absolute;
-  top: auto;
+  top: 100%;
   margin: 10px 0 0 0;
   z-index: 1000;
   display: flex;
   flex-direction: column;
   gap: 18px;
-  max-width: 300px;
+  max-width: 290px;
   padding: 12px;
   background-color: hsl(0, 0%, 9%);
   border-radius: 6px;
   border: 1px solid hsla(222, 6%, 30%, 0.25);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &.up {
+    top: auto;
+    margin: 0 0 10px 0;
+    bottom: 100%;
+  }
 }
 
 .saturation-wrap {
@@ -357,7 +370,7 @@ const onHueSliderMouseDown = (event: MouseEvent): void => {
     --svg: hsla(222deg 5% 56% / 0.75);
     --bg: transparent;
     height: calc(0.25 * 9rem);
-    padding-inline: calc(0.25 * 3rem);
+    padding-inline: calc(0.25 * 2rem);
     display: flex;
     align-items: center;
     grid-gap: calc(0.25 * 2rem);
@@ -393,8 +406,8 @@ const onHueSliderMouseDown = (event: MouseEvent): void => {
   justify-content: center;
 
   div {
-    width: 27px;
-    height: 27px;
+    width: 26px;
+    height: 26px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     cursor: pointer;
