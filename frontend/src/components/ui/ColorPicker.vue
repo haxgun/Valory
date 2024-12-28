@@ -235,21 +235,41 @@ onClickOutside(colorPickerRef, () => (openColorPickerRef.value = false))
 
 <style scoped lang="scss">
 .color-selector {
+  --border: hsla(222deg 10% 17% / 1);
+  --outline: transparent;
   display: flex;
   align-items: center;
   gap: 12px;
-  background-color: hsl(0, 0%, 9%);
+  background-color: var(--bg);
   border-radius: 8px;
-  border: 1px solid hsla(222, 6%, 30%, 0.25);
+  border: 1px solid var(--border) !important;
+  outline: 2px solid var(--outline);
+  outline-offset: 2px;
   width: fit-content;
   padding: 8px;
+  transition: 0.2s;
+
+  &:hover {
+    --border: hsla(222deg 6% 30% / 1);
+    --bg: hsla(0deg 0% 100% / 6%);
+  }
+
+  &:focus-within {
+    --border: hsla(222deg 6% 30% / 1);
+    --bg: hsla(0deg 0% 100% / 6%);
+    --outline: hsla(222deg 5% 62% / 0.15);
+    z-index: 3;
+  }
 
   input {
-    background: transparent;
-    outline: none;
-    border: none;
+    --bg: transparent;
+    --border: hsla(222deg 10% 17% / 1);
+    --outline: transparent;
+    background: var(--bg);
     color: #fff;
     width: fit-content;
+    border: none;
+    outline: none;
   }
 }
 
@@ -381,9 +401,21 @@ onClickOutside(colorPickerRef, () => (openColorPickerRef.value = false))
     background-color: var(--bg);
     border-radius: 5px;
     border: 1px solid var(--border) !important;
-    outline: 2px solid var(--outline);
+    outline: 1px solid var(--outline);
     outline-offset: 2px;
     transition: 0.2s all;
+
+    &:hover {
+      --border: hsla(222deg 6% 30% / 1);
+      --bg: hsla(0deg 0% 100% / 6%);
+    }
+
+    &:focus-within {
+      --border: hsla(222deg 6% 30% / 1);
+      --bg: hsla(0deg 0% 100% / 6%);
+      --outline: hsla(222deg 5% 62% / 0.15);
+      z-index: 3;
+    }
 
     input {
       flex: 1;
