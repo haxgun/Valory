@@ -86,7 +86,6 @@ onBeforeUnmount(() => {
   max-width: 575px;
   height: fit-content;
   max-height: 90%;
-  overflow: auto;
   transform: scale(0.9);
   animation: scaleUp 0.1s forwards;
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Overlay from '@/components/OverlayItem.vue'
 import Button from '@/components/ui/ButtonUI.vue'
+import ColorPicker from '@/components/ui/ColorPicker.vue'
 import Input from '@/components/ui/InputUI.vue'
 import UiModal from '@/components/ui/ModalWindow.vue'
 import UiSwitch from '@/components/ui/SwitchUI.vue'
@@ -49,6 +50,13 @@ onMounted(() => {
   if (savedHdevApiKey) form.value.hdevApiKey = savedHdevApiKey
   if (savedRiotId) form.value.riotId = savedRiotId
 })
+
+const bgColor = ref({ hue: 0, rgb: { r: 255, g: 255, b: 255 } })
+const textColor = ref({ hue: 0, rgb: { r: 255, g: 255, b: 255 } })
+const primaryColor = ref({ hue: 0, rgb: { r: 255, g: 255, b: 255 } })
+const progressColor = ref({ hue: 0, rgb: { r: 255, g: 255, b: 255 } })
+const winColor = ref({ hue: 0, rgb: { r: 255, g: 255, b: 255 } })
+const loseColor = ref({ hue: 0, rgb: { r: 255, g: 255, b: 255 } })
 </script>
 
 <template>
@@ -169,31 +177,37 @@ onMounted(() => {
                             <span>
                               {{ $t('editor.configuration.color.items.background') }}
                             </span>
+                            <ColorPicker v-model="bgColor" />
                           </div>
                           <div class="item">
                             <span>
                               {{ $t('editor.configuration.color.items.main') }}
                             </span>
+                            <ColorPicker v-model="textColor" />
                           </div>
                           <div class="item">
                             <span>
                               {{ $t('editor.configuration.color.items.primary') }}
                             </span>
+                            <ColorPicker v-model="primaryColor" />
                           </div>
                           <div class="item">
                             <span>
                               {{ $t('editor.configuration.color.items.progress') }}
                             </span>
+                            <ColorPicker v-model="progressColor" />
                           </div>
                           <div class="item">
                             <span>
                               {{ $t('editor.configuration.color.items.win') }}
                             </span>
+                            <ColorPicker v-model="winColor" />
                           </div>
                           <div class="item">
                             <span>
                               {{ $t('editor.configuration.color.items.lose') }}
                             </span>
+                            <ColorPicker v-model="loseColor" />
                           </div>
                         </div>
                       </div>
@@ -206,7 +220,7 @@ onMounted(() => {
               <div class="preview__container">
                 <div class="preview__component">
                   <Overlay v-if="form.hdevApiKey" />
-                  <div v-if="!form.hdevApiKey">{{ $t('editor.preview.title') }}</div>
+                  <div class="text" v-if="!form.hdevApiKey">{{ $t('editor.preview.title') }}</div>
                 </div>
               </div>
             </div>
@@ -350,6 +364,10 @@ onMounted(() => {
         .preview__component {
           width: auto;
           z-index: 1;
+
+          .text {
+            text-align: center;
+          }
         }
       }
     }

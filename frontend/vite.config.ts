@@ -1,31 +1,29 @@
-import { fileURLToPath, URL } from 'node:url'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import vueDevTools from 'vite-plugin-vue-devtools'
+import { fileURLToPath, URL } from 'node:url'
 import path from 'path'
 import { defineConfig } from 'vite'
+import vueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
         api: 'modern-compiler',
-        silenceDeprecations: ['legacy-js-api']
-      }
-    }
+        silenceDeprecations: ['legacy-js-api'],
+      },
+    },
   },
   plugins: [
     vue(),
     vueJsx(),
     vueDevTools(),
     VueI18nPlugin({
-      include: [
-        path.resolve(__dirname, './src/locales/**')
-      ],
+      include: [path.resolve(__dirname, './src/locales/**')],
       strictMessage: false,
-      escapeHtml: false
+      escapeHtml: false,
     }),
     webUpdateNotice({
       notificationProps: {
@@ -33,20 +31,20 @@ export default defineConfig({
         description:
           'An update available, please refresh the page to get latest features and bug fixes!',
         buttonText: 'refresh',
-        dismissButtonText: 'cancel'
+        dismissButtonText: 'cancel',
       },
-      checkInterval: 60 * 1000
-    })
+      checkInterval: 60 * 1000,
+    }),
   ],
   clearScreen: false,
   resolve: {
     alias: {
-
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
   },
   build: {
-    target: 'esnext'
+    target: 'esnext',
+    sourcemap: true,
   },
-  base: '/'
+  base: '/',
 })
