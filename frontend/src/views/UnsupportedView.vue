@@ -28,6 +28,7 @@ body {
   font-weight: bold;
   font-size: 34px;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .subtitle {
