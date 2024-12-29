@@ -11,9 +11,10 @@ import { ArrowLeftIcon } from '@untitledui-icons/vue/solid'
         <h1 class="title">Whooops, this page is gone</h1>
         <p class="subtitle">This page is missing or you wrote the link incorrectly.</p>
       </div>
-      <ui-button @click="$router.push('/')"
-        ><ArrowLeftIcon class="arrow-icon" />Back to home</ui-button
-      >
+      <ui-button @click="$router.push('/')">
+        <ArrowLeftIcon class="arrow-icon" />
+        Back to home
+      </ui-button>
     </div>
   </main>
 </template>

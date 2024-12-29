@@ -3,7 +3,11 @@
     "target": "ES2022",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "skipLibCheck": true,
     "moduleResolution": "node",
     "allowImportingTsExtensions": false,
@@ -16,13 +20,23 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-		"baseUrl": ".",
+    "baseUrl": ".",
     "paths": {
-			"@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
-		"types": ["@intlify/unplugin-vue-i18n/messages"]
+    "types": [
+      "@intlify/unplugin-vue-i18n/messages"
+    ]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/**/*.svg"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/**/*.svg"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

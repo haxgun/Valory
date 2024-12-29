@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 interface DropdownOption {
   title: string
@@ -126,6 +126,7 @@ onBeforeUnmount(() => {
         padding: 12px 16px;
       }
     }
+
     &.dropdown-menu-up {
       top: auto;
       bottom: 100%;

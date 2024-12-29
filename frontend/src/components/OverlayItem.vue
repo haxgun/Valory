@@ -210,6 +210,7 @@ import IconValory from '@/components/icons/IconValory.vue'
             }
           }
         }
+
         .overlay__stats {
           display: flex;
           flex-direction: column;
@@ -221,6 +222,7 @@ import IconValory from '@/components/icons/IconValory.vue'
             font-weight: 600;
             line-height: 1;
             color: #ececec;
+
             &:nth-child(1) {
               font-weight: 700;
               color: rgb(255 215.14 112.62);
@@ -230,6 +232,7 @@ import IconValory from '@/components/icons/IconValory.vue'
       }
     }
   }
+
   .progressbar {
     width: 386px;
     height: 7px;

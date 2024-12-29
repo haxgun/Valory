@@ -77,9 +77,9 @@ const loseColor = ref({ hue: 0, rgb: { r: 255, g: 255, b: 255 } })
                     <p class="description">{{ $t('editor.profile.description') }}</p>
                   </div>
                   <div class="editor__input">
-                    <Button class="editor__button" @click="openProfileModal">{{
-                      $t('editor.profile.button')
-                    }}</Button>
+                    <Button class="editor__button" @click="openProfileModal"
+                      >{{ $t('editor.profile.button') }}
+                    </Button>
                   </div>
                   <ui-modal v-model="isProfileModalVisible">
                     <template #title>
@@ -252,6 +252,7 @@ const loseColor = ref({ hue: 0, rgb: { r: 255, g: 255, b: 255 } })
 
     .editor__container {
       flex: 1;
+
       .editor__container__header,
       .editor__settings {
         padding: calc(0.25 * 6rem);
@@ -310,6 +311,7 @@ const loseColor = ref({ hue: 0, rgb: { r: 255, g: 255, b: 255 } })
           font-weight: 600;
           font-size: calc(0.25 * 4.5rem);
         }
+
         .description {
           color: hsla(222deg 5% 62% / 1);
           font-size: 0.875rem;

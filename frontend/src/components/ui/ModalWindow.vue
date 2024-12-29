@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import IconClose from '@/components/icons/IconClose.vue'
-import { ref, watch, onBeforeUnmount } from 'vue'
+import { onBeforeUnmount, ref, watch } from 'vue'
 
 interface ModalProps {
   modelValue: boolean
