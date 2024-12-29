@@ -42,7 +42,6 @@ router.beforeEach((to, from, next) => {
   if (typeof to.name === 'string') {
     document.title = to.name
   }
-  next()
 
   const isMobile = window.matchMedia('(max-width: 768px)').matches
 
@@ -50,9 +49,9 @@ router.beforeEach((to, from, next) => {
     next({ name: 'Unsupported' })
   } else if (!isMobile && to.name === 'Unsupported') {
     next({ name: 'Home' })
-  } else {
-    next()
   }
+
+  next()
 })
 
 export default router
