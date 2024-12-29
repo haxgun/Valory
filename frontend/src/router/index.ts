@@ -50,9 +50,7 @@ router.beforeEach((to, from, next) => {
     next({ name: 'Unsupported' })
   } else if (!isMobile && to.name === 'Unsupported') {
     next({ name: 'Home' })
-  }
-
-  next()
+  } else next()
 })
 
 export default router
