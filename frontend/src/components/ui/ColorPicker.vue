@@ -270,12 +270,13 @@ onClickOutside(colorPickerRef, () => (openColorPickerRef.value = false))
     width: fit-content;
     border: none;
     outline: none;
+    font-size: 14px;
   }
 }
 
 .colorpicker-button {
-  height: 28px;
-  width: 28px;
+  height: 20px;
+  width: 20px;
   border-radius: 6px;
   border: none;
   box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.25);
@@ -289,7 +290,7 @@ onClickOutside(colorPickerRef, () => (openColorPickerRef.value = false))
   display: flex;
   flex-direction: column;
   gap: 18px;
-  max-width: 290px;
+  max-width: 260px;
   padding: 12px;
   background-color: hsl(0, 0%, 9%);
   border-radius: 6px;
@@ -438,8 +439,8 @@ onClickOutside(colorPickerRef, () => (openColorPickerRef.value = false))
   justify-content: center;
 
   div {
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     cursor: pointer;
