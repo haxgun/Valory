@@ -68,6 +68,11 @@
         "description": "Switch it if you want to remove the statistics"
       }
     },
+    "url": {
+      "title": "Overlay URL",
+      "description": "Copypaste this into your streaming app (in OBS Studio: Sources → Browser).",
+      "dimensions": "Dimensions: 386 x 113",
+    },
     "preview": {
       "title": "Your overlay will display here after you set up your profile"
     }

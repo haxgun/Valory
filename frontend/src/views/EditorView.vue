@@ -92,7 +92,12 @@ const loseColor = ref({ hue: 0, rgb: { r: 255, g: 255, b: 255 } })
                           <p class="description">{{ $t('editor.profile.riotId.description') }}</p>
                         </div>
                         <div class="editor__input">
-                          <Input v-model="form.riotId" placeholder="Riot ID" style="flex: 2" />
+                          <Input
+                            v-model="form.riotId"
+                            placeholder="Riot ID"
+                            style="flex: 2"
+                            autocomplete="off"
+                          />
                         </div>
                         <span class="under_description" @click="generateRandomId">{{
                           $t('editor.profile.riotId.random')
@@ -113,6 +118,7 @@ const loseColor = ref({ hue: 0, rgb: { r: 255, g: 255, b: 255 } })
                             v-model="form.hdevApiKey"
                             placeholder="HDEV-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
                             style="flex: 2"
+                            autocomplete="off"
                           />
                         </div>
                         <span class="under_description">{{
@@ -214,6 +220,18 @@ const loseColor = ref({ hue: 0, rgb: { r: 255, g: 255, b: 255 } })
                     </div>
                   </ui-modal>
                 </div>
+                <div class="editor__settings">
+                  <div class="editor__settings__header">
+                    <h1 class="title">{{ $t('editor.url.title') }}</h1>
+                    <p class="description">{{ $t('editor.url.description') }}</p>
+                  </div>
+                  <div class="editor__input">
+                    <Input placeholder="Overlay URL" style="flex: 2" autocomplete="off" />
+                  </div>
+                  <div class="editor__settings__footer">
+                    <p>{{ $t('editor.url.dimensions') }}</p>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="preview">
@@ -305,6 +323,13 @@ const loseColor = ref({ hue: 0, rgb: { r: 255, g: 255, b: 255 } })
           display: flex;
           flex-direction: column;
           gap: 12px;
+        }
+
+        .editor__settings__footer {
+          p {
+            color: hsl(222deg 3.53% 27.53%);
+            font-size: 0.875rem;
+          }
         }
 
         .title {
