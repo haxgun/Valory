@@ -33,7 +33,7 @@ const router = createRouter({
     {
       path: '/unsupported',
       name: 'Unsupported',
-      component: () => import('@/views/Unsupported.vue'), // Страница с предупреждением
+      component: () => import('@/views/UnsupportedView.vue'), // Страница с предупреждением
     },
   ],
 })
