@@ -17,6 +17,7 @@ const router = createRouter({
       path: '/overlay/:overlayID',
       name: 'Overlay',
       component: () => import('@/views/OverlayView.vue'),
+      meta: { hideHighlight: true },
       props: (route) => ({ overlayID: route.params.overlayID }),
     },
     {

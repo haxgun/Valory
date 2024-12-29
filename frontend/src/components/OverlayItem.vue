@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import IconValory from '@/components/icons/IconValory.vue'
+
+interface OverlayProps {
+  valoryLogo?: boolean
+}
+
+defineProps<OverlayProps>()
 </script>
 
 <template>
   <div class="overlay">
-    <div class="logo">
+    <div v-if="valoryLogo" class="logo">
       <IconValory :size="16" />
       <span class="text">VALORY.SU</span>
     </div>
@@ -76,8 +82,8 @@ import IconValory from '@/components/icons/IconValory.vue'
           </section>
         </div>
       </div>
+      <div class="progressbar"></div>
     </div>
-    <div class="progressbar"></div>
   </div>
 </template>
 
@@ -222,11 +228,6 @@ import IconValory from '@/components/icons/IconValory.vue'
             font-weight: 600;
             line-height: 1;
             color: #ececec;
-
-            &:nth-child(1) {
-              font-weight: 700;
-              color: rgb(255 215.14 112.62);
-            }
           }
         }
       }
@@ -237,7 +238,7 @@ import IconValory from '@/components/icons/IconValory.vue'
     width: 386px;
     height: 7px;
     left: 0;
-    top: 129px;
+    bottom: 0;
     position: absolute;
     background: rgba(0 255 226.67 / 0.9);
     border-bottom-right-radius: 8px;
