@@ -1,24 +1,12 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
-interface DropdownOption {
-  title: string
-  key: string | number
-}
-
 const props = defineProps<{
-  options: DropdownOption[]
   size?: 'small' | 'medium' | 'large'
-  icons?: True | False
-}>()
-
-const emit = defineEmits<{
-  (e: 'select', key: string | number): void
 }>()
 
 const isOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
-const selectedKey = ref<string | number | null>(null)
 const isDropdownUp = ref(false)
 
 const toggleDropdown = () => {
@@ -34,12 +22,6 @@ const closeDropdown = (event: Event) => {
   if (dropdownRef.value && !dropdownRef.value.contains(event.target as Node)) {
     isOpen.value = false
   }
-}
-
-const handleSelect = (key: string | number) => {
-  selectedKey.value = key
-  emit('select', key)
-  isOpen.value = false
 }
 
 const dropdownClass = computed(() => `dropdown-menu dropdown-menu--${props.size ?? 'medium'}`)
@@ -65,22 +47,20 @@ onBeforeUnmount(() => {
           <slot name="title"></slot>
         </li>
         <li v-if="$slots.title" class="separator"></li>
-        <li
-          v-for="option in options"
-          :key="option.key"
-          class="dropdown-item"
-          :class="{ active: selectedKey === option.key }"
-          @click="handleSelect(option.key)"
-        >
-          <Icon v-if="icons" :icon="option.icon" width="18" height="18" />
-          {{ option.title }}
-        </li>
+        <slot
+          @click="
+            () => {
+              isOpen.value = false
+              $emit('select', event.target.dataset.key)
+            }
+          "
+        ></slot>
       </ul>
     </Transition>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .dropdown {
   position: relative;
   display: inline-block;

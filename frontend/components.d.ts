@@ -10,7 +10,7 @@ declare module 'vue' {
     ASpin: (typeof import('ant-design-vue/es'))['Spin']
     Button: (typeof import('./src/components/ui/ButtonUI.vue'))['default']
     ColorPicker: (typeof import('./src/components/ui/ColorPicker.vue'))['default']
-    DropdownMenu: (typeof import('./src/components/ui/DropdownMenu.vue'))['default']
+    DropdownMenu: (typeof import('./src/components/ui/DropdownMenu/DropdownMenu.vue'))['default']
     Footer: (typeof import('./src/components/Footer.vue'))['default']
     FooterItem: (typeof import('./src/components/FooterItem.vue'))['default']
     Highlights: (typeof import('./src/components/Highlights.vue'))['default']

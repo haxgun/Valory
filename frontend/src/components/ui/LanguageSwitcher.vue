@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import DropdownMenu from '@/components/ui/DropdownMenu.vue'
+import DropdownMenu from '@/components/ui/DropdownMenu/DropdownMenu.vue'
+import DropdownMenuItem from '@/components/ui/DropdownMenu/DropdownMenuItem.vue'
+import { AVAILABLE_LOCALES } from '@/i18n'
 import { useLocalStorage } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 
-const { locale, availableLocales } = useI18n<{ locale: string; availableLocales: string[] }>()
-const localStorageLocale = useLocalStorage<string>('valoryLocale', 'us')
-
-const handleSelectLocale = (selectedLocale: string) => {
-  locale.value = selectedLocale
-  localStorageLocale.value = selectedLocale
-}
+const { locale } = useI18n<{ locale: string; availableLocales: string[] }>()
+const currentLocale = useLocalStorage<string>('valory-locale', 'en')
 </script>
 
 <template>
   <div>
-    <DropdownMenu
-      :options="
-        availableLocales.map((l) => ({
-          title: $t('languageName', {}, { locale: l }),
-          key: l,
-          icon: `flag:${l}-4x3`,
-        }))
-      "
-      icons="True"
-      size="medium"
-      @select="handleSelectLocale"
-    >
+    <DropdownMenu size="medium">
+      <DropdownMenuItem
+        v-for="lang of AVAILABLE_LOCALES"
+        :key="lang.code"
+        @select="
+          () => {
+            locale = lang.code
+            currentLocale = lang.code
+          }
+        "
+        :checked="currentLocale === lang.code"
+      >
+        <Icon :icon="`flag:${lang.flag}-4x3`" width="18" height="18" />
+        {{ lang.name }}
+      </DropdownMenuItem>
       <template #title>
         {{ $t('landing.languageSwitcher') }}
       </template>
