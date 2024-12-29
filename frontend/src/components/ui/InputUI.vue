@@ -10,6 +10,7 @@ defineProps(['modelValue', 'placeholder'])
         :placeholder="placeholder"
         id="text-input"
         type="text"
+        autocomplete="off"
         @input="$emit('update:modelValue', $event.target.value)"
       />
     </label>
