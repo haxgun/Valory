@@ -1,7 +1,6 @@
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
 import { fileURLToPath, URL } from 'node:url'
 import path from 'path'
 import { defineConfig } from 'vite'
@@ -17,7 +16,6 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    vueJsx(),
     VueI18nPlugin({
       include: [path.resolve(__dirname, './src/locales/**')],
       strictMessage: false,
