@@ -49,7 +49,7 @@ router.beforeEach((to, from, next) => {
   if (isMobile && to.name !== 'Unsupported') {
     next({ name: 'Unsupported' })
   } else if (!isMobile && to.name === 'Unsupported') {
-    next({ name: 'Home' })
+    next({ name: 'VALORY' })
   } else next()
 })
 
