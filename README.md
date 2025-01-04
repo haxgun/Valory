@@ -1,16 +1,16 @@
 <div align="center">
 
+[![Valory](https://github.com/haxgun/Valory/raw/v2/.media/header.png)](https://overlay.haxgun.ru/)
+
+**Valory** is a powerful and customizable rank overlay tool for Valorant streamers.
+<br>Enhance your stream with sleek visuals and keep your viewers engaged with real-time stats.
+
 [![CI/CD](https://github.com/haxgun/valory/actions/workflows/master.yml/badge.svg?labelColor=green&logo=x&logoColor=white&style=flat-square)](https://github.com/haxgun/valory/actions/workflows/master.yml)
 [![GitHub License](https://img.shields.io/github/license/haxgun/valory?color=green)](https://github.com/haxgun/valory/blob/main/LICENSE)
 [![Website](https://img.shields.io/website?url=https://valory.su)](https://overlay.haxgun.ru/)
 [![Stars](https://img.shields.io/github/stars/haxgun/Valory?style=flat&color=green)](https://github.com/haxgun/valory/stargazers)
 [![Forks](https://img.shields.io/github/forks/haxgun/Valory?style=flat&color=green)](https://github.com/haxgun/Valory/forks)
 [![Issues](https://img.shields.io/github/issues/haxgun/Valory?style=flat)](https://github.com/haxgun/Valory/issues)
-
-[![Valory](https://github.com/haxgun/Valory/raw/v2/.media/header.png)](https://overlay.haxgun.ru/)
-
-**Valory** is a powerful and customizable rank overlay tool for Valorant streamers.
-<br>Enhance your stream with sleek visuals and keep your viewers engaged with real-time stats.
 
 </div>
 
