@@ -47,16 +47,16 @@ const handleClick = (event: Event) => {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-color: #dfe1e4;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 72px;
     border-style: none;
     flex-shrink: 0;
     height: 20px;
     margin: 0;
     position: relative;
-    width: 30px;
+    width: 36px;
     box-shadow: none;
-    transition: all 0.1s ease-out;
+    transition: all 0.15s ease-out;
 
     &:before {
       content: '';
@@ -65,32 +65,27 @@ const handleClick = (event: Event) => {
     }
 
     &:after {
-      transition: all 0.1s ease-out;
-      background-color: #fff;
+      transition: all 0.15s ease-out;
+      background-color: #171717;
       border-radius: 50%;
       content: '';
-      height: 14px;
-      left: 3px;
+      height: 16px;
+      width: 16px;
+      left: 2px;
       position: absolute;
-      top: 3px;
-      width: 14px;
+      top: 2px;
     }
 
     &:hover {
-      background-color: #c9cbcd;
       transition-duration: 0s;
     }
 
     &:checked {
-      background-color: #6e79d6;
+      box-shadow: 0 0 8px 1px rgba(255, 255, 255, 0.1);
+      background-color: #fff;
 
       &:after {
-        background-color: #fff;
-        left: 13px;
-      }
-
-      &:hover {
-        background-color: #535db3;
+        left: 18px;
       }
     }
   }
