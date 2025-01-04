@@ -8,11 +8,7 @@ import { ref } from 'vue'
 const switchProfessional = ref(false)
 
 // Цветовая модель для ColorPicker
-const color = ref({
-  hue: 120,
-  alpha: 22.014388489208635,
-  rgb: { r: 255, g: 255, b: 255 },
-})
+const color = ref('#ffffff')
 </script>
 
 <template>
@@ -20,7 +16,7 @@ const color = ref({
     <h1>Professional Mode: {{ switchProfessional }}</h1>
     <Switch name="switch" v-model:checked="switchProfessional" />
     <Button variant="outline" @click="$router.push('/editor')" :disabled="true"> TEST</Button>
-    <ColorPicker v-model="color" />
+    <ColorPicker v-model="color"/>
   </div>
 </template>
 
