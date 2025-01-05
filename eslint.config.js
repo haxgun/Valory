@@ -1,19 +1,29 @@
-import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
-import vueTsEslintConfig from '@vue/eslint-config-typescript'
-import pluginVue from 'eslint-plugin-vue'
+import vueParser from 'vue-eslint-parser';
+import pluginVue from 'eslint-plugin-vue';
+import tsParser from '@typescript-eslint/parser';
 
 export default [
   {
-    name: 'app/files-to-lint',
-    files: ['**/*.{ts,mts,tsx,vue}'],
+    files: ['**/*.ts', '**/*.tsx', '**/*.d.ts'],
+    languageOptions: {
+      parser: tsParser,
+    },
   },
-
   {
-    name: 'app/files-to-ignore',
-    ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
+    files: ['**/*.vue'],
+    languageOptions: {
+      parser: vueParser,
+      parserOptions: {
+        parser: tsParser,
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+    },
+    plugins: {
+      vue: pluginVue,
+    },
+    rules: {
+      'vue/multi-word-component-names': 'off',
+    },
   },
-
-  ...pluginVue.configs['flat/essential'],
-  ...vueTsEslintConfig(),
-  skipFormatting,
-]
+];
