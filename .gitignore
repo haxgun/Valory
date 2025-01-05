@@ -42,7 +42,6 @@ fabric.properties
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/vcs.xml
 /.idea/workspace.xml
-# Logs
 logs
 *.log
 npm-debug.log*
@@ -59,7 +58,6 @@ coverage
 *.local
 /cypress/videos/
 /cypress/screenshots/
-# Editor directories and files
 .idea
 *.suo
 *.ntvs*
@@ -69,3 +67,5 @@ coverage
 package-lock.json
 pnpm-lock.yaml
 .env
+*.tsbuildinfo
+

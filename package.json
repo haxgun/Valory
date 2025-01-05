@@ -18,8 +18,8 @@
     "build-only": "vite build",
     "preview": "vite preview",
     "serve": "vite build && vite preview",
-    "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "lint": "eslint frontend --fix",
+    "format": "prettier --write src"
   },
   "dependencies": {
     "@iconify/vue": "^4.1.2",
