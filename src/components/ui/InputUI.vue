@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 defineProps(['modelValue', 'placeholder'])
 </script>
 
@@ -6,11 +6,11 @@ defineProps(['modelValue', 'placeholder'])
   <div class="input">
     <label class="label_input" for="text-input">
       <input
-        :value="modelValue"
-        :placeholder="placeholder"
         id="text-input"
-        type="text"
+        :placeholder="placeholder"
+        :value="modelValue"
         autocomplete="off"
+        type="text"
         @input="$emit('update:modelValue', $event.target.value)"
       />
     </label>

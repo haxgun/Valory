@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 defineProps({
   size: {
     type: Number,
@@ -10,10 +10,10 @@ defineProps({
 <template>
   <span>
     <svg
-      :width="size"
       :height="size"
-      viewBox="0 0 24 24"
+      :width="size"
       fill="none"
+      viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -22,11 +22,11 @@ defineProps({
       />
       <path
         d="M9.5 10.4L10.9286 12L14.5 8"
-        stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
+        stroke-width="1.5"
       />
-      <path d="M7.5 15.5H16.5" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M7.5 15.5H16.5" stroke-linecap="round" stroke-width="1.5" />
     </svg>
   </span>
 </template>

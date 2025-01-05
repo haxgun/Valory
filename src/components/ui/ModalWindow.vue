@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import IconClose from '@/components/icons/IconClose.vue'
 import { onBeforeUnmount, ref, watch } from 'vue'
 

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 defineProps({
   hdevApiKey: {
     type: String,
@@ -16,7 +16,7 @@ defineProps({
     <div class="preview__container">
       <div class="preview__component">
         <slot></slot>
-        <div class="text" v-if="!(hdevApiKey && riotId)">
+        <div v-if="!(hdevApiKey && riotId)" class="text">
           {{ $t('editor.preview.title') }}
         </div>
       </div>

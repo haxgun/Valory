@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import Overlay from '@/components/OverlayItem.vue'
 import Button from '@/components/ui/ButtonUI.vue'
 import ColorPicker from '@/components/ui/ColorPicker.vue'
@@ -66,7 +66,7 @@ const loseColor = ref('#ffffff')
 <template>
   <div class="editor">
     <div class="editor__body">
-      <div class="editor__container" key="form">
+      <div key="form" class="editor__container">
         <HeaderEditor />
         <div class="editor__container__body">
           <SectionSettingsEditor :is-modal="true">

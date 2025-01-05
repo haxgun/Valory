@@ -1,10 +1,10 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 const props = defineProps<{
   checked: boolean
 }>()
 </script>
 <template>
-  <li class="dropdown-item" :class="{ active: props.checked }" @click="$emit('select')">
+  <li :class="{ active: props.checked }" class="dropdown-item" @click="$emit('select')">
     <slot></slot>
   </li>
 </template>

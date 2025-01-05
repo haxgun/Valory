@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import IconGithub from '@/components/icons/IconGithub.vue'
 import IconHeart from '@/components/icons/IconHeart.vue'
 import IconTelegram from '@/components/icons/IconTelegram.vue'
@@ -9,26 +9,26 @@ import LanguageSwitcher from '@/components/ui/LanguageSwitcher.vue'
 <template>
   <footer>
     <span class="copyright"
-      >{{ $t('landing.footer') }} <IconHeart style="fill: red" :size="24" /> © 2023 VALORY</span
+      >{{ $t('landing.footer') }} <IconHeart :size="24" style="fill: red" /> © 2023 VALORY</span
     >
     <ul class="socials">
       <li class="social">
-        <a target="__blank" href="https://www.twitch.tv/magicxcmd">
+        <a href="https://www.twitch.tv/magicxcmd" target="__blank">
           <IconTwitch :size="18" />
         </a>
       </li>
       <li class="social">
-        <a target="__blank" href="https://github.com/haxgun/valory">
+        <a href="https://github.com/haxgun/valory" target="__blank">
           <IconGithub :size="18" />
         </a>
       </li>
       <li class="social">
-        <a target="__blank" href="https://t.me/magicxcmd">
+        <a href="https://t.me/magicxcmd" target="__blank">
           <IconTelegram :size="18" />
         </a>
       </li>
       <li class="social">
-        <a target="__blank" class="heart" href="https://www.donationalerts.com/r/haxgun">
+        <a class="heart" href="https://www.donationalerts.com/r/haxgun" target="__blank">
           <IconHeart :size="18" />
         </a>
       </li>

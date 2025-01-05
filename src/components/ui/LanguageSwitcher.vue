@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import DropdownMenu from '@/components/ui/DropdownMenu/DropdownMenu.vue'
 import DropdownMenuItem from '@/components/ui/DropdownMenu/DropdownMenuItem.vue'
 import { AVAILABLE_LOCALES } from '@/i18n'
@@ -15,22 +15,22 @@ const currentLocale = useLocalStorage<string>('valory-locale', 'en')
       <DropdownMenuItem
         v-for="lang of AVAILABLE_LOCALES"
         :key="lang.code"
+        :checked="currentLocale === lang.code"
         @select="
           () => {
             locale = lang.code
             currentLocale = lang.code
           }
         "
-        :checked="currentLocale === lang.code"
       >
-        <Icon :icon="`flag:${lang.flag}-4x3`" width="18" height="18" />
+        <Icon :icon="`flag:${lang.flag}-4x3`" height="18" width="18" />
         {{ lang.name }}
       </DropdownMenuItem>
       <template #title>
         {{ $t('landing.languageSwitcher') }}
       </template>
       <template #button>
-        <Icon :icon="`flag:${$t('flag')}-4x3`" width="18" height="18" />
+        <Icon :icon="`flag:${$t('flag')}-4x3`" height="18" width="18" />
       </template>
     </DropdownMenu>
   </div>

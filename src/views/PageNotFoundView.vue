@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import UiButton from '@/components/ui/ButtonUI.vue'
 import { ArrowLeftIcon } from '@untitledui-icons/vue/solid'
 </script>
@@ -7,7 +7,7 @@ import { ArrowLeftIcon } from '@untitledui-icons/vue/solid'
   <main>
     <div class="main__body">
       <div class="main__container">
-        <img class="s404" src="/404.png" alt="" />
+        <img alt="" class="s404" src="/404.png" />
         <h1 class="title">Whooops, this page is gone</h1>
         <p class="subtitle">This page is missing or you wrote the link incorrectly.</p>
       </div>

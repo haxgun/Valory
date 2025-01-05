@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import EditorMain from '@/components/ui/Editor/EditorMain.vue'
 </script>
 

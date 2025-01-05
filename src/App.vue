@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import Highlights from '@/components/HighlightsItem.vue'
 import IconLoading from '@/components/icons/IconLoading.vue'
 import { ref } from 'vue'
@@ -15,13 +15,13 @@ router.isReady().finally(() => {
 
 <template>
   <Highlights v-if="!$route.meta.hideHighlight" />
-  <Transition name="fade" mode="out-in">
-    <div key="1" v-if="!isRouterReady" class="app-loader">
+  <Transition mode="out-in" name="fade">
+    <div v-if="!isRouterReady" key="1" class="app-loader">
       <IconLoading />
     </div>
-    <div key="2" v-else>
+    <div v-else key="2">
       <router-view v-slot="{ Component }">
-        <transition name="slide-fade" mode="out-in">
+        <transition mode="out-in" name="slide-fade">
           <component :is="Component" :key="$route.path"></component>
         </transition>
       </router-view>

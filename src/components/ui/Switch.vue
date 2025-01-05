@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 interface Props {
   name?: string
   value?: string
@@ -28,12 +28,12 @@ const handleClick = (event: Event) => {
 <template>
   <div class="switch__container">
     <input
-      type="checkbox"
-      class="switch"
-      :name="name"
-      :value="value"
       :checked="checked"
       :disabled="disabled"
+      :name="name"
+      :value="value"
+      class="switch"
+      type="checkbox"
       @input="handleClick"
     />
   </div>

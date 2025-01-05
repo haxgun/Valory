@@ -1,8 +1,8 @@
 import messages from '@intlify/unplugin-vue-i18n/messages'
 import { useLocalStorage } from '@vueuse/core'
-import { watch, nextTick } from 'vue'
-import { createI18n } from 'vue-i18n'
+import { nextTick, watch } from 'vue'
 import type { Locale } from 'vue-i18n'
+import { createI18n } from 'vue-i18n'
 
 const getResourceMessages = (resource: any) => resource.default || resource
 

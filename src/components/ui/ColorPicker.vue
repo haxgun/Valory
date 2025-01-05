@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { onClickOutside } from '@vueuse/core'
 import tinycolor from 'tinycolor2'
-import { watch, ref, reactive, onMounted } from 'vue'
+import { onMounted, reactive, ref, watch } from 'vue'
 
 interface RGB {
   r: number
@@ -171,39 +171,39 @@ onClickOutside(colorPickerRef, () => (openColorPickerRef.value = false))
 </script>
 
 <template>
-  <div class="color-picker-component" ref="colorPickerRef">
+  <div ref="colorPickerRef" class="color-picker-component">
     <div class="color-selector">
       <button
         :style="{
           backgroundColor: hex,
         }"
-        @click="openColorPickerToggle"
         class="colorpicker-button"
+        @click="openColorPickerToggle"
       ></button>
-      <input type="text" v-model="hex" @input="updateColorFromHex" />
+      <input v-model="hex" type="text" @input="updateColorFromHex" />
     </div>
     <Transition name="slide-fade">
-      <div v-if="openColorPickerRef" class="color-picker" :class="{ up: isColorPickerUp }">
+      <div v-if="openColorPickerRef" :class="{ up: isColorPickerUp }" class="color-picker">
         <div
-          class="saturation"
           ref="saturationRef"
-          @mousedown="startSaturationDrag"
           :style="{ backgroundColor: `hsl(${hue}, 100%, 50%)` }"
+          class="saturation"
+          @mousedown="startSaturationDrag"
         >
           <div
-            class="saturation-pointer"
             :style="{
               left: `${saturation * 100}%`,
               top: `${(1 - brightness) * 100}%`,
               backgroundColor: hex,
             }"
+            class="saturation-pointer"
           ></div>
           <div class="saturation-white"></div>
           <div class="saturation-black"></div>
         </div>
 
-        <div class="hue" ref="hueRef" @mousedown="startHueDrag">
-          <div class="hue-pointer" :style="{ left: `calc(${(hue / 360) * 100}% - 7px)` }"></div>
+        <div ref="hueRef" class="hue" @mousedown="startHueDrag">
+          <div :style="{ left: `calc(${(hue / 360) * 100}% - 7px)` }" class="hue-pointer"></div>
         </div>
 
         <div class="inputs">
@@ -233,8 +233,8 @@ onClickOutside(colorPickerRef, () => (openColorPickerRef.value = false))
           <div
             v-for="color in presetColors"
             :key="color"
-            class="preset-color"
             :style="{ backgroundColor: color }"
+            class="preset-color"
             @click="setPresetColor(color)"
           ></div>
         </div>

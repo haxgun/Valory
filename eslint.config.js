@@ -1,6 +1,6 @@
-import vueParser from 'vue-eslint-parser';
-import pluginVue from 'eslint-plugin-vue';
-import tsParser from '@typescript-eslint/parser';
+import tsParser from '@typescript-eslint/parser'
+import pluginVue from 'eslint-plugin-vue'
+import vueParser from 'vue-eslint-parser'
 
 export default [
   {
@@ -26,4 +26,4 @@ export default [
       'vue/multi-word-component-names': 'off',
     },
   },
-];
+]

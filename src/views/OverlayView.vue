@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import Overlay from '@/components/OverlayItem.vue'
 import { useRoute } from 'vue-router'
 

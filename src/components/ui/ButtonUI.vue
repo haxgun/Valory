@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 interface ButtonProps {
   variant?: string
   disabled?: boolean
@@ -9,7 +9,7 @@ defineProps<ButtonProps>()
 </script>
 
 <template>
-  <button :type="type" :disabled="disabled" :class="[variant, { disabled: disabled }]">
+  <button :class="[variant, { disabled: disabled }]" :disabled="disabled" :type="type">
     <slot></slot>
   </button>
 </template>

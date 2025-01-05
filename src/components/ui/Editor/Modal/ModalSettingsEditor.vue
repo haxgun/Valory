@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { useSlots } from 'vue'
 
 const slots = useSlots()
@@ -19,7 +19,7 @@ const slots = useSlots()
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .editor__settings {
   padding: calc(0.25 * 6rem);
   border-bottom: 1px solid hsla(222deg 6% 30% / 0.25);

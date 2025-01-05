@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import IconValory from '@/components/icons/IconValory.vue'
 
 interface OverlayProps {
@@ -18,7 +18,7 @@ defineProps<OverlayProps>()
       <div class="overlay__content">
         <div class="overlay__left">
           <div class="rank__img">
-            <img width="55px" src="/src/assets/ranks/26.webp" />
+            <img src="/src/assets/ranks/26.webp" width="55px" />
           </div>
         </div>
         <div class="overlay__right">
@@ -30,10 +30,10 @@ defineProps<OverlayProps>()
                 +5
                 <span>
                   <svg
-                    width="6"
+                    fill="none"
                     height="7"
                     viewBox="0 0 6 7"
-                    fill="none"
+                    width="6"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -57,10 +57,10 @@ defineProps<OverlayProps>()
                 +5
                 <span>
                   <svg
-                    width="6"
+                    fill="none"
                     height="7"
                     viewBox="0 0 6 7"
-                    fill="none"
+                    width="6"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path

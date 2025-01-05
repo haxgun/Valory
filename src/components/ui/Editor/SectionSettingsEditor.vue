@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { useSlots } from 'vue'
 
 const slots = useSlots()
@@ -8,7 +8,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="editor__settings" :class="{ modal: props.isModal }">
+  <div :class="{ modal: props.isModal }" class="editor__settings">
     <div class="editor__settings__header">
       <h1 class="title">
         <slot name="title"></slot>
@@ -26,7 +26,7 @@ const props = defineProps({
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 h1,
 p {
   margin: 0;

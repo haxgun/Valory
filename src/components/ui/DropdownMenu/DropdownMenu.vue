@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 const props = defineProps<{
@@ -36,8 +36,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="dropdown" ref="dropdownRef">
-    <button @click="toggleDropdown" class="dropdown-button">
+  <div ref="dropdownRef" class="dropdown">
+    <button class="dropdown-button" @click="toggleDropdown">
       <slot name="button"></slot>
     </button>
     <!-- Используем v-if для анимации -->
