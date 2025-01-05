@@ -2,15 +2,15 @@
 import Overlay from '@/components/OverlayItem.vue'
 import Button from '@/components/ui/ButtonUI.vue'
 import ColorPicker from '@/components/ui/ColorPicker.vue'
+import HeaderEditor from '@/components/ui/Editor/HeaderEditor.vue'
+import ModalSettingsEditor from '@/components/ui/Editor/Modal/ModalSettingsEditor.vue'
+import PreviewEditor from '@/components/ui/Editor/PreviewEditor.vue'
+import SectionSettingsEditor from '@/components/ui/Editor/SectionSettingsEditor.vue'
 import Input from '@/components/ui/InputUI.vue'
 import UiModal from '@/components/ui/ModalWindow.vue'
 import Switch from '@/components/ui/Switch.vue'
 import riotIdsData from '@/data/riotIds.json'
 import { onMounted, ref, watch } from 'vue'
-import HeaderEditor from "@/components/ui/Editor/HeaderEditor.vue";
-import PreviewEditor from "@/components/ui/Editor/PreviewEditor.vue";
-import SectionSettingsEditor from "@/components/ui/Editor/SectionSettingsEditor.vue";
-import ModalSettingsEditor from "@/components/ui/Editor/Modal/ModalSettingsEditor.vue";
 
 interface Form {
   riotId: string
@@ -230,10 +230,7 @@ const loseColor = ref('#ffffff')
           </ui-modal>
         </div>
       </div>
-      <PreviewEditor
-        :hdevApiKey="form.hdevApiKey"
-        :riotId="form.riotId"
-      >
+      <PreviewEditor :hdevApiKey="form.hdevApiKey" :riotId="form.riotId">
         <Overlay v-if="form.hdevApiKey && form.riotId" />
       </PreviewEditor>
     </div>
@@ -241,7 +238,6 @@ const loseColor = ref('#ffffff')
 </template>
 
 <style lang="scss" scoped>
-
 .title {
   font-weight: 600;
   font-size: calc(0.25 * 4.5rem);

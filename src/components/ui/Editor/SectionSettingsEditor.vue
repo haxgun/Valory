@@ -3,8 +3,8 @@ import { useSlots } from 'vue'
 
 const slots = useSlots()
 const props = defineProps({
-  isModal: { type: Boolean, default: false }
-});
+  isModal: { type: Boolean, default: false },
+})
 </script>
 
 <template>

@@ -18,7 +18,7 @@
     "build-only": "vite build",
     "preview": "vite preview",
     "serve": "vite build && vite preview",
-    "lint": "eslint frontend --fix",
+    "lint": "eslint . --fix",
     "format": "prettier --write src"
   },
   "dependencies": {
@@ -46,6 +46,8 @@
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.9.3",
+    "@typescript-eslint/eslint-plugin": "^8.19.0",
+    "@typescript-eslint/parser": "^8.19.0",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/eslint-config-prettier": "^10.1.0",
     "@vue/eslint-config-typescript": "^14.1.3",
@@ -61,6 +63,7 @@
     "typescript": "~5.6.3",
     "unplugin-vue-components": "^0.25.2",
     "vite": "^6.0.1",
+    "vue-eslint-parser": "^9.4.3",
     "vue-tsc": "^2.1.10"
   }
 }
