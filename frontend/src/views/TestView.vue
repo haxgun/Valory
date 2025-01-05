@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Button from '@/components/ui/ButtonUI.vue'
 import ColorPicker from '@/components/ui/ColorPicker.vue'
-import Switch from '@/components/ui/SwitchUI.vue'
+import Switch from '@/components/ui/Switch.vue'
 import { ref } from 'vue'
 
 // Переключатель профессионального режима

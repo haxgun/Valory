@@ -42,21 +42,23 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="isVisible" class="modal-overlay" @click="close">
-    <div class="modal-content" @click.stop>
-      <div class="modal-header">
-        <h1 class="title">
-          <slot name="title">{{ props.title }}</slot>
-        </h1>
-        <button class="close-button" @click="close">
-          <IconClose :width="12" />
-        </button>
-      </div>
-      <div class="modal-body">
-        <slot />
+  <Teleport to="body">
+    <div v-if="isVisible" class="modal-overlay" @click="close">
+      <div class="modal-content" @click.stop>
+        <div class="modal-header">
+          <h1 class="title">
+            <slot name="title">{{ props.title }}</slot>
+          </h1>
+          <button class="close-button" @click="close">
+            <IconClose :width="12" />
+          </button>
+        </div>
+        <div class="modal-body">
+          <slot />
+        </div>
       </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <style scoped>

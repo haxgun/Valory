@@ -16,6 +16,11 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+h1,
+p {
+  margin: 0;
+}
+
 main {
   display: flex;
   place-items: center;

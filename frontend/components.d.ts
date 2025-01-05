@@ -36,7 +36,7 @@ declare module 'vue' {
     OverlayItem: (typeof import('./src/components/OverlayItem.vue'))['default']
     RouterLink: (typeof import('vue-router'))['RouterLink']
     RouterView: (typeof import('vue-router'))['RouterView']
-    Switch: (typeof import('./src/components/ui/SwitchUI.vue'))['default']
+    Switch: (typeof import('./src/components/ui/Switch.vue'))['default']
     UiButton: (typeof import('./src/components/ui/uiButton.vue'))['default']
     UiColorPicker: (typeof import('./src/components/ui/uiColorPicker.vue'))['default']
     UiInput: (typeof import('./src/components/ui/uiInput.vue'))['default']
