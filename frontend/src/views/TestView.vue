@@ -16,7 +16,7 @@ const color = ref('#ffffff')
     <h1>Professional Mode: {{ switchProfessional }}</h1>
     <Switch name="switch" v-model:checked="switchProfessional" />
     <Button variant="outline" @click="$router.push('/editor')" :disabled="true"> TEST</Button>
-    <ColorPicker v-model="color"/>
+    <ColorPicker v-model="color" />
   </div>
 </template>
 

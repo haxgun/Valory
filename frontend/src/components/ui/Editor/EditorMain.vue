@@ -229,7 +229,9 @@ const loseColor = ref('#ffffff')
         <div class="preview__container">
           <div class="preview__component">
             <Overlay v-if="form.hdevApiKey && form.riotId" />
-            <div class="text" v-if="!(form.hdevApiKey && form.riotId)">{{ $t('editor.preview.title') }}</div>
+            <div class="text" v-if="!(form.hdevApiKey && form.riotId)">
+              {{ $t('editor.preview.title') }}
+            </div>
           </div>
         </div>
       </div>

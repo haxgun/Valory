@@ -1,6 +1,5 @@
 <script setup lang="ts">
-
-import EditorMain from "@/components/ui/Editor/EditorMain.vue";
+import EditorMain from '@/components/ui/Editor/EditorMain.vue'
 </script>
 
 <template>
@@ -12,4 +11,3 @@ import EditorMain from "@/components/ui/Editor/EditorMain.vue";
     </div>
   </main>
 </template>
-
