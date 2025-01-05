@@ -91,7 +91,7 @@ const handleClick = (event: Event) => {
   }
 
   input[type='checkbox'] {
-    cursor: default;
+    cursor: pointer;
   }
 
   &:focus:not(.focus-visible) {
