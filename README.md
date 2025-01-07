@@ -6,8 +6,6 @@
     <br />
     <a href="https://valory.su"><strong>valory.su »</strong></a>
     <br />
-  </p>
-</div>
 
 ![valory](.media/screenshot.png)
 
@@ -17,6 +15,8 @@
 [![Stars](https://img.shields.io/github/stars/haxgun/Valory?style=flat&color=green)](https://github.com/haxgun/valory/stargazers)
 [![Forks](https://img.shields.io/github/forks/haxgun/Valory?style=flat&color=green)](https://github.com/haxgun/Valory/forks)
 [![Issues](https://img.shields.io/github/issues/haxgun/Valory?style=flat)](https://github.com/haxgun/Valory/issues)
+  </p>
+</div>
 
 ## ✨ Features
 
