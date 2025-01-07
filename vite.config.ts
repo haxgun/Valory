@@ -33,8 +33,47 @@ export default defineConfig({
       manifest: {
         name: 'VALORY',
         short_name: 'VALORY',
-        theme_color: '#181818',
+        description: 'Elevate your Valorant streaming experience by using the Valory. Keep your viewers engaged and informed, and showcase your progress in the game while making your stream more captivating and memorable!',
+        theme_color: '#121212',
+        icons: [
+          {
+            src: 'icons/icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'icons/icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
       },
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: /\/api\/.*\/*.*/,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'api-cache',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24
+              }
+            }
+          },
+          {
+            urlPattern: /\.(?:png|jpg|jpeg|svg|gif)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'image-cache',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24 * 7
+              }
+            }
+          }
+        ]
+      }
     }),
     compression({
       algorithm: 'gzip',
