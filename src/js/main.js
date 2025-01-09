@@ -7,22 +7,36 @@ import { overlayHTML } from "./components/overlay.js";
 const apiUrl = "https://api.henrikdev.xyz/valorant";
 let playerData;
 
+const nicknameLocal = localStorage.getItem('nickname');
+const tagLocal = localStorage.getItem('tag');
+const apiKeyLocal = localStorage.getItem('api_key');
+
 async function checkNickname(name, hdevApiKey) {
   const regex = /^[\p{L}\p{N}\s]{1,16}#[\p{L}\p{N}]{1,5}$/u;
 
-  if (name.length === 0) {
-    alertText.innerHTML = "Please enter a nickname";
+  if (!name) {
+    alertText.innerHTML = "Please enter a nickname.";
     return false;
   }
 
   if (!regex.test(name)) {
-    alertText.innerHTML = "Incorrect nickname format.";
+    alertText.innerHTML = "Incorrect nickname format. Use the format: Name#Tag";
     return false;
   }
 
+
   const [nickname, tag] = name.split("#");
 
+  if (!hdevApiKey) {
+    alertText.innerHTML = "API key is missing. Please provide a valid API key.";
+    return false;
+  }
+
   const HDEV_key = hdevApiKey;
+
+  await updateLocalStorage('nickname', nickname);
+  await updateLocalStorage('tag', tag);
+  await updateLocalStorage('api_key', HDEV_key);
 
   try {
     const response = await fetch(
@@ -32,14 +46,22 @@ async function checkNickname(name, hdevApiKey) {
       alertText.innerHTML = `${name} not found.`;
       return false;
     } else if (response.status === 429) {
-      alertText.innerHTML = "Too many request! Try again later";
+      alertText.innerHTML = "Too many requests! Please try again later.";
+      return false;
+    } else if (!response.ok) {
+      alertText.innerHTML = "An unexpected error occurred. Please try again.";
       return false;
     }
-    return response.ok;
+    return true;
   } catch (error) {
-    alertText.innerHTML = "An error occurred. Please try again later.";
+    alertText.innerHTML = "An error occurred. Please check your connection and try again.";
+    console.error("Fetch error:", error);
     return false;
   }
+}
+
+async function updateLocalStorage(key, value) {
+  localStorage.setItem(key, value);
 }
 
 document.querySelector("#app").innerHTML = `
@@ -49,8 +71,8 @@ document.querySelector("#app").innerHTML = `
         {
           modal: false,
           alert: false,
-          nickname: '',
-          hdevApiKey: '',
+          nickname: '${nicknameLocal + "#" + tagLocal}' || '',
+          hdevApiKey: '${apiKeyLocal}' || '',
           infoContainer: true,
           contentContainer: false,
           generateContainer: false,
@@ -105,8 +127,8 @@ document.querySelector("#app").innerHTML = `
               </div>
             </div>
             <div class="info__buttons">
-              <button @click="modal = true">How it work</button>
-              <button @click="infoContainer = false; contentContainer = true" class="fill">Create your Overlay</button>
+              <button @click="modal = true">How it work?</button>
+              <button @click="infoContainer = false; contentContainer = true" class="fill">Create your Overlay!</button>
             </div>
           </div>
           <div class="content" x-show="contentContainer" x-cloak x-transition:enter.duration.250ms.opacity.0>
@@ -115,63 +137,60 @@ document.querySelector("#app").innerHTML = `
               <p>
                 Find your profile in Valorant to link it to your stream overlay.
               </p>
-              <div class="nickname_input">
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                  >
-                    <path
-                      stroke="white"
-                      d="m2.2 4 .1.1c.2.3 11.8 14.8 12.8 16v.1a.1.1 0 0 1-.1.1H8.8a.52.52 0 0 1-.4-.2c-.2-.2-4.4-5.4-6.3-7.9A.31.31 0 0 0 2 12V4.1a.349.349 0 0 1 .2-.1Zm19.8.2c0-.1-.1-.1-.1-.2h-.1l-.2.2c-.9 1.1-8.1 10.1-8.3 10.3l-.1.1c0 .1 0 .1.1.1h6.2c.1 0 .2-.1.3-.2l.2-.2c.5-.7 1.7-2.2 1.8-2.3 0-.1 0-.1.1-.2v-.1c.1-2.4.1-4.9.1-7.5Z"
-                    ></path>
-                  </svg>
-                </span>
-                <input
-                  @keyup.enter="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}"
-                  x-model="nickname"
-                  class="nickname"
-                  id="nickname_with_tag"
-                  placeholder="NICKNAME#TAG"
-                  autocomplete="off"
-                />
-                <button class="icons" @click="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </button>
+              <div style="display: flex; flex-direction: column; gap: 10px">
+                <div class="nickname_input">
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                    >
+                      <path
+                        stroke="white"
+                        d="m2.2 4 .1.1c.2.3 11.8 14.8 12.8 16v.1a.1.1 0 0 1-.1.1H8.8a.52.52 0 0 1-.4-.2c-.2-.2-4.4-5.4-6.3-7.9A.31.31 0 0 0 2 12V4.1a.349.349 0 0 1 .2-.1Zm19.8.2c0-.1-.1-.1-.1-.2h-.1l-.2.2c-.9 1.1-8.1 10.1-8.3 10.3l-.1.1c0 .1 0 .1.1.1h6.2c.1 0 .2-.1.3-.2l.2-.2c.5-.7 1.7-2.2 1.8-2.3 0-.1 0-.1.1-.2v-.1c.1-2.4.1-4.9.1-7.5Z"
+                      ></path>
+                    </svg>
+                  </span>
+                  <input
+                    @keyup.enter="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}"
+                    x-model="nickname"
+                    class="nickname"
+                    id="nickname_with_tag"
+                    placeholder="NICKNAME#TAG"
+                    autocomplete="off"
+                  />
+                  <button class="icons" @click="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="nickname_input">
+                  <span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" stroke="white" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M17 17L22 12L17 7M7 7L2 12L7 17M14 3L10 21" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <input
+                    @keyup.enter="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}"
+                    x-model="hdevApiKey"
+                    class="nickname"
+                    id="hdevApi"
+                    placeholder="Henrik's API Key"
+                    autocomplete="off"
+                  />
+                  <button class="icons" @click="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+                <a href="/key.html" target="__blank" style="font-size: 0.825rem; line-height: 1.25rem; color: #008ffd; cursor: pointer">
+                  How do I get an API key?
+                </a>
               </div>
-              <div class="nickname_input">
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                  >
-                    <path
-                      stroke="white"
-                      d="m2.2 4 .1.1c.2.3 11.8 14.8 12.8 16v.1a.1.1 0 0 1-.1.1H8.8a.52.52 0 0 1-.4-.2c-.2-.2-4.4-5.4-6.3-7.9A.31.31 0 0 0 2 12V4.1a.349.349 0 0 1 .2-.1Zm19.8.2c0-.1-.1-.1-.1-.2h-.1l-.2.2c-.9 1.1-8.1 10.1-8.3 10.3l-.1.1c0 .1 0 .1.1.1h6.2c.1 0 .2-.1.3-.2l.2-.2c.5-.7 1.7-2.2 1.8-2.3 0-.1 0-.1.1-.2v-.1c.1-2.4.1-4.9.1-7.5Z"
-                    ></path>
-                  </svg>
-                </span>
-                <input
-                  @keyup.enter="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}"
-                  x-model="hdevApiKey"
-                  class="nickname"
-                  id="hdevApi"
-                  placeholder="HDEV API KEY"
-                  autocomplete="off"
-                />
-                <button class="icons" @click="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </button>
               </div>
-            </div>
             <div
               x-transition
               x-show="search"
@@ -444,7 +463,10 @@ document.querySelector("#app").innerHTML = `
             </button>
           </div>
           <footer>
-            <span>Made with ❤️ © 2023 Valory</span>
+            <div class="text">
+              <span>Powered by <a href="https://github.com/Henrik-3/unofficial-valorant-api" target="__blank">Henrik's API</a> 🥰</span>
+              <span>Made with ❤️ © 2025 Valory</span>
+            </div>
             <ul class="socials">
               <li>
                 <a target="__blank" href="https://www.twitch.tv/magicxcmd">
@@ -464,6 +486,20 @@ document.querySelector("#app").innerHTML = `
                     <defs>
                       <clipPath id="clip0_910_44">
                         <rect width="48" height="48"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a target="__blank"  href="https://t.me/magicxcmd">
+                  <svg data-v-0d95eef0="" height="18" width="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <g data-v-0d95eef0="" clip-path="url(#clip0_318_75)">
+                    <path data-v-0d95eef0="" clip-rule="evenodd" d="M48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24ZM24.8601 17.7179C22.5257 18.6888 17.8603 20.6984 10.8638 23.7466C9.72766 24.1984 9.13251 24.6404 9.07834 25.0726C8.98677 25.803 9.90142 26.0906 11.1469 26.4822C11.3164 26.5355 11.4919 26.5907 11.6719 26.6492C12.8973 27.0475 14.5457 27.5135 15.4026 27.5321C16.1799 27.5489 17.0475 27.2284 18.0053 26.5707C24.5423 22.158 27.9168 19.9276 28.1286 19.8795C28.2781 19.8456 28.4852 19.803 28.6255 19.9277C28.7659 20.0524 28.7521 20.2886 28.7372 20.352C28.6466 20.7383 25.0562 24.0762 23.1982 25.8036C22.619 26.3421 22.2081 26.724 22.1242 26.8113C21.936 27.0067 21.7443 27.1915 21.56 27.3692C20.4215 28.4667 19.5678 29.2896 21.6072 30.6336C22.5873 31.2794 23.3715 31.8135 24.1539 32.3463C25.0084 32.9282 25.8606 33.5085 26.9632 34.2313C27.2442 34.4155 27.5125 34.6068 27.7738 34.7931C28.7681 35.5019 29.6615 36.1388 30.7652 36.0373C31.4065 35.9782 32.0689 35.3752 32.4053 33.5767C33.2004 29.3263 34.7633 20.1169 35.1244 16.3219C35.1561 15.9895 35.1163 15.5639 35.0843 15.3771C35.0523 15.1904 34.9855 14.9242 34.7427 14.7272C34.4552 14.4939 34.0113 14.4447 33.8127 14.4482C32.91 14.4641 31.5251 14.9456 24.8601 17.7179Z" fill-rule="evenodd"></path>
+                    </g>
+                    <defs data-v-0d95eef0="">
+                      <clipPath data-v-0d95eef0="" id="clip0_318_75">
+                        <rect data-v-0d95eef0="" height="48" width="48"></rect>
                       </clipPath>
                     </defs>
                   </svg>
@@ -840,11 +876,25 @@ async function getPuuidWithRegion(nickname, tag, hdevApiKey) {
 }
 
 async function getLeaderboard(region, puuid, hdevApiKey) {
-  const response = await fetch(
-    `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}&api_key=${hdevApiKey}`,
-  );
-  const data = await response.json();
-  return data.status === 404 ? " " : data.data[0].leaderboardRank;
+  try {
+    const response = await fetch(
+      `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}&api_key=${hdevApiKey}`
+    );
+
+    if (!response.ok) {
+      return " ";
+    }
+
+    const data = await response.json();
+
+    if (data?.data?.[0]?.leaderboardRank !== undefined) {
+      return data.data[0].leaderboardRank;
+    } else {
+      return " ";
+    }
+  } catch (error) {
+    return " ";
+  }
 }
 
 async function getPlayerInformation(region, puuid, hdevApiKey) {

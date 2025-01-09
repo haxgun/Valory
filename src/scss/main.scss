@@ -1,12 +1,12 @@
+@use "variables" as vars;
 @import "https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap";
-@import "variables.scss";
 
 [x-cloak] {
   display: none !important;
 }
 html {
-  background-color: $background-color_1;
-  font-family: $font-family_1;
+  background-color: vars.$background-color_1;
+  font-family: vars.$font-family_1;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeSpeed;
@@ -14,7 +14,7 @@ html {
   box-sizing: border-box;
 }
 body {
-  color: $color_1;
+  color: vars.$color_1;
   height: auto;
   display: block;
   margin: 0;
@@ -37,7 +37,7 @@ h3 {
   padding: 0;
 }
 input {
-  background-color: $background-color_2;
+  background-color: vars.$background-color_2;
   padding: 15px;
   margin: 0;
   line-height: 0;
@@ -46,12 +46,12 @@ input {
   cursor: text;
   font-size: 14px;
   font-weight: 600;
-  color: $color_1;
+  color: vars.$color_1;
   transition: all 0.2s;
   outline: none;
   width: -webkit-fill-available;
   &::placeholder {
-    color: $color_2;
+    color: vars.$color_2;
   }
   &:hover {
     &:not(:read-only) {
@@ -71,7 +71,7 @@ input {
   }
 }
 select {
-  background-color: $background-color_2;
+  background-color: vars.$background-color_2;
   padding: 5px;
   margin: 0;
   line-height: 0;
@@ -80,7 +80,7 @@ select {
   cursor: text;
   font-size: 14px;
   font-weight: 500;
-  color: $color_1;
+  color: vars.$color_1;
   transition: all 0.2s;
   outline: none;
 }
@@ -98,7 +98,7 @@ button {
   transition: all 0.2s;
   text-decoration: none;
   cursor: pointer;
-  color: $color_3;
+  color: vars.$color_3;
   border: 1px solid hsla(0, 0%, 100%, 0.3);
   text-align: center;
   display: flex;
@@ -111,15 +111,15 @@ button {
   }
 
   &.fill {
-    background-color: $background-color_11;
-    color: $color_8;
+    background-color: vars.$background-color_11;
+    color: vars.$color_8;
     &:hover {
-      color: $color_8;
-      background-color: $background-color_15;
+      color: vars.$color_8;
+      background-color: vars.$background-color_15;
     }
     &:active {
-      color: $color_8;
-      background-color: $background-color_16;
+      color: vars.$color_8;
+      background-color: vars.$background-color_16;
     }
   }
 
@@ -128,13 +128,13 @@ button {
   }
 
   &:hover {
-    background-color: $background-color_3;
-    border-color: $border-color_1;
+    background-color: vars.$background-color_3;
+    border-color: vars.$border-color_1;
   }
   &:active {
-    background-color: $background-color_4;
-    color: $color_4;
-    border-color: $border-color_2;
+    background-color: vars.$background-color_4;
+    color: vars.$color_4;
+    border-color: vars.$border-color_2;
     svg {
       stroke: hsla(0, 0%, 100%, 0.5);
     }
@@ -143,7 +143,7 @@ button {
 
 .button_2 {
   border: 1px solid transparent;
-  color: $color_1;
+  color: vars.$color_1;
   font-size: 14px;
   &:hover {
     border: 1px solid hsla(0, 0%, 100%, 0.5);
@@ -154,15 +154,15 @@ button {
 }
 .button_2.red {
   border: 1px solid transparent;
-  color: $color_5;
+  color: vars.$color_5;
   font-size: 14px;
   &:hover {
-    background-color: $background-color_5;
+    background-color: vars.$background-color_5;
     border: 1px solid rgb(255, 56, 72);
   }
   &:active {
     --red-color: rgb(93, 0, 10);
-    color: $color_6;
+    color: vars.$color_6;
     border: 1px solid var(--red-color);
   }
 }
@@ -190,7 +190,7 @@ button {
   }
 }
 .sidepanel {
-  background-color: $background-color_6;
+  background-color: vars.$background-color_6;
   box-shadow: 0px 0px 20px 8px rgb(0 0 0 / 42%);
   height: 100%;
   max-width: 444px;
@@ -241,18 +241,18 @@ button {
     overflow-y: scroll;
     &::-webkit-scrollbar-track {
       border-radius: 10px;
-      background-color: $background-color_7;
+      background-color: vars.$background-color_7;
     }
     &::-webkit-scrollbar {
       width: 5px;
-      background-color: $background-color_7;
+      background-color: vars.$background-color_7;
     }
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      background-color: $background-color_3;
+      background-color: vars.$background-color_3;
     }
     > div {
-      background-color: $background-color_3;
+      background-color: vars.$background-color_3;
       border: 1px solid #212121;
       border-radius: 1rem;
       padding: 18px;
@@ -276,10 +276,10 @@ button {
     margin: 0;
     font-size: 10px;
     font-weight: 600;
-    color: $color_7;
+    color: vars.$color_7;
     span {
-      background-color: $background-color_8;
-      color: $color_8;
+      background-color: vars.$background-color_8;
+      color: vars.$color_8;
       padding: 4px;
       margin-left: 2px;
       border-radius: 9999px;
@@ -294,14 +294,14 @@ button {
     -webkit-text-fill-color: transparent;
   }
   .description {
-    color: $color_9;
+    color: vars.$color_9;
     font-weight: 400;
     font-size: 18px;
   }
 }
 .settings_input {
   display: flex;
-  background-color: $background-color_7;
+  background-color: vars.$background-color_7;
   border: 1px solid hsla(0, 0%, 100%, 0.3);
   margin: 0;
   line-height: 0;
@@ -309,18 +309,18 @@ button {
   cursor: text;
   font-size: 14px;
   font-weight: 600;
-  color: $color_1;
+  color: vars.$color_1;
   transition: all 0.2s;
   outline: none;
   align-items: center;
   padding: 0 11px;
   &:hover {
-    background-color: $background-color_3;
+    background-color: vars.$background-color_3;
   }
 }
 .nickname_input {
   display: flex;
-  background-color: $background-color_7;
+  background-color: vars.$background-color_7;
   border: 1px solid hsla(0, 0%, 100%, 0.3);
   margin: 0;
   line-height: 0;
@@ -328,13 +328,13 @@ button {
   cursor: text;
   font-size: 14px;
   font-weight: 600;
-  color: $color_1;
+  color: vars.$color_1;
   transition: all 0.2s;
   outline: none;
   align-items: center;
   padding: 0 11px;
   &:hover {
-    background-color: $background-color_3;
+    background-color: vars.$background-color_3;
   }
 }
 .settings {
@@ -353,7 +353,7 @@ button {
   }
 }
 h3.label {
-  color: $color_10;
+  color: vars.$color_10;
   font-size: 0.825rem;
   line-height: 1.25rem;
   font-weight: 400;
@@ -364,7 +364,7 @@ input.settings {
   padding-left: 12px;
   width: -webkit-fill-available;
   &::placeholder {
-    color: $color_2;
+    color: vars.$color_2;
   }
   &:read-only {
     box-shadow: none;
@@ -390,7 +390,7 @@ input.nickname {
   padding-left: 12px;
   width: -webkit-fill-available;
   &::placeholder {
-    color: $color_2;
+    color: vars.$color_2;
   }
   &:read-only {
     box-shadow: none;
@@ -412,7 +412,7 @@ input.nickname {
 }
 .preview {
   flex: 1;
-  background-color: $background-color_6;
+  background-color: vars.$background-color_6;
   width: 100%;
   height: 100%;
   position: relative;
@@ -427,7 +427,7 @@ input.nickname {
     background: linear-gradient(
       270deg,
       rgba(0, 0, 0, 0.4) 0%,
-      $background-color_6 100%
+      vars.$background-color_6 100%
     );
     backdrop-filter: blur(5px);
   }
@@ -471,10 +471,10 @@ input.nickname {
       }
 
       &.active {
-        box-shadow: 0 0 0 3px $background-color_8;
+        box-shadow: 0 0 0 3px vars.$background-color_8;
       }
       &:hover:not(.active) {
-        box-shadow: 0 0 0 2px $background-color_9;
+        box-shadow: 0 0 0 2px vars.$background-color_9;
       }
     }
   }
@@ -485,7 +485,7 @@ input.nickname {
   gap: 18px;
 }
 .generate__link {
-  background-color: $background-color_3;
+  background-color: vars.$background-color_3;
   border: 1px solid #212121;
   border-radius: 1rem;
   padding: 18px;
@@ -535,9 +535,10 @@ input.nickname {
   display: flex;
   .ikxBAC {
     appearance: none;
-    background-color: $background-color_10;
+    background-color: vars.$background-color_10;
     border-radius: 72px;
     border-style: none;
+    padding: 0;
     flex-shrink: 0;
     height: 20px;
     margin: 0;
@@ -555,7 +556,7 @@ input.nickname {
     }
     &::after {
       transition: all 100ms ease-out;
-      background-color: $background-color_11;
+      background-color: vars.$background-color_11;
       border-radius: 50%;
       content: "";
       height: 14px;
@@ -565,17 +566,17 @@ input.nickname {
       width: 14px;
     }
     &:hover {
-      background-color: $background-color_12;
+      background-color: vars.$background-color_12;
       transition-duration: 0s;
     }
     &:checked {
-      background-color: $background-color_13;
+      background-color: vars.$background-color_13;
       &::after {
-        background-color: $background-color_11;
+        background-color: vars.$background-color_11;
         left: 13px;
       }
       &:hover {
-        background-color: $background-color_14;
+        background-color: vars.$background-color_14;
       }
     }
   }
@@ -596,9 +597,27 @@ input.nickname {
 }
 footer {
   margin-top: 36px;
-  color: $color_1;
+  color: vars.$color_1;
   font-weight: 500;
   font-size: 14px;
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    a {
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all .2s;
+
+      &:hover {
+        color: hsla(0, 0%, 100%, 0.5);
+      }
+    }
+  }
   .socials {
     list-style: none;
     display: flex;
@@ -623,7 +642,7 @@ footer {
   position: absolute;
   top: 0;
   right: 0;
-  background-color: $background-color_6;
+  background-color: vars.$background-color_6;
   width: 300px;
   max-height: 150px;
   display: flex;
@@ -674,7 +693,7 @@ footer {
 
   .modal__content {
     display: flex;
-    background-color: $background-color_6;
+    background-color: vars.$background-color_6;
     padding: 60px;
     border-radius: 33px;
     width: 730px;

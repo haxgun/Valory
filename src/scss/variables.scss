@@ -1,17 +1,15 @@
-@import "https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap";
-@import "normalize.css";
+$color-1: #ffffff;
+$color-2: #b3b7bc;
+$color-3: #fff;
+$color-4: hsla(0, 0%, 100%, 0.5);
+$color-5: #ff3848;
+$color-6: var(--red-color);
+$color-7: rgb(93 183 210);
+$color-8: rgb(17 17 17);
+$color-9: hsla(0, 0%, 100%, 0.8);
+$color-10: #ffffff80;
 
-$color_1: #ffffff;
-$color_2: #b3b7bc;
-$color_3: #fff;
-$color_4: hsla(0, 0%, 100%, 0.5);
-$color_5: #ff3848;
-$color_6: var(--red-color);
-$color_7: rgb(93 183 210);
-$color_8: rgb(17 17 17);
-$color_9: hsla(0, 0%, 100%, 0.8);
-$color_10: #ffffff80;
-$font-family_1:
+$font-family-1:
   "Inter",
   -apple-system,
   BlinkMacSystemFont,
@@ -23,26 +21,28 @@ $font-family_1:
   "Apple Color Emoji",
   "Segoe UI Emoji",
   "Segoe UI Symbol";
-$background-color_1: #161616;
-$background-color_2: #2b2c2e;
-$background-color_3: hsla(0, 0%, 100%, 0.05);
-$background-color_4: hsla(0, 0%, 100%, 0);
-$background-color_5: rgba(255, 56, 72, 0.05);
-$background-color_6: rgb(17, 17, 17);
-$background-color_7: none;
-$background-color_8: rgb(93 183 210);
-$background-color_9: #cccccc;
-$background-color_10: #dfe1e4;
-$background-color_11: #fff;
-$background-color_12: #c9cbcd;
-$background-color_13: #6e79d6;
-$background-color_14: #535db3;
-$background-color_15: rgb(243 244 246);
-$background-color_16: rgb(229 231 235);
-$border-color_1: hsla(0, 0%, 100%, 0.5);
-$border-color_2: hsla(0, 0%, 100%, 0.2);
+
+$background-color-1: #161616;
+$background-color-2: #2b2c2e;
+$background-color-3: hsla(0, 0%, 100%, 0.05);
+$background-color-4: hsla(0, 0%, 100%, 0);
+$background-color-5: rgba(255, 56, 72, 0.05);
+$background-color-6: rgb(17, 17, 17);
+$background-color-7: none;
+$background-color-8: rgb(93 183 210);
+$background-color-9: #cccccc;
+$background-color-10: #dfe1e4;
+$background-color-11: #fff;
+$background-color-12: #c9cbcd;
+$background-color-13: #6e79d6;
+$background-color-14: #535db3;
+$background-color-15: rgb(243 244 246);
+$background-color-16: rgb(229 231 235);
+
+$border-color-1: hsla(0, 0%, 100%, 0.5);
+$border-color-2: hsla(0, 0%, 100%, 0.2);
 
 /* Overlay */
-$overlay_color_1: transparent;
-$overlay_color_2: white;
-$overlay_background-color_1: var(--progressrank-color);
+$overlay-color-1: transparent;
+$overlay-color-2: white;
+$overlay-background-color-1: var(--progressrank-color);

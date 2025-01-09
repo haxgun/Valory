@@ -91,11 +91,25 @@ async function getPlayerInformation(region, puuid, hdevApiKey) {
 }
 
 async function getLeaderboard(region, puuid, hdevApiKey) {
-  const response = await fetch(
-    `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}&api_key=${hdevApiKey}`,
-  );
-  const data = await response.json();
-  return data.status === 404 ? " " : data.data[0].leaderboardRank;
+  try {
+    const response = await fetch(
+      `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}&api_key=${hdevApiKey}`
+    );
+
+    if (!response.ok) {
+      return " ";
+    }
+
+    const data = await response.json();
+
+    if (data?.data?.[0]?.leaderboardRank !== undefined) {
+      return data.data[0].leaderboardRank;
+    } else {
+      return " ";
+    }
+  } catch (error) {
+    return " ";
+  }
 }
 
 async function decorateCard() {
