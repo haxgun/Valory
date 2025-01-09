@@ -7,8 +7,7 @@ import { overlayHTML } from "./components/overlay.js";
 const apiUrl = "https://api.henrikdev.xyz/valorant";
 let playerData;
 
-const nicknameLocal = localStorage.getItem('nickname') || "";
-const tagLocal = localStorage.getItem('tag') || "";
+const riotIdLocal = localStorage.getItem('riotId') || "";;
 const apiKeyLocal = localStorage.getItem('api_key') || "";
 
 async function checkNickname(name, hdevApiKey) {
@@ -34,8 +33,7 @@ async function checkNickname(name, hdevApiKey) {
 
   const HDEV_key = hdevApiKey;
 
-  await updateLocalStorage('nickname', nickname);
-  await updateLocalStorage('tag', tag);
+  await updateLocalStorage('riotId', name);
   await updateLocalStorage('api_key', HDEV_key);
 
   try {
@@ -71,7 +69,7 @@ document.querySelector("#app").innerHTML = `
         {
           modal: false,
           alert: false,
-          nickname: '${nicknameLocal + "#" + tagLocal}' || '',
+          nickname: '${riotIdLocal}' || '',
           hdevApiKey: '${apiKeyLocal}' || '',
           infoContainer: true,
           contentContainer: false,
