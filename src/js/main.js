@@ -7,9 +7,9 @@ import { overlayHTML } from "./components/overlay.js";
 const apiUrl = "https://api.henrikdev.xyz/valorant";
 let playerData;
 
-const nicknameLocal = localStorage.getItem('nickname');
-const tagLocal = localStorage.getItem('tag');
-const apiKeyLocal = localStorage.getItem('api_key');
+const nicknameLocal = localStorage.getItem('nickname') || "";
+const tagLocal = localStorage.getItem('tag') || "";
+const apiKeyLocal = localStorage.getItem('api_key') || "";
 
 async function checkNickname(name, hdevApiKey) {
   const regex = /^[\p{L}\p{N}\s]{1,16}#[\p{L}\p{N}]{1,5}$/u;
