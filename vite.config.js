@@ -22,6 +22,7 @@ export default {
       input: {
         main: resolve(__dirname, "index.html"),
         overlay: resolve(__dirname, "overlay/index.html"),
+        key: resolve(__dirname, "key.html"),
       },
     },
   },
