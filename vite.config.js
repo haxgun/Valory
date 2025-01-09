@@ -1,3 +1,4 @@
+import compression from 'vite-plugin-compression'
 import { resolve } from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -14,7 +15,12 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    compression({
+      algorithm: 'gzip',
+      ext: '.gz',
+    }),
+  ],
   clearScreen: false,
   build: {
     target: "esnext",
