@@ -1,4 +1,4 @@
-import 'modern-normalize/modern-normalize.css'
+import "modern-normalize/modern-normalize.css";
 import "@/scss/overlay.scss";
 import "@/scss/main.scss";
 import Alpine from "alpinejs";
@@ -8,8 +8,8 @@ import { overlayHTML } from "@/js/components/overlay.js";
 const apiUrl = "https://api.henrikdev.xyz/valorant";
 let playerData;
 
-const riotIdLocal = localStorage.getItem('riotId') || "";;
-const apiKeyLocal = localStorage.getItem('api_key') || "";
+const riotIdLocal = localStorage.getItem("riotId") || "";
+const apiKeyLocal = localStorage.getItem("api_key") || "";
 
 async function checkNickname(name, hdevApiKey) {
   const regex = /^[\p{L}\p{N}\s]{1,16}#[\p{L}\p{N}]{1,5}$/u;
@@ -24,7 +24,6 @@ async function checkNickname(name, hdevApiKey) {
     return false;
   }
 
-
   const [nickname, tag] = name.split("#");
 
   if (!hdevApiKey) {
@@ -34,8 +33,8 @@ async function checkNickname(name, hdevApiKey) {
 
   const HDEV_key = hdevApiKey;
 
-  await updateLocalStorage('riotId', name);
-  await updateLocalStorage('api_key', HDEV_key);
+  await updateLocalStorage("riotId", name);
+  await updateLocalStorage("api_key", HDEV_key);
 
   try {
     const response = await fetch(
@@ -53,7 +52,8 @@ async function checkNickname(name, hdevApiKey) {
     }
     return true;
   } catch (error) {
-    alertText.innerHTML = "An error occurred. Please check your connection and try again.";
+    alertText.innerHTML =
+      "An error occurred. Please check your connection and try again.";
     console.error("Fetch error:", error);
     return false;
   }
@@ -747,7 +747,9 @@ async function main() {
 
 async function checkData(nickname, tag, hdevApiKey) {
   try {
-    const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}?api_key=${hdevApiKey}`);
+    const response = await fetch(
+      `${apiUrl}/v1/account/${nickname}/${tag}?api_key=${hdevApiKey}`,
+    );
     const data = await response.json();
     const returnStatus = data.status;
 
@@ -863,7 +865,9 @@ async function formationUserData(nickname, tag, hdevApiKey) {
 }
 
 async function getPuuidWithRegion(nickname, tag, hdevApiKey) {
-  const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}?api_key=${hdevApiKey}`);
+  const response = await fetch(
+    `${apiUrl}/v1/account/${nickname}/${tag}?api_key=${hdevApiKey}`,
+  );
   const data = await response.json();
   return [data.data.puuid, data.data.region];
 }
@@ -871,7 +875,7 @@ async function getPuuidWithRegion(nickname, tag, hdevApiKey) {
 async function getLeaderboard(region, puuid, hdevApiKey) {
   try {
     const response = await fetch(
-      `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}&api_key=${hdevApiKey}`
+      `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}&api_key=${hdevApiKey}`,
     );
     if (!response.ok) {
       return " ";
@@ -889,7 +893,9 @@ async function getLeaderboard(region, puuid, hdevApiKey) {
 }
 
 async function getPlayerInformation(region, puuid, hdevApiKey) {
-  const response = await fetch(`${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}?api_key=${hdevApiKey}`);
+  const response = await fetch(
+    `${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}?api_key=${hdevApiKey}`,
+  );
   const data = await response.json();
   return [
     data.data.currenttier,

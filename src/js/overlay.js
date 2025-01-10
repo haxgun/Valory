@@ -1,4 +1,4 @@
-import 'modern-normalize/modern-normalize.css'
+import "modern-normalize/modern-normalize.css";
 import "@/scss/overlay.scss";
 import { overlayHTML } from "@/js/components/overlay.js";
 import { setIntervalAsync } from "set-interval-async";
@@ -17,8 +17,7 @@ const {
   progressRankColor,
   progressRankBgColor,
 } = {
-  hdevApiKey:
-    urlParams.get("hdevApiKey"),
+  hdevApiKey: urlParams.get("hdevApiKey"),
   textColor: urlParams.get("textColor").replace("#", ""),
   primaryColor: urlParams.get("primaryColor").replace("#", ""),
   bgColor: urlParams.get("bgColor").replace("#", ""),
@@ -74,13 +73,17 @@ async function main(nickname, tag, hdevApiKey) {
 }
 
 async function getPuuidWithRegion(nickname, tag, hdevApiKey) {
-  const response = await fetch(`${apiUrl}/v1/account/${nickname}/${tag}?api_key=${hdevApiKey}`);
+  const response = await fetch(
+    `${apiUrl}/v1/account/${nickname}/${tag}?api_key=${hdevApiKey}`,
+  );
   const data = await response.json();
   return [data.data.puuid, data.data.region];
 }
 
 async function getPlayerInformation(region, puuid, hdevApiKey) {
-  const response = await fetch(`${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}?api_key=${hdevApiKey}`);
+  const response = await fetch(
+    `${apiUrl}/v1/by-puuid/mmr/${region}/${puuid}?api_key=${hdevApiKey}`,
+  );
   const data = await response.json();
   const playerElo = data.data.currenttierpatched;
   const playerMmr = data.data.ranking_in_tier;
@@ -94,7 +97,7 @@ async function getPlayerInformation(region, puuid, hdevApiKey) {
 async function getLeaderboard(region, puuid, hdevApiKey) {
   try {
     const response = await fetch(
-      `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}&api_key=${hdevApiKey}`
+      `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}&api_key=${hdevApiKey}`,
     );
     if (!response.ok) {
       return " ";
@@ -161,7 +164,7 @@ async function updatePlayerCard(region, puuid, hdevApiKey) {
     if (leaderboardRank !== " ") {
       playerRank.innerHTML = `${playerElo} #${leaderboardRank}`;
     } else {
-    playerRank.innerHTML = `${playerElo} - ${playerMmrText}RR`;
+      playerRank.innerHTML = `${playerElo} - ${playerMmrText}RR`;
     }
   } else {
     playerRank.innerHTML = `${playerElo} - ${playerMmrText}RR`;
