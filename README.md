@@ -2,17 +2,15 @@
 
 # Valory
 
-[![CI/CD](https://github.com/haxgun/valory/actions/workflows/master.yml/badge.svg)](https://github.com/haxgun/valory/actions/workflows/master.yml)
-[![GitHub License](https://img.shields.io/github/license/haxgun/valory)](https://github.com/haxgun/valory/blob/main/LICENSE)
-[![Forks](https://img.shields.io/github/forks/sndrjhlncgr/VALORANT-Stream-Overlay)](https://github.com/haxgun/valory/networks)
-[![Issues](https://img.shields.io/github/issues/haxgun/valory)](https://github.com/haxgun/valory/issues)
-[![Stars](https://img.shields.io/github/stars/haxgun/valory)](https://github.com/haxgun/valory/stargazers)
+[![GitHub License](https://img.shields.io/github/license/haxgun/valory?color=green)](https://github.com/haxgun/valory/blob/main/LICENSE)
+[![Website](https://img.shields.io/website?url=https://valory.su)](https://overlay.haxgun.ru/)
+[![Stars](https://img.shields.io/github/stars/haxgun/Valory?style=flat&color=green)](https://github.com/haxgun/valory/stargazers)
+[![Forks](https://img.shields.io/github/forks/haxgun/Valory?style=flat&color=green)](https://github.com/haxgun/Valory/forks)
+[![Issues](https://img.shields.io/github/issues/haxgun/Valory?style=flat)](https://github.com/haxgun/Valory/issues)
 
 Valory provides a beautiful rank overlay for your stream.
 Overlay under the hood runs on vanilla JS, so it has minimal load on your PC.
 
-Project was inspired by the work of [davizeragod](https://davizeragod.github.io/) and [tracker.gg/overlays](https://tracker.gg/overlays).
-Initially, the project was a fork of [davizeragod](https://davizeragod.github.io/), but then it began to exist as a separate project.
 
 ## ✨ Features
 
@@ -20,17 +18,19 @@ Initially, the project was a fork of [davizeragod](https://davizeragod.github.io
 - Beautiful, modern design
 - It has the possibility of customization. For example, changing the color of components or removing unnecessary components
 
-## 📋 TODO
 
-- [ ] Add more information
+## 🛠 Contributing
 
-## ❤️ Credits
+We welcome contributions! Here’s how to get involved:
 
-- [davizeragod/davizeragod.github.io](https://github.com/davizeragod/davizeragod.github.io)
-- [alpinejs/alpine](https://github.com/alpinejs/alpine)
-- [necolas/normalize.css](https://github.com/necolas/normalize.css)
-- [Henrik-3/unofficial-valorant-api](https://github.com/Henrik-3/unofficial-valorant-api)
+1. **Report Bugs**: Open an issue [here](https://github.com/haxgun/valory/issues).
+2. **Submit Features:** Create a [pull request](https://github.com/haxgun/valory/pulls).
+3. **Share the Love:** Star the repo and spread the word!
 
-## 📄 License
+## 📜 License
 
-[Valory](https://github.com/haxgun/valory) is completely free and has an [the MIT license](https://github.com/haxgun/valory/blob/main/LICENSE). If you want, you can put a star on Github.
+**Valory** is licensed under the **[MIT License](https://github.com/haxgun/valory/blob/main/LICENSE)**:
+
+* **Freedom:** Use, modify, and distribute freely.
+* **Flexibility:** Adjust the code to suit your needs.
+* **Community:** Share and contribute back to the project. 
