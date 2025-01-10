@@ -786,12 +786,13 @@ async function insertinData() {
 
   imgRank.src = `/img/ranks/${playerTier}.webp`;
   let actualProcent = `${playerMmr}%`;
-
   if (playerLastGamePts === "nRanked") {
     playerRank.innerHTML = playerCurrentTier;
-  } else if (playerTier === 27) {
+  } else if (playerTier >= 24) {
     if (playerLeaderboard !== " ") {
       playerRank.innerHTML = `${playerCurrentTier} #${playerLeaderboard}`;
+    } else {
+      playerRank.innerHTML = `${playerCurrentTier} - ${playerMmrText}RR`;
     }
   } else {
     playerRank.innerHTML = `${playerCurrentTier} - ${playerMmrText}RR`;
@@ -802,19 +803,19 @@ async function insertinData() {
   if (playerLastGamePts === "nRanked") {
     lastMatchPtsValue.innerHTML = `Unranked`;
   } else if (playerTier >= 24 && playerLastGamePts === 0) {
-    lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
+    lastMatchPtsValue.innerHTML = `${playerLastGamePts} pts`;
   } else if (playerTier >= 24) {
     if (playerLastGamePts >= 1) {
-      lastMatchPtsValue.innerHTML = `+${playerLastGamePts}pts`;
+      lastMatchPtsValue.innerHTML = `+${playerLastGamePts} pts`;
       actualProcent = "100%";
       cssStyle.setProperty("--progresspontinho", actualProcent);
     } else if (playerLastGamePts <= -1) {
-      lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
+      lastMatchPtsValue.innerHTML = `${playerLastGamePts} pts`;
       actualProcent = "0%";
       cssStyle.setProperty("--progresspontinho", actualProcent);
     }
   } else {
-    lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
+    lastMatchPtsValue.innerHTML = `${playerLastGamePts} pts`;
   }
 
   if (playerLastGamePts > 0) {
@@ -872,11 +873,9 @@ async function getLeaderboard(region, puuid, hdevApiKey) {
     const response = await fetch(
       `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}&api_key=${hdevApiKey}`
     );
-
     if (!response.ok) {
       return " ";
     }
-
     const data = await response.json();
 
     if (data?.data?.[0]?.leaderboardRank !== undefined) {

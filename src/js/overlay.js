@@ -96,7 +96,6 @@ async function getLeaderboard(region, puuid, hdevApiKey) {
     const response = await fetch(
       `${apiUrl}/v1/leaderboard/${region}?puuid=${puuid}&api_key=${hdevApiKey}`
     );
-
     if (!response.ok) {
       return " ";
     }
@@ -157,10 +156,12 @@ async function updatePlayerCard(region, puuid, hdevApiKey) {
 
   if (playerLastGamePts === "nRanked") {
     playerRank.innerHTML = playerElo;
-  } else if (playerTier === 27) {
+  } else if (playerTier >= 24) {
     const leaderboardRank = await getLeaderboard(region, puuid, hdevApiKey);
     if (leaderboardRank !== " ") {
       playerRank.innerHTML = `${playerElo} #${leaderboardRank}`;
+    } else {
+    playerRank.innerHTML = `${playerElo} - ${playerMmrText}RR`;
     }
   } else {
     playerRank.innerHTML = `${playerElo} - ${playerMmrText}RR`;
@@ -171,19 +172,19 @@ async function updatePlayerCard(region, puuid, hdevApiKey) {
   if (playerLastGamePts === "nRanked") {
     lastMatchPtsValue.innerHTML = `Unranked`;
   } else if (playerTier >= 24 && playerLastGamePts === 0) {
-    lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
+    lastMatchPtsValue.innerHTML = `${playerLastGamePts} pts`;
   } else if (playerTier >= 24) {
     if (playerLastGamePts >= 1) {
-      lastMatchPtsValue.innerHTML = `+${playerLastGamePts}pts`;
+      lastMatchPtsValue.innerHTML = `+${playerLastGamePts} pts`;
       actualProcent = "100%";
       cssStyle.setProperty("--progresspontinho", actualProcent);
     } else if (playerLastGamePts <= -1) {
-      lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
+      lastMatchPtsValue.innerHTML = `${playerLastGamePts} pts`;
       actualProcent = "0%";
       cssStyle.setProperty("--progresspontinho", actualProcent);
     }
   } else {
-    lastMatchPtsValue.innerHTML = `${playerLastGamePts}pts`;
+    lastMatchPtsValue.innerHTML = `${playerLastGamePts} pts`;
   }
 
   if (playerLastGamePts > 0) {
