@@ -22,6 +22,11 @@ export default {
     }),
   ],
   clearScreen: false,
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
   build: {
     target: "esnext",
     rollupOptions: {
@@ -32,4 +37,5 @@ export default {
       },
     },
   },
+  base: '/',
 };

@@ -5,26 +5,36 @@
   "repository": "https://github.com/haxgun/valory",
   "author": "MAGICX <majikx.prod0@gmail.com>",
   "type": "module",
+  "browserslist": [
+    "defaults"
+  ],
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9.12"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "eslint": "^8.52.0",
-    "eslint-config-prettier": "^9.0.0",
-    "sass": "^1.69.5",
-    "vite": "^4.4.5"
+    "preview": "vite preview",
+    "lint": "eslint . --fix",
+    "format": "prettier --write src"
   },
   "dependencies": {
     "alpinejs": "^3.13.2",
     "autoprefixer": "^10.4.16",
-    "eslint": "^8.52.0",
-    "normalize.css": "^8.0.1",
     "postcss-uncss": "^0.17.0",
     "vite-plugin-compression": "^0.5.1",
+    "modern-normalize": "^3.0.1",
     "prettier": "^3.0.3",
     "set-interval-async": "^3.0.3",
     "uncss": "^0.17.3"
+  },
+  "devDependencies": {
+    "eslint": "^9.16.0",
+    "eslint-config-prettier": "^9.1.0",
+    "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
+    "sass": "^1.69.5",
+    "vite": "^4.4.5"
   }
 }
