@@ -1,8 +1,9 @@
-import "../scss/overlay.scss";
-import "../scss/main.scss";
+import 'modern-normalize/modern-normalize.css'
+import "@/scss/overlay.scss";
+import "@/scss/main.scss";
 import Alpine from "alpinejs";
 
-import { overlayHTML } from "./components/overlay.js";
+import { overlayHTML } from "@/js/components/overlay.js";
 
 const apiUrl = "https://api.henrikdev.xyz/valorant";
 let playerData;
@@ -158,11 +159,6 @@ document.querySelector("#app").innerHTML = `
                     placeholder="NICKNAME#TAG"
                     autocomplete="off"
                   />
-                  <button class="icons" @click="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </button>
                 </div>
                 <div class="nickname_input">
                   <span>
@@ -178,15 +174,13 @@ document.querySelector("#app").innerHTML = `
                     placeholder="Henrik's API Key"
                     autocomplete="off"
                   />
-                  <button class="icons" @click="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </button>
                 </div>
                 <a href="/key.html" target="__blank" style="font-size: 0.825rem; line-height: 1.25rem; color: #008ffd; cursor: pointer">
                   How do I get an API key?
                 </a>
+                <button class="fill" style="margin-top: 10px; width: 100%" @click="if (await checkNickname(nickname, hdevApiKey)) { getPreview(); search = true; main();} else { alert = true; setTimeout(() => alert = false, 5000)}">
+                  Search
+                </button>
               </div>
               </div>
             <div

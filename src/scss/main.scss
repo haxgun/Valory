@@ -692,6 +692,7 @@ footer {
   backdrop-filter: blur(10px);
 
   .modal__content {
+    box-sizing: content-box;
     display: flex;
     background-color: vars.$background-color_6;
     padding: 60px;

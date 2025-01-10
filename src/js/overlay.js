@@ -1,5 +1,6 @@
-import "../scss/overlay.scss";
-import { overlayHTML } from "./components/overlay.js";
+import 'modern-normalize/modern-normalize.css'
+import "@/scss/overlay.scss";
+import { overlayHTML } from "@/js/components/overlay.js";
 import { setIntervalAsync } from "set-interval-async";
 
 // Urls and Alpine Data
