@@ -22,16 +22,17 @@
   "dependencies": {
     "alpinejs": "^3.13.2",
     "autoprefixer": "^10.4.16",
-    "postcss-uncss": "^0.17.0",
-    "vite-plugin-compression": "^0.5.1",
     "modern-normalize": "^3.0.1",
+    "postcss-uncss": "^0.17.0",
     "prettier": "^3.0.3",
     "set-interval-async": "^3.0.3",
-    "uncss": "^0.17.3"
+    "uncss": "^0.17.3",
+    "vite-plugin-compression": "^0.5.1"
   },
   "devDependencies": {
     "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.14.0",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
     "sass": "^1.69.5",
