@@ -18,9 +18,9 @@ export const useSettingsStore = defineStore('settings', {
   state: (): SettingsState => ({
     riotId: null,
     apiKey: null,
-    backgroundSwitch: false,
-    progressSwitch: false,
-    statisticsSwitch: false,
+    backgroundSwitch: true,
+    progressSwitch: true,
+    statisticsSwitch: true,
     backgroundColor: '#07090e99',
     textColor: '#FFFFFF',
     primaryColor: '#bebebf',
@@ -30,9 +30,9 @@ export const useSettingsStore = defineStore('settings', {
   }),
   actions: {
     resetConfiguration() {
-      this.backgroundSwitch = false;
-      this.progressSwitch = false;
-      this.statisticsSwitch = false;
+      this.backgroundSwitch = true;
+      this.progressSwitch = true;
+      this.statisticsSwitch = true;
       this.backgroundColor = '#07090e99';
       this.textColor = '#FFFFFF';
       this.primaryColor = '#bebebf';
