@@ -1,7 +1,7 @@
 import AutoImport from 'unplugin-auto-import/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA } from 'vite-plugin-pwa'
-import compression from 'vite-plugin-compression'
+import compression from 'vite-plugin-compression2'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
@@ -75,10 +75,7 @@ export default defineConfig({
         ]
       }
     }),
-    compression({
-      algorithm: 'gzip',
-      ext: '.gz',
-    }),
+    compression({ algorithm: 'brotliCompress' }),
     webUpdateNotice({
       notificationProps: {
         title: 'New version',
