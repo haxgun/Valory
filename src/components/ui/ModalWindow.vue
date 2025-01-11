@@ -97,7 +97,7 @@ onBeforeUnmount(() => {
   border-bottom: 1px solid hsla(222, 6%, 30%, 0.25);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 
   .title {
     font-weight: 600;
