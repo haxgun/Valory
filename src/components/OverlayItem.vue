@@ -24,11 +24,10 @@ defineProps<OverlayProps>()
       <span class="text">VALORY.SU</span>
     </div>
     <div
-      :style="
-        {
-          backgroundColor: backgroundSwitch ?  `${backgroundColor}99`: 'transparent',
-          borderColor: backgroundSwitch ?  'rgba(255, 255, 255, 0.1)' : 'transparent'
-        }"
+      :style="{
+        backgroundColor: backgroundSwitch ? `${backgroundColor}99` : 'transparent',
+        borderColor: backgroundSwitch ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+      }"
       class="overlay__body"
     >
       <div class="overlay__content">
@@ -41,7 +40,7 @@ defineProps<OverlayProps>()
           <section class="overlay__rank">
             <div
               :style="{
-                color: textColor
+                color: textColor,
               }"
               class="rank"
             >
@@ -49,7 +48,7 @@ defineProps<OverlayProps>()
             </div>
             <div
               :style="{
-                color: primaryColor
+                color: primaryColor,
               }"
               class="elo_with_rr"
             >
@@ -86,7 +85,7 @@ defineProps<OverlayProps>()
           <section
             :style="{
               display: statisticsSwitch ? 'flex' : 'none',
-              color: primaryColor
+              color: primaryColor,
             }"
             class="overlay__stats"
           >
@@ -98,12 +97,10 @@ defineProps<OverlayProps>()
         </div>
       </div>
       <div
-        :style="
-          {
-            display: progressSwitch ? 'block' : 'none',
-            backgroundColor: progressColor
-          }
-        "
+        :style="{
+          display: progressSwitch ? 'block' : 'none',
+          backgroundColor: progressColor,
+        }"
         class="progressbar"
       ></div>
     </div>
@@ -137,7 +134,7 @@ defineProps<OverlayProps>()
     overflow: hidden;
     border-radius: 8px;
     background-color: rgba(7, 9, 14, 0.6);
-    border: 2px  solid;
+    border: 2px solid;
     border-color: rgba(255 255 255 / 0.1);
 
     .overlay__content {

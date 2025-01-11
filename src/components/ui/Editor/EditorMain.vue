@@ -10,8 +10,8 @@ import Input from '@/components/ui/InputUI.vue'
 import UiModal from '@/components/ui/ModalWindow.vue'
 import Switch from '@/components/ui/Switch.vue'
 import riotIdsData from '@/data/riotIds.json'
+import { useSettingsStore } from '@/stores/settings'
 import { computed, ref } from 'vue'
-import { useSettingsStore } from "@/stores/settings"
 
 const settingsStore = useSettingsStore()
 
@@ -180,11 +180,8 @@ const generateRandomId = () => {
                 <span>{{ $t('editor.configuration.title') }}</span>
                 <span
                   @click="settingsStore.resetConfiguration()"
-                  style="
-                    color: hsl(222, 5%, 62%);
-                    font-size: 0.875rem;
-                    cursor: pointer
-                ">
+                  style="color: hsl(222, 5%, 62%); font-size: 0.875rem; cursor: pointer"
+                >
                   {{ $t('editor.configuration.reset') }}
                 </span>
               </div>
@@ -201,19 +198,19 @@ const generateRandomId = () => {
                   <span>
                     {{ $t('editor.configuration.display.items.background') }}
                   </span>
-                  <Switch v-model="backgroundSwitch"/>
+                  <Switch v-model="backgroundSwitch" />
                 </div>
                 <div class="item">
                   <span>
                     {{ $t('editor.configuration.display.items.progress') }}
                   </span>
-                  <Switch v-model="progressSwitch"/>
+                  <Switch v-model="progressSwitch" />
                 </div>
                 <div class="item">
                   <span>
                     {{ $t('editor.configuration.display.items.statistics') }}
                   </span>
-                  <Switch v-model="statisticsSwitch"/>
+                  <Switch v-model="statisticsSwitch" />
                 </div>
               </template>
             </ModalSettingsEditor>

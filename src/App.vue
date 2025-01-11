@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { defineAsyncComponent } from 'vue'
 import { useHead } from '@unhead/vue'
+import { defineAsyncComponent } from 'vue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 

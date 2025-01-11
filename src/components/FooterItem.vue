@@ -8,11 +8,15 @@ import LanguageSwitcher from '@/components/ui/LanguageSwitcher.vue'
 
 <template>
   <footer>
-    <span class="powered_by">{{ $t('landing.footer.powered_by') }}
-      <a href="https://github.com/Henrik-3/unofficial-valorant-api" target="__blank">Henrik's API</a>
+    <span class="powered_by"
+      >{{ $t('landing.footer.powered_by') }}
+      <a href="https://github.com/Henrik-3/unofficial-valorant-api" target="__blank"
+        >Henrik's API</a
+      >
     </span>
     <span class="copyright"
-      >{{ $t('landing.footer.made') }} <IconHeart :size="24" style="fill: red" /> © 2025 VALORY</span
+      >{{ $t('landing.footer.made') }} <IconHeart :size="24" style="fill: red" /> © 2025
+      VALORY</span
     >
     <ul class="socials">
       <li class="social">
@@ -65,7 +69,7 @@ footer {
       &:hover {
         color: #d5d5d5;
       }
-    };
+    }
   }
 
   .copyright {

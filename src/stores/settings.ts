@@ -1,17 +1,17 @@
 import { defineStore } from 'pinia'
 
 interface SettingsState {
-  riotId: string | null;
-  apiKey: string | null;
-  backgroundSwitch: boolean;
-  progressSwitch: boolean;
-  statisticsSwitch: boolean;
-  backgroundColor: string;
-  textColor: string;
-  primaryColor: string;
-  progressColor: string;
-  winColor: string;
-  loseColor: string;
+  riotId: string | null
+  apiKey: string | null
+  backgroundSwitch: boolean
+  progressSwitch: boolean
+  statisticsSwitch: boolean
+  backgroundColor: string
+  textColor: string
+  primaryColor: string
+  progressColor: string
+  winColor: string
+  loseColor: string
 }
 
 export const useSettingsStore = defineStore('settings', {
@@ -30,15 +30,15 @@ export const useSettingsStore = defineStore('settings', {
   }),
   actions: {
     resetConfiguration() {
-      this.backgroundSwitch = true;
-      this.progressSwitch = true;
-      this.statisticsSwitch = true;
-      this.backgroundColor = '#07090e99';
-      this.textColor = '#FFFFFF';
-      this.primaryColor = '#bebebf';
-      this.progressColor = '#00ffe3e6';
-      this.winColor = '#00ffe3';
-      this.loseColor = '#ff7986';
+      this.backgroundSwitch = true
+      this.progressSwitch = true
+      this.statisticsSwitch = true
+      this.backgroundColor = '#07090e99'
+      this.textColor = '#FFFFFF'
+      this.primaryColor = '#bebebf'
+      this.progressColor = '#00ffe3e6'
+      this.winColor = '#00ffe3'
+      this.loseColor = '#ff7986'
     },
   },
   persist: true,
