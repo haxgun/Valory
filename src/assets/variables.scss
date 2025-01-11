@@ -1,17 +1,18 @@
 @import 'modern-normalize/modern-normalize.css';
 @import 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Russo+One&display=swap';
 
-$font-family_1: 'Inter',
--apple-system,
-BlinkMacSystemFont,
-Segoe UI,
-Roboto,
-Helvetica,
-Arial,
-sans-serif,
-'Apple Color Emoji',
-'Segoe UI Emoji',
-Segoe UI Symbol;
+$font-family_1:
+  'Inter',
+  -apple-system,
+  BlinkMacSystemFont,
+  Segoe UI,
+  Roboto,
+  Helvetica,
+  Arial,
+  sans-serif,
+  'Apple Color Emoji',
+  'Segoe UI Emoji',
+  Segoe UI Symbol;
 
 $background-color: hsl(0 0% 7%);
 $white: #fffbf5;
