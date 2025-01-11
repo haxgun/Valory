@@ -21,11 +21,6 @@ const router = createRouter({
       props: (route) => ({ overlayID: route.params.overlayID }),
     },
     {
-      path: '/test',
-      name: 'Test',
-      component: () => import('@/views/TestView.vue'),
-    },
-    {
       path: '/:pathMatch(.*)*',
       name: 'Ooops! 404',
       component: () => import('@/views/PageNotFoundView.vue'),
