@@ -10,25 +10,72 @@ import Input from '@/components/ui/InputUI.vue'
 import UiModal from '@/components/ui/ModalWindow.vue'
 import Switch from '@/components/ui/Switch.vue'
 import riotIdsData from '@/data/riotIds.json'
-import { onMounted, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
+import { useSettingsStore } from "@/stores/settings"
 
-interface Form {
-  riotId: string
-  hdevApiKey: string
-}
+const settingsStore = useSettingsStore()
 
-const form = ref<Form>({
-  riotId: '',
-  hdevApiKey: '',
+const riotId = computed({
+  get: () => settingsStore.riotId,
+  set: (value) => (settingsStore.riotId = value),
+})
+
+const apiKey = computed({
+  get: () => settingsStore.apiKey,
+  set: (value) => (settingsStore.apiKey = value),
+})
+
+const backgroundSwitch = computed({
+  get: () => settingsStore.backgroundSwitch,
+  set: (value) => (settingsStore.backgroundSwitch = value),
+})
+
+const progressSwitch = computed({
+  get: () => settingsStore.progressSwitch,
+  set: (value) => (settingsStore.progressSwitch = value),
+})
+
+const statisticsSwitch = computed({
+  get: () => settingsStore.statisticsSwitch,
+  set: (value) => (settingsStore.statisticsSwitch = value),
+})
+
+const backgroundColor = computed({
+  get: () => settingsStore.backgroundColor,
+  set: (value) => (settingsStore.backgroundColor = value),
+})
+
+const textColor = computed({
+  get: () => settingsStore.textColor,
+  set: (value) => (settingsStore.textColor = value),
+})
+
+const primaryColor = computed({
+  get: () => settingsStore.primaryColor,
+  set: (value) => (settingsStore.primaryColor = value),
+})
+
+const progressColor = computed({
+  get: () => settingsStore.progressColor,
+  set: (value) => (settingsStore.progressColor = value),
+})
+
+const winColor = computed({
+  get: () => settingsStore.winColor,
+  set: (value) => (settingsStore.winColor = value),
+})
+
+const loseColor = computed({
+  get: () => settingsStore.loseColor,
+  set: (value) => (settingsStore.loseColor = value),
 })
 
 const isProfileModalVisible = ref(false)
+const isConfigurationModalVisible = ref(false)
 
 const openProfileModal = () => {
   isProfileModalVisible.value = true
 }
-
-const isConfigurationModalVisible = ref(false)
 
 const openConfigurationModal = () => {
   isConfigurationModalVisible.value = true
@@ -38,29 +85,8 @@ const riotIds = riotIdsData.ids
 
 const generateRandomId = () => {
   const randomIndex = Math.floor(Math.random() * riotIds.length)
-  form.value.riotId = riotIds[randomIndex]
+  riotId.value = riotIds[randomIndex]
 }
-
-const saveFormData = () => {
-  localStorage.setItem('hdevApiKey', form.value.hdevApiKey)
-  localStorage.setItem('riotId', form.value.riotId)
-}
-
-watch(form, saveFormData, { deep: true })
-
-onMounted(() => {
-  const savedHdevApiKey = localStorage.getItem('hdevApiKey')
-  const savedRiotId = localStorage.getItem('riotId')
-  if (savedHdevApiKey) form.value.hdevApiKey = savedHdevApiKey
-  if (savedRiotId) form.value.riotId = savedRiotId
-})
-
-const bgColor = ref('#ffffff')
-const textColor = ref('#ffffff')
-const primaryColor = ref('#ffffff')
-const progressColor = ref('#ffffff')
-const winColor = ref('#ffffff')
-const loseColor = ref('#ffffff')
 </script>
 
 <template>
@@ -77,12 +103,12 @@ const loseColor = ref('#ffffff')
               {{ $t('editor.profile.description') }}
             </template>
             <template #input>
-              <Button class="editor__button" @click="openProfileModal"
-                >{{ $t('editor.profile.button') }}
+              <Button class="editor__button" @click="openProfileModal">
+                {{ $t('editor.profile.button') }}
               </Button>
             </template>
           </SectionSettingsEditor>
-          <SectionSettingsEditor v-if="form.hdevApiKey && form.riotId" :is-modal="true">
+          <SectionSettingsEditor v-if="apiKey && riotId" :is-modal="true">
             <template #title>
               {{ $t('editor.configuration.title') }}
             </template>
@@ -90,12 +116,12 @@ const loseColor = ref('#ffffff')
               {{ $t('editor.configuration.description') }}
             </template>
             <template #input>
-              <Button class="editor__button" @click="openConfigurationModal"
-                >{{ $t('editor.profile.button') }}
+              <Button class="editor__button" @click="openConfigurationModal">
+                {{ $t('editor.configuration.button') }}
               </Button>
             </template>
           </SectionSettingsEditor>
-          <SectionSettingsEditor v-if="form.hdevApiKey && form.riotId">
+          <SectionSettingsEditor v-if="apiKey && riotId">
             <template #title>
               {{ $t('editor.url.title') }}
             </template>
@@ -119,7 +145,7 @@ const loseColor = ref('#ffffff')
                 <p class="description">{{ $t('editor.profile.riotId.description') }}</p>
               </template>
               <template #input>
-                <Input v-model="form.riotId" placeholder="Riot ID" style="flex: 2" />
+                <Input v-model="riotId" placeholder="Riot ID" style="flex: 2" />
               </template>
               <template #footer>
                 <span class="under_description" @click="generateRandomId">
@@ -137,7 +163,7 @@ const loseColor = ref('#ffffff')
               </template>
               <template #input>
                 <Input
-                  v-model="form.hdevApiKey"
+                  v-model="apiKey"
                   placeholder="HDEV-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
                   style="flex: 2"
                 />
@@ -165,19 +191,19 @@ const loseColor = ref('#ffffff')
                   <span>
                     {{ $t('editor.configuration.display.items.background') }}
                   </span>
-                  <Switch />
+                  <Switch v-model="backgroundSwitch"/>
                 </div>
                 <div class="item">
                   <span>
                     {{ $t('editor.configuration.display.items.progress') }}
                   </span>
-                  <Switch />
+                  <Switch v-model="progressSwitch"/>
                 </div>
                 <div class="item">
                   <span>
                     {{ $t('editor.configuration.display.items.statistics') }}
                   </span>
-                  <Switch />
+                  <Switch v-model="statisticsSwitch"/>
                 </div>
               </template>
             </ModalSettingsEditor>
@@ -193,7 +219,7 @@ const loseColor = ref('#ffffff')
                   <span>
                     {{ $t('editor.configuration.color.items.background') }}
                   </span>
-                  <ColorPicker v-model="bgColor" />
+                  <ColorPicker v-model="backgroundColor" />
                 </div>
                 <div class="item">
                   <span>
@@ -230,8 +256,8 @@ const loseColor = ref('#ffffff')
           </ui-modal>
         </div>
       </div>
-      <PreviewEditor :hdevApiKey="form.hdevApiKey" :riotId="form.riotId">
-        <Overlay v-if="form.hdevApiKey && form.riotId" />
+      <PreviewEditor :hdevApiKey="apiKey || ''" :riotId="riotId || ''">
+        <Overlay v-if="apiKey && riotId" />
       </PreviewEditor>
     </div>
   </div>
