@@ -41,6 +41,8 @@
     },
     "configuration": {
       "title": "Configuration",
+      "reset": "Clear all",
+      "button": "Open",
       "description": "Modify selected options to match your brand",
       "display": {
         "title": "Display option",
