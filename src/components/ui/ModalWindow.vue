@@ -112,6 +112,13 @@ onBeforeUnmount(() => {
 }
 
 .close-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  padding: 0;
+  line-height: 0;
+
   background: none;
   border: none;
   color: #fffbf5;

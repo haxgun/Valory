@@ -19,6 +19,11 @@ defineProps({
 
 <style scoped>
 span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  padding: 0;
   line-height: 0;
 }
 </style>
