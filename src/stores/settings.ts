@@ -41,13 +41,5 @@ export const useSettingsStore = defineStore('settings', {
       this.loseColor = '#ff7986';
     },
   },
-  persist: {
-    enabled: true,
-    strategies: [
-      {
-        key: 'settings',
-        storage: localStorage,
-      },
-    ],
-  },
+  persist: true,
 })
