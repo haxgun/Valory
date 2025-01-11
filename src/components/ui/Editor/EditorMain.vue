@@ -177,7 +177,18 @@ const generateRandomId = () => {
           </ui-modal>
           <ui-modal v-model="isConfigurationModalVisible">
             <template #title>
-              <span>{{ $t('editor.configuration.title') }}</span>
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <span>{{ $t('editor.configuration.title') }}</span>
+                <span
+                  @click="settingsStore.resetConfiguration()"
+                  style="
+                    color: hsl(222, 5%, 62%);
+                    font-size: 0.875rem;
+                    cursor: pointer
+                ">
+                  Clear all
+                </span>
+              </div>
             </template>
             <ModalSettingsEditor>
               <template #header>
