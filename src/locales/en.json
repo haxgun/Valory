@@ -14,7 +14,10 @@
       "second": "Create your overlay"
     },
     "languageSwitcher": "Select a language",
-    "footer": "Made with"
+    "footer": {
+      "powered_by": "Powered by",
+      "made": "Made with"
+    }
   },
   "editor": {
     "header": {
@@ -23,7 +26,7 @@
     },
     "profile": {
       "title": "Profile",
-      "description": "Find your profile and paste HDEV key",
+      "description": "Find your profile and paste HenrikDEV API key",
       "button": "Open",
       "riotId": {
         "title": "Riot ID",

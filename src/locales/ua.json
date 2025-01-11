@@ -23,7 +23,7 @@
     },
     "profile": {
       "title": "Профіль",
-      "description": "Знайдіть свій профіль і вставте HDEV ключ",
+      "description": "Знайдіть свій профіль і вставте HenrikDEV API ключ",
       "button": "Відкрити",
       "riotId": {
         "title": "Riot ID",
@@ -32,7 +32,7 @@
         "random": "Натисніть, щоб вставити приклад Riot ID."
       },
       "hdevKey": {
-        "title": "API HenrikDEV",
+        "title": "HenrikDEV API",
         "description": "Ми використовуємо власний API для взаємодії з Valorant, щоб отримувати дані.",
         "instruction": "Щоб отримати ключ, дотримуйтесь інструкцій.",
         "button": "Відправити",

@@ -14,7 +14,10 @@
       "second": "オーバーレイを作成する"
     },
     "languageSwitcher": "言語を選択",
-    "footer": "作成者"
+    "footer": {
+      "powered_by": "提供元",
+      "made": "作成"
+    }
   },
   "editor": {
     "header": {
@@ -23,7 +26,7 @@
     },
     "profile": {
       "title": "プロフィール",
-      "description": "プロフィールを探し、HDEVキーを貼り付けてください",
+      "description": "プロフィールを探し、HenrikDEV APIキーを貼り付けてください",
       "button": "開く",
       "riotId": {
         "title": "Riot ID",
@@ -41,6 +44,8 @@
     },
     "configuration": {
       "title": "設定",
+      "reset": "すべてクリア",
+      "button": "開く",
       "description": "選択したオプションをあなたのブランドに合わせて変更します",
       "display": {
         "title": "表示オプション",
@@ -67,6 +72,11 @@
         "title": "統計",
         "description": "統計を削除したい場合は切り替えてください"
       }
+    },
+    "url": {
+      "title": "オーバーレイURL",
+      "description": "これをあなたのストリーミングアプリにコピー＆ペーストしてください（OBS Studioの場合: ソース → ブラウザ）。",
+      "dimensions": "サイズ: 386 x 113"
     },
     "preview": {
       "title": "プロフィールを設定すると、ここにオーバーレイが表示されます"

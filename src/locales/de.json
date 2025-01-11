@@ -14,7 +14,10 @@
       "second": "Erstellen Sie Ihr Overlay"
     },
     "languageSwitcher": "Sprache wählen",
-    "footer": "Hergestellt mit"
+    "footer": {
+      "powered_by": "Hergestellt mit",
+      "made": "Made with"
+    }
   },
   "editor": {
     "header": {
@@ -23,7 +26,7 @@
     },
     "profile": {
       "title": "Profil",
-      "description": "Finden Sie Ihr Profil und fügen Sie den HDEV-Schlüssel ein",
+      "description": "Finden Sie Ihr Profil und fügen Sie den HenrikDEV API-Schlüssel ein",
       "button": "Öffnen",
       "riotId": {
         "title": "Riot ID",
@@ -41,6 +44,8 @@
     },
     "configuration": {
       "title": "Konfiguration",
+      "reset": "Alle löschen",
+      "button": "Öffnen",
       "description": "Passen Sie die ausgewählten Optionen an Ihre Marke an",
       "display": {
         "title": "Anzeigeoptionen",
@@ -67,6 +72,11 @@
         "title": "Statistiken",
         "description": "Schalten Sie es aus, wenn Sie die Statistiken entfernen möchten"
       }
+    },
+    "url": {
+      "title": "Overlay-URL",
+      "description": "Kopieren Sie dies in Ihre Streaming-App (in OBS Studio: Quellen → Browser).",
+      "dimensions": "Abmessungen: 386 x 113"
     },
     "preview": {
       "title": "Ihr Overlay wird hier angezeigt, nachdem Sie Ihr Profil eingerichtet haben"

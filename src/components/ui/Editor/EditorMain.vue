@@ -158,7 +158,6 @@ const generateRandomId = () => {
                 <h1 class="title">{{ $t('editor.profile.hdevKey.title') }}</h1>
                 <span class="description">
                   {{ $t('editor.profile.hdevKey.description') }}
-                  <span>{{ $t('editor.profile.hdevKey.instruction') }}</span>
                 </span>
               </template>
               <template #input>
@@ -186,7 +185,7 @@ const generateRandomId = () => {
                     font-size: 0.875rem;
                     cursor: pointer
                 ">
-                  Clear all
+                  {{ $t('editor.configuration.reset') }}
                 </span>
               </div>
             </template>
