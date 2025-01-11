@@ -295,6 +295,7 @@ onClickOutside(colorPickerRef, () => (openColorPickerRef.value = false))
   border: none;
   cursor: pointer;
   box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.25);
+  transition: background-color 0.1s;
 }
 
 .color-picker {
