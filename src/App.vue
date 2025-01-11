@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import Highlights from '@/components/HighlightsItem.vue'
-import IconLoading from '@/components/icons/IconLoading.vue'
+import { defineAsyncComponent } from 'vue'
 import { useHead } from '@unhead/vue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
+const Highlights = defineAsyncComponent(() => import('@/components/HighlightsItem.vue'))
+const IconLoading = defineAsyncComponent(() => import('@/components/icons/IconLoading.vue'))
 const isRouterReady = ref<boolean>(false)
-
 const router = useRouter()
 
 router.isReady().finally(() => {
@@ -70,14 +70,14 @@ useHead({
 <template>
   <Highlights v-if="!$route.meta.hideHighlight" />
   <Transition mode="out-in" name="fade">
-    <div v-if="!isRouterReady" key="1" class="app-loader">
+    <div v-if="!isRouterReady" class="app-loader">
       <IconLoading />
     </div>
-    <div v-else key="2">
+    <div v-else>
       <router-view v-slot="{ Component }">
-        <transition mode="out-in" name="slide-fade">
-          <component :is="Component" :key="$route.path"></component>
-        </transition>
+        <Transition mode="out-in" name="slide-fade">
+          <component :is="Component" :key="$route.path" />
+        </Transition>
       </router-view>
     </div>
   </Transition>
