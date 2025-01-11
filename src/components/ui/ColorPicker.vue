@@ -44,7 +44,7 @@ const presetColors: string[] = [
   '#0D7A56',
   '#E8C6D2',
   '#4C8C8B',
-  '#6C6C6C',
+  '#07090E',
 ]
 
 const saturationRef = ref<HTMLDivElement | null>(null)
