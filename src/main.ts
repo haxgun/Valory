@@ -14,7 +14,3 @@ const head = createHead()
 pinia.use(piniaPluginPersistedstate)
 
 app.use(pinia).use(head).use(i18n).use(router).component('Icon', Icon).mount('#app')
-
-document.body.addEventListener('plugin_web_update_notice', () => {
-  window.location.reload()
-})
