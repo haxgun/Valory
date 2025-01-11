@@ -267,7 +267,18 @@ const generateRandomId = () => {
         </div>
       </div>
       <PreviewEditor :hdevApiKey="apiKey || ''" :riotId="riotId || ''">
-        <Overlay v-if="apiKey && riotId" />
+        <Overlay
+          v-if="apiKey && riotId"
+          :backgroundSwitch="backgroundSwitch"
+          :progressSwitch="progressSwitch"
+          :statisticsSwitch="statisticsSwitch"
+          :backgroundColor="backgroundColor"
+          :textColor="textColor"
+          :primaryColor="primaryColor"
+          :progressColor="progressColor"
+          :winColor="winColor"
+          :loseColor="loseColor"
+        />
       </PreviewEditor>
     </div>
   </div>

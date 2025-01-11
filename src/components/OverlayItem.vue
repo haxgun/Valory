@@ -3,6 +3,15 @@ import IconValory from '@/components/icons/IconValory.vue'
 
 interface OverlayProps {
   valoryLogo?: boolean
+  backgroundSwitch?: boolean
+  progressSwitch?: boolean
+  statisticsSwitch?: boolean
+  backgroundColor?: string
+  textColor?: string
+  primaryColor?: string
+  progressColor?: string
+  winColor?: string
+  loseColor?: string
 }
 
 defineProps<OverlayProps>()
@@ -14,7 +23,14 @@ defineProps<OverlayProps>()
       <IconValory :size="16" />
       <span class="text">VALORY.SU</span>
     </div>
-    <div class="overlay__body">
+    <div
+      :style="
+        {
+          backgroundColor: backgroundSwitch ?  `${backgroundColor}99`: 'transparent',
+          borderColor: backgroundSwitch ?  'rgba(255, 255, 255, 0.1)' : 'transparent'
+        }"
+      class="overlay__body"
+    >
       <div class="overlay__content">
         <div class="overlay__left">
           <div class="rank__img">
@@ -23,8 +39,20 @@ defineProps<OverlayProps>()
         </div>
         <div class="overlay__right">
           <section class="overlay__rank">
-            <div class="rank">IMMORTAL 3 #46</div>
-            <div class="elo_with_rr">
+            <div
+              :style="{
+                color: textColor
+              }"
+              class="rank"
+            >
+              IMMORTAL 3 #46
+            </div>
+            <div
+              :style="{
+                color: primaryColor
+              }"
+              class="elo_with_rr"
+            >
               1838 elo - 123RR
               <span class="plus">
                 +5
@@ -55,7 +83,13 @@ defineProps<OverlayProps>()
               <span class="wl">40%</span>
             </div>
           </section>
-          <section class="overlay__stats">
+          <section
+            :style="{
+              display: statisticsSwitch ? 'flex' : 'none',
+              color: primaryColor
+            }"
+            class="overlay__stats"
+          >
             <p>1.25 KD</p>
             <p>175 ADR</p>
             <p>369 ACS</p>
@@ -63,7 +97,15 @@ defineProps<OverlayProps>()
           </section>
         </div>
       </div>
-      <div class="progressbar"></div>
+      <div
+        :style="
+          {
+            display: progressSwitch ? 'block' : 'none',
+            backgroundColor: progressColor
+          }
+        "
+        class="progressbar"
+      ></div>
     </div>
   </div>
 </template>
@@ -90,12 +132,13 @@ defineProps<OverlayProps>()
   }
 
   .overlay__body {
-    width: 386px;
+    width: 370px;
     height: 113px;
     overflow: hidden;
     border-radius: 8px;
-    background: rgba(7, 9, 14, 0.6);
-    border: 2px rgba(255 255 255 / 0.1) solid;
+    background-color: rgba(7, 9, 14, 0.6);
+    border: 2px  solid;
+    border-color: rgba(255 255 255 / 0.1);
 
     .overlay__content {
       width: 100%;
@@ -216,7 +259,7 @@ defineProps<OverlayProps>()
   }
 
   .progressbar {
-    width: 386px;
+    width: 370px;
     height: 7px;
     left: 0;
     bottom: 0;
