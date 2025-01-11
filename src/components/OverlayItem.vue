@@ -53,25 +53,6 @@ defineProps<OverlayProps>()
               <span class="lose_match">L</span>
               <span class="win_match">W</span>
               <span class="wl">40%</span>
-              <span class="plus">
-                +5
-                <span>
-                  <svg
-                    fill="none"
-                    height="7"
-                    viewBox="0 0 6 7"
-                    width="6"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5 6L3 3.91667L1 6M5 3.08333L3 1L1 3.08333"
-                      stroke="#00FFE3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-              </span>
             </div>
           </section>
           <section class="overlay__stats">
