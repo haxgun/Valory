@@ -2,14 +2,14 @@
 interface Props {
   name?: string
   value?: string
-  checked?: boolean
   disabled?: boolean
   group?: boolean
   id?: string
+  modelValue?: boolean
 }
 
 const emits = defineEmits<{
-  (event: 'update:checked', checked: boolean): void
+  (event: 'update:modelValue', value: boolean): void
   (event: 'updateCheckboxGroup', payload: { optionId?: string; checked: boolean }): void
 }>()
 
@@ -20,7 +20,7 @@ const handleClick = (event: Event) => {
   if (props.group) {
     emits('updateCheckboxGroup', { optionId: props.id, checked: target.checked })
   } else {
-    emits('update:checked', target.checked)
+    emits('update:modelValue', target.checked)
   }
 }
 </script>
@@ -28,7 +28,7 @@ const handleClick = (event: Event) => {
 <template>
   <div class="switch__container">
     <input
-      :checked="checked"
+      :checked="modelValue"
       :disabled="disabled"
       :name="name"
       :value="value"
