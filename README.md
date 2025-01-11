@@ -8,7 +8,6 @@
     <a href="https://valory.su"><strong>valory.su »</strong></a>
     <br />
 
-[![CI/CD](https://github.com/haxgun/valory/actions/workflows/master.yml/badge.svg?labelColor=green&logo=x&logoColor=white&style=flat-square)](https://github.com/haxgun/valory/actions/workflows/master.yml)
 [![GitHub License](https://img.shields.io/github/license/haxgun/valory?color=green)](https://github.com/haxgun/valory/blob/main/LICENSE)
 [![Website](https://img.shields.io/website?url=https://valory.su)](https://overlay.haxgun.ru/)
 [![Stars](https://img.shields.io/github/stars/haxgun/Valory?style=flat&color=green)](https://github.com/haxgun/valory/stargazers)
