@@ -28,6 +28,19 @@ export const useSettingsStore = defineStore('settings', {
     winColor: '#00ffe3',
     loseColor: '#ff7986',
   }),
+  actions: {
+    resetConfiguration() {
+      this.backgroundSwitch = false;
+      this.progressSwitch = false;
+      this.statisticsSwitch = false;
+      this.backgroundColor = '#07090e99';
+      this.textColor = '#FFFFFF';
+      this.primaryColor = '#bebebf';
+      this.progressColor = '#00ffe3e6';
+      this.winColor = '#00ffe3';
+      this.loseColor = '#ff7986';
+    },
+  },
   persist: {
     enabled: true,
     strategies: [
