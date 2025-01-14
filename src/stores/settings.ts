@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 interface SettingsState {
   riotId: string | null
   apiKey: string | null
+  puuid: string | null
   backgroundSwitch: boolean
   progressSwitch: boolean
   statisticsSwitch: boolean
@@ -18,6 +19,7 @@ export const useSettingsStore = defineStore('settings', {
   state: (): SettingsState => ({
     riotId: null,
     apiKey: null,
+    puuid: null,
     backgroundSwitch: true,
     progressSwitch: true,
     statisticsSwitch: true,
