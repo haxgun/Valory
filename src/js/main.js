@@ -457,7 +457,7 @@ document.querySelector("#app").innerHTML = `
           <footer>
             <div class="text">
               <span>Powered by <a href="https://github.com/Henrik-3/unofficial-valorant-api" target="__blank">Henrik's API</a> 🥰</span>
-              <span>Made with ❤️ © 2025 Valory</span>
+              <span>Made with ❤️ © 2023-2025 Valory</span>
             </div>
             <ul class="socials">
               <li>
@@ -887,7 +887,7 @@ async function getLeaderboard(region, puuid, hdevApiKey) {
     } else {
       return " ";
     }
-  } catch (error) {
+  } catch {
     return " ";
   }
 }
