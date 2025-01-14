@@ -15,7 +15,7 @@ import LanguageSwitcher from '@/components/ui/LanguageSwitcher.vue'
       >
     </span>
     <span class="copyright"
-      >{{ $t('landing.footer.made') }} <IconHeart :size="24" style="fill: red" /> © 2025
+      >{{ $t('landing.footer.made') }} <IconHeart :size="24" style="fill: red" /> © 2023-2025
       VALORY</span
     >
     <ul class="socials">
