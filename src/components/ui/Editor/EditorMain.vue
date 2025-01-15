@@ -10,7 +10,7 @@ import Input from '@/components/ui/InputUI.vue'
 import UiModal from '@/components/ui/ModalWindow.vue'
 import Switch from '@/components/ui/Switch.vue'
 import riotIdsData from '@/data/riotIds.json'
-import { useSettingsStore } from '@/stores/settings'
+import { useSettingsStore } from '@/store/settings'
 import { computed, ref } from 'vue'
 
 const settingsStore = useSettingsStore()
