@@ -22,10 +22,10 @@ p {
 }
 
 main {
+  flex: 1;
   display: flex;
   place-items: center;
   justify-content: center;
-  min-height: 100vh;
   max-width: 1280px;
   margin: 0 auto;
 

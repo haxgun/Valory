@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useHead } from '@unhead/vue'
 import { defineAsyncComponent } from 'vue'
+import HeaderItem from "@/components/HeaderItem.vue";
 
 const Highlights = defineAsyncComponent(() => import('@/components/HighlightsItem.vue'))
 const IconLoading = defineAsyncComponent(() => import('@/components/icons/IconLoading.vue'))
@@ -60,21 +61,24 @@ useHead({
 </script>
 
 <template>
-  <Highlights v-if="!$route.meta.hideHighlight" />
-  <Suspense>
-    <template #fallback>
-      <div class="app-loader">
-        <IconLoading />
-      </div>
-    </template>
-    <template #default>
-      <router-view v-slot="{ Component }">
-        <Transition mode="out-in" name="slide-fade">
-          <component :is="Component" :key="$route.path" />
-        </Transition>
-      </router-view>
-    </template>
-  </Suspense>
+  <div class="layout">
+    <Highlights v-if="!$route.meta.hideHighlight" />
+    <HeaderItem />
+    <Suspense>
+      <template #fallback>
+        <div class="app-loader">
+          <IconLoading />
+        </div>
+      </template>
+      <template #default>
+        <router-view v-slot="{ Component }">
+          <Transition mode="out-in" name="slide-fade">
+            <component :is="Component" :key="$route.path" />
+          </Transition>
+        </router-view>
+      </template>
+    </Suspense>
+  </div>
 </template>
 
 <style>
@@ -82,6 +86,12 @@ useHead({
 </style>
 
 <style lang="scss" scoped>
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 .slide-fade-enter-active {
   transition: all 0.2s ease-out;
 }
