@@ -12,6 +12,8 @@ import Switch from '@/components/ui/Switch.vue'
 import riotIdsData from '@/data/riotIds.json'
 import { useSettingsStore } from '@/store/settings'
 import { computed, ref } from 'vue'
+import { checkApiKey } from "@/utils/api";
+import { toast } from "vue-sonner";
 
 const settingsStore = useSettingsStore()
 
@@ -87,6 +89,16 @@ const generateRandomId = () => {
   const randomIndex = Math.floor(Math.random() * riotIds.length)
   riotId.value = riotIds[randomIndex]
 }
+
+const checkKey = () => {
+  if (apiKey.value && apiKey.value.length > 40) {
+    try {
+      checkApiKey(apiKey.value);
+    } catch {
+      toast.error('Invalid API key');
+    }
+  }
+};
 </script>
 
 <template>
@@ -163,6 +175,7 @@ const generateRandomId = () => {
               <template #input>
                 <Input
                   v-model="apiKey"
+                  @input="checkKey"
                   placeholder="HDEV-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
                   style="flex: 2"
                 />

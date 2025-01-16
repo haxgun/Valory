@@ -2,6 +2,7 @@
 import { useHead } from '@unhead/vue'
 import { defineAsyncComponent } from 'vue'
 import HeaderItem from "@/components/HeaderItem.vue";
+import { Toaster } from "vue-sonner";
 
 const Highlights = defineAsyncComponent(() => import('@/components/HighlightsItem.vue'))
 const IconLoading = defineAsyncComponent(() => import('@/components/icons/IconLoading.vue'))
@@ -62,6 +63,16 @@ useHead({
 
 <template>
   <div class="layout">
+    <Toaster
+      position="top-right"
+      :toastOptions="{
+        style: {
+          background: '#0A0A0A',
+          color: 'rgb(255, 255, 255)',
+          border: '1px solid hsla(222deg 6% 30% / 0.25)'
+        },
+      }"
+    />
     <Highlights v-if="!$route.meta.hideHighlight" />
     <HeaderItem />
     <Suspense>
