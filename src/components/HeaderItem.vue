@@ -1,6 +1,6 @@
 <script setup lang="ts">
-
 import IconValory from "@/components/icons/IconValory.vue";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher.vue";
 </script>
 
 <template>
@@ -17,7 +17,7 @@ import IconValory from "@/components/icons/IconValory.vue";
         <IconValory :size="36"/>
       </div>
       <div class="right">
-        <span>user</span>
+        <LanguageSwitcher />
       </div>
     </div>
   </header>
@@ -25,6 +25,8 @@ import IconValory from "@/components/icons/IconValory.vue";
 
 <style scoped lang="scss">
 header {
+  backdrop-filter: blur(10px);
+
   position: fixed;
   top: 0;
   left: 0;
@@ -32,8 +34,8 @@ header {
 
   display: flex;
   align-items: center;
+  justify-content: center;
 
-  width: 60vw;
   margin: 0 auto;
   padding: 30px 0;
   z-index: 1;
@@ -57,7 +59,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 60vw;
 
     .left {
       position: relative;
@@ -96,6 +98,9 @@ header {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
+
+      display: flex;
+      align-items: center;
     }
 
     .right {
