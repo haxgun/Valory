@@ -14,6 +14,7 @@ import { useSettingsStore } from '@/store/settings'
 import { computed, ref } from 'vue'
 import { checkApiKey } from "@/utils/api";
 import { toast } from "vue-sonner";
+import debounce from 'lodash.debounce';
 
 const settingsStore = useSettingsStore()
 
@@ -90,15 +91,21 @@ const generateRandomId = () => {
   riotId.value = riotIds[randomIndex]
 }
 
-const checkKey = () => {
+const checkKey = debounce(async () => {
   if (apiKey.value && apiKey.value.length > 40) {
     try {
-      checkApiKey(apiKey.value);
-    } catch {
-      toast.error('Invalid API key');
+      const status = await checkApiKey(apiKey.value);
+      if (status) {
+        toast.success('API key is valid');
+      } else {
+        toast.error('API key is invalid');
+      }
+    } catch (error) {
+      toast.error('Failed to validate API key. Please try again.');
+      console.error(error);
     }
   }
-};
+}, 10000);
 </script>
 
 <template>
