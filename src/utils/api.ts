@@ -9,14 +9,10 @@ const apiClient = axios.create({
 
 export const checkApiKey = async (apiKey: string) => {
   try {
-    const response = await apiClient.get('/v1/status/eu', {
-      headers: {
-        'Authorization': apiKey,
-      },
-    });
-    return response.data;
+    const response = await apiClient.get('/v1/status/eu?api_key=' + apiKey);
+    return response.status === 200;
   } catch (error: any) {
     console.error(error)
-    return { message: error.message || 'Unknown error occurred' };
+    return false
   }
 };
