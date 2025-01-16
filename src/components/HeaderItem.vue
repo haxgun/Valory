@@ -77,10 +77,17 @@ header {
 
           font-size: 16px;
           font-style: normal;
-          font-weight: 525;
+          font-weight: 500;
           line-height: normal;
 
+          transition: font-weight .2s;
+
           padding: .75rem .5rem;
+
+          &.router-link-active,
+          &.router-link-exact-active {
+            font-weight: 600;
+          }
         }
       }
     }
