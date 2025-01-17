@@ -11,7 +11,7 @@ import UiModal from '@/components/ui/ModalWindow.vue'
 import Switch from '@/components/ui/Switch.vue'
 import riotIdsData from '@/data/riotIds.json'
 import { useSettingsStore } from '@/store/settings'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from "vue";
 import { checkApiKey } from "@/utils/api";
 import { toast } from "vue-sonner";
 import debounce from 'lodash.debounce';
@@ -113,6 +113,12 @@ const checkKey = async () => {
     }
   }
 };
+
+watch(backgroundSwitch, (newValue) => {
+  if (!newValue) {
+    progressSwitch.value = false;
+  }
+})
 </script>
 
 <template>
@@ -231,7 +237,7 @@ const checkKey = async () => {
                   <span>
                     {{ $t('editor.configuration.display.items.progress') }}
                   </span>
-                  <Switch v-model="progressSwitch" />
+                  <Switch v-model="progressSwitch" :disabled="!backgroundSwitch" />
                 </div>
                 <div class="item">
                   <span>
