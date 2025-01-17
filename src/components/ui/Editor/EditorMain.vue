@@ -28,6 +28,11 @@ const apiKey = computed({
   set: (value) => (settingsStore.apiKey = value),
 })
 
+const verifyApiKey = computed({
+  get: () => settingsStore.verifyApiKey,
+  set: (value) => (settingsStore.verifyApiKey = value),
+})
+
 const backgroundSwitch = computed({
   get: () => settingsStore.backgroundSwitch,
   set: (value) => (settingsStore.backgroundSwitch = value),
@@ -96,8 +101,10 @@ const checkKey = debounce(async () => {
     try {
       const status = await checkApiKey(apiKey.value);
       if (status) {
+        verifyApiKey.value = true
         toast.success('API key is valid');
       } else {
+        verifyApiKey.value = false
         toast.error('API key is invalid');
       }
     } catch (error) {
