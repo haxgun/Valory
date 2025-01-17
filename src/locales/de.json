@@ -1,6 +1,10 @@
 {
   "languageName": "Deutsch",
   "flag": "de",
+  "nav": {
+    "home": "Startseite",
+    "configuration": "Konfiguration"
+  },
   "landing": {
     "pretitle": "OVERLAY FÜR STREAM 2.0",
     "description": "Ziehen Sie die Aufmerksamkeit des Publikums mit VALORANT-Statistiken auf sich!",

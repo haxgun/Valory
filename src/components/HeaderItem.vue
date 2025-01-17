@@ -9,8 +9,8 @@ import LanguageSwitcher from "@/components/ui/LanguageSwitcher.vue";
     <div class="header">
       <div class="left">
         <ul class="nav">
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/configurator">Configurator</RouterLink>
+          <RouterLink to="/">{{ $t('nav.home') }}</RouterLink>
+          <RouterLink to="/configurator">{{ $t('nav.configuration') }}</RouterLink>
         </ul>
       </div>
       <div class="center">

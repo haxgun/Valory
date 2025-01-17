@@ -1,6 +1,10 @@
 {
   "languageName": "Українська",
   "flag": "ua",
+  "nav": {
+    "home": "Головна",
+    "configuration": "Конфігурація"
+  },
   "landing": {
     "pretitle": "ОВЕРЛЕЙ ДЛЯ СТРІМУ 2.0",
     "description": "Привертайте увагу аудиторії статистикою VALORANT!",

@@ -1,6 +1,10 @@
 {
   "languageName": "Қазақша",
   "flag": "kz",
+  "nav": {
+    "home": "Басты бет",
+    "configuration": "Конфигурация"
+  },
   "landing": {
     "pretitle": "ОВЕРЛЕЙ ДЛЯ СТРИМА 2.0",
     "description": "VALORANT статистикасымен аудиторияның назарын себепке жасау!",

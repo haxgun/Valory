@@ -1,6 +1,10 @@
 {
   "languageName": "English",
   "flag": "us",
+  "nav": {
+    "home": "Home",
+    "configuration": "Configuration"
+  },
   "landing": {
     "pretitle": "STREAM OVERLAY 2.0",
     "description": "Grab your audience's attention with real-time VALORANT stats!",

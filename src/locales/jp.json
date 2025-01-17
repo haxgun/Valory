@@ -1,6 +1,10 @@
 {
   "languageName": "日本語",
   "flag": "jp",
+  "nav": {
+    "home": "ホーム",
+    "configuration": "設定"
+  },
   "landing": {
     "pretitle": "ストリームオーバーレイ 2.0",
     "description": "VALORANTの統計データで視聴者の注目を集めよう！",
