@@ -69,6 +69,14 @@ onBeforeUnmount(() => {
     background: transparent;
     border: none;
     cursor: pointer;
+    padding: 0;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    color: #fff;
+    font-weight: 500;
   }
 
   &-menu {
