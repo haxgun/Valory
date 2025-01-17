@@ -84,25 +84,6 @@ footer {
     align-items: center;
     margin: 16px 0 0 0;
 
-    .social.language {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      background: rgb(255 255 255 / 3%);
-      box-shadow:
-        rgba(0, 0, 0, 0.02) 0px 2px 4px,
-        rgba(0, 0, 0, 0.03) 0px -1px 2px inset;
-      transition: all 0.2s;
-
-      &:hover {
-        background: rgb(255 255 255 / 10%);
-      }
-    }
-
     .social a {
       cursor: pointer;
       display: flex;
@@ -112,9 +93,7 @@ footer {
       height: 40px;
       border-radius: 14px;
       background: rgb(255 255 255 / 3%);
-      box-shadow:
-        rgba(0, 0, 0, 0.02) 0px 2px 4px,
-        rgba(0, 0, 0, 0.03) 0px -1px 2px inset;
+      box-shadow: rgba(255, 255, 255, 0.02) 0px 10px 40px;
       transition: all 0.2s;
       --icons-color: hsla(0, 0%, 100%, 1);
       stroke: var(--icons-color);
