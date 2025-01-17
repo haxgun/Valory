@@ -96,7 +96,7 @@ const generateRandomId = () => {
   riotId.value = riotIds[randomIndex]
 }
 
-const checkKey = debounce(async () => {
+const checkKey = async () => {
   if (apiKey.value && apiKey.value.length > 40) {
     try {
       const status = await checkApiKey(apiKey.value);
@@ -112,7 +112,7 @@ const checkKey = debounce(async () => {
       console.error(error);
     }
   }
-}, 10000);
+};
 </script>
 
 <template>
