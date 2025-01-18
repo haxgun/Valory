@@ -8,6 +8,10 @@ defineProps({
     type: String,
     required: true,
   },
+  verifyApiKey: {
+    type: Boolean,
+    required: true,
+  },
 })
 </script>
 
@@ -16,7 +20,7 @@ defineProps({
     <div class="preview__container">
       <div class="preview__component">
         <slot></slot>
-        <div v-if="!(hdevApiKey && riotId)" class="text">
+        <div v-if="!(verifyApiKey && riotId)" class="text">
           {{ $t('editor.preview.title') }}
         </div>
       </div>

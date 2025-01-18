@@ -100,16 +100,17 @@ const checkKey = async () => {
     try {
       const status = await checkApiKey();
       if (status) {
-        verifyApiKey.value = true
         toast.success('API key is valid');
       } else {
-        verifyApiKey.value = false
         toast.error('API key is invalid');
       }
     } catch (error) {
       toast.error('Failed to validate API key. Please try again.');
       console.error(error);
     }
+  }
+  else {
+    verifyApiKey.value = false
   }
 };
 
@@ -139,7 +140,7 @@ watch(backgroundSwitch, (newValue) => {
               </Button>
             </template>
           </SectionSettingsEditor>
-          <SectionSettingsEditor v-if="apiKey && riotId" :is-modal="true">
+          <SectionSettingsEditor v-if="verifyApiKey && riotId" :is-modal="true">
             <template #title>
               {{ $t('editor.configuration.title') }}
             </template>
@@ -152,7 +153,7 @@ watch(backgroundSwitch, (newValue) => {
               </Button>
             </template>
           </SectionSettingsEditor>
-          <SectionSettingsEditor v-if="apiKey && riotId">
+          <SectionSettingsEditor v-if="verifyApiKey && riotId">
             <template #title>
               {{ $t('editor.url.title') }}
             </template>
@@ -295,9 +296,9 @@ watch(backgroundSwitch, (newValue) => {
           </ui-modal>
         </div>
       </div>
-      <PreviewEditor :hdevApiKey="apiKey || ''" :riotId="riotId || ''">
+      <PreviewEditor :verifyApiKey="verifyApiKey" :hdevApiKey="apiKey || ''" :riotId="riotId || ''">
         <Overlay
-          v-if="apiKey && riotId"
+          v-if="verifyApiKey && riotId"
           :backgroundSwitch="backgroundSwitch"
           :progressSwitch="progressSwitch"
           :statisticsSwitch="statisticsSwitch"
