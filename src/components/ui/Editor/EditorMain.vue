@@ -10,7 +10,7 @@ import Input from '@/components/ui/InputUI.vue'
 import UiModal from '@/components/ui/ModalWindow.vue'
 import Switch from '@/components/ui/Switch.vue'
 import riotIdsData from '@/data/riotIds.json'
-import { useSettingsStore } from '@/store/settings'
+import { useSettingsStore } from '@/stores/settings'
 import { computed, ref, watch } from "vue";
 import { checkApiKey } from "@/utils/api";
 import { toast } from "vue-sonner";
