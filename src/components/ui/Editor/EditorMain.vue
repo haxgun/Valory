@@ -12,9 +12,8 @@ import Switch from '@/components/ui/Switch.vue'
 import riotIdsData from '@/data/riotIds.json'
 import { useSettingsStore } from '@/stores/settings'
 import { computed, ref, watch } from "vue";
-import { checkApiKey } from "@/utils/api";
+import { checkApiKey } from "@/services/statusService";
 import { toast } from "vue-sonner";
-import debounce from 'lodash.debounce';
 
 const settingsStore = useSettingsStore()
 
@@ -99,7 +98,7 @@ const generateRandomId = () => {
 const checkKey = async () => {
   if (apiKey.value && apiKey.value.length > 40) {
     try {
-      const status = await checkApiKey(apiKey.value);
+      const status = await checkApiKey();
       if (status) {
         verifyApiKey.value = true
         toast.success('API key is valid');
