@@ -67,9 +67,10 @@ useHead({
       position="top-right"
       :toastOptions="{
         style: {
-          background: '#0A0A0A',
-          color: 'hsl(0, 0%, 9%)',
-          border: '1px solid hsla(222deg 6% 30% / 0.25)'
+          background: '#171717c4',
+          color: 'rgb(255, 255, 255)',
+          border: '1px solid hsla(222deg 6% 30% / 0.25)',
+          backdropFilter: 'blur(16px)',
         },
       }"
     />
