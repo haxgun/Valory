@@ -68,7 +68,7 @@ useHead({
       :toastOptions="{
         style: {
           background: '#0A0A0A',
-          color: 'rgb(255, 255, 255)',
+          color: 'hsl(0, 0%, 9%)',
           border: '1px solid hsla(222deg 6% 30% / 0.25)'
         },
       }"
