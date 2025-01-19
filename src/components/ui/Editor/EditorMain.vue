@@ -12,7 +12,7 @@ import Switch from '@/components/ui/Switch.vue'
 import { getTopLeaderboard } from '@/services/leaderboardService'
 import { checkApiKey } from '@/services/statusService'
 import { getPuuid } from '@/services/userService'
-import { useSettingsStore } from '@/stores/settings'
+import { useSettingsStore } from '@/stores/settingsStore'
 import { computed, ref, watch } from 'vue'
 import { toast } from 'vue-sonner'
 
