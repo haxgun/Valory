@@ -9,12 +9,12 @@ import SectionSettingsEditor from '@/components/ui/Editor/SectionSettingsEditor.
 import Input from '@/components/ui/InputUI.vue'
 import UiModal from '@/components/ui/ModalWindow.vue'
 import Switch from '@/components/ui/Switch.vue'
-import riotIdsData from '@/data/riotIds.json'
+import { getTopLeaderboard } from '@/services/leaderboardService'
+import { checkApiKey } from '@/services/statusService'
+import { getPuuid } from '@/services/userService'
 import { useSettingsStore } from '@/stores/settings'
-import { computed, ref, watch } from "vue";
-import { checkApiKey } from "@/services/statusService";
-import { getPuuid } from "@/services/userService";
-import { toast } from "vue-sonner";
+import { computed, ref, watch } from 'vue'
+import { toast } from 'vue-sonner'
 
 const settingsStore = useSettingsStore()
 
@@ -89,51 +89,53 @@ const openConfigurationModal = () => {
   isConfigurationModalVisible.value = true
 }
 
-const riotIds = riotIdsData.ids
-
 const generateRandomId = async () => {
-  const randomIndex = Math.floor(Math.random() * riotIds.length)
-  riotId.value = riotIds[randomIndex]
+  const leaderboardPlayers = await getTopLeaderboard()
+
+  if (leaderboardPlayers.length > 0) {
+    const randomIndex = Math.floor(Math.random() * leaderboardPlayers.length)
+    riotId.value = leaderboardPlayers[randomIndex]
+  } else {
+    riotId.value = 'MAGICX#1337'
+  }
   await getUserPuuid()
 }
 
 const checkKey = async () => {
   if (apiKey.value && apiKey.value.length > 40) {
     try {
-      const status = await checkApiKey();
+      const status = await checkApiKey()
       if (!status) {
-        toast.error('API key is invalid. Verify that the key is correct.');
+        toast.error('API key is invalid. Verify that the key is correct.')
       }
     } catch (error) {
-      toast.error('Failed to validate API key. Please try again.');
-      console.error(error);
+      toast.error('Failed to validate API key. Please try again.')
+      console.error(error)
     }
-  }
-  else {
+  } else {
     verifyApiKey.value = false
   }
-};
+}
 
 const getUserPuuid = async () => {
   if (apiKey.value && apiKey.value.length > 40 && riotId.value) {
     try {
       const successGetPuuid = await getPuuid()
       if (!successGetPuuid) {
-        toast.error('Riot ID is invalid');
+        toast.error('Riot ID is invalid')
       }
     } catch (error) {
-      toast.error('Failed to get Riot ID. Please try again.');
-      console.error(error);
+      toast.error('Failed to get Riot ID. Please try again.')
+      console.error(error)
     }
-  }
-  else if (apiKey.value || apiKey.value && apiKey.value.length <= 40) {
-    toast.error('Verify that the API key and the Riot ID are correct.');
+  } else if (apiKey.value || (apiKey.value && apiKey.value.length <= 40)) {
+    toast.error('Verify that the API key and the Riot ID are correct.')
   }
 }
 
 watch(backgroundSwitch, (newValue) => {
   if (!newValue) {
-    progressSwitch.value = false;
+    progressSwitch.value = false
   }
 })
 </script>
@@ -198,7 +200,8 @@ watch(backgroundSwitch, (newValue) => {
                   v-model.lazy="riotId"
                   @blur="getUserPuuid"
                   placeholder="Riot ID"
-                  style="flex: 2" />
+                  style="flex: 2"
+                />
               </template>
               <template #footer>
                 <span class="under_description" @click="generateRandomId">
