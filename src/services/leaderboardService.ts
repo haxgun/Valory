@@ -10,7 +10,7 @@ interface Player {
   updated_at: string
 }
 
-export const getTopLeaderboard = async (): Promise<any> => {
+export const getTopLeaderboard = async (): Promise<string[]> => {
   try {
     const response: AxiosResponse = await apiClient.get('/v3/leaderboard/eu/pc')
 
