@@ -91,18 +91,17 @@ const openConfigurationModal = () => {
 
 const riotIds = riotIdsData.ids
 
-const generateRandomId = () => {
+const generateRandomId = async () => {
   const randomIndex = Math.floor(Math.random() * riotIds.length)
   riotId.value = riotIds[randomIndex]
+  await getUserPuuid()
 }
 
 const checkKey = async () => {
   if (apiKey.value && apiKey.value.length > 40) {
     try {
       const status = await checkApiKey();
-      if (status) {
-        toast.success('API key is valid');
-      } else {
+      if (!status) {
         toast.error('API key is invalid. Verify that the key is correct.');
       }
     } catch (error) {
@@ -119,9 +118,7 @@ const getUserPuuid = async () => {
   if (apiKey.value && apiKey.value.length > 40 && riotId.value) {
     try {
       const successGetPuuid = await getPuuid()
-      if (successGetPuuid) {
-        toast.success('Riot ID is valid');
-      } else {
+      if (!successGetPuuid) {
         toast.error('Riot ID is invalid');
       }
     } catch (error) {
@@ -129,7 +126,7 @@ const getUserPuuid = async () => {
       console.error(error);
     }
   }
-  else {
+  else if (apiKey.value || apiKey.value && apiKey.value.length <= 40) {
     toast.error('Verify that the API key and the Riot ID are correct.');
   }
 }
@@ -198,8 +195,8 @@ watch(backgroundSwitch, (newValue) => {
               </template>
               <template #input>
                 <Input
-                  v-model="riotId"
-                  @input="getUserPuuid"
+                  v-model.lazy="riotId"
+                  @blur="getUserPuuid"
                   placeholder="Riot ID"
                   style="flex: 2" />
               </template>
@@ -218,8 +215,8 @@ watch(backgroundSwitch, (newValue) => {
               </template>
               <template #input>
                 <Input
-                  v-model="apiKey"
-                  @input="checkKey"
+                  v-model.lazy="apiKey"
+                  @blur="checkKey"
                   placeholder="HDEV-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
                   style="flex: 2"
                 />
