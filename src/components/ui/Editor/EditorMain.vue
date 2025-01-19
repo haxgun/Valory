@@ -13,6 +13,7 @@ import riotIdsData from '@/data/riotIds.json'
 import { useSettingsStore } from '@/stores/settings'
 import { computed, ref, watch } from "vue";
 import { checkApiKey } from "@/services/statusService";
+import { getPuuid } from "@/services/userService";
 import { toast } from "vue-sonner";
 
 const settingsStore = useSettingsStore()
@@ -114,6 +115,25 @@ const checkKey = async () => {
   }
 };
 
+const getUserPuuid = async () => {
+  if (apiKey.value && apiKey.value.length > 40 && riotId.value) {
+    try {
+      const successGetPuuid = await getPuuid()
+      if (successGetPuuid) {
+        toast.success('Riot ID is valid');
+      } else {
+        toast.error('Riot ID is invalid');
+      }
+    } catch (error) {
+      toast.error('Failed to get Riot ID. Please try again.');
+      console.error(error);
+    }
+  }
+  else {
+    toast.error('Verify that the API key and the Riot ID are correct.');
+  }
+}
+
 watch(backgroundSwitch, (newValue) => {
   if (!newValue) {
     progressSwitch.value = false;
@@ -177,7 +197,11 @@ watch(backgroundSwitch, (newValue) => {
                 <p class="description">{{ $t('editor.profile.riotId.description') }}</p>
               </template>
               <template #input>
-                <Input v-model="riotId" placeholder="Riot ID" style="flex: 2" />
+                <Input
+                  v-model="riotId"
+                  @input="getUserPuuid"
+                  placeholder="Riot ID"
+                  style="flex: 2" />
               </template>
               <template #footer>
                 <span class="under_description" @click="generateRandomId">
