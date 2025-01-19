@@ -102,7 +102,7 @@ const checkKey = async () => {
       if (status) {
         toast.success('API key is valid');
       } else {
-        toast.error('API key is invalid');
+        toast.error('API key is invalid. Verify that the key is correct.');
       }
     } catch (error) {
       toast.error('Failed to validate API key. Please try again.');
