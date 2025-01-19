@@ -1,5 +1,13 @@
 <script lang="ts" setup>
 defineProps(['modelValue', 'placeholder'])
+
+const inputRef = ref<HTMLInputElement | null>(null)
+
+const handleEnter = () => {
+  if (inputRef.value) {
+    inputRef.value.blur() // Убираем фокус с input
+  }
+}
 </script>
 
 <template>
@@ -7,11 +15,14 @@ defineProps(['modelValue', 'placeholder'])
     <label class="label_input" for="text-input">
       <input
         id="text-input"
+        ref="inputRef"
         :placeholder="placeholder"
         :value="modelValue"
         autocomplete="off"
         type="text"
         @input="$emit('update:modelValue', $event.target.value)"
+        @blur="$emit('blur', $event)"
+        @keydown.enter="handleEnter"
       />
     </label>
   </div>
