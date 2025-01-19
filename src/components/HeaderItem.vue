@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import IconValory from "@/components/icons/IconValory.vue";
-import LanguageSwitcher from "@/components/ui/LanguageSwitcher.vue";
+import IconValory from '@/components/icons/IconValory.vue'
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher.vue'
 </script>
 
 <template>
@@ -14,7 +14,7 @@ import LanguageSwitcher from "@/components/ui/LanguageSwitcher.vue";
         </ul>
       </div>
       <div class="center">
-        <IconValory :size="36"/>
+        <IconValory :size="36" />
       </div>
       <div class="right">
         <LanguageSwitcher />
@@ -49,7 +49,7 @@ header {
     flex-shrink: 0;
 
     border-radius: 743px;
-    background: #F3465A;
+    background: #f3465a;
 
     filter: blur(235.5px);
   }
@@ -69,12 +69,12 @@ header {
         display: inline-flex;
         list-style: none;
         align-items: flex-start;
-        gap: .5rem;
+        gap: 0.5rem;
         margin: 0;
         padding: 0;
 
         a {
-          color: #FFF;
+          color: #fff;
           text-decoration: none;
 
           font-size: 16px;
@@ -82,9 +82,9 @@ header {
           font-weight: 500;
           line-height: normal;
 
-          transition: font-weight .2s;
+          transition: font-weight 0.2s;
 
-          padding: .75rem .5rem;
+          padding: 0.75rem 0.5rem;
 
           &.router-link-active,
           &.router-link-exact-active {

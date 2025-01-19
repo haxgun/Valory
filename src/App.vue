@@ -1,8 +1,8 @@
 <script lang="ts" setup>
+import HeaderItem from '@/components/HeaderItem.vue'
 import { useHead } from '@unhead/vue'
 import { defineAsyncComponent } from 'vue'
-import HeaderItem from "@/components/HeaderItem.vue";
-import { Toaster } from "vue-sonner";
+import { Toaster } from 'vue-sonner'
 
 const Highlights = defineAsyncComponent(() => import('@/components/HighlightsItem.vue'))
 const IconLoading = defineAsyncComponent(() => import('@/components/icons/IconLoading.vue'))
