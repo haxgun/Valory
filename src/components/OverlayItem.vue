@@ -60,8 +60,8 @@ defineProps<OverlayProps>()
               class="elo_with_rr"
             >
               {{ PlayerInfo.mmr.elo }} elo - {{ PlayerInfo.mmr.rr }} RR
-              <span class="plus">
-                {{ PlayerInfo.mmr.lastChange }}
+              <span v-if=" PlayerInfo.mmr.lastChange != 0" class="plus">
+                  {{ PlayerInfo.mmr.lastChange }}
                 <span>
                   <svg
                     fill="none"

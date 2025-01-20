@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import type { PlayerInformation } from "@/services/overlayService";
 
 interface PreviewProps {
-  playerInfo: PlayerInformation | null,
+  userDataLoaded: boolean,
 }
 
 defineProps<PreviewProps>()
@@ -12,12 +11,14 @@ defineProps<PreviewProps>()
   <div class="preview">
     <div class="preview__container">
       <div class="preview__component">
-        <div v-if="playerInfo">
-          <slot></slot>
-        </div>
-        <div v-else class="text">
-          {{ $t('editor.preview.title') }}
-        </div>
+        <Transition mode="out-in" name="fade">
+          <div v-if="userDataLoaded">
+            <slot></slot>
+          </div>
+          <div v-else class="text">
+            {{ $t('editor.preview.title') }}
+          </div>
+        </Transition>
       </div>
     </div>
   </div>
@@ -59,5 +60,29 @@ defineProps<PreviewProps>()
       }
     }
   }
+}
+
+.slide-fade-enter-active {
+  transition: all 0.2s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

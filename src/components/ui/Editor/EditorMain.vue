@@ -35,6 +35,11 @@ const verifyApiKey = computed({
   set: (value) => (settingsStore.verifyApiKey = value),
 })
 
+const userDataLoaded = computed({
+  get: () => settingsStore.userDataLoaded,
+  set: (value) => (settingsStore.userDataLoaded = value),
+})
+
 const backgroundSwitch = computed({
   get: () => settingsStore.backgroundSwitch,
   set: (value) => (settingsStore.backgroundSwitch = value),
@@ -165,6 +170,7 @@ watch(backgroundSwitch, (newValue) => {
 })
 
 onMounted(() => {
+  settingsStore.userDataLoaded = false
   if (settingsStore.verifyApiKey && settingsStore.puuid) {
     fetchPlayerInfo();
   }
@@ -351,9 +357,9 @@ onMounted(() => {
           </ui-modal>
         </div>
       </div>
-      <PreviewEditor :playerInfo="playerInfo">
+      <PreviewEditor :userDataLoaded="userDataLoaded">
         <Overlay
-          v-if="verifyApiKey && playerInfo"
+          v-if="verifyApiKey && userDataLoaded"
           :backgroundSwitch="backgroundSwitch"
           :progressSwitch="progressSwitch"
           :statisticsSwitch="statisticsSwitch"

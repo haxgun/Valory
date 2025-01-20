@@ -6,6 +6,7 @@ interface SettingsState {
   puuid: string | null
   region: string | null
   verifyApiKey: boolean
+  userDataLoaded: boolean
   backgroundSwitch: boolean
   progressSwitch: boolean
   statisticsSwitch: boolean
@@ -24,6 +25,7 @@ export const useSettingsStore = defineStore('settings', {
     puuid: null,
     region: null,
     verifyApiKey: false,
+    userDataLoaded: false,
     backgroundSwitch: true,
     progressSwitch: true,
     statisticsSwitch: true,

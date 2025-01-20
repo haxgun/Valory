@@ -24,12 +24,21 @@ interface Match {
 export const getInformation = async (): Promise<PlayerInformation | null> => {
   const lastMatchResponse = await getLastMatch()
 
-  if (!lastMatchResponse.data) return null
+  if (!lastMatchResponse.data) {
+    settingsStore.userDataLoaded = false
+    return null
+  }
 
   const lastMatchId = lastMatchResponse.data[0].metadata.match_id
 
   const playerMMRResponse = await getPlayerMMR()
-  if (!playerMMRResponse.data) return null
+
+  if (!playerMMRResponse.data) {
+    settingsStore.userDataLoaded = false
+    return null
+  }
+
+  settingsStore.userDataLoaded = true
 
   return {
     lastMatchId,
