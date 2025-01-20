@@ -4,6 +4,7 @@ interface SettingsState {
   riotId: string | null
   apiKey: string | null
   puuid: string | null
+  region: string | null
   verifyApiKey: boolean
   backgroundSwitch: boolean
   progressSwitch: boolean
@@ -21,6 +22,7 @@ export const useSettingsStore = defineStore('settings', {
     riotId: null,
     apiKey: null,
     puuid: null,
+    region: null,
     verifyApiKey: false,
     backgroundSwitch: true,
     progressSwitch: true,

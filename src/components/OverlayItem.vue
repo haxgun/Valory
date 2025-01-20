@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import IconValory from '@/components/icons/IconValory.vue'
+import type { PlayerInformation } from "@/services/overlayService";
 
 interface OverlayProps {
   valoryLogo?: boolean
@@ -12,13 +13,14 @@ interface OverlayProps {
   progressColor?: string
   winColor?: string
   loseColor?: string
+  PlayerInfo: PlayerInformation | null,
 }
 
 defineProps<OverlayProps>()
 </script>
 
 <template>
-  <div class="overlay">
+  <div v-if="PlayerInfo" class="overlay">
     <div v-if="valoryLogo" class="logo">
       <IconValory :size="16" />
       <span class="text">VALORY.SU</span>
@@ -33,7 +35,7 @@ defineProps<OverlayProps>()
       <div class="overlay__content">
         <div class="overlay__left">
           <div class="rank__img">
-            <img src="/src/assets/ranks/26.webp" width="55px" />
+            <img :src="`/src/assets/ranks/${PlayerInfo.mmr.tier.id}.webp`" width="55px" />
           </div>
         </div>
         <div class="overlay__right">
@@ -44,7 +46,12 @@ defineProps<OverlayProps>()
               }"
               class="rank"
             >
-              IMMORTAL 3 #46
+              <span v-if="PlayerInfo.mmr.leaderboard_placement">
+                {{ PlayerInfo.mmr.tier.name }} #{{ PlayerInfo.mmr.leaderboard_placement.rank }}
+              </span>
+              <span v-else>
+                {{ PlayerInfo.mmr.tier.name }}
+              </span>
             </div>
             <div
               :style="{
@@ -52,9 +59,9 @@ defineProps<OverlayProps>()
               }"
               class="elo_with_rr"
             >
-              1838 elo - 123RR
+              {{ PlayerInfo.mmr.elo }} elo - {{ PlayerInfo.mmr.rr }} RR
               <span class="plus">
-                +5
+                {{ PlayerInfo.mmr.lastChange }}
                 <span>
                   <svg
                     fill="none"
@@ -172,6 +179,7 @@ defineProps<OverlayProps>()
           gap: 6px;
 
           .rank {
+            text-transform: uppercase;
             color: rgb(255 255 255);
             font-size: 18px;
             font-weight: 700;
@@ -206,6 +214,8 @@ defineProps<OverlayProps>()
             display: flex;
             gap: 4px;
             align-items: center;
+
+            margin-top: 3px;
 
             .wl {
               color: rgb(190 190 191);

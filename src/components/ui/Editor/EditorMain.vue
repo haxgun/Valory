@@ -11,10 +11,12 @@ import UiModal from '@/components/ui/ModalWindow.vue'
 import Switch from '@/components/ui/Switch.vue'
 import { getTopLeaderboard } from '@/services/leaderboardService'
 import { checkApiKey } from '@/services/statusService'
-import { getPuuid } from '@/services/userService'
+import { getPuuidWithRegion } from '@/services/userService'
 import { useSettingsStore } from '@/stores/settingsStore'
-import { computed, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from "vue";
 import { toast } from 'vue-sonner'
+import { getInformation } from "@/services/overlayService";
+import type { PlayerInformation } from "@/services/overlayService";
 
 const settingsStore = useSettingsStore()
 
@@ -81,6 +83,22 @@ const loseColor = computed({
 const isProfileModalVisible = ref(false)
 const isConfigurationModalVisible = ref(false)
 
+const playerInfo = ref<PlayerInformation | null>(
+  {
+    lastMatchId: 0,
+    mmr: {
+      tier: {
+        id: 0,
+        name: '',
+      },
+      rr: 0,
+      lastChange: 0,
+      elo: 0,
+      leaderboard_placement: 0
+    }
+  }
+);
+
 const openProfileModal = () => {
   isProfileModalVisible.value = true
 }
@@ -117,13 +135,15 @@ const checkKey = async () => {
   }
 }
 
+
 const getUserPuuid = async () => {
   if (apiKey.value && apiKey.value.length > 40 && riotId.value) {
     try {
-      const successGetPuuid = await getPuuid()
+      const successGetPuuid = await getPuuidWithRegion()
       if (!successGetPuuid) {
         toast.error('Riot ID is invalid')
-      }
+      } else toast.success('Uploading player data...')
+      fetchPlayerInfo()
     } catch (error) {
       toast.error('Failed to get Riot ID. Please try again.')
       console.error(error)
@@ -133,9 +153,20 @@ const getUserPuuid = async () => {
   }
 }
 
+const fetchPlayerInfo = async () => {
+  playerInfo.value = await getInformation();
+};
+
+
 watch(backgroundSwitch, (newValue) => {
   if (!newValue) {
     progressSwitch.value = false
+  }
+})
+
+onMounted(() => {
+  if (settingsStore.verifyApiKey && settingsStore.puuid) {
+    fetchPlayerInfo();
   }
 })
 </script>
@@ -320,9 +351,9 @@ watch(backgroundSwitch, (newValue) => {
           </ui-modal>
         </div>
       </div>
-      <PreviewEditor :verifyApiKey="verifyApiKey" :hdevApiKey="apiKey || ''" :riotId="riotId || ''">
+      <PreviewEditor :playerInfo="playerInfo">
         <Overlay
-          v-if="verifyApiKey && riotId"
+          v-if="verifyApiKey && playerInfo"
           :backgroundSwitch="backgroundSwitch"
           :progressSwitch="progressSwitch"
           :statisticsSwitch="statisticsSwitch"
@@ -332,6 +363,7 @@ watch(backgroundSwitch, (newValue) => {
           :progressColor="progressColor"
           :winColor="winColor"
           :loseColor="loseColor"
+          :PlayerInfo="playerInfo"
         />
       </PreviewEditor>
     </div>

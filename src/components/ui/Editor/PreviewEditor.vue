@@ -1,26 +1,21 @@
 <script lang="ts" setup>
-defineProps({
-  hdevApiKey: {
-    type: String,
-    required: true,
-  },
-  riotId: {
-    type: String,
-    required: true,
-  },
-  verifyApiKey: {
-    type: Boolean,
-    required: true,
-  },
-})
+import type { PlayerInformation } from "@/services/overlayService";
+
+interface PreviewProps {
+  playerInfo: PlayerInformation | null,
+}
+
+defineProps<PreviewProps>()
 </script>
 
 <template>
   <div class="preview">
     <div class="preview__container">
       <div class="preview__component">
-        <slot></slot>
-        <div v-if="!(verifyApiKey && riotId)" class="text">
+        <div v-if="playerInfo">
+          <slot></slot>
+        </div>
+        <div v-else class="text">
           {{ $t('editor.preview.title') }}
         </div>
       </div>
