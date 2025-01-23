@@ -60,7 +60,11 @@ defineProps<OverlayProps>()
               class="elo_with_rr"
             >
               {{ PlayerInfo.mmr.elo }} elo - {{ PlayerInfo.mmr.rr }} RR
-              <span v-if=" PlayerInfo.mmr.lastChange != 0" class="plus">
+              <span
+                v-if="PlayerInfo.mmr.lastChange != 0"
+                class="plus"
+                :style="{ color: PlayerInfo.mmr.lastChange > 0 ? '#27d6c4' : '#ff7986'}"
+              >
                   {{ PlayerInfo.mmr.lastChange }}
                 <span>
                   <svg
@@ -199,7 +203,6 @@ defineProps<OverlayProps>()
           span.plus {
             width: 20px;
             height: 12px;
-            color: #27d6c4;
             font-size: 10px;
             font-weight: 400;
             display: flex;
