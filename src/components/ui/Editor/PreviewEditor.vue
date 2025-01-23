@@ -11,14 +11,12 @@ defineProps<PreviewProps>()
   <div class="preview">
     <div class="preview__container">
       <div class="preview__component">
-        <Transition mode="out-in" name="fade">
-          <div v-if="userDataLoaded">
-            <slot></slot>
-          </div>
-          <div v-else class="text">
-            {{ $t('editor.preview.title') }}
-          </div>
-        </Transition>
+        <div v-if="userDataLoaded">
+          <slot></slot>
+        </div>
+        <div v-else class="text">
+          {{ $t('editor.preview.title') }}
+        </div>
       </div>
     </div>
   </div>
