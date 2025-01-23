@@ -1,6 +1,13 @@
 <script lang="ts" setup>
 import IconValory from '@/components/icons/IconValory.vue'
 import type { PlayerInformation } from "@/services/overlayService";
+import Up from "@/components/icons/plus/up.vue";
+import Up_plus from "@/components/icons/plus/up_plus.vue";
+import Up_plusplus from "@/components/icons/plus/up_plusplus.vue";
+import Down_plus from "@/components/icons/plus/down_plus.vue";
+import Down_plusplus from "@/components/icons/plus/down_plusplus.vue";
+import Down from "@/components/icons/plus/down.vue";
+
 
 interface OverlayProps {
   valoryLogo?: boolean
@@ -65,23 +72,31 @@ defineProps<OverlayProps>()
                 class="plus"
                 :style="{ color: PlayerInfo.mmr.lastChange > 0 ? '#27d6c4' : '#ff7986'}"
               >
-                  {{ PlayerInfo.mmr.lastChange }}
                 <span>
-                  <svg
-                    fill="none"
-                    height="7"
-                    viewBox="0 0 6 7"
-                    width="6"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5 6L3 3.91667L1 6M5 3.08333L3 1L1 3.08333"
-                      stroke="#00FFE3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
+                  {{ PlayerInfo.mmr.lastChange }}
                 </span>
+                <div v-if ="PlayerInfo.mmr.lastChange > 0">
+                  <span v-if="PlayerInfo.mmr.lastChange <= 10">
+                    <up />
+                  </span>
+                  <span v-else-if="PlayerInfo.mmr.lastChange <= 20">
+                    <up_plus />
+                  </span>
+                  <span v-else-if="PlayerInfo.mmr.lastChange <= 30">
+                    <up_plusplus />
+                  </span>
+                </div>
+                <div v-else>
+                  <span v-if="-10 <= PlayerInfo.mmr.lastChange">
+                    <down />
+                  </span>
+                  <span v-else-if="-20 <= PlayerInfo.mmr.lastChange">
+                    <down_plus />
+                  </span>
+                  <span v-else-if="-30 <= PlayerInfo.mmr.lastChange">
+                    <down_plusplus />
+                  </span>
+                </div>
               </span>
             </div>
             <div class="last_matches">
