@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-
 interface PreviewProps {
-  userDataLoaded: boolean,
+  userDataLoaded: boolean
 }
 
 defineProps<PreviewProps>()

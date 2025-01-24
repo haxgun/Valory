@@ -10,13 +10,13 @@ import Input from '@/components/ui/InputUI.vue'
 import UiModal from '@/components/ui/ModalWindow.vue'
 import Switch from '@/components/ui/Switch.vue'
 import { getTopLeaderboard } from '@/services/leaderboardService'
+import { getInformation } from '@/services/overlayService'
+import type { PlayerInformation } from '@/services/overlayService'
 import { checkApiKey } from '@/services/statusService'
 import { getPuuidWithRegion } from '@/services/userService'
 import { useSettingsStore } from '@/stores/settingsStore'
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from 'vue'
 import { toast } from 'vue-sonner'
-import { getInformation } from "@/services/overlayService";
-import type { PlayerInformation } from "@/services/overlayService";
 
 const settingsStore = useSettingsStore()
 
@@ -88,21 +88,19 @@ const loseColor = computed({
 const isProfileModalVisible = ref(false)
 const isConfigurationModalVisible = ref(false)
 
-const playerInfo = ref<PlayerInformation | null>(
-  {
-    lastMatchId: 0,
-    mmr: {
-      tier: {
-        id: 0,
-        name: '',
-      },
-      rr: 0,
-      lastChange: 0,
-      elo: 0,
-      leaderboard_placement: 0
-    }
-  }
-);
+const playerInfo = ref<PlayerInformation | null>({
+  lastMatchId: 0,
+  mmr: {
+    tier: {
+      id: 0,
+      name: '',
+    },
+    rr: 0,
+    lastChange: 0,
+    elo: 0,
+    leaderboard_placement: 0,
+  },
+})
 
 const openProfileModal = () => {
   isProfileModalVisible.value = true
@@ -140,7 +138,6 @@ const checkKey = async () => {
   }
 }
 
-
 const getUserPuuid = async () => {
   if (apiKey.value && apiKey.value.length > 40 && riotId.value) {
     try {
@@ -159,8 +156,8 @@ const getUserPuuid = async () => {
 }
 
 const fetchPlayerInfo = async () => {
-  playerInfo.value = await getInformation();
-};
+  playerInfo.value = await getInformation()
+}
 
 watch(backgroundSwitch, (newValue) => {
   if (!newValue) {
@@ -171,7 +168,7 @@ watch(backgroundSwitch, (newValue) => {
 onMounted(() => {
   settingsStore.userDataLoaded = false
   if (settingsStore.verifyApiKey && settingsStore.puuid) {
-    fetchPlayerInfo();
+    fetchPlayerInfo()
   }
 })
 </script>
