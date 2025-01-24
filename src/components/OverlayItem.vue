@@ -202,6 +202,8 @@ function getTierClass(tierId: number): string {
       align-items: center;
 
       .overlay__left {
+        margin-left: 6px;
+
         .rank__img {
           width: 82px;
           height: 106px;
@@ -359,7 +361,7 @@ function getTierClass(tierId: number): string {
         }
 
         .overlay__stats {
-          display: flex;
+          display: none;
           flex-direction: column;
           gap: 6px;
 

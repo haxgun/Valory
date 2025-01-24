@@ -28,7 +28,7 @@ export const useSettingsStore = defineStore('settings', {
     userDataLoaded: false,
     backgroundSwitch: true,
     progressSwitch: true,
-    statisticsSwitch: true,
+    statisticsSwitch: false,
     backgroundColor: '#07090e99',
     textColor: '#FFFFFF',
     primaryColor: '#bebebf',
@@ -40,7 +40,7 @@ export const useSettingsStore = defineStore('settings', {
     resetConfiguration() {
       this.backgroundSwitch = true
       this.progressSwitch = true
-      this.statisticsSwitch = true
+      this.statisticsSwitch = false
       this.backgroundColor = '#07090e99'
       this.textColor = '#FFFFFF'
       this.primaryColor = '#bebebf'
