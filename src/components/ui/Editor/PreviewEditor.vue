@@ -30,7 +30,7 @@ defineProps<PreviewProps>()
     width: auto;
     height: 100%;
     padding: calc(0.25 * 6rem);
-    background-image: url('@/assets/previews/breeze.webp');
+    background-image: url('/breeze.webp');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

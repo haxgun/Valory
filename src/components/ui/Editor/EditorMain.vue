@@ -162,7 +162,6 @@ const fetchPlayerInfo = async () => {
   playerInfo.value = await getInformation();
 };
 
-
 watch(backgroundSwitch, (newValue) => {
   if (!newValue) {
     progressSwitch.value = false

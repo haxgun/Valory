@@ -8,7 +8,6 @@ import Down_plus from "@/components/icons/plus/down_plus.vue";
 import Down_plusplus from "@/components/icons/plus/down_plusplus.vue";
 import Down from "@/components/icons/plus/down.vue";
 
-
 interface OverlayProps {
   valoryLogo?: boolean
   backgroundSwitch?: boolean
@@ -24,6 +23,19 @@ interface OverlayProps {
 }
 
 defineProps<OverlayProps>()
+
+function getTierClass(tierId: number): string {
+  if (tierId >= 3 && tierId <= 5) return "iron";
+  if (tierId >= 6 && tierId <= 8) return "bronze";
+  if (tierId >= 9 && tierId <= 11) return "silver";
+  if (tierId >= 12 && tierId <= 14) return "gold";
+  if (tierId >= 15 && tierId <= 17) return "platinum";
+  if (tierId >= 18 && tierId <= 20) return "diamond";
+  if (tierId >= 21 && tierId <= 23) return "ascendant";
+  if (tierId >= 24 && tierId <= 26) return "immortal";
+  if (tierId === 27) return "radiant";
+  return "unknown";
+}
 </script>
 
 <template>
@@ -42,7 +54,11 @@ defineProps<OverlayProps>()
       <div class="overlay__content">
         <div class="overlay__left">
           <div class="rank__img">
-            <img :src="`/src/assets/ranks/${PlayerInfo.mmr.tier.id}.webp`" width="55px" />
+            <img
+              :class="[
+                getTierClass(PlayerInfo.mmr.tier.id)
+              ]"
+              :src="`/ranks/${PlayerInfo.mmr.tier.id}.webp`" width="55px" />
           </div>
         </div>
         <div class="overlay__right">
@@ -73,7 +89,7 @@ defineProps<OverlayProps>()
                 :style="{ color: PlayerInfo.mmr.lastChange > 0 ? '#27d6c4' : '#ff7986'}"
               >
                 <span>
-                  {{ PlayerInfo.mmr.lastChange }}
+                  {{ PlayerInfo.mmr.lastChange > 0 ? `+${PlayerInfo.mmr.lastChange}` : PlayerInfo.mmr.lastChange }}
                 </span>
                 <div v-if ="PlayerInfo.mmr.lastChange > 0">
                   <span v-if="PlayerInfo.mmr.lastChange <= 10">
@@ -82,7 +98,7 @@ defineProps<OverlayProps>()
                   <span v-else-if="PlayerInfo.mmr.lastChange <= 20">
                     <up_plus />
                   </span>
-                  <span v-else-if="PlayerInfo.mmr.lastChange <= 30">
+                  <span v-else-if="20 < PlayerInfo.mmr.lastChange">
                     <up_plusplus />
                   </span>
                 </div>
@@ -90,21 +106,31 @@ defineProps<OverlayProps>()
                   <span v-if="-10 <= PlayerInfo.mmr.lastChange">
                     <down />
                   </span>
-                  <span v-else-if="-20 <= PlayerInfo.mmr.lastChange">
+                  <span v-else-if="-20 < PlayerInfo.mmr.lastChange">
                     <down_plus />
                   </span>
-                  <span v-else-if="-30 <= PlayerInfo.mmr.lastChange">
+                  <span v-else-if="-20 >= PlayerInfo.mmr.lastChange">
                     <down_plusplus />
                   </span>
                 </div>
               </span>
             </div>
             <div class="last_matches">
-              <span class="win_match">W</span>
-              <span class="lose_match">L</span>
-              <span class="win_match">W</span>
-              <span class="lose_match">L</span>
-              <span class="win_match">W</span>
+              <span
+                class="match"
+                v-for="(result, index) in PlayerInfo.lastFiveMatches"
+                :key="index"
+                :class="{
+                  win_match: result === 'Win',
+                  lose_match: result === 'Lose',
+                  draw_match: result === 'Draw'
+                }"
+              >
+                <span class="match_text" v-if="result === 'Win'">W</span>
+                <span v-else-if="result === 'Lose'">L</span>
+                <span v-else-if="result === 'Draw'">D</span>
+                <span v-else>-</span>
+              </span>
               <span class="wl">40%</span>
             </div>
           </section>
@@ -178,6 +204,42 @@ defineProps<OverlayProps>()
           display: flex;
           align-items: center;
           justify-content: center;
+
+          .iron {
+            filter: drop-shadow(0 0 20px rgba(148, 148, 148, 0.5));
+          }
+
+          .bronze {
+            filter: drop-shadow(0 0 20px rgba(153, 110, 24, 0.5));
+          }
+
+          .silver {
+            filter: drop-shadow(0 0 20px rgba(202, 210, 207, 0.5));
+          }
+
+          .gold {
+            filter: drop-shadow(0 0 20px rgba(237, 211, 88, 0.5));
+          }
+
+          .platinum {
+            filter: drop-shadow(0 0 20px rgba(83, 214, 222, 0.5));
+          }
+
+          .diamond {
+            filter: drop-shadow(0 0 20px rgba(239, 150, 241, 0.5));
+          }
+
+          .ascendant {
+            filter: drop-shadow(0 0 20px rgba(50, 166, 110, 0.5));
+          }
+
+          .immortal {
+            filter: drop-shadow(0 0 20px rgba(176, 38, 59, 0.5));
+          }
+
+          .radiant {
+            filter: drop-shadow(0 0 20px rgba(255, 255, 177, 0.5));
+          }
         }
       }
 
@@ -242,6 +304,18 @@ defineProps<OverlayProps>()
               margin-left: 5px;
             }
 
+            .match {
+              display: flex;
+              width: 20px;
+              height: 20px;
+              border-radius: 4px;
+              color: rgb(164, 164, 164);
+              background: rgb(190 190 191);
+              align-items: center;
+              justify-content: center;
+              filter: drop-shadow(0 0 10px rgba(190, 190, 191, 0.5));
+            }
+
             .win_match {
               display: flex;
               width: 20px;
@@ -251,6 +325,7 @@ defineProps<OverlayProps>()
               background: #61c4b9;
               align-items: center;
               justify-content: center;
+              filter: drop-shadow(0 0 10px rgba(97, 196, 185, 0.5));
             }
 
             .lose_match {
@@ -262,7 +337,21 @@ defineProps<OverlayProps>()
               background: #b95861;
               align-items: center;
               justify-content: center;
+              filter: drop-shadow(0 0 10px rgba(185, 88, 97, 0.5));
             }
+
+            .draw_match {
+              display: flex;
+              width: 20px;
+              height: 20px;
+              border-radius: 4px;
+              color: #fff2bb;
+              background: #CBB765;
+              align-items: center;
+              justify-content: center;
+              filter: drop-shadow(0 0 10px rgba(203, 183, 101, 0.5));
+            }
+
           }
         }
 
