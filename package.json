@@ -27,7 +27,6 @@
     "prettier": "^3.0.3",
     "set-interval-async": "^3.0.3",
     "uncss": "^0.17.3",
-    "vite-plugin-compression": "^0.5.1"
   },
   "devDependencies": {
     "eslint": "^9.16.0",
