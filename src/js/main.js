@@ -790,7 +790,7 @@ async function insertinData() {
   let actualProcent = `${playerMmr}%`;
   if (playerLastGamePts === "nRanked") {
     playerRank.innerHTML = playerCurrentTier;
-  } else if (playerTier >= 24) {
+  } else if (playerTier >= 24 && playerLeaderboard <= 500) {
     if (playerLeaderboard !== " ") {
       playerRank.innerHTML = `${playerCurrentTier} #${playerLeaderboard}`;
     } else {

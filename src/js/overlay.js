@@ -116,7 +116,7 @@ function updatePlayerCard(playerInfo, leaderboardRank) {
   imgRank.src = `/img/ranks/${tier}.webp`;
   progressRank.style.setProperty("--progresspontinho", `${Math.min(mmr, 100)}%`);
 
-  if (tier >= 24 && leaderboardRank) {
+  if (tier >= 24 && leaderboardRank <= 500) {
     playerRank.innerHTML = `${rank} #${leaderboardRank}`;
   } else {
     playerRank.innerHTML = `${rank} - ${mmr}RR`;
