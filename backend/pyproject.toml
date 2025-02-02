@@ -1,0 +1,20 @@
+[project]
+name = "valory-backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiosqlite>=0.20.0",
+    "alembic>=1.14.1",
+    "asyncpg>=0.30.0",
+    "fastapi[standard]>=0.115.8",
+    "greenlet>=3.1.1",
+    "psycopg2-binary>=2.9.10",
+    "pydantic-settings>=2.7.1",
+    "python-dotenv>=1.0.1",
+    "sqlalchemy>=2.0.37",
+    "sqlmodel>=0.0.22",
+    "uuid>=1.30",
+    "uvicorn>=0.34.0",
+]
