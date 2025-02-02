@@ -1,5 +1,5 @@
 <div align="center">
-   <img align="center" width="128px" src="public/icons/icon-128x128.png" />
+   <img align="center" width="128px" src="frontend/public/icons/icon-128x128.png" />
 	<h1 align="center"><b>VALORY</b></h1>
 	<p align="center">
 		Powerful and customizable rank overlay tool for Valorant streamers
