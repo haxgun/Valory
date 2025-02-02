@@ -1,7 +1,8 @@
 from fastapi import APIRouter
 
-from app.routers import overlays, auth
+from app.routers import overlays
+from app.routers.auth import twitch
 
 api_router = APIRouter()
 api_router.include_router(overlays.router, prefix="/overlay", tags=["overlay"])
-api_router.include_router(auth.router, prefix="/auth", tags=["auth"])
+api_router.include_router(twitch.router, prefix="/auth/twitch", tags=["auth"])
