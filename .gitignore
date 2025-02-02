@@ -69,4 +69,12 @@ pnpm-lock.yaml
 .env
 *.tsbuildinfo
 auto-imports.d.ts
-
+uv.lock
+sqlite.db
+.venv
+Pipfile.lock
+/backend/app/migrations/versions/
+/backend/.idea/
+/backend/.python-version
+/backend/.env
+/backend/uv.lock
